@@ -1,20 +1,41 @@
-name: GitHub Actions Build and Deploy Demo
+name: Hexo deployer
 on:
   push:
     branches:
       - gh-pages
 jobs:
-  build-and-deploy:
+  build:
+    name: Build and publish
     runs-on: ubuntu-latest
+    
     steps:
-    - name: Checkout
-      uses: actions/checkout@master
+      - name: Checkout
+        uses: actions/checkout@master
 
-    - name: Build and Deploy
-      uses: JamesIves/github-pages-deploy-action@master
-      env:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        BASE_BRANCH: gh-pages
-        BRANCH: master
-        FOLDER: public
-        BUILD_SCRIPT: npm i -g hexo && npm install && hexo generate && hexo deploy
+      - name: Setup hexo env
+        run: |
+            npm install hexo-cli -g
+            npm install
+
+      - name: Generate public files
+        run: |
+            hexo clean
+            hexo g  
+
+      - name: Deploy
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BASE_BRANCH: gh-pages
+          BRANCH: master
+          FOLDER: public
+          GH_REF: github.com/lemon1499/lemon1499.github.io.git
+          run: | 
+            git clone https://${GH_REF} .deploy_git
+            cd .deploy_git
+            git checkout master
+            cd ../
+            mv .deploy_git/.git/ ./public/
+            cd ./public/
+            git add .
+            git commit -m "CI built at `date +"%Y-%m-%d %H:%M:%S"`"
+            git push --force --quiet "https://${ACCESS_TOKEN}@${GH_REF}" master:master
