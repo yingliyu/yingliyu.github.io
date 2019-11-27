@@ -33,7 +33,7 @@ jobs:
           GH_REF: github.com/lemon1499/Honye.github.io.git
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         run: |
-          git config --global user.name "leomn1499"
+          git config --global user.name "lemon1499"
           git config --global user.email "404997046@qq.com"
           git clone https://${GH_REF} .deploy_git
           cd .deploy_git
