@@ -1,29 +1,46 @@
-name: CI
+name: Hexo deployer # Actions 名字
 
-on:
+on: # 触发条件
   push:
     branches:
-      - gh-pages
+      - gh-pages # 仅向 gh-pages 分支 push 时触发
+
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  build: # job id
+    name: Build and publish # job 名，不写默认使用 job id
+    runs-on: ubuntu-latest # 运行环境，可选 ubuntu-latest, ubuntu-18.04, ubuntu-16.04, windows-latest, windows-2019, windows-2016, macOS-latest, macOS-10.14
 
     steps:
-      - name: Checkout source
-        uses: actions/checkout@v1
-          
-      - name: Setup hexo
-        env:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+      - uses: actions/checkout@v1
+
+      - name: Use Node.js 10.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+
+      - name: Setup hexo env
         run: |
-          mkdir -p ~/.ssh/
-          echo "$ACCESS_TOKEN" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
           npm install hexo-cli -g
           npm install
-      - name: Hexo deploy
+
+      - name: Generate public files
         run: |
           hexo clean
-          hexo g
-          hexo d
+          hexo g  
+
+      - name: Deploy
+        env:
+        GH_REF: github.com/lemon1499/Honye.github.io.git
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        run: |
+          git config --global user.name "leomn1499"
+          git config --global user.email "404997046@qq.com"
+          git clone https://${GH_REF} .deploy_git
+          cd .deploy_git
+          git checkout master
+          cd ../
+          mv .deploy_git/.git/ ./public/
+          cd ./public/
+          git add .
+          git commit -m "CI built at `date +"%Y-%m-%d %H:%M:%S"`"
+          git push --force --quiet "https://${ACCESS_TOKEN}@${GH_REF}" master:master
