@@ -29,13 +29,13 @@ jobs:
           BRANCH: master
           FOLDER: public
           GH_REF: github.com/lemon1499/lemon1499.github.io.git
-          run: | 
-            git clone https://${GH_REF} .deploy_git
-            cd .deploy_git
-            git checkout master
-            cd ../
-            mv .deploy_git/.git/ ./public/
-            cd ./public/
-            git add .
-            git commit -m "CI built at `date +"%Y-%m-%d %H:%M:%S"`"
-            git push --force --quiet "https://${ACCESS_TOKEN}@${GH_REF}" master:master
+        run: | 
+          git clone https://${GH_REF} .deploy_git
+          cd .deploy_git
+          git checkout master
+          cd ../
+          mv .deploy_git/.git/ ./public/
+          cd ./public/
+          git add .
+          git commit -m "CI built at `date +"%Y-%m-%d %H:%M:%S"`"
+          git push --force --quiet "https://${ACCESS_TOKEN}@${GH_REF}" master:master
