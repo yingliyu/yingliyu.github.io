@@ -95,6 +95,11 @@ theme: yilia
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: git
-  repo: https://github.com/lemon1499/lemon1499.github.io.git
-  branch: master
+  # Github
+  - type: git
+    repository: https://github.com/lemon1499/lemon1499.github.io.git
+    branch: master
+  # Coding
+  - type: git
+    repository: https://git.dev.tencent.com/ylyu/blogme.git
+    branch: master
