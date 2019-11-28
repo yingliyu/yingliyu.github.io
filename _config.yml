@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: 柒
 subtitle: ''
 description: ''
 keywords:
-author: John Doe
+author: 七月笙烟
 language: en
 timezone: ''
 
@@ -90,11 +90,11 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: yilia
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/YourgithubName/YourgithubName.github.io.git
+  repo: https://github.com/lemon1499/lemon1499.github.io.git
   branch: master
