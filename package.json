@@ -11,7 +11,7 @@
     "d": "hexo clean & hexo g && hexo d"
   },
   "hexo": {
-    "version": ""
+    "version": "4.0.0"
   },
   "dependencies": {
     "hexo": "^4.0.0",
