@@ -1,8 +1,8 @@
 # Header
 
 menu:
-  home: /
-  archives: /tags/archives/
+  主页: /
+  随笔: /tags/随笔/
 
 # SubNav
 subnav:
