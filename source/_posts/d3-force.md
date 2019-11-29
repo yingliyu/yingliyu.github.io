@@ -5,14 +5,14 @@ tags:
 ---
 
 
-#### d3.forceSimulation( [nodes] ) 
+##### d3.forceSimulation( [nodes] ) 
 使用指定的节点数据和无强度力创建一个新的模拟。若未指定nodes，默认为空数组。该模拟是自启动的；在该模拟运行时使用 [simulation.on](
 https://github.com/d3/d3-force/blob/v1.2.1/README.md#simulation_on) 监听每个瞬间（呼吸）事件。如果你想要手动运行模拟，调用 [simulation.stop](
 https://github.com/d3/d3-force/blob/v1.2.1/README.md#simulation_stop), 然后需要调用  [simulation.tick](
 https://github.com/d3/d3-force/blob/v1.2.1/README.md#simulation_tick) .
 
 
-#### simulation.nodes（[nodes]）
+##### simulation.nodes（[nodes]）
 每个node必须是一个对象模型，下面几个属性将会被仿真系统添加：
 index-节点在nodes数组中的索引
 
@@ -26,22 +26,22 @@ index-节点在nodes数组中的索引
 * fx - 节点的固定 x-位置
 * fy - 节点的固定 y-位置
 
-#### force(）
+##### force(）
 force()是一个用以修改节点位置和速度的函数；在这种情况下，force 可以用来模拟电荷或重力之类的经典物理力学，也可以用来解决几何约束，例如将节点保持在边界框内或者保持节点之间的相对距离。
-#### link froce(弹簧模型)
+##### link froce(弹簧模型)
 可以根据 link distance 将有关联的两个节点拉近或者推远。力的强度与被链接两个节点的距离成比例，类似弹簧力。
-#### d3.forceManyBody()
+##### d3.forceManyBody()
 
 创建一个使用默认参数的电荷力模型。
 manyBody.strength([strength]) 如果指定了 strength 则将强度访问器设置为指定的数值或者方法，重新评估每个节点的强度访问器并返回此电荷力。若强度为正值则表示节点之间相互吸引，负值表示节点之间相互排斥。
 
-####  simulation.alphaTarget([target]) 
+#####  simulation.alphaTarget([target]) 
 如果指定了 target 则将当前的目标 alpha 设置为指定的值，需要在 [0, 1] 之间。如果没有指定 target 则返回当前默认的目标 alpha 值, 默认为 0.
-#### simulation.force(name[, force])
+##### simulation.force(name[, force])
 如果指定了 force 则表示为仿真添加指定 name 的 force(力学模型) 并返回仿真。如果没有指定 force 则返回当前仿真的对应 name 的力模型，如果没有对应的 name 则返回 undefined. (默认情况下仿真没有任何力学模型，需要手动添加). 
-#### enter( )
+##### enter( )
 操作的意义在于通过此函数返回一个集合，这个集合里面包含的就是没有被可视化的数据；
-#### simulation.on(typenames, [listener])
+##### simulation.on(typenames, [listener])
 ***
 ### Forces
 forces是一个简单的改变节点位置和速度的函数；在这个模拟环境中，一个forces能施加一个典型的物理力，比如电荷力或重力，或者它可以解决一个几何约束， 例如将节点保持在边界框内或将链接节点保持在固定距离之外。
@@ -68,7 +68,7 @@ function force(alpha) {
 5. Positioning 定位力
 
 
-#### Centering定心力
+##### Centering定心力
 
 定心力一致的调动节点以至于所有节点(如果多有节点的质量相等则为质心)都是在给定的位置<x,y>。
 每一个施加了这个力的节点的位置会被改变；但是它的速度不变，这样做通常会导致节点超出目标中心并且围着这个中心震荡。这个力帮助节点保持在视口的中心，不像定位力，会扭曲它们的相对位置。
@@ -90,7 +90,7 @@ var simulation = d3.forceSimulation(nodes)
     .force("link", d3.forceLink(links))
     .force("center", d3.forceCenter().x().y())
 ```
-#### Collision碰撞力
+##### Collision碰撞力
 
 碰撞力将节点视为具有给定半径的圆，而不是点，并且阻止节点重叠。通常情况下，两个节点a和b是分开的所以a和b之间的距离至少是两个节点的半径之和。为了减少抖动，这是一个默认的软约束，具有可配置的强度和迭代次数。
 
@@ -119,7 +119,7 @@ function radius() {
 **4. collide.iterations([iterations])**
 
 如果指定了迭代次数，给每一个应用设置迭代次数的值为一个特定的数字并且返回这个模拟。如果未指定迭代次数，返回当前的迭代次数，默认值为1。增加迭代次数大大增加了约束的钢度并且避免节点的部分重合，但是也增加了计算力的运行时成本。
-#### Links链接力
+##### Links链接力
 根据想要的链接距离，链接力将链接在一起的节点推到一起或分开。这个力的强度与链接节点和目标节点的距离差成比例，类似于弹簧力。
 
 **1. d3.forceLink([links])**
@@ -210,7 +210,7 @@ function strength(link) {
 **6. link.iterations([iterations])**
 
 如果指定了迭代，则将每个应用程序的迭代次数设置为指定的次数并返回该强制。如果没有指定迭代，则返回默认为1的当前迭代计数。迭代次数的增加极大地增加了约束的刚度，对于复杂的结构如网格是有用的，但也增加了评估力的运行时成本。
-#### Many-Body多体力
+##### Many-Body多体力
 多体力在多有节点之间相互作用。如果强度时正数，它相当于引力（吸引），如果强度是负数，它相当于静电电荷斥力。该实现使用四叉树和Barnes-Hut近似来极大地提高性能;  他的精确性可以用theta参数定制。
 
 不像链接力，它仅仅受两个链接的节点影响，这个电荷斥力是全局的；每个节点会影响每个其他的节点，即使他们不是相互连接的子图。
@@ -242,10 +242,10 @@ function strength() {
 **5. manyBody.distanceMax([distance])**
 
 如果指定距离，将它设置为两个节点间的最大距离。如果未指定，返回默认值无穷大。指定一个有限大的最大距离提高了性能并且生成更加本地化的布局。
-#### Positioning定位力
+##### Positioning定位力
 x和y的定位力以可配置的强度将节点推向给定的尺寸预期的位置。径向力是相似的，除了它时将节点推向给定圆的最近点。这个力的强度是跟节点的位置和目标位置的一维距离成正例。虽然这些力可以作用于单个节点，但是它主要作用于所有节点的全局力。
 
-**1. d3.forceX([x]) **
+**1. d3.forceX([x])**
 
 沿着x轴给定位置x创建一个新的定位力。如果x未指定，默认未0.
 

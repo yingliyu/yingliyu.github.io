@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 柒
+title: yu's blog
 subtitle: ''
 description: ''
 keywords:
-author: 七月笙烟
+author: ylyu
 language: en
 timezone: ''
 
@@ -34,10 +34,10 @@ skip_render:
 new_post_name: :title.md # File name of new posts
 default_layout: post
 titlecase: false # Transform title into titlecase
-external_link:
-  enable: true # Open external links in new tab
-  field: site # Apply to the whole site
-  exclude: ''
+external_link: true
+  # enable: true # Open external links in new tab
+  # field: site # Apply to the whole site
+  # exclude: ''
 filename_case: 0
 render_drafts: false
 post_asset_folder: false
@@ -46,7 +46,7 @@ future: true
 highlight:
   enable: true
   line_number: true
-  auto_detect: false
+  auto_detect: true
   tab_replace: ''
 
 # Home page setting
@@ -63,6 +63,14 @@ default_category: uncategorized
 category_map:
 tag_map:
 
+# Archives
+## 2: Enable pagination
+## 1: Disable pagination
+## 0: Fully Disable
+archive: 1
+category: 1
+tag: 1
+  
 # Metadata elements
 ## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
 meta_generator: true
@@ -101,5 +109,24 @@ theme: yilia
 #     branch: master
 #   # Coding
 #   - type: git
-#     repository: https://git.dev.tencent.com/ylyu/blogme.git
+#     repository: https://git.dev.tencent.com/ylyu/ylyu.git
 #     branch: master
+
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: false
+    tags: true
