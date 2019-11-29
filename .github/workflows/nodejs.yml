@@ -32,7 +32,7 @@ jobs:
         env:
           GH_REF: github.com/lemon1499/lemon1499.github.io.git
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}  # github token
-          CODING_REF: git.dev.tencent.com/ylyu/blogme.git 
+          CODING_REF: git.dev.tencent.com/ylyu/ylyu.git
           CODING_TOKEN: ${{ secrets.CODING_ACCESS_TOKEN }} # coding token
         run: |
           git config --global user.name "lemon1499"
