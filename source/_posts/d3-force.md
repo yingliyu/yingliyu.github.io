@@ -1,9 +1,14 @@
 ---
-title: d3-force
+toc: true
+layout: post
+title: D3-force
 date: 2019-11-28 15:57:09
-tags:
+comments: true
+brief: "test"
+tags: 
+- 前端
+- D3
 ---
-
 
 ##### d3.forceSimulation( [nodes] ) 
 使用指定的节点数据和无强度力创建一个新的模拟。若未指定nodes，默认为空数组。该模拟是自启动的；在该模拟运行时使用 [simulation.on](
@@ -20,6 +25,8 @@ index-节点在nodes数组中的索引
 * y-节点当前的y-坐标
 * vx-节点当前的x方向速度
 * vy-节点当前的y方向速度
+
+<!--more-->
 
 固定给定节点的位置，你需要两个特定的额外的属性：
 
