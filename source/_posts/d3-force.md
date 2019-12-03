@@ -1,7 +1,7 @@
 ---
 toc: true
 layout: post
-title: D3-force
+title: D3-force学习笔记
 date: 2019-11-28 15:57:09
 comments: true
 brief: "test"
@@ -98,6 +98,7 @@ var simulation = d3.forceSimulation(nodes)
     .force("center", d3.forceCenter().x().y())
 ```
 ##### Collision碰撞力
+
 
 碰撞力将节点视为具有给定半径的圆，而不是点，并且阻止节点重叠。通常情况下，两个节点a和b是分开的所以a和b之间的距离至少是两个节点的半径之和。为了减少抖动，这是一个默认的软约束，具有可配置的强度和迭代次数。
 
@@ -312,3 +313,8 @@ function strength() {
 **11. radial.y([y])**
 
 如果指定了y，则将圆心的y坐标设置为指定的数值并返回此力。如果没有指定y，则返回中心的当前y坐标，默认为0。
+
+注：本文是笔者阅读文档自译版，如跟官方文档有出入谨以官方为准。
+
+##### 参考：
+[https://github.com/d3/d3/blob/master/API.md#forces-d3-force](https://github.com/d3/d3/blob/master/API.md#forces-d3-force)
