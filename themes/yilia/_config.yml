@@ -77,8 +77,7 @@ share_jia: true
 #评论：1、多说；2、网易云跟帖；3、畅言；4、Disqus；5、Gitment
 #不需要使用某项，直接设置值为false，或注释掉
 #具体请参考wiki：https://github.com/litten/hexo-theme-yilia/wiki/
-# 来必力
-livere: MTAyMC80Nzc5MC8yNDI4Nw==
+
 #1、多说
 duoshuo: false
 
@@ -98,6 +97,16 @@ gitment_repo: ''          #存储评论的 repo
 gitment_oauth:
   client_id: ''           #client ID
   client_secret: ''       #client secret
+
+#6、Valine https://valine.js.org
+valine: 
+ appid: IMk6UEsIdoJmshBUrTrk068d-gzGzoHsz #Leancloud应用的appId
+ appkey: frYofqWd1Lx2uJ2WwELXRhw8 #Leancloud应用的appKey
+ verify: false #验证码
+ notify: false #评论回复提醒
+ avatar: monsterid #评论列表头像样式：''/mm/identicon/monsterid/wavatar/retro/hide
+ placeholder: 写下你的评论... #评论框占位符
+
 
 # 样式定制 - 一般不需要修改，除非有很强的定制欲望…
 style:
