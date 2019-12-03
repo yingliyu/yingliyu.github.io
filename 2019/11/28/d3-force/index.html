@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="yu&#39;s blog">
 <meta property="og:description" content="d3.forceSimulation( [nodes] )使用指定的节点数据和无强度力创建一个新的模拟。若未指定nodes，默认为空数组。该模拟是自启动的；在该模拟运行时使用 simulation.on 监听每个瞬间（呼吸）事件。如果你想要手动运行模拟，调用 simulation.stop, 然后需要调用  simulation.tick . simulation.nodes（[nodes]）每个">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-03T09:31:55.832Z">
+<meta property="og:updated_time" content="2019-12-03T09:58:19.304Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="yu&#39;s blog" type="application/atom+xml">
@@ -463,7 +463,7 @@
 
 
   
-    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+    <section id="comments" style="margin:30px;padding:30px;background:#fff;">
     <div id="vcomment" class="comment"></div> 
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
 <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
@@ -478,7 +478,10 @@
             app_id: "IMk6UEsIdoJmshBUrTrk068d-gzGzoHsz",
             app_key: "frYofqWd1Lx2uJ2WwELXRhw8",
             placeholder: "写下你的评论...",
-            avatar:"monsterid"
+            avatar:"monsterid",
+            // meta: guest,
+            pageSize:'{{ theme.valine.pageSize }}' || 10,
+            visitor: true // 阅读量统计
         });
     }
 </script>

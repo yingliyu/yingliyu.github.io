@@ -16,7 +16,7 @@
 <meta property="og:description" content="lemon1499 GitHub个人主页 | 404 Not Found页        html,     body {       background: #f0f2f5;     }  body, p, h5, #countdown {   text-align: center; }  a {   color: #999;">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http:&#x2F;&#x2F;lemon1499.github.io&#x2F;404&#x2F;assets&#x2F;imgs&#x2F;404.png">
-<meta property="og:updated_time" content="2019-12-03T09:31:55.832Z">
+<meta property="og:updated_time" content="2019-12-03T09:58:19.300Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;lemon1499.github.io&#x2F;404&#x2F;assets&#x2F;imgs&#x2F;404.png">
   
@@ -364,7 +364,7 @@ setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos
 
 
   
-    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+    <section id="comments" style="margin:30px;padding:30px;background:#fff;">
     <div id="vcomment" class="comment"></div> 
 <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
 <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
@@ -379,7 +379,10 @@ setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos
             app_id: "IMk6UEsIdoJmshBUrTrk068d-gzGzoHsz",
             app_key: "frYofqWd1Lx2uJ2WwELXRhw8",
             placeholder: "写下你的评论...",
-            avatar:"monsterid"
+            avatar:"monsterid",
+            // meta: guest,
+            pageSize:'{{ theme.valine.pageSize }}' || 10,
+            visitor: true // 阅读量统计
         });
     }
 </script>
