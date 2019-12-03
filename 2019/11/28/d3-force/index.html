@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://lemon1499.github.io">
-  <title>D3-force | yu&#39;s blog</title>
+  <title>D3-force学习笔记 | yu&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="d3.forceSimulation( [nodes] )使用指定的节点数据和无强度力创建一个新的模拟。若未指定nodes，默认为空数组。该模拟是自启动的；在该模拟运行时使用 simulation.on 监听每个瞬间（呼吸）事件。如果你想要手动运行模拟，调用 simulation.stop, 然后需要调用  simulation.tick . simulation.nodes（[nodes]）每个">
 <meta name="keywords" content="前端,D3">
 <meta property="og:type" content="article">
-<meta property="og:title" content="D3-force">
+<meta property="og:title" content="D3-force学习笔记">
 <meta property="og:url" content="http:&#x2F;&#x2F;lemon1499.github.io&#x2F;2019&#x2F;11&#x2F;28&#x2F;d3-force&#x2F;index.html">
 <meta property="og:site_name" content="yu&#39;s blog">
 <meta property="og:description" content="d3.forceSimulation( [nodes] )使用指定的节点数据和无强度力创建一个新的模拟。若未指定nodes，默认为空数组。该模拟是自启动的；在该模拟运行时使用 simulation.on 监听每个瞬间（呼吸）事件。如果你想要手动运行模拟，调用 simulation.stop, 然后需要调用  simulation.tick . simulation.nodes（[nodes]）每个">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-02T09:01:10.171Z">
+<meta property="og:updated_time" content="2019-12-03T06:08:22.140Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="yu&#39;s blog" type="application/atom+xml">
@@ -157,7 +157,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      D3-force
+      D3-force学习笔记
     </h1>
   
 
@@ -302,6 +302,8 @@
 <p>如果指定了x，则将圆心的x坐标设置为指定的数值并返回此力。如果没有指定x，则返回中心的当前x坐标，默认为0。</p>
 <p><strong>11. radial.y([y])</strong></p>
 <p>如果指定了y，则将圆心的y坐标设置为指定的数值并返回此力。如果没有指定y，则返回中心的当前y坐标，默认为0。</p>
+<p>注：本文是笔者阅读文档自译版，如跟官方文档有出入谨以官方为准。</p>
+<h5 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h5><p><a href="https://github.com/d3/d3/blob/master/API.md#forces-d3-force" target="_blank" rel="noopener">https://github.com/d3/d3/blob/master/API.md#forces-d3-force</a></p>
 
       
 
@@ -420,15 +422,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/12/02/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Hello World
-        
-      </div>
-    </a>
   
+    <a href="/2019/11/28/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hello World</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -453,7 +451,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#d3-forceSimulation-nodes"><span class="toc-number">1.</span> <span class="toc-text">d3.forceSimulation( [nodes] )</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#simulation-nodes（-nodes-）"><span class="toc-number">2.</span> <span class="toc-text">simulation.nodes（[nodes]）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#force-）"><span class="toc-number">3.</span> <span class="toc-text">force(）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#link-froce-弹簧模型"><span class="toc-number">4.</span> <span class="toc-text">link froce(弹簧模型)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#d3-forceManyBody"><span class="toc-number">5.</span> <span class="toc-text">d3.forceManyBody()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#simulation-alphaTarget-target"><span class="toc-number">6.</span> <span class="toc-text">simulation.alphaTarget([target])</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#simulation-force-name-force"><span class="toc-number">7.</span> <span class="toc-text">simulation.force(name[, force])</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#enter"><span class="toc-number">8.</span> <span class="toc-text">enter( )</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#simulation-on-typenames-listener"><span class="toc-number">9.</span> <span class="toc-text">simulation.on(typenames, [listener])</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Forces"><span class="toc-number"></span> <span class="toc-text">Forces</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Centering定心力"><span class="toc-number">1.</span> <span class="toc-text">Centering定心力</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Collision碰撞力"><span class="toc-number">2.</span> <span class="toc-text">Collision碰撞力</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Links链接力"><span class="toc-number">3.</span> <span class="toc-text">Links链接力</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Many-Body多体力"><span class="toc-number">4.</span> <span class="toc-text">Many-Body多体力</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Positioning定位力"><span class="toc-number">5.</span> <span class="toc-text">Positioning定位力</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#d3-forceSimulation-nodes"><span class="toc-number">1.</span> <span class="toc-text">d3.forceSimulation( [nodes] )</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#simulation-nodes（-nodes-）"><span class="toc-number">2.</span> <span class="toc-text">simulation.nodes（[nodes]）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#force-）"><span class="toc-number">3.</span> <span class="toc-text">force(）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#link-froce-弹簧模型"><span class="toc-number">4.</span> <span class="toc-text">link froce(弹簧模型)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#d3-forceManyBody"><span class="toc-number">5.</span> <span class="toc-text">d3.forceManyBody()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#simulation-alphaTarget-target"><span class="toc-number">6.</span> <span class="toc-text">simulation.alphaTarget([target])</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#simulation-force-name-force"><span class="toc-number">7.</span> <span class="toc-text">simulation.force(name[, force])</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#enter"><span class="toc-number">8.</span> <span class="toc-text">enter( )</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#simulation-on-typenames-listener"><span class="toc-number">9.</span> <span class="toc-text">simulation.on(typenames, [listener])</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Forces"><span class="toc-number"></span> <span class="toc-text">Forces</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Centering定心力"><span class="toc-number">1.</span> <span class="toc-text">Centering定心力</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Collision碰撞力"><span class="toc-number">2.</span> <span class="toc-text">Collision碰撞力</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Links链接力"><span class="toc-number">3.</span> <span class="toc-text">Links链接力</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Many-Body多体力"><span class="toc-number">4.</span> <span class="toc-text">Many-Body多体力</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Positioning定位力"><span class="toc-number">5.</span> <span class="toc-text">Positioning定位力</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#参考："><span class="toc-number">6.</span> <span class="toc-text">参考：</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -464,6 +462,26 @@
 
 
 
+  
+    <!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC80Nzc5MC8yNDI4Nw==">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+  
+         if (typeof LivereTower === 'function') { return; }
+  
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+  
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+  <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+  </div>
+  <!-- City版安装代码已完成 -->
+  
   
   
   
@@ -620,7 +638,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">坐标：上海&lt;br&gt;&lt;br&gt;爱生活，爱Coding&lt;br&gt;&lt;br&gt;Coding使我快乐！</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme">坐标：上海 &lt;br&gt;&lt;br&gt; Coding 使我快乐！&lt;br&gt;&lt;br&gt;清醒时做事，糊涂时读书，大怒时睡觉，独处时思考。</div>
   	  	
     	</section>
     
