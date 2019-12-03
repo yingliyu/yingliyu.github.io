@@ -16,7 +16,7 @@
 <meta property="og:description" content="lemon1499 GitHub个人主页 | 404 Not Found页        html,     body {       background: #f0f2f5;     }      body,     p,     h5,     #countdown {       text-align: center;">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http:&#x2F;&#x2F;lemon1499.github.io&#x2F;404&#x2F;source&#x2F;assets&#x2F;imgs&#x2F;404.png">
-<meta property="og:updated_time" content="2019-12-03T06:08:22.140Z">
+<meta property="og:updated_time" content="2019-12-03T09:31:55.832Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;lemon1499.github.io&#x2F;404&#x2F;source&#x2F;assets&#x2F;imgs&#x2F;404.png">
   
@@ -366,24 +366,27 @@
 
 
   
-    <!-- 来必力City版安装代码 -->
-<div id="lv-container" data-id="city" data-uid="MTAyMC80Nzc5MC8yNDI4Nw==">
-  <script type="text/javascript">
-     (function(d, s) {
-         var j, e = d.getElementsByTagName(s)[0];
+    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+    <div id="vcomment" class="comment"></div> 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'false' == true ? true : false;
+   var verify = 'false' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '#vcomment',
+            notify: notify,
+            verify: verify,
+            app_id: "IMk6UEsIdoJmshBUrTrk068d-gzGzoHsz",
+            app_key: "frYofqWd1Lx2uJ2WwELXRhw8",
+            placeholder: "写下你的评论...",
+            avatar:"monsterid"
+        });
+    }
+</script>
+  </section>
   
-         if (typeof LivereTower === 'function') { return; }
-  
-         j = d.createElement(s);
-         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-         j.async = true;
-  
-         e.parentNode.insertBefore(j, e);
-     })(document, 'script');
-  </script>
-  <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
-  </div>
-  <!-- City版安装代码已完成 -->
   
   
   
