@@ -12,7 +12,10 @@
             app_id: "<%= theme.valine.appid %>",
             app_key: "<%= theme.valine.appkey %>",
             placeholder: "<%= theme.valine.placeholder %>",
-            avatar:"<%= theme.valine.avatar %>"
+            avatar:"<%= theme.valine.avatar %>",
+            // meta: guest,
+            pageSize:'{{ theme.valine.pageSize }}' || 10,
+            visitor: true // 阅读量统计
         });
     }
 </script>

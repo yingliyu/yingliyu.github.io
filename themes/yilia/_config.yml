@@ -106,6 +106,9 @@ valine:
  notify: false #评论回复提醒
  avatar: monsterid #评论列表头像样式：''/mm/identicon/monsterid/wavatar/retro/hide
  placeholder: 写下你的评论... #评论框占位符
+ guest_info: nick,mail,link # custom comment header
+ enable: false  # When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version.
+ visitor: false # leancloud-counter-security is not supported for now. When visitor is set to be true, appid and appkey are recommended to be the same as leancloud_visitors' for counter compatibility. Article reading statistic https://valine.js.org/visitor.html
 
 
 # 样式定制 - 一般不需要修改，除非有很强的定制欲望…
