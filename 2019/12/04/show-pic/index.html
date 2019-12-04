@@ -17,7 +17,7 @@
 <meta property="og:description" content="js处理图片流并显示在页面上">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;lemon1499.github.io&#x2F;.io&#x2F;&#x2F;num-img.png">
-<meta property="og:updated_time" content="2019-12-04T07:08:47.543Z">
+<meta property="og:updated_time" content="2019-12-04T07:38:28.988Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;lemon1499.github.io&#x2F;.io&#x2F;&#x2F;num-img.png">
   
@@ -172,15 +172,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><blockquote>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
 <p>Ajax请求图片资源，服务器以文件流的形式返回，前端js处理图片流并将图片显示到页面上。</p>
 </blockquote>
-<h4 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h4><p>首先，使用axios发送Ajax请求时，将responseType（响应数据的类型）设置为“blob”（response 是一个包含二进制数据的 Blob 对象 ）。然后，对服务器返回的结果进行处理：</p>
+<h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><p>首先，使用axios发送Ajax请求时，将responseType（响应数据的类型）设置为“blob”（response 是一个包含二进制数据的 Blob 对象 ）。然后，对服务器返回的结果进行处理：</p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img <span class="keyword">class</span>="<span class="symbol">verifyPic</span>" :<span class="symbol">src</span>="<span class="symbol">verifyImg</span>" /&gt;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// api获取数据</span></span><br><span class="line">getImgVcode() &#123;</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        axios.post(<span class="string">'/api/getImgVcode'</span>，&#123;</span><br><span class="line">            responseType: 'blob'</span><br><span class="line">        &#125;)</span><br><span class="line">        .then(res)&#123;</span><br><span class="line">            <span class="comment">// 使用fileReader对文件对象进行操作 </span></span><br><span class="line">            <span class="keyword">const</span> reader = <span class="keyword">new</span> FileReader() </span><br><span class="line">            <span class="comment">// 读到的是URL格式的Base64字符串</span></span><br><span class="line">            reader.readAsDataURL(res) </span><br><span class="line">            reader.onload = (result) =&gt; &#123;</span><br><span class="line">              <span class="keyword">this</span>.verifyImg = result.<span class="keyword">target</span>.result <span class="comment">// 更新图片的src</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        .<span class="keyword">catch</span>(<span class="keyword">error</span>)&#123;</span><br><span class="line">            console.log(<span class="keyword">error</span>)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<h4 id="结果示例图"><a href="#结果示例图" class="headerlink" title="结果示例图"></a>结果示例图</h4><p><img src="/.io//num-img.png" alt="num-img"></p>
-<h4 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h4><p>参考： <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader</a></p>
+<h3 id="结果示例图"><a href="#结果示例图" class="headerlink" title="结果示例图"></a>结果示例图</h3><p><img src="/.io//num-img.png" alt="num-img"></p>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>参考： <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader</a></p>
 <blockquote>
 <p>本文有不到之处烦请多多交流指正~</p>
 </blockquote>
@@ -344,7 +344,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思路"><span class="toc-number">2.</span> <span class="toc-text">基本思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#结果示例图"><span class="toc-number">3.</span> <span class="toc-text">结果示例图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#最后"><span class="toc-number">4.</span> <span class="toc-text">最后</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基本思路"><span class="toc-number">2.</span> <span class="toc-text">基本思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结果示例图"><span class="toc-number">3.</span> <span class="toc-text">结果示例图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最后"><span class="toc-number">4.</span> <span class="toc-text">最后</span></a></li></ol>
                     </div>
                 </span>
             </div>
