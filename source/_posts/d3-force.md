@@ -11,7 +11,7 @@ tags:
 - 可视化
 ---
 
-
+>原文: [https://github.com/d3/d3/blob/master/API.md#forces-d3-force](https://github.com/d3/d3/blob/master/API.md#forces-d3-force)
 
 ##### d3.forceSimulation( [nodes] ) 
 使用指定的节点数据和无强度力创建一个新的模拟。若未指定nodes，默认为空数组。该模拟是自启动的；在该模拟运行时使用 [simulation.on](
@@ -319,7 +319,5 @@ function strength() {
 
 注：本文是笔者阅读文档自译版，如跟官方文档有出入谨以官方为准。
 
-##### 最后
-参考: [官方文档](https://github.com/d3/d3/blob/master/API.md#forces-d3-force)
 
 >本文有不到之处烦请多多交流指正~
