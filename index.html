@@ -148,36 +148,40 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-d3-force" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-hexo-blog-build" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/28/d3-force/">D3-force学习笔记</a>
+      <a class="article-title" href="/2019/12/04/hexo-blog-build/">Hexo4.0搭建博客及自动部署</a>
     </h1>
   
 
         
-        <a href="/2019/11/28/d3-force/" class="archive-article-date">
-  	<time datetime="2019-11-28T15:57:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-28</time>
+        <a href="/2019/12/04/hexo-blog-build/" class="archive-article-date">
+  	<time datetime="2019-12-04T09:35:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-04</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="d3-forceSimulation-nodes"><a href="#d3-forceSimulation-nodes" class="headerlink" title="d3.forceSimulation( [nodes] )"></a>d3.forceSimulation( [nodes] )</h5><p>使用指定的节点数据和无强度力创建一个新的模拟。若未指定nodes，默认为空数组。该模拟是自启动的；在该模拟运行时使用 <a href="https://github.com/d3/d3-force/blob/v1.2.1/README.md#simulation_on" target="_blank" rel="noopener">simulation.on</a> 监听每个瞬间（呼吸）事件。如果你想要手动运行模拟，调用 <a href="https://github.com/d3/d3-force/blob/v1.2.1/README.md#simulation_stop" target="_blank" rel="noopener">simulation.stop</a>, 然后需要调用  <a href="https://github.com/d3/d3-force/blob/v1.2.1/README.md#simulation_tick" target="_blank" rel="noopener">simulation.tick</a> .</p>
-<h5 id="simulation-nodes（-nodes-）"><a href="#simulation-nodes（-nodes-）" class="headerlink" title="simulation.nodes（[nodes]）"></a>simulation.nodes（[nodes]）</h5><p>每个node必须是一个对象模型，下面几个属性将会被仿真系统添加：<br>index-节点在nodes数组中的索引</p>
-<ul>
-<li>x-节点当前的x坐标</li>
-<li>y-节点当前的y-坐标</li>
-<li>vx-节点当前的x方向速度</li>
-<li>vy-节点当前的y方向速度</li>
-</ul>
+        <h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><hr>
+<p>环境：GIT, NODE<br>使用技术：Hexo4.0 + Github Pages + Github Actions 搭建博客并自动部署至Github和Coding</p>
+<h5 id="搭建项目"><a href="#搭建项目" class="headerlink" title="搭建项目"></a>搭建项目</h5><hr>
+<p>一、 安装hexo</p>
+<ol>
+<li><p>创建一个文件夹blog，cd blog目录下。</p>
+</li>
+<li><p>执行hexo命令全局安装：<strong><em>npm i -g hexo</em></strong></p>
+</li>
+<li><p>安装成功，查看版本 <strong><em>hexo -v</em></strong>  如下：<br><img src="en-resource://database/764:1" alt="cffda2cf8eb443826480bdd411af774d.png"></p>
+</li>
+<li><p>初始化项目 <strong><em>hexo init</em></strong> 生成如下文件：<br><img src="en-resource://database/766:1" alt="a5459d9ebbd57ee72a860a21b96d9a4b.png"></p>
         
-          <a class="article-more-a" href="/2019/11/28/d3-force/#more">more >></a>
+          <a class="article-more-a" href="/2019/12/04/hexo-blog-build/#more">more >></a>
         
       
 
@@ -195,17 +199,135 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">D3</a>
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color5">hexo</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color5">Github Actions</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">Github Pages</a>
         		</li>
       		
 		</ul>
 	</div>
 
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/前端//" class="article-tag-list-link color3">前端</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/28/d3-force/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/12/04/hexo-blog-build/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-show-pic" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/04/show-pic/">js处理图片流并显示在页面上</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/04/show-pic/" class="archive-article-date">
+  	<time datetime="2019-12-04T09:29:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><hr>
+<p>Ajax请求图片资源，服务器以文件流的形式返回，前端js处理图片流并将图片显示到页面上。</p>
+<h5 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h5><hr>
+<p>首先，使用axios发送Ajax请求时，将responseType（响应数据的类型）设置为“blob”（response 是一个包含二进制数据的 Blob 对象 ）。然后，对服务器返回的结果进行处理：</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img <span class="keyword">class</span>="<span class="symbol">verifyPic</span>" :<span class="symbol">src</span>="<span class="symbol">verifyImg</span>" /&gt;</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2019/12/04/show-pic/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">前端</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">js</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color4">文件流</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/前端//" class="article-tag-list-link color3">前端</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/04/show-pic/">展开全文 >></a>
         </p>
       
 
@@ -410,7 +532,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">D3</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">Github Actions</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">Github Pages</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">文件流</a>
               </li>
             
             <div class="clearfix"></div>
