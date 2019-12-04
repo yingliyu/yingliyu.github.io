@@ -1,37 +1,31 @@
 ---
 toc: true
 title: Hexo4.0搭建博客及自动部署
-categories: 前端
 tags:
-  - 前端
   - hexo
-  - Github Actions
-  - Github Pages
 description: Hexo4.0搭建博客及自动部署至Github和Coding
 date: 2019-12-04 09:35:40
 ---
 
 #####  前言
-***
-环境：GIT, NODE
-使用技术：Hexo4.0 + Github Pages + Github Actions 搭建博客并自动部署至Github和Coding
+>环境：GIT、 NODE
+技术：Hexo4.0 + Github Pages + Github Actions 搭建博客并自动部署至Github和Coding
 
 
 #####  搭建项目
-***
 
 一、 安装hexo
 
-1. 创建一个文件夹blog，cd blog目录下。
-2. 执行hexo命令全局安装：***npm i -g hexo***
-3. 安装成功，查看版本 ***hexo -v***  如下：
-![cffda2cf8eb443826480bdd411af774d.png](en-resource://database/764:1)
-
-4. 初始化项目 ***hexo init*** 生成如下文件：
-![a5459d9ebbd57ee72a860a21b96d9a4b.png](en-resource://database/766:1)
+1.创建一个文件夹blog，cd blog目录下。
+2.执行hexo命令全局安装：***npm i -g hexo***
+3.安装成功，查看版本 ***hexo -v***  如下：
 <!--more-->
+![image1](Image1.png)
+4.初始化项目 ***hexo init*** 生成如下文件：
+![image2](Image2.png)
+
 ##### 部署项目
-***
+
 1. 修改_config.yml文件中的配置项如下：
 （*注意：文中涉及到的githubName均为你的github名称）
 ```
@@ -49,7 +43,6 @@ hexo server
 浏览器访问：http://localhost:4000
 
 #####  托管代码到github
-***
 
 1. 首先创建一个repository，名称为yourGithubName.github.io, 其中    yourGithubName一定要是你的github名称。
 2. 生成SSH添加到github。执行命令：
@@ -85,7 +78,6 @@ git config --global user.email "your_email@xxx.com"
 ```
 
 ##### 使用github actions实现自动部署
-***
 Github Actions 是github的 <u>**持续集成**</u>（Continuous integration，简称CI）服务。
 
 脚本demo：
@@ -112,11 +104,10 @@ jobs:
         BUILD_SCRIPT: npm i -g hexo && npm install && hexo generate && hexo deploy
  ```
 
-###### 最后
-    我的博客：
-    [https://lemon1499.github.io](https://lemon1499.github.io)
-    [https://ylyu.coding.me](https://ylyu.coding.me)
-
+##### 最后
+我的博客：
+  [https://lemon1499.github.io](https://lemon1499.github.io)
+  [https://ylyu.coding.me](https://ylyu.coding.me)
 ##### 参考
 
 [http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html](

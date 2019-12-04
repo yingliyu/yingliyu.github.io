@@ -1,7 +1,6 @@
 ---
 toc: true
 title: js处理图片流并显示在页面上
-categories: 前端
 tags:
   - 前端
   - js
@@ -12,14 +11,12 @@ date: 2019-12-04 09:29:03
 ---
 
 
-##### 前言
+#### 前言
 
-* * *
 
-Ajax请求图片资源，服务器以文件流的形式返回，前端js处理图片流并将图片显示到页面上。
+>Ajax请求图片资源，服务器以文件流的形式返回，前端js处理图片流并将图片显示到页面上。
 
-##### 基本思路
-***
+#### 基本思路
 首先，使用axios发送Ajax请求时，将responseType（响应数据的类型）设置为“blob”（response 是一个包含二进制数据的 Blob 对象 ）。然后，对服务器返回的结果进行处理：
 
 
@@ -47,12 +44,11 @@ getImgVcode() {
             console.log(error)
         }
 ```
-##### 结果示例图
-***
-![05a523487f390e572cda0e58660ebda6.png](en-resource://database/772:1)
+#### 结果示例图
+![num-img](num-img.png)
 
-##### 参考：
+#### 最后
 
-* [https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader](https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader)
+参考： [https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader](https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader)
 
 >本文有不到之处烦请多多交流指正~

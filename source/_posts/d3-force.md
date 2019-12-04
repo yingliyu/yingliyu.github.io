@@ -1,7 +1,7 @@
 ---
 toc: true
 layout: post
-title: [译]D3-force
+title: (译)D3-force
 date: 2019-11-28 15:57:09
 comments: true
 brief: "test"
@@ -23,13 +23,13 @@ https://github.com/d3/d3-force/blob/v1.2.1/README.md#simulation_tick) .
 ##### simulation.nodes（[nodes]）
 每个node必须是一个对象模型，下面几个属性将会被仿真系统添加：
 index-节点在nodes数组中的索引
+<!--more-->
 
 * x-节点当前的x坐标
 * y-节点当前的y-坐标
 * vx-节点当前的x方向速度
 * vy-节点当前的y方向速度
 
-<!--more-->
 
 固定给定节点的位置，你需要两个特定的额外的属性：
 
@@ -319,7 +319,7 @@ function strength() {
 
 注：本文是笔者阅读文档自译版，如跟官方文档有出入谨以官方为准。
 
-##### 参考
-[官方文档](https://github.com/d3/d3/blob/master/API.md#forces-d3-force)
+##### 最后
+参考: [官方文档](https://github.com/d3/d3/blob/master/API.md#forces-d3-force)
 
 >本文有不到之处烦请多多交流指正~
