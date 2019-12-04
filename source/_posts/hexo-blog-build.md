@@ -29,7 +29,7 @@ date: 2019-12-04 09:35:40
 
 4. 初始化项目 ***hexo init*** 生成如下文件：
 ![a5459d9ebbd57ee72a860a21b96d9a4b.png](en-resource://database/766:1)
-
+<!--more-->
 ##### 部署项目
 ***
 1. 修改_config.yml文件中的配置项如下：

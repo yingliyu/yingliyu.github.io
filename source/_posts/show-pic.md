@@ -26,7 +26,7 @@ Ajax请求图片资源，服务器以文件流的形式返回，前端js处理�
 ```
 <img class="verifyPic" :src="verifyImg" />
 ```
-
+<!--more-->
 ```
 // api获取数据
 getImgVcode() {
