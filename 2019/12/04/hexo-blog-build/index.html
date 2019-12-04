@@ -5,22 +5,22 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://lemon1499.github.io">
+  <link rel="dns-prefetch" href="https://lemon1499.github.io">
   <title>Hexo4.0搭建博客及自动部署 | yu&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Hexo4.0搭建博客及自动部署至Github和Coding">
-<meta name="keywords" content="前端,hexo,Github Actions,Github Pages">
+<meta name="keywords" content="hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo4.0搭建博客及自动部署">
-<meta property="og:url" content="http:&#x2F;&#x2F;lemon1499.github.io&#x2F;2019&#x2F;12&#x2F;04&#x2F;hexo-blog-build&#x2F;index.html">
+<meta property="og:url" content="https:&#x2F;&#x2F;lemon1499.github.io&#x2F;2019&#x2F;12&#x2F;04&#x2F;hexo-blog-build&#x2F;index.html">
 <meta property="og:site_name" content="yu&#39;s blog">
 <meta property="og:description" content="Hexo4.0搭建博客及自动部署至Github和Coding">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="en-resource:&#x2F;&#x2F;database&#x2F;764:1">
-<meta property="og:image" content="en-resource:&#x2F;&#x2F;database&#x2F;766:1">
-<meta property="og:updated_time" content="2019-12-04T02:10:30.040Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;lemon1499.github.io&#x2F;.io&#x2F;&#x2F;Image1.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;lemon1499.github.io&#x2F;.io&#x2F;&#x2F;Image2.png">
+<meta property="og:updated_time" content="2019-12-04T07:08:47.539Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="en-resource:&#x2F;&#x2F;database&#x2F;764:1">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;lemon1499.github.io&#x2F;.io&#x2F;&#x2F;Image1.png">
   
     <link rel="alternative" href="/atom.xml" title="yu&#39;s blog" type="application/atom+xml">
   
@@ -173,29 +173,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><hr>
-<p>环境：GIT, NODE<br>使用技术：Hexo4.0 + Github Pages + Github Actions 搭建博客并自动部署至Github和Coding</p>
-<h5 id="搭建项目"><a href="#搭建项目" class="headerlink" title="搭建项目"></a>搭建项目</h5><hr>
-<p>一、 安装hexo</p>
-<ol>
-<li><p>创建一个文件夹blog，cd blog目录下。</p>
-</li>
-<li><p>执行hexo命令全局安装：<strong><em>npm i -g hexo</em></strong></p>
-</li>
-<li><p>安装成功，查看版本 <strong><em>hexo -v</em></strong>  如下：<br><img src="en-resource://database/764:1" alt="cffda2cf8eb443826480bdd411af774d.png"></p>
-</li>
-<li><p>初始化项目 <strong><em>hexo init</em></strong> 生成如下文件：<br><img src="en-resource://database/766:1" alt="a5459d9ebbd57ee72a860a21b96d9a4b.png"></p>
+        <h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
+<p>环境：GIT、 NODE<br>技术：Hexo4.0 + Github Pages + Github Actions 搭建博客并自动部署至Github和Coding</p>
+</blockquote>
+<h5 id="搭建项目"><a href="#搭建项目" class="headerlink" title="搭建项目"></a>搭建项目</h5><p>一、 安装hexo</p>
+<p>1.创建一个文件夹blog，cd blog目录下。<br>2.执行hexo命令全局安装：<strong><em>npm i -g hexo</em></strong><br>3.安装成功，查看版本 <strong><em>hexo -v</em></strong>  如下：</p>
 <a id="more"></a>
-<h5 id="部署项目"><a href="#部署项目" class="headerlink" title="部署项目"></a>部署项目</h5></li>
-</ol>
-<hr>
-<ol>
+<p><img src="/.io//Image1.png" alt="image1"><br>4.初始化项目 <strong><em>hexo init</em></strong> 生成如下文件：<br><img src="/.io//Image2.png" alt="image2"></p>
+<h5 id="部署项目"><a href="#部署项目" class="headerlink" title="部署项目"></a>部署项目</h5><ol>
 <li>修改_config.yml文件中的配置项如下：<br>（*注意：文中涉及到的githubName均为你的github名称）<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">deploy</span>:</span><br><span class="line">  <span class="attribute">type</span>: git</span><br><span class="line">  <span class="attribute">repo</span>: <span class="attribute">https</span>:<span class="comment">//github.com/githubName/githubName.github.io.git</span></span><br><span class="line">  <span class="attribute">branch</span>: master</span><br></pre></td></tr></table></figure>
 然后依次执行如下命令：<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean </span><br><span class="line">hexo <span class="keyword">generate</span> </span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
 浏览器访问：<a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a></li>
 </ol>
-<h5 id="托管代码到github"><a href="#托管代码到github" class="headerlink" title="托管代码到github"></a>托管代码到github</h5><hr>
-<ol>
+<h5 id="托管代码到github"><a href="#托管代码到github" class="headerlink" title="托管代码到github"></a>托管代码到github</h5><ol>
 <li>首先创建一个repository，名称为yourGithubName.github.io, 其中    yourGithubName一定要是你的github名称。</li>
 <li>生成SSH添加到github。执行命令：<br>$ ssh-keygen -t rsa -b 4096 -C “<a href="mailto:your_email@example.com" target="_blank" rel="noopener">your_email@example.com</a>“ 然后去本地C/Users/you/.ssh/id_rsa 目录下找到id_rsa.pub文件并复制文件内容，去github的settings/SSH and GPG keys 下 New SSH key 粘贴Add SSH key即可。</li>
 <li>进入blog目录clone 仓库。<br>执行 :<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git <span class="keyword">add</span><span class="bash"> .</span></span><br><span class="line">git commit -m <span class="string">"hexo init"</span></span><br><span class="line">git remote <span class="keyword">add</span><span class="bash"> origin git@github.com:githubName/githubName.github.io.git</span></span><br><span class="line">git push -u origin gh-pages</span><br></pre></td></tr></table></figure>
@@ -208,14 +198,12 @@
 <p>浏览器访问：<a href="http://yourGithubName.github.io" target="_blank" rel="noopener">http://yourGithubName.github.io</a><br>注意: 如果deploy需要输入用户信息 配置一下即可，执行命令:</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">"username"</span></span><br><span class="line">git config --global user.email <span class="string">"your_email@xxx.com"</span></span><br></pre></td></tr></table></figure>
 
-<h5 id="使用github-actions实现自动部署"><a href="#使用github-actions实现自动部署" class="headerlink" title="使用github actions实现自动部署"></a>使用github actions实现自动部署</h5><hr>
-<p>Github Actions 是github的 <u><strong>持续集成</strong></u>（Continuous integration，简称CI）服务。</p>
+<h5 id="使用github-actions实现自动部署"><a href="#使用github-actions实现自动部署" class="headerlink" title="使用github actions实现自动部署"></a>使用github actions实现自动部署</h5><p>Github Actions 是github的 <u><strong>持续集成</strong></u>（Continuous integration，简称CI）服务。</p>
 <p>脚本demo：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">Hexo</span> <span class="string">deployer</span></span><br><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="attr">push:</span></span><br><span class="line">    <span class="attr">branches:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">gh-pages</span></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">build-and-deploy:</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Checkout</span></span><br><span class="line">      <span class="attr">uses:</span> <span class="string">actions/checkout@master</span></span><br><span class="line"></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Build</span> <span class="string">and</span> <span class="string">Deploy</span></span><br><span class="line">      <span class="attr">uses:</span> <span class="string">JamesIves/github-pages-deploy-action@master</span></span><br><span class="line">      <span class="attr">env:</span></span><br><span class="line">        <span class="attr">ACCESS_TOKEN:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.ACCESS_TOKEN</span> <span class="string">&#125;&#125;</span></span><br><span class="line">        <span class="attr">BASE_BRANCH:</span> <span class="string">gh-pages</span></span><br><span class="line">        <span class="attr">BRANCH:</span> <span class="string">master</span></span><br><span class="line">        <span class="attr">FOLDER:</span> <span class="string">public</span></span><br><span class="line">        <span class="attr">BUILD_SCRIPT:</span> <span class="string">npm</span> <span class="string">i</span> <span class="string">-g</span> <span class="string">hexo</span> <span class="string">&amp;&amp;</span> <span class="string">npm</span> <span class="string">install</span> <span class="string">&amp;&amp;</span> <span class="string">hexo</span> <span class="string">generate</span> <span class="string">&amp;&amp;</span> <span class="string">hexo</span> <span class="string">deploy</span></span><br></pre></td></tr></table></figure>
 
-<h6 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h6><pre><code>我的博客：
-[https://lemon1499.github.io](https://lemon1499.github.io)
-[https://ylyu.coding.me](https://ylyu.coding.me)</code></pre><h5 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h5><p><a href="http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html</a></p>
+<h5 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h5><p>我的博客：<br>  <a href="https://lemon1499.github.io">https://lemon1499.github.io</a><br>  <a href="https://ylyu.coding.me" target="_blank" rel="noopener">https://ylyu.coding.me</a></p>
+<h5 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h5><p><a href="http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html</a></p>
 <blockquote>
 <p>本文有不到之处烦请多多交流指正~</p>
 </blockquote>
@@ -263,36 +251,13 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color5">Github Actions</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">Github Pages</a>
         		</li>
       		
 		</ul>
 	</div>
 
       
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端//" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
 
       
 
@@ -342,7 +307,7 @@
     <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://lemon1499.github.io/2019/12/04/hexo-blog-build/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://lemon1499.github.io/2019/12/04/hexo-blog-build/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -385,7 +350,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#搭建项目"><span class="toc-number">2.</span> <span class="toc-text">搭建项目</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#部署项目"><span class="toc-number">3.</span> <span class="toc-text">部署项目</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#托管代码到github"><span class="toc-number">4.</span> <span class="toc-text">托管代码到github</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#使用github-actions实现自动部署"><span class="toc-number">5.</span> <span class="toc-text">使用github actions实现自动部署</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#最后"><span class="toc-number">5.1.</span> <span class="toc-text">最后</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#参考"><span class="toc-number">6.</span> <span class="toc-text">参考</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#搭建项目"><span class="toc-number">2.</span> <span class="toc-text">搭建项目</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#部署项目"><span class="toc-number">3.</span> <span class="toc-text">部署项目</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#托管代码到github"><span class="toc-number">4.</span> <span class="toc-text">托管代码到github</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#使用github-actions实现自动部署"><span class="toc-number">5.</span> <span class="toc-text">使用github actions实现自动部署</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#最后"><span class="toc-number">6.</span> <span class="toc-text">最后</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#参考"><span class="toc-number">7.</span> <span class="toc-text">参考</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -523,19 +488,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">前端</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">Github Actions</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">Github Pages</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">前端</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -544,6 +501,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">文件流</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">D3</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">可视化</a>
               </li>
             
             <div class="clearfix"></div>

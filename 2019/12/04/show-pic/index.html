@@ -5,21 +5,21 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://lemon1499.github.io">
+  <link rel="dns-prefetch" href="https://lemon1499.github.io">
   <title>js处理图片流并显示在页面上 | yu&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="js处理图片流并显示在页面上">
 <meta name="keywords" content="前端,js,文件流">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js处理图片流并显示在页面上">
-<meta property="og:url" content="http:&#x2F;&#x2F;lemon1499.github.io&#x2F;2019&#x2F;12&#x2F;04&#x2F;show-pic&#x2F;index.html">
+<meta property="og:url" content="https:&#x2F;&#x2F;lemon1499.github.io&#x2F;2019&#x2F;12&#x2F;04&#x2F;show-pic&#x2F;index.html">
 <meta property="og:site_name" content="yu&#39;s blog">
 <meta property="og:description" content="js处理图片流并显示在页面上">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="en-resource:&#x2F;&#x2F;database&#x2F;772:1">
-<meta property="og:updated_time" content="2019-12-04T02:10:30.040Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;lemon1499.github.io&#x2F;.io&#x2F;&#x2F;num-img.png">
+<meta property="og:updated_time" content="2019-12-04T07:08:47.543Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="en-resource:&#x2F;&#x2F;database&#x2F;772:1">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;lemon1499.github.io&#x2F;.io&#x2F;&#x2F;num-img.png">
   
     <link rel="alternative" href="/atom.xml" title="yu&#39;s blog" type="application/atom+xml">
   
@@ -172,18 +172,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><hr>
+        <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><blockquote>
 <p>Ajax请求图片资源，服务器以文件流的形式返回，前端js处理图片流并将图片显示到页面上。</p>
-<h5 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h5><hr>
-<p>首先，使用axios发送Ajax请求时，将responseType（响应数据的类型）设置为“blob”（response 是一个包含二进制数据的 Blob 对象 ）。然后，对服务器返回的结果进行处理：</p>
+</blockquote>
+<h4 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h4><p>首先，使用axios发送Ajax请求时，将responseType（响应数据的类型）设置为“blob”（response 是一个包含二进制数据的 Blob 对象 ）。然后，对服务器返回的结果进行处理：</p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img <span class="keyword">class</span>="<span class="symbol">verifyPic</span>" :<span class="symbol">src</span>="<span class="symbol">verifyImg</span>" /&gt;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// api获取数据</span></span><br><span class="line">getImgVcode() &#123;</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        axios.post(<span class="string">'/api/getImgVcode'</span>，&#123;</span><br><span class="line">            responseType: 'blob'</span><br><span class="line">        &#125;)</span><br><span class="line">        .then(res)&#123;</span><br><span class="line">            <span class="comment">// 使用fileReader对文件对象进行操作 </span></span><br><span class="line">            <span class="keyword">const</span> reader = <span class="keyword">new</span> FileReader() </span><br><span class="line">            <span class="comment">// 读到的是URL格式的Base64字符串</span></span><br><span class="line">            reader.readAsDataURL(res) </span><br><span class="line">            reader.onload = (result) =&gt; &#123;</span><br><span class="line">              <span class="keyword">this</span>.verifyImg = result.<span class="keyword">target</span>.result <span class="comment">// 更新图片的src</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        .<span class="keyword">catch</span>(<span class="keyword">error</span>)&#123;</span><br><span class="line">            console.log(<span class="keyword">error</span>)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<h5 id="结果示例图"><a href="#结果示例图" class="headerlink" title="结果示例图"></a>结果示例图</h5><hr>
-<p><img src="en-resource://database/772:1" alt="05a523487f390e572cda0e58660ebda6.png"></p>
-<h5 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h5><ul>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader</a></li>
-</ul>
+<h4 id="结果示例图"><a href="#结果示例图" class="headerlink" title="结果示例图"></a>结果示例图</h4><p><img src="/.io//num-img.png" alt="num-img"></p>
+<h4 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h4><p>参考： <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader</a></p>
 <blockquote>
 <p>本文有不到之处烦请多多交流指正~</p>
 </blockquote>
@@ -246,17 +243,6 @@
 	</div>
 
       
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/前端//" class="article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
 
       
 
@@ -306,7 +292,7 @@
     <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://lemon1499.github.io/2019/12/04/show-pic/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://lemon1499.github.io/2019/12/04/show-pic/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -330,8 +316,8 @@
     </a>
   
   
-    <a href="/2019/11/28/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
+    <a href="/2019/11/28/d3-force/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">(译)D3-force</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -358,7 +344,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#基本思路"><span class="toc-number">2.</span> <span class="toc-text">基本思路</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#结果示例图"><span class="toc-number">3.</span> <span class="toc-text">结果示例图</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#参考："><span class="toc-number">4.</span> <span class="toc-text">参考：</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基本思路"><span class="toc-number">2.</span> <span class="toc-text">基本思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#结果示例图"><span class="toc-number">3.</span> <span class="toc-text">结果示例图</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#最后"><span class="toc-number">4.</span> <span class="toc-text">最后</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -496,19 +482,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">前端</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">Github Actions</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">Github Pages</a>
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">前端</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -517,6 +495,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">文件流</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">D3</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">可视化</a>
               </li>
             
             <div class="clearfix"></div>
