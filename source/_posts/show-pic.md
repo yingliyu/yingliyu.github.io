@@ -54,3 +54,5 @@ getImgVcode() {
 ##### 参考：
 
 * [https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader](https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader)
+
+>本文有不到之处烦请多多交流指正~

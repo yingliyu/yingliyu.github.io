@@ -1,4 +1,5 @@
 ---
+toc: true
 title: Hexo4.0搭建博客及自动部署
 categories: 前端
 tags:
@@ -112,12 +113,13 @@ jobs:
  ```
 
 ###### 最后
-    须知：本文有不到之处烦请多多交流指正~
     我的博客：
     [https://lemon1499.github.io](https://lemon1499.github.io)
     [https://ylyu.coding.me](https://ylyu.coding.me)
 
-##### 参考：
+##### 参考
 
 [http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html](
 http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html)
+
+>本文有不到之处烦请多多交流指正~

@@ -321,3 +321,5 @@ function strength() {
 
 ##### 参考
 [官方文档](https://github.com/d3/d3/blob/master/API.md#forces-d3-force)
+
+>本文有不到之处烦请多多交流指正~
