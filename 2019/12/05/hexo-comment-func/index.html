@@ -6,14 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lemon1499.github.io">
-  <title>yu&#39;s blog</title>
+  <title>Hexo博客添加评论功能 | yu&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="yu&#39;s blog">
-<meta property="og:url" content="https:&#x2F;&#x2F;lemon1499.github.io&#x2F;index.html">
+  <meta name="description" content="Hexo(hexo-theme-yilia)博客添加评论功能">
+<meta name="keywords" content="hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo博客添加评论功能">
+<meta property="og:url" content="https:&#x2F;&#x2F;lemon1499.github.io&#x2F;2019&#x2F;12&#x2F;05&#x2F;hexo-comment-func&#x2F;index.html">
 <meta property="og:site_name" content="yu&#39;s blog">
+<meta property="og:description" content="Hexo(hexo-theme-yilia)博客添加评论功能">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;lemon1499.github.io&#x2F;2019&#x2F;12&#x2F;05&#x2F;hexo-comment-func&#x2F;3.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;lemon1499.github.io&#x2F;2019&#x2F;12&#x2F;05&#x2F;hexo-comment-func&#x2F;1.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;lemon1499.github.io&#x2F;2019&#x2F;12&#x2F;05&#x2F;hexo-comment-func&#x2F;2.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;lemon1499.github.io&#x2F;2019&#x2F;12&#x2F;05&#x2F;hexo-comment-func&#x2F;4.jpg">
+<meta property="og:updated_time" content="2019-12-05T07:14:48.133Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;lemon1499.github.io&#x2F;2019&#x2F;12&#x2F;05&#x2F;hexo-comment-func&#x2F;3.jpg">
   
     <link rel="alternative" href="/atom.xml" title="yu&#39;s blog" type="application/atom+xml">
   
@@ -146,16 +155,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-hexo-comment-func" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-hexo-comment-func" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/05/hexo-comment-func/">Hexo博客添加评论功能</a>
+    <h1 class="article-title" itemprop="name">
+      Hexo博客添加评论功能
     </h1>
   
 
@@ -172,11 +179,71 @@
 <p>最初使用的是韩国的来必力，后来发现加载太慢了，然后就弃用了。现在使用的是基于<a href="https://leancloud.cn/" target="_blank" rel="noopener">LeanCloud</a> 的 <a href="https://valine.js.org/" target="_blank" rel="noopener">Valine</a>评论系统，样式简约大方，并且支持Emoji。</p>
 </blockquote>
 <h3 id="获取APP-ID-和-APP-Key"><a href="#获取APP-ID-和-APP-Key" class="headerlink" title="获取APP ID 和 APP Key"></a>获取APP ID 和 APP Key</h3><p>首先，先登录或注册 LeanCloud, 进入控制台后点击左上角创建应用：<br><img src="/2019/12/05/hexo-comment-func/3.jpg" alt="3"></p>
-        
-          <a class="article-more-a" href="/2019/12/05/hexo-comment-func/#more">more >></a>
-        
+<a id="more"></a>
+
+<p><img src="/2019/12/05/hexo-comment-func/1.jpg" alt="1"></p>
+<p><img src="/2019/12/05/hexo-comment-func/2.jpg" alt="2"></p>
+<p>这样我们就拿到了我们想要的APP ID 和 APP Key。</p>
+<blockquote>
+<p>然后设置一下安全域名：</p>
+</blockquote>
+<p><img src="/2019/12/05/hexo-comment-func/4.jpg" alt="4"></p>
+<h3 id="在Hexo主题hexo-theme-yilia中使用"><a href="#在Hexo主题hexo-theme-yilia中使用" class="headerlink" title="在Hexo主题hexo-theme-yilia中使用"></a>在Hexo主题hexo-theme-yilia中使用</h3><blockquote>
+<p>目前，已有部分Hexo主题内置了Valine 评论系统，但是本博客所用主题hexo-theme-yilia还没有被覆盖，下面就来详细介绍一下如何使用。</p>
+</blockquote>
+<h5 id="修改Yilia代码断"><a href="#修改Yilia代码断" class="headerlink" title="修改Yilia代码断"></a>修改Yilia代码断</h5><blockquote>
+<p>yilia/_config.yml</p>
+</blockquote>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#6、Valine https://valine.js.orgvaline: </span></span><br><span class="line"> <span class="attr">appid:</span>  <span class="comment">#Leancloud应用的appId</span></span><br><span class="line"> <span class="attr">appkey:</span>  <span class="comment">#Leancloud应用的appKey</span></span><br><span class="line"> <span class="attr">verify:</span> <span class="literal">false</span> <span class="comment">#验证码</span></span><br><span class="line"> <span class="attr">notify:</span> <span class="literal">false</span> <span class="comment">#评论回复提醒</span></span><br><span class="line"> <span class="attr">avatar:</span> <span class="string">mm</span> <span class="comment">#评论列表头像样式：''/mm/identicon/monsterid/wavatar/retro/hide</span></span><br><span class="line"> <span class="attr">placeholder:</span> <span class="string">Just</span> <span class="string">go</span> <span class="string">go</span> <span class="comment">#评论框占位符</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>layout/_partial/article.ejs<br>在&lt;% if (!index &amp;&amp; post.comments){ %&gt;下面一行添加：</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">%</span> <span class="attr">if</span> (<span class="attr">theme.valine</span> &amp;&amp; <span class="attr">theme.valine.appid</span> &amp;&amp; <span class="attr">theme.valine.appkey</span>)&#123; %&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">section</span> <span class="attr">id</span>=<span class="string">"comments"</span> <span class="attr">style</span>=<span class="string">"margin:10px;background:#fff;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">%-</span> <span class="attr">partial</span>('<span class="attr">post</span>/<span class="attr">valine</span>', &#123;</span></span><br><span class="line"><span class="tag">        <span class="attr">key:</span> <span class="attr">post.slug</span>,</span></span><br><span class="line"><span class="tag">        <span class="attr">title:</span> <span class="attr">post.title</span>,</span></span><br><span class="line"><span class="tag">        <span class="attr">url:</span> <span class="attr">config.url</span>+<span class="attr">url_for</span>(<span class="attr">post.path</span>)</span></span><br><span class="line"><span class="tag">    &#125;) %&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">%</span> &#125; %&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>新建文件 layout/_partial/post/valine.ejs </p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"vcomment"</span> <span class="attr">class</span>=<span class="string">"comment"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"//cdn1.lncld.net/static/js/3.0.4/av-min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"//unpkg.com/valine/dist/Valine.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">   <span class="keyword">var</span> notify = <span class="string">'&lt;%= theme.valine.notify %&gt;'</span> == <span class="literal">true</span> ? <span class="literal">true</span> : <span class="literal">false</span>;</span></span><br><span class="line"><span class="actionscript">   <span class="keyword">var</span> verify = <span class="string">'&lt;%= theme.valine.verify %&gt;'</span> == <span class="literal">true</span> ? <span class="literal">true</span> : <span class="literal">false</span>;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">new</span> Valine(&#123;</span></span><br><span class="line"><span class="actionscript">            el: <span class="string">'#vcomment'</span>,</span></span><br><span class="line">            notify: notify,</span><br><span class="line">            verify: verify,</span><br><span class="line"><span class="actionscript">            app_id: <span class="string">"&lt;%= theme.valine.appid %&gt;"</span>,</span></span><br><span class="line"><span class="actionscript">            app_key: <span class="string">"&lt;%= theme.valine.appkey %&gt;"</span>,</span></span><br><span class="line"><span class="actionscript">            placeholder: <span class="string">"&lt;%= theme.valine.placeholder %&gt;"</span>,</span></span><br><span class="line"><span class="actionscript">            avatar:<span class="string">"&lt;%= theme.valine.avatar %&gt;"</span></span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Over然后就可以去见证奇迹了。</p>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>参考：<a href="https://valine.js.org" target="_blank" rel="noopener">https://valine.js.org</a></p>
+<blockquote>
+<p>本文有不到之处烦请多多交流指正~</p>
+</blockquote>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top" target="_parent">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/imgs/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/imgs/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -196,16 +263,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/05/hexo-comment-func/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" target="_blank" rel="noopener" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://lemon1499.github.io/2019/12/05/hexo-comment-func/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2019/12/04/hexo-blog-build/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hexo4.0搭建博客及自动部署</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -220,347 +346,58 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hexo-blog-build" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/04/hexo-blog-build/">Hexo4.0搭建博客及自动部署</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/04/hexo-blog-build/" class="archive-article-date">
-  	<time datetime="2019-12-04T09:35:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
-<p>环境：GIT、 NODE<br>技术：Hexo4.0 + Github Pages + Github Actions 搭建博客并自动部署至Github和Coding</p>
-</blockquote>
-<h5 id="搭建项目"><a href="#搭建项目" class="headerlink" title="搭建项目"></a>搭建项目</h5><p>一、 安装hexo</p>
-<p>1.创建一个文件夹blog，cd blog目录下。<br>2.执行hexo命令全局安装：<strong><em>npm i -g hexo</em></strong><br>3.安装成功，查看版本 <strong><em>hexo -v</em></strong>  如下：</p>
-        
-          <a class="article-more-a" href="/2019/12/04/hexo-blog-build/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/04/hexo-blog-build/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#获取APP-ID-和-APP-Key"><span class="toc-number">2.</span> <span class="toc-text">获取APP ID 和 APP Key</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在Hexo主题hexo-theme-yilia中使用"><span class="toc-number">3.</span> <span class="toc-text">在Hexo主题hexo-theme-yilia中使用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#修改Yilia代码断"><span class="toc-number">3.0.1.</span> <span class="toc-text">修改Yilia代码断</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最后"><span class="toc-number">4.</span> <span class="toc-text">最后</span></a></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
   
-    <article id="post-show-pic" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+    <section id="comments" style="margin:30px;padding:30px;background:#fff;">
+    <div id="vcomment" class="comment"></div> 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'false' == true ? true : false;
+   var verify = 'false' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '#vcomment',
+            notify: notify,
+            verify: verify,
+            app_id: "IMk6UEsIdoJmshBUrTrk068d-gzGzoHsz",
+            app_key: "frYofqWd1Lx2uJ2WwELXRhw8",
+            placeholder: "写下你的评论...",
+            avatar:"monsterid",
+            // meta: guest,
+            pageSize:'{{ theme.valine.pageSize }}' || 10,
+            visitor: true // 阅读量统计
+        });
+    }
+</script>
+  </section>
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/04/show-pic/">js处理图片流并显示在页面上</a>
-    </h1>
   
-
-        
-        <a href="/2019/12/04/show-pic/" class="archive-article-date">
-  	<time datetime="2019-12-04T09:29:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
-<p>Ajax请求图片资源，服务器以文件流的形式返回，前端js处理图片流并将图片显示到页面上。</p>
-</blockquote>
-<h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><p>首先，使用axios发送Ajax请求时，将responseType（响应数据的类型）设置为“blob”（response 是一个包含二进制数据的 Blob 对象 ）。然后，对服务器返回的结果进行处理：</p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img <span class="keyword">class</span>="<span class="symbol">verifyPic</span>" :<span class="symbol">src</span>="<span class="symbol">verifyImg</span>" /&gt;</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2019/12/04/show-pic/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">js</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color4">文件流</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/04/show-pic/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
-    <article id="post-d3-force" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/28/d3-force/">(译)D3-force</a>
-    </h1>
   
 
-        
-        <a href="/2019/11/28/d3-force/" class="archive-article-date">
-  	<time datetime="2019-11-28T15:57:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>原文: <a href="https://github.com/d3/d3/blob/master/API.md#forces-d3-force" target="_blank" rel="noopener">https://github.com/d3/d3/blob/master/API.md#forces-d3-force</a></p>
-</blockquote>
-<h5 id="d3-forceSimulation-nodes"><a href="#d3-forceSimulation-nodes" class="headerlink" title="d3.forceSimulation( [nodes] )"></a>d3.forceSimulation( [nodes] )</h5><p>使用指定的节点数据和无强度力创建一个新的模拟。若未指定nodes，默认为空数组。该模拟是自启动的；在该模拟运行时使用 <a href="https://github.com/d3/d3-force/blob/v1.2.1/README.md#simulation_on" target="_blank" rel="noopener">simulation.on</a> 监听每个瞬间（呼吸）事件。如果你想要手动运行模拟，调用 <a href="https://github.com/d3/d3-force/blob/v1.2.1/README.md#simulation_stop" target="_blank" rel="noopener">simulation.stop</a>, 然后需要调用  <a href="https://github.com/d3/d3-force/blob/v1.2.1/README.md#simulation_tick" target="_blank" rel="noopener">simulation.tick</a> .</p>
-<h5 id="simulation-nodes（-nodes-）"><a href="#simulation-nodes（-nodes-）" class="headerlink" title="simulation.nodes（[nodes]）"></a>simulation.nodes（[nodes]）</h5><p>每个node必须是一个对象模型，下面几个属性将会被仿真系统添加：<br>index-节点在nodes数组中的索引</p>
-        
-          <a class="article-more-a" href="/2019/11/28/d3-force/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">D3</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color4">可视化</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/28/d3-force/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/28/hello-world/">Hello World</a>
-    </h1>
   
 
-        
-        <a href="/2019/11/28/hello-world/" class="archive-article-date">
-  	<time datetime="2019-11-28T14:07:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>2019-11-28</p>
-<p>今天我集自动化部署于一身的博客终于问世了。</p>
-<p>同步在 <a href="https://lemon1499.github.io">github</a> 和 <a href="https://ylyu.coding.me" target="_blank" rel="noopener">coding</a>。</p>
-<p>感谢老大庄哥——我踩坑路上的贵人，整个过程虽然入坑很多，但是它确实是一件有意思也很有成就感的事情。</p>
-<p>感恩 感谢 希望以后能多思考多记录总结，不忘初心！</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/28/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
+
   
 
 
@@ -583,8 +420,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
