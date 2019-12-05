@@ -9,7 +9,7 @@ date: 2019-12-04 09:35:40
 
 #####  前言
 >环境：GIT、 NODE
-技术：Hexo4.0 + Github Pages + Github Actions 搭建博客并自动部署至Github和Coding
+应用：Hexo4.0 + Github Pages + Github Actions 搭建博客并自动部署至Github和Coding
 
 
 #####  搭建项目

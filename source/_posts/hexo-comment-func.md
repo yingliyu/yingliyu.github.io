@@ -26,7 +26,7 @@ date: 2019-12-05 14:53:07
 ![2](2.jpg)
 
 
-这样我们就拿到了我们想要的APP ID 和 APP Key。
+这样我们就拿到了我们想要的APP ID 和 APP Key，后面有用。
 >然后设置一下安全域名：
 
 ![4](4.jpg)
@@ -35,9 +35,9 @@ date: 2019-12-05 14:53:07
 
 >目前，已有部分Hexo主题内置了Valine 评论系统，但是本博客所用主题hexo-theme-yilia还没有被覆盖，下面就来详细介绍一下如何使用。
 
-##### 修改Yilia代码断
+##### 修改Yilia主题内代码断
 
->yilia/_config.yml
+>yilia/_config.yml中添加如下配置：
 
 ```yml
 #6、Valine https://valine.js.orgvaline: 
