@@ -107,12 +107,12 @@ jobs:
  ```
 
 ##### 最后
-我的博客：
-  [https://lemon1499.github.io](https://lemon1499.github.io)
-  [https://ylyu.coding.me](https://ylyu.coding.me)
+  >我的博客：
+  >[https://lemon1499.github.io](https://lemon1499.github.io)
+  >[https://ylyu.coding.me](https://ylyu.coding.me?_blank)
 ##### 参考
 
 [http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html](
-http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html)
+http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html?_blank)
 
 >本文有不到之处烦请多多交流指正~

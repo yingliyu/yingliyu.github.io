@@ -11,7 +11,7 @@ tags:
 
 今天我集自动化部署于一身的博客终于问世了。
 
-同步在 [github](https://lemon1499.github.io) 和 [coding](https://ylyu.coding.me)。
+同步在 [github](https://lemon1499.github.io) 和 [coding](https://ylyu.coding.me?_blank)。
 
 感谢老大庄哥——我踩坑路上的贵人，整个过程虽然入坑很多，但是它确实是一件有意思也很有成就感的事情。
 

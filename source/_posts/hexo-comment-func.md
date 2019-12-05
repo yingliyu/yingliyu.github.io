@@ -11,8 +11,8 @@ date: 2019-12-05 14:53:07
 ### 前言
 
 
->最初使用的是韩国的来必力，后来发现加载太慢了，然后就弃用了。现在使用的是基于[LeanCloud](https://leancloud.cn/) 的 [Valine](
-https://valine.js.org/)评论系统，样式简约大方，并且支持Emoji。
+>最初使用的是来必力貌似是韩国的，搭好了发现加载慢，风格也不喜欢，然后就...
+>现在使用的是基于[LeanCloud](https://leancloud.cn?_blank) 的 [Valine](https://valine.js.org?_blank)评论系统，样式简约大方并且支持Emoji，赞。
 
 ### 获取APP ID 和 APP Key
 
@@ -89,7 +89,7 @@ https://valine.js.org/)评论系统，样式简约大方，并且支持Emoji。
 ```
 Over然后就可以去见证奇迹了。
 ### 最后
-参考：https://valine.js.org
+参考：[https://valine.js.org](https://valine.js.org?_blank)
 
 >本文有不到之处烦请多多交流指正~
 

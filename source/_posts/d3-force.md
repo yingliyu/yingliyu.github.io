@@ -10,13 +10,13 @@ tags:
 - 可视化
 ---
 
->原文: [https://github.com/d3/d3/blob/master/API.md#forces-d3-force](https://github.com/d3/d3/blob/master/API.md#forces-d3-force)
+>原文: [https://github.com/d3/d3/blob/master/API.md#forces-d3-force](https://github.com/d3/d3/blob/master/API.md#forces-d3-force?_blank)
 
 ##### d3.forceSimulation( [nodes] ) 
 使用指定的节点数据和无强度力创建一个新的模拟。若未指定nodes，默认为空数组。该模拟是自启动的；在该模拟运行时使用 [simulation.on](
-https://github.com/d3/d3-force/blob/v1.2.1/README.md#simulation_on) 监听每个瞬间（呼吸）事件。如果你想要手动运行模拟，调用 [simulation.stop](
-https://github.com/d3/d3-force/blob/v1.2.1/README.md#simulation_stop), 然后需要调用  [simulation.tick](
-https://github.com/d3/d3-force/blob/v1.2.1/README.md#simulation_tick) .
+https://github.com/d3/d3-force/blob/v1.2.1/README.md#simulation_on?_blank) 监听每个瞬间（呼吸）事件。如果你想要手动运行模拟，调用 [simulation.stop](
+https://github.com/d3/d3-force/blob/v1.2.1/README.md#simulation_stop?_blank), 然后需要调用  [simulation.tick](
+https://github.com/d3/d3-force/blob/v1.2.1/README.md#simulation_tick?_blank) .
 
 
 ##### simulation.nodes（[nodes]）
