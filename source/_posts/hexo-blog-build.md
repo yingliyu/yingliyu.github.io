@@ -20,6 +20,7 @@ date: 2019-12-04 09:35:40
 2.执行hexo命令全局安装：***npm i -g hexo***
 3.安装成功，查看版本 ***hexo -v***  如下：
 <!--more-->
+
 ![image1](Image1.png)
 4.初始化项目 ***hexo init*** 生成如下文件：
 ![image2](Image2.png)

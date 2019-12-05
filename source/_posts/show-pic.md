@@ -45,6 +45,7 @@ getImgVcode() {
         }
 ```
 ### 结果示例图
+
 ![num-img](num-img.png)
 
 ### 最后
