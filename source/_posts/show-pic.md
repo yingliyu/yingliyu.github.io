@@ -25,7 +25,7 @@ date: 2019-12-04 09:29:03
 ```
 <!--more-->
 ```
-// api获取数据
+// API获取数据
 getImgVcode() {
       try {
         axios.post('/api/getImgVcode'，{

@@ -19,6 +19,7 @@ date: 2019-12-04 09:35:40
 1.创建一个文件夹blog，cd blog目录下。
 2.执行hexo命令全局安装：***npm i -g hexo***
 3.安装成功，查看版本 ***hexo -v***  如下：
+
 <!--more-->
 
 ![image1](Image1.png)
