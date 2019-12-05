@@ -18,7 +18,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;lemon1499.github.io&#x2F;2019&#x2F;12&#x2F;04&#x2F;hexo-blog-build&#x2F;Image1.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;lemon1499.github.io&#x2F;2019&#x2F;12&#x2F;04&#x2F;hexo-blog-build&#x2F;Image2.png">
-<meta property="og:updated_time" content="2019-12-05T07:14:48.133Z">
+<meta property="og:updated_time" content="2019-12-05T07:30:21.636Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;lemon1499.github.io&#x2F;2019&#x2F;12&#x2F;04&#x2F;hexo-blog-build&#x2F;Image1.png">
   
@@ -203,8 +203,10 @@
 <p>脚本demo：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">name:</span> <span class="string">Hexo</span> <span class="string">deployer</span></span><br><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="attr">push:</span></span><br><span class="line">    <span class="attr">branches:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">gh-pages</span></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">build-and-deploy:</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Checkout</span></span><br><span class="line">      <span class="attr">uses:</span> <span class="string">actions/checkout@master</span></span><br><span class="line"></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Build</span> <span class="string">and</span> <span class="string">Deploy</span></span><br><span class="line">      <span class="attr">uses:</span> <span class="string">JamesIves/github-pages-deploy-action@master</span></span><br><span class="line">      <span class="attr">env:</span></span><br><span class="line">        <span class="attr">ACCESS_TOKEN:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.ACCESS_TOKEN</span> <span class="string">&#125;&#125;</span></span><br><span class="line">        <span class="attr">BASE_BRANCH:</span> <span class="string">gh-pages</span></span><br><span class="line">        <span class="attr">BRANCH:</span> <span class="string">master</span></span><br><span class="line">        <span class="attr">FOLDER:</span> <span class="string">public</span></span><br><span class="line">        <span class="attr">BUILD_SCRIPT:</span> <span class="string">npm</span> <span class="string">i</span> <span class="string">-g</span> <span class="string">hexo</span> <span class="string">&amp;&amp;</span> <span class="string">npm</span> <span class="string">install</span> <span class="string">&amp;&amp;</span> <span class="string">hexo</span> <span class="string">generate</span> <span class="string">&amp;&amp;</span> <span class="string">hexo</span> <span class="string">deploy</span></span><br></pre></td></tr></table></figure>
 
-<h5 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h5><p>我的博客：<br>  <a href="https://lemon1499.github.io">https://lemon1499.github.io</a><br>  <a href="https://ylyu.coding.me" target="_blank" rel="noopener">https://ylyu.coding.me</a></p>
-<h5 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h5><p><a href="http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html</a></p>
+<h5 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h5><blockquote>
+<p>我的博客：<br><a href="https://lemon1499.github.io">https://lemon1499.github.io</a><br><a href="https://ylyu.coding.me?_blank" target="_blank" rel="noopener">https://ylyu.coding.me</a></p>
+</blockquote>
+<h5 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h5><p><a href="http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html?_blank" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html</a></p>
 <blockquote>
 <p>本文有不到之处烦请多多交流指正~</p>
 </blockquote>
@@ -332,7 +334,7 @@
     </a>
   
   
-    <a href="/2019/12/04/show-pic/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/12/04/image-flow/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">js处理图片流并显示在页面上</div>
       <i class="icon-circle-right"></i>
     </a>

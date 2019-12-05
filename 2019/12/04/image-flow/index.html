@@ -12,14 +12,14 @@
 <meta name="keywords" content="前端,js,文件流">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js处理图片流并显示在页面上">
-<meta property="og:url" content="https:&#x2F;&#x2F;lemon1499.github.io&#x2F;2019&#x2F;12&#x2F;04&#x2F;show-pic&#x2F;index.html">
+<meta property="og:url" content="https:&#x2F;&#x2F;lemon1499.github.io&#x2F;2019&#x2F;12&#x2F;04&#x2F;image-flow&#x2F;index.html">
 <meta property="og:site_name" content="yu&#39;s blog">
 <meta property="og:description" content="js处理图片流并显示在页面上">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https:&#x2F;&#x2F;lemon1499.github.io&#x2F;2019&#x2F;12&#x2F;04&#x2F;show-pic&#x2F;num-img.png">
-<meta property="og:updated_time" content="2019-12-05T07:14:48.137Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;lemon1499.github.io&#x2F;2019&#x2F;12&#x2F;04&#x2F;image-flow&#x2F;num-img.png">
+<meta property="og:updated_time" content="2019-12-05T07:30:21.640Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;lemon1499.github.io&#x2F;2019&#x2F;12&#x2F;04&#x2F;show-pic&#x2F;num-img.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;lemon1499.github.io&#x2F;2019&#x2F;12&#x2F;04&#x2F;image-flow&#x2F;num-img.png">
   
     <link rel="alternative" href="/atom.xml" title="yu&#39;s blog" type="application/atom+xml">
   
@@ -152,7 +152,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-show-pic" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-image-flow" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -164,7 +164,7 @@
   
 
         
-        <a href="/2019/12/04/show-pic/" class="archive-article-date">
+        <a href="/2019/12/04/image-flow/" class="archive-article-date">
   	<time datetime="2019-12-04T09:29:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-04</time>
 </a>
         
@@ -179,7 +179,7 @@
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img <span class="keyword">class</span>="<span class="symbol">verifyPic</span>" :<span class="symbol">src</span>="<span class="symbol">verifyImg</span>" /&gt;</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
 <figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// API获取数据</span></span><br><span class="line">getImgVcode() &#123;</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        axios.post(<span class="string">'/api/getImgVcode'</span>，&#123;</span><br><span class="line">            responseType: 'blob'</span><br><span class="line">        &#125;)</span><br><span class="line">        .then(res)&#123;</span><br><span class="line">            <span class="comment">// 使用fileReader对文件对象进行操作 </span></span><br><span class="line">            <span class="keyword">const</span> reader = <span class="keyword">new</span> FileReader() </span><br><span class="line">            <span class="comment">// 读到的是URL格式的Base64字符串</span></span><br><span class="line">            reader.readAsDataURL(res) </span><br><span class="line">            reader.onload = (result) =&gt; &#123;</span><br><span class="line">              <span class="keyword">this</span>.verifyImg = result.<span class="keyword">target</span>.result <span class="comment">// 更新图片的src</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        .<span class="keyword">catch</span>(<span class="keyword">error</span>)&#123;</span><br><span class="line">            console.log(<span class="keyword">error</span>)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="结果示例图"><a href="#结果示例图" class="headerlink" title="结果示例图"></a>结果示例图</h3><p><img src="/2019/12/04/show-pic/num-img.png" alt="num-img"></p>
+<h3 id="结果示例图"><a href="#结果示例图" class="headerlink" title="结果示例图"></a>结果示例图</h3><p><img src="/2019/12/04/image-flow/num-img.png" alt="num-img"></p>
 <h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>参考： <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader</a></p>
 <blockquote>
 <p>本文有不到之处烦请多多交流指正~</p>
@@ -292,7 +292,7 @@
     <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://lemon1499.github.io/2019/12/04/show-pic/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://lemon1499.github.io/2019/12/04/image-flow/" alt="微信分享二维码">
     </div>
 </div>
 
