@@ -4,7 +4,6 @@ layout: post
 title: (译)D3-force
 date: 2019-11-28 15:57:09
 comments: true
-brief: "test"
 tags: 
 - 前端
 - D3
