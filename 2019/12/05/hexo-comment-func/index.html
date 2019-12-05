@@ -20,7 +20,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;lemon1499.github.io&#x2F;2019&#x2F;12&#x2F;05&#x2F;hexo-comment-func&#x2F;1.jpg">
 <meta property="og:image" content="https:&#x2F;&#x2F;lemon1499.github.io&#x2F;2019&#x2F;12&#x2F;05&#x2F;hexo-comment-func&#x2F;2.jpg">
 <meta property="og:image" content="https:&#x2F;&#x2F;lemon1499.github.io&#x2F;2019&#x2F;12&#x2F;05&#x2F;hexo-comment-func&#x2F;4.jpg">
-<meta property="og:updated_time" content="2019-12-05T07:30:21.636Z">
+<meta property="og:updated_time" content="2019-12-05T07:36:26.750Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;lemon1499.github.io&#x2F;2019&#x2F;12&#x2F;05&#x2F;hexo-comment-func&#x2F;3.jpg">
   
@@ -183,7 +183,7 @@
 
 <p><img src="/2019/12/05/hexo-comment-func/1.jpg" alt="1"></p>
 <p><img src="/2019/12/05/hexo-comment-func/2.jpg" alt="2"></p>
-<p>这样我们就拿到了我们想要的APP ID 和 APP Key。</p>
+<p>这样我们就拿到了我们想要的APP ID 和 APP Key，后面有用。</p>
 <blockquote>
 <p>然后设置一下安全域名：</p>
 </blockquote>
@@ -191,8 +191,8 @@
 <h3 id="在Hexo主题hexo-theme-yilia中使用"><a href="#在Hexo主题hexo-theme-yilia中使用" class="headerlink" title="在Hexo主题hexo-theme-yilia中使用"></a>在Hexo主题hexo-theme-yilia中使用</h3><blockquote>
 <p>目前，已有部分Hexo主题内置了Valine 评论系统，但是本博客所用主题hexo-theme-yilia还没有被覆盖，下面就来详细介绍一下如何使用。</p>
 </blockquote>
-<h5 id="修改Yilia代码断"><a href="#修改Yilia代码断" class="headerlink" title="修改Yilia代码断"></a>修改Yilia代码断</h5><blockquote>
-<p>yilia/_config.yml</p>
+<h5 id="修改Yilia主题内代码断"><a href="#修改Yilia主题内代码断" class="headerlink" title="修改Yilia主题内代码断"></a>修改Yilia主题内代码断</h5><blockquote>
+<p>yilia/_config.yml中添加如下配置：</p>
 </blockquote>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#6、Valine https://valine.js.orgvaline: </span></span><br><span class="line"> <span class="attr">appid:</span>  <span class="comment">#Leancloud应用的appId</span></span><br><span class="line"> <span class="attr">appkey:</span>  <span class="comment">#Leancloud应用的appKey</span></span><br><span class="line"> <span class="attr">verify:</span> <span class="literal">false</span> <span class="comment">#验证码</span></span><br><span class="line"> <span class="attr">notify:</span> <span class="literal">false</span> <span class="comment">#评论回复提醒</span></span><br><span class="line"> <span class="attr">avatar:</span> <span class="string">mm</span> <span class="comment">#评论列表头像样式：''/mm/identicon/monsterid/wavatar/retro/hide</span></span><br><span class="line"> <span class="attr">placeholder:</span> <span class="string">Just</span> <span class="string">go</span> <span class="string">go</span> <span class="comment">#评论框占位符</span></span><br></pre></td></tr></table></figure>
 
@@ -353,7 +353,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#获取APP-ID-和-APP-Key"><span class="toc-number">2.</span> <span class="toc-text">获取APP ID 和 APP Key</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在Hexo主题hexo-theme-yilia中使用"><span class="toc-number">3.</span> <span class="toc-text">在Hexo主题hexo-theme-yilia中使用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#修改Yilia代码断"><span class="toc-number">3.0.1.</span> <span class="toc-text">修改Yilia代码断</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最后"><span class="toc-number">4.</span> <span class="toc-text">最后</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#获取APP-ID-和-APP-Key"><span class="toc-number">2.</span> <span class="toc-text">获取APP ID 和 APP Key</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在Hexo主题hexo-theme-yilia中使用"><span class="toc-number">3.</span> <span class="toc-text">在Hexo主题hexo-theme-yilia中使用</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#修改Yilia主题内代码断"><span class="toc-number">3.0.1.</span> <span class="toc-text">修改Yilia主题内代码断</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最后"><span class="toc-number">4.</span> <span class="toc-text">最后</span></a></li></ol>
                     </div>
                 </span>
             </div>
