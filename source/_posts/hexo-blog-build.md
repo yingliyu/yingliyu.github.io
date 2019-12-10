@@ -115,4 +115,4 @@ jobs:
 [http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html](
 http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html?_blank)
 
->本文有不到之处烦请多多交流指正~
+>本文有不到之处欢迎多多交流指正~
