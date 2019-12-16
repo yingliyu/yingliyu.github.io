@@ -3,17 +3,17 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: yyl的博客
+title: Fancy的博客
 subtitle: ''
 description: ''
 keywords:
-author: YingLi Yu
+author: Fancy Yu
 language: en
 timezone: ''
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://lemon1499.github.io
+url: https://yingliyu.github.io
 # root: 
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -105,7 +105,7 @@ theme: yilia
 # deploy:
 #   # Github
 #   - type: git
-#     repository: https://github.com/lemon1499/lemon1499.github.io.git
+#     repository: https://github.com/yingliyu/yingliyu.github.io.git
 #     branch: master
 #   # Coding
 #   - type: git
@@ -130,3 +130,28 @@ jsonContent:
     excerpt: false
     categories: false
     tags: true
+
+# Live2D
+## https://github.com/EYHN/hexo-helper-live2d
+live2d:
+  enable: true
+  scriptFrom: local
+  pluginRootPath: live2dw/
+  pluginJsPath: lib/
+  pluginModelPath: assets/
+  tagMode: false
+  debug: false
+  log: false
+  model:
+    use: live2d-widget-model-wanko
+  display:
+    position: right
+    width: 160
+    height: 300
+  mobile:
+    show: false
+    scale: 0.5
+  # react:
+    # opacity: 0.8
+
+

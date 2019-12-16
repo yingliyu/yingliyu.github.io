@@ -3,13 +3,14 @@
 menu:
   主页: /
   随笔: /tags/随笔/
+  # 相册: /photos/
 
 # SubNav
 subnav:
-  github: "hittps://github.com/lemon1499"
-  weibo: "#"
-  rss: /atom.xml
-  zhihu: "#"
+  github: "https://github.com/yingliyu"
+  # weibo: "#"
+  # rss: /atom.xml
+  # zhihu: "#"
   #qq: "#"
   #weixin: "#"
   #jianshu: "#"
@@ -17,7 +18,7 @@ subnav:
   #segmentfault: "#"
   #bilibili: "#"
   #acfun: "#"
-  #mail: "mailto:litten225@qq.com"
+  mail: "mailto:404997046@qq.com"
   #facebook: "#"
   #google: "#"
   #twitter: "#"
