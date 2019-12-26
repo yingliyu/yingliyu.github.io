@@ -1,0 +1,117 @@
+---
+toc: true
+title: Vue+vue-i18n+Element UI实现多语言切换
+tags:
+  - i18n
+description: xxx
+date: 2019-12-26 18:03:51
+---
+
+###### 前言
+>Vue I18n 是 Vue.js 的国际化插件。最近项目需求——给网站加中英文语言切换，使用的是vue-i8n。老大修改了项目架构使项目支持i8n，然后在此基础上使用起来感觉很清爽，就整理数据复制粘贴，然后就实现了中英切换功能，今日从头整理一下项目架构是如何配合i18n工作的。
+
+
+###### 1.安装
+
+1、npm
+```Bash
+npm install vue-i18n
+```
+2、yarn
+```bash
+yarn add vue-i18n
+```
+###### 2.开始
+
+<!--more-->
+结合ElementUI国际化文档，再main.js的同级创建目录lang，cd lang目录然后创建目录en、zh-cn和index.js文件，目录结构如下：
+![Image1.png](Image1.png)
+
+然后目录en和zh-cn中再分别创建入口文件index.js和需要的模块目录(默认有home模块)。最终如下：
+![Image2.png](Image2.png)
+
+###### 3.使用
+在lang/index.js中：
+```js
+import Vue from 'vue'
+import VueI18n from 'vue-i18n'
+// element-ui lang
+import elementEnLocale from 'element-ui/lib/locale/lang/en' 
+// element-ui lang
+import elementZhLocale from 'element-ui/lib/locale/lang/zh-CN' 
+import enLocale from './en'
+import zhLocale from './zh-cn'
+import store from '@/store'
+Vue.use(VueI18n)
+// http: //element-cn.eleme.io/2.4/#/zh-CN/component/i18n
+// 非5.x版本vue-i18n 需要用一下方式兼容
+const messages = {
+  en: {
+    ...enLocale,
+    ...elementEnLocale
+  },
+  zh: {
+    ...zhLocale,
+    ...elementZhLocale
+  }
+}
+const i18n = new VueI18n({
+  // set locale
+  // options: en or zh
+  locale: store.getters.language || 'en', // 默认显示英文
+  // set locale messages
+  messages
+})
+export default i18n
+```
+
+>准备的差不多了，然后开始在项目中使用i18n，在已有的main.js中加入：
+```js
+import i18n from './lang'
+Vue.use(ElementUI, {
+  i18n: (key, value) => i18n.t(key, value)
+})
+new Vue({ i18n }).$mount('#app')
+```
+
+>然后再en/index.js中导出你的数据：
+
+```js
+// login
+import login from './login'
+export default {
+  login
+}
+```
+>当你login的数据如下时：
+
+![Image3.png](Image3.png)
+>你可以通过 ***$t('moduleName.key')*** 这么使用它们：
+
+![Image4.png](Image4.png)
+
+
+>不好奇$t是什么吗？可以打出来自己看看
+```js
+console.log(this.$t)
+console.log(this.$i18n)
+console.log(this.$t('login'))
+```
+>然后切换语言时，将其存储到vuex中：
+```js
+changeLanguage(lang) {
+      this.$i18n.locale = lang
+      this.$store.commit('set_language', lang)
+    }
+```
+
+###### 4.最后
+>我想既然是全局使用，直接存到cookie中就可以了刷新干什么页面数据都有效的，为什么还要放到vuex中呢？试了一番发现其他都没问题却忽略了中英文小图标的存在，需要双向绑定来保证点击时实时更新图标。
+
+所以我们需要全局存储到vuex中实现双向绑定，同时使用cookie缓存你当前切换的语言，根据使用习惯或需求设定过期时间。
+
+参考：
+*https://kazupon.github.io/vue-i18n
+https://element.eleme.io*
+
+>本文有不到之处欢迎交流指正~
