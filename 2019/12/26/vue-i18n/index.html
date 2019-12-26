@@ -6,15 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yingliyu.github.io">
-  <title>Tag: CSS3 | Lemon的博客</title>
+  <title>Vue+vue-i18n+Element UI实现多语言切换 | Lemon的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="hi~">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lemon的博客">
-<meta property="og:url" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;tags&#x2F;CSS3&#x2F;index.html">
+  <meta name="description" content="xxx">
+<meta name="keywords" content="i18n">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue+vue-i18n+Element UI实现多语言切换">
+<meta property="og:url" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2019&#x2F;12&#x2F;26&#x2F;vue-i18n&#x2F;index.html">
 <meta property="og:site_name" content="Lemon的博客">
+<meta property="og:description" content="xxx">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2019&#x2F;12&#x2F;26&#x2F;vue-i18n&#x2F;Image1.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2019&#x2F;12&#x2F;26&#x2F;vue-i18n&#x2F;Image2.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2019&#x2F;12&#x2F;26&#x2F;vue-i18n&#x2F;Image3.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2019&#x2F;12&#x2F;26&#x2F;vue-i18n&#x2F;Image4.png">
+<meta property="og:updated_time" content="2019-12-26T10:13:08.408Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2019&#x2F;12&#x2F;26&#x2F;vue-i18n&#x2F;Image1.png">
   
     <link rel="alternative" href="/atom.xml" title="Lemon的博客" type="application/atom+xml">
   
@@ -143,60 +151,262 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-vue-i18n" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/09/background-clip/" class="archive-article-date">
-  	<time datetime="2019-12-09T19:06:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-09</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/09/background-clip/">background-clip属性详解</a>
+    <h1 class="article-title" itemprop="name">
+      Vue+vue-i18n+Element UI实现多语言切换
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/12/26/vue-i18n/" class="archive-article-date">
+  	<time datetime="2019-12-26T18:03:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h6 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h6><blockquote>
+<p>Vue I18n 是 Vue.js 的国际化插件。最近项目需求——给网站加中英文语言切换，使用的是vue-i8n。老大修改了项目架构使项目支持i8n，然后在此基础上使用起来感觉很清爽，就整理数据复制粘贴，然后就实现了中英切换功能，今日从头整理一下项目架构是如何配合i18n工作的。</p>
+</blockquote>
+<h6 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h6><p>1、npm</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue-i18n</span><br></pre></td></tr></table></figure>
+<p>2、yarn</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add vue-i18n</span><br></pre></td></tr></table></figure>
+<h6 id="2-开始"><a href="#2-开始" class="headerlink" title="2.开始"></a>2.开始</h6><a id="more"></a>
+<p>结合ElementUI国际化文档，再main.js的同级创建目录lang，cd lang目录然后创建目录en、zh-cn和index.js文件，目录结构如下：<br><img src="/2019/12/26/vue-i18n/Image1.png" alt="Image1.png"></p>
+<p>然后目录en和zh-cn中再分别创建入口文件index.js和需要的模块目录(默认有home模块)。最终如下：<br><img src="/2019/12/26/vue-i18n/Image2.png" alt="Image2.png"></p>
+<h6 id="3-使用"><a href="#3-使用" class="headerlink" title="3.使用"></a>3.使用</h6><p>在lang/index.js中：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> VueI18n <span class="keyword">from</span> <span class="string">'vue-i18n'</span></span><br><span class="line"><span class="comment">// element-ui lang</span></span><br><span class="line"><span class="keyword">import</span> elementEnLocale <span class="keyword">from</span> <span class="string">'element-ui/lib/locale/lang/en'</span> </span><br><span class="line"><span class="comment">// element-ui lang</span></span><br><span class="line"><span class="keyword">import</span> elementZhLocale <span class="keyword">from</span> <span class="string">'element-ui/lib/locale/lang/zh-CN'</span> </span><br><span class="line"><span class="keyword">import</span> enLocale <span class="keyword">from</span> <span class="string">'./en'</span></span><br><span class="line"><span class="keyword">import</span> zhLocale <span class="keyword">from</span> <span class="string">'./zh-cn'</span></span><br><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">'@/store'</span></span><br><span class="line">Vue.use(VueI18n)</span><br><span class="line"><span class="comment">// http: //element-cn.eleme.io/2.4/#/zh-CN/component/i18n</span></span><br><span class="line"><span class="comment">// 非5.x版本vue-i18n 需要用一下方式兼容</span></span><br><span class="line"><span class="keyword">const</span> messages = &#123;</span><br><span class="line">  en: &#123;</span><br><span class="line">    ...enLocale,</span><br><span class="line">    ...elementEnLocale</span><br><span class="line">  &#125;,</span><br><span class="line">  zh: &#123;</span><br><span class="line">    ...zhLocale,</span><br><span class="line">    ...elementZhLocale</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> i18n = <span class="keyword">new</span> VueI18n(&#123;</span><br><span class="line">  <span class="comment">// set locale</span></span><br><span class="line">  <span class="comment">// options: en or zh</span></span><br><span class="line">  locale: store.getters.language || <span class="string">'en'</span>, <span class="comment">// 默认显示英文</span></span><br><span class="line">  <span class="comment">// set locale messages</span></span><br><span class="line">  messages</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> i18n</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>准备的差不多了，然后开始在项目中使用i18n，在已有的main.js中加入：</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> i18n <span class="keyword">from</span> <span class="string">'./lang'</span></span><br><span class="line">Vue.use(ElementUI, &#123;</span><br><span class="line">  i18n: <span class="function">(<span class="params">key, value</span>) =&gt;</span> i18n.t(key, value)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">new</span> Vue(&#123; i18n &#125;).$mount(<span class="string">'#app'</span>)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>然后再en/index.js中导出你的数据：</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// login</span></span><br><span class="line"><span class="keyword">import</span> login <span class="keyword">from</span> <span class="string">'./login'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  login</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>当你login的数据如下时：</p>
+</blockquote>
+<p><img src="/2019/12/26/vue-i18n/Image3.png" alt="Image3.png"></p>
+<blockquote>
+<p>你可以通过 <strong><em>$t(‘moduleName.key’)</em></strong> 这么使用它们：</p>
+</blockquote>
+<p><img src="/2019/12/26/vue-i18n/Image4.png" alt="Image4.png"></p>
+<blockquote>
+<p>不好奇$t是什么吗？可以打出来自己看看</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>.$t)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>.$i18n)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>.$t(<span class="string">'login'</span>))</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>然后切换语言时，将其存储到vuex中：</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">changeLanguage(lang) &#123;</span><br><span class="line">      <span class="keyword">this</span>.$i18n.locale = lang</span><br><span class="line">      <span class="keyword">this</span>.$store.commit(<span class="string">'set_language'</span>, lang)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="4-最后"><a href="#4-最后" class="headerlink" title="4.最后"></a>4.最后</h6><blockquote>
+<p>我想既然是全局使用，直接存到cookie中就可以了刷新干什么页面数据都有效的，为什么还要放到vuex中呢？试了一番发现其他都没问题却忽略了中英文小图标的存在，需要双向绑定来保证点击时实时更新图标。</p>
+</blockquote>
+<p>所以我们需要全局存储到vuex中实现双向绑定，同时使用cookie缓存你当前切换的语言，根据使用习惯或需求设定过期时间。</p>
+<p>参考：<br><em><a href="https://kazupon.github.io/vue-i18n" target="_blank" rel="noopener">https://kazupon.github.io/vue-i18n</a><br><a href="https://element.eleme.io" target="_blank" rel="noopener">https://element.eleme.io</a></em></p>
+<blockquote>
+<p>本文有不到之处欢迎交流指正~</p>
+</blockquote>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top" target="_parent">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/imgs/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/imgs/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color5">CSS3</a>
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color5">i18n</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" target="_blank" rel="noopener" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://yingliyu.github.io/2019/12/26/vue-i18n/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/12/09/background-clip/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">background-clip属性详解</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#1-安装"><span class="toc-number">2.</span> <span class="toc-text">1.安装</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-开始"><span class="toc-number">3.</span> <span class="toc-text">2.开始</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-使用"><span class="toc-number">4.</span> <span class="toc-text">3.使用</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#4-最后"><span class="toc-number">5.</span> <span class="toc-text">4.最后</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+    <section id="comments" style="margin:30px;padding:30px;background:#fff;">
+    <div id="vcomment" class="comment"></div> 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'false' == true ? true : false;
+   var verify = 'false' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '#vcomment',
+            notify: notify,
+            verify: verify,
+            app_id: "IMk6UEsIdoJmshBUrTrk068d-gzGzoHsz",
+            app_key: "frYofqWd1Lx2uJ2WwELXRhw8",
+            placeholder: "写下你的评论...",
+            avatar:"monsterid",
+            // meta: guest,
+            pageSize:'{{ theme.valine.pageSize }}' || 10,
+            visitor: true // 阅读量统计
+        });
+    }
+</script>
+  </section>
+  
+  
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -220,9 +430,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,
