@@ -13,11 +13,11 @@ date: 2019-12-26 18:03:51
 
 ###### 1.安装
 
-1、npm
+1)npm
 ```Bash
 npm install vue-i18n
 ```
-2、yarn
+2)yarn
 ```bash
 yarn add vue-i18n
 ```
