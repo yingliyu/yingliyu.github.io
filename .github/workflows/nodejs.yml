@@ -30,12 +30,12 @@ jobs:
 
       - name: Deploy
         env:
-          GH_REF: github.com/lemon1499/lemon1499.github.io.git
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}  # github token
+          GH_REF: github.com/yingliyu/yingliyu.github.io.git
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN_NEW }}  # github token
           CODING_REF: git.dev.tencent.com/ylyu/ylyu.git
           CODING_TOKEN: ${{ secrets.CODING_ACCESS_TOKEN }} # coding token
         run: |
-          git config --global user.name "lemon1499"
+          git config --global user.name "yingliyu"
           git config --global user.email "404997046@qq.com"
           git clone https://${GH_REF} .deploy_git
           cd .deploy_git
@@ -48,4 +48,4 @@ jobs:
           # GitHub Pages
           git push --force --quiet "https://${ACCESS_TOKEN}@${GH_REF}" master:master
           # Coding Pages 
-          git push --force --quiet "https://ylyu:${CODING_TOKEN}@${CODING_REF}" master:master
+          # git push --force --quiet "https://ylyu:${CODING_TOKEN}@${CODING_REF}" master:master
