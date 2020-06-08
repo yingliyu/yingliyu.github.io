@@ -33,7 +33,8 @@ jobs:
           GH_REF: github.com/yingliyu/yingliyu.github.io.git
           # github.com/lemon1499/lemon1499.github.io.git
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }} # github token
-          CODING_REF: git.dev.tencent.com/ylyu/ylyu.git
+          CODING_REF: e.coding.net/ylyu/blog.git
+          # git.dev.tencent.com/ylyu/ylyu.git
           CODING_TOKEN: ${{ secrets.CODING_ACCESS_TOKEN }} # coding token
         run: |
           git config --global user.name "yingliyu"
