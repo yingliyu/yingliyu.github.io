@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Lemon的博客
-subtitle: 'Lemon Yu'
+title: Lillian的博客
+subtitle: 'Lillian'
 description: ''
 keywords: 'hi~'
-author: 七月笙烟
+author: 栗栗安
 language: en
 timezone: ''
 
@@ -15,7 +15,7 @@ timezone: ''
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: https://yingliyu.github.io
 
-# root: 
+# root:
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -35,7 +35,8 @@ skip_render:
 new_post_name: :title.md # File name of new posts
 default_layout: post
 titlecase: false # Transform title into titlecase
-external_link: true
+external_link:
+  true
   # enable: true # Open external links in new tab
   # field: site # Apply to the whole site
   # exclude: ''
@@ -71,7 +72,7 @@ tag_map:
 archive: 1
 category: 1
 tag: 1
-  
+
 # Metadata elements
 ## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
 meta_generator: true
@@ -153,6 +154,4 @@ live2d:
     show: false
     scale: 0.5
   # react:
-    # opacity: 0.8
-
-
+  # opacity: 0.8

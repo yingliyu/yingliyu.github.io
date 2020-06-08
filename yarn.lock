@@ -2035,7 +2035,7 @@ hexo-bunyan@^2.0.0:
     mv "~2"
     safe-json-stringify "~1"
 
-hexo-cli@^3.0.0:
+hexo-cli@^3.0.0, hexo-cli@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/hexo-cli/-/hexo-cli-3.1.0.tgz#a7414d4647333fe73762f86d77e5660659c0d05b"
   integrity sha512-Rc2gX2DlsALaFBbfk1XYx2XmeVAX+C7Dxc7UwETZOcu3cbGsf2DpwYTfKQumW3jagi1icA4KgW9aSRPPZZj/zg==

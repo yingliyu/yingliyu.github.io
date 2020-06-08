@@ -17,6 +17,7 @@
     "ejs-lint": "^0.3.0",
     "hexo": "^4.0.0",
     "hexo-asset-image-yyl": "^1.0.0",
+    "hexo-cli": "^3.1.0",
     "hexo-deployer-git": "^2.1.0",
     "hexo-generator-archive": "^1.0.0",
     "hexo-generator-category": "^1.0.0",
