@@ -6,23 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yingliyu.github.io">
-  <title>Vue+vue-i18n+Element UI实现多语言切换 | Lillian的博客</title>
+  <title>git常用命令 | Lillian的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Vue+vue-i18n+Element UI实现多语言切换">
-<meta name="keywords" content="i18n">
+  <meta name="description" content="git常用命令">
+<meta name="keywords" content="git">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Vue+vue-i18n+Element UI实现多语言切换">
-<meta property="og:url" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2019&#x2F;12&#x2F;26&#x2F;vue-i18n&#x2F;index.html">
+<meta property="og:title" content="git常用命令">
+<meta property="og:url" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2020&#x2F;06&#x2F;08&#x2F;git-command&#x2F;index.html">
 <meta property="og:site_name" content="Lillian的博客">
-<meta property="og:description" content="Vue+vue-i18n+Element UI实现多语言切换">
+<meta property="og:description" content="git常用命令">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2019&#x2F;12&#x2F;26&#x2F;vue-i18n&#x2F;Image1.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2019&#x2F;12&#x2F;26&#x2F;vue-i18n&#x2F;Image2.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2019&#x2F;12&#x2F;26&#x2F;vue-i18n&#x2F;Image3.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2019&#x2F;12&#x2F;26&#x2F;vue-i18n&#x2F;Image4.png">
-<meta property="og:updated_time" content="2020-06-08T03:19:08.691Z">
+<meta property="og:updated_time" content="2020-06-08T03:19:08.687Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2019&#x2F;12&#x2F;26&#x2F;vue-i18n&#x2F;Image1.png">
   
     <link rel="alternative" href="/atom.xml" title="Lillian的博客" type="application/atom+xml">
   
@@ -151,75 +146,53 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-vue-i18n" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-git-command" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Vue+vue-i18n+Element UI实现多语言切换
+      git常用命令
     </h1>
   
 
         
-        <a href="/2019/12/26/vue-i18n/" class="archive-article-date">
-  	<time datetime="2019-12-26T18:03:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-26</time>
+        <a href="/2020/06/08/git-command/" class="archive-article-date">
+  	<time datetime="2020-06-08T10:11:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-08</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h6 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h6><blockquote>
-<p>Vue I18n 是 Vue.js 的国际化插件。最近项目需求——给网站加中英文语言切换功能，使用的是 vue-i8n。老大修改了项目架构使项目支持 i8n，铺垫做的好就使用起来很 easy 了，整理数据然后比着葫芦画瓢就实现了想要的功能。一直以来我的短板就是学习东西不够深入，总是浅尝辄止于会用，发现了不足就去努力克服吧。不能止步于会用，现在就开始从头学习整理一下项目架构是如何配合 i18n 来使用的。</p>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
+<p>git 相关知识可以说是开发者的必备常识，虽然目前市面有很多方便的可视化操作工具，但是 git 的指令用起来不仅方便快捷而且显得更加有逼格，况且面试的时候有可能被问到，所以还是有必要学习并掌握的。</p>
 </blockquote>
-<h6 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h6><p>1)npm</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue-i18n</span><br></pre></td></tr></table></figure>
+<h5 id="1-基础指令"><a href="#1-基础指令" class="headerlink" title="1.基础指令"></a>1.基础指令</h5><p>克隆远程仓库代码到本地</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone 远程仓库地址</span><br></pre></td></tr></table></figure>
 
-<p>2)yarn</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add vue-i18n</span><br></pre></td></tr></table></figure>
+<p>添加变更到暂存区</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add . <span class="comment">//添加全部变更</span></span><br><span class="line">git add &lt;fileName&gt; <span class="comment">//添加指定文件的变更</span></span><br></pre></td></tr></table></figure>
 
-<h6 id="2-开始"><a href="#2-开始" class="headerlink" title="2.开始"></a>2.开始</h6><a id="more"></a>
+<p>提交变更</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m <span class="string">"your description"</span></span><br></pre></td></tr></table></figure>
 
-<p>结合 ElementUI 国际化文档，再 main.js 的同级创建目录 lang，cd lang 目录然后创建目录 en、zh-cn 和 index.js 文件，目录结构如下：<br><img src="/2019/12/26/vue-i18n/Image1.png" alt="Image1.png"></p>
-<p>然后目录 en 和 zh-cn 中再分别创建入口文件 index.js 和需要的模块目录(这里只加了 login 模块)。最终如下：<br><img src="/2019/12/26/vue-i18n/Image2.png" alt="Image2.png"></p>
-<h6 id="3-使用"><a href="#3-使用" class="headerlink" title="3.使用"></a>3.使用</h6><p>在 lang/index.js 中：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> VueI18n <span class="keyword">from</span> <span class="string">'vue-i18n'</span></span><br><span class="line"><span class="comment">// element-ui lang</span></span><br><span class="line"><span class="keyword">import</span> elementEnLocale <span class="keyword">from</span> <span class="string">'element-ui/lib/locale/lang/en'</span></span><br><span class="line"><span class="comment">// element-ui lang</span></span><br><span class="line"><span class="keyword">import</span> elementZhLocale <span class="keyword">from</span> <span class="string">'element-ui/lib/locale/lang/zh-CN'</span></span><br><span class="line"><span class="keyword">import</span> enLocale <span class="keyword">from</span> <span class="string">'./en'</span></span><br><span class="line"><span class="keyword">import</span> zhLocale <span class="keyword">from</span> <span class="string">'./zh-cn'</span></span><br><span class="line"><span class="keyword">import</span> store <span class="keyword">from</span> <span class="string">'@/store'</span></span><br><span class="line">Vue.use(VueI18n)</span><br><span class="line"><span class="comment">// http: //element-cn.eleme.io/2.4/#/zh-CN/component/i18n</span></span><br><span class="line"><span class="comment">// 非5.x版本vue-i18n 需要用一下方式兼容</span></span><br><span class="line"><span class="keyword">const</span> messages = &#123;</span><br><span class="line">  en: &#123;</span><br><span class="line">    ...enLocale,</span><br><span class="line">    ...elementEnLocale</span><br><span class="line">  &#125;,</span><br><span class="line">  zh: &#123;</span><br><span class="line">    ...zhLocale,</span><br><span class="line">    ...elementZhLocale</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> i18n = <span class="keyword">new</span> VueI18n(&#123;</span><br><span class="line">  <span class="comment">// set locale</span></span><br><span class="line">  <span class="comment">// options: en or zh</span></span><br><span class="line">  locale: store.getters.language || <span class="string">'en'</span>, <span class="comment">// 默认显示英文 // set locale messages</span></span><br><span class="line">  messages</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> i18n</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git pull <span class="comment">// 拉仓库代码</span></span><br><span class="line">git push <span class="comment">// 提交到仓库</span></span><br><span class="line">git push --<span class="keyword">set</span>-upstream origin &lt;branch name&gt; // 将本地分支推送为远程分支</span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>准备的差不多了，然后开始在项目中使用 i18n，在已有的 main.js 中加入：</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> i18n <span class="keyword">from</span> <span class="string">'./lang'</span></span><br><span class="line">Vue.use(ElementUI, &#123;</span><br><span class="line">  i18n: <span class="function">(<span class="params">key, value</span>) =&gt;</span> i18n.t(key, value)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">new</span> Vue(&#123; i18n &#125;).$mount(<span class="string">'#app'</span>)</span><br></pre></td></tr></table></figure>
+<h5 id="2-配置相关指令"><a href="#2-配置相关指令" class="headerlink" title="2.配置相关指令"></a>2.配置相关指令</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">"xxx"</span> <span class="comment">//配置用户名</span></span><br><span class="line">git config --global user.email <span class="string">"xxx@xxx.com"</span> <span class="comment">//配置邮箱</span></span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>然后再 en/index.js 中导出你的数据：</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// login</span></span><br><span class="line"><span class="keyword">import</span> login <span class="keyword">from</span> <span class="string">'./login'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  login</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="3-分支相关指令"><a href="#3-分支相关指令" class="headerlink" title="3.分支相关指令"></a>3.分支相关指令</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">git branch <span class="comment">// 查看本地分支</span></span><br><span class="line">git branch -r <span class="comment">// 查看远程分支</span></span><br><span class="line">git branch -a <span class="comment">// 查看本地及远程所有分支</span></span><br><span class="line"><span class="comment">// git branch -m &lt;old name&gt; &lt;new name&gt; // 重命名分支</span></span><br><span class="line"></span><br><span class="line">git branch &lt;branch name&gt; <span class="comment">// 创建分支</span></span><br><span class="line">git merge &lt;branch name&gt; <span class="comment">// 合并某分支到当前分支</span></span><br><span class="line">git checkout -b &lt;branch name&gt; <span class="comment">// 创建并切换到分支名为branch name的分支</span></span><br><span class="line"></span><br><span class="line">git branch -d &lt;branch name&gt; <span class="comment">// 删除本地已合并分支（未合并提示删除失败）</span></span><br><span class="line">git branch -D &lt;branch name&gt; <span class="comment">// 强制删除本地未合并分支</span></span><br><span class="line">git push origin --<span class="keyword">delete</span> &lt;branch name&gt; <span class="comment">// 删除远程分支</span></span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>当你 login 的数据如下时：</p>
-</blockquote>
-<p><img src="/2019/12/26/vue-i18n/Image3.png" alt="Image3.png"></p>
-<blockquote>
-<p>你可以通过 <strong><em>$t(‘moduleName.key’)</em></strong> 这么使用它们：</p>
-</blockquote>
-<p><img src="/2019/12/26/vue-i18n/Image4.png" alt="Image4.png"></p>
-<blockquote>
-<p>不好奇$t 是什么吗？可以打出来自己看看</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>.$t)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>.$i18n)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>.$t(<span class="string">'login'</span>))</span><br></pre></td></tr></table></figure>
+<h5 id="4-回退相关指令"><a href="#4-回退相关指令" class="headerlink" title="4.回退相关指令"></a>4.回退相关指令</h5><p>git 中，HEAD 表示当前版本</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">git checkout &lt;file&gt; <span class="comment">// 恢复未提交的更改</span></span><br><span class="line">git reset HEAD &lt;file&gt; <span class="comment">// 取消之前git add 添加</span></span><br><span class="line"></span><br><span class="line">git reset --hard HEAD~ <span class="comment">// 回退至上一个版本</span></span><br><span class="line">git reset --hard &lt;commit id&gt; <span class="comment">// 回退至指定版本</span></span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>然后切换语言时，将其存储到 vuex 中：</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">changeLanguage(lang) &#123;</span><br><span class="line">      <span class="keyword">this</span>.$i18n.locale = lang</span><br><span class="line">      <span class="keyword">this</span>.$store.commit(<span class="string">'set_language'</span>, lang)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h5 id="5-标签指令"><a href="#5-标签指令" class="headerlink" title="5.标签指令"></a>5.标签指令</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git tag <span class="comment">//查看标签</span></span><br><span class="line">git tag &lt;name&gt; <span class="comment">//创建标签</span></span><br><span class="line">git tag -a &lt;name&gt; <span class="comment">//创建一个带注解的标签</span></span><br><span class="line">git tag -d &lt;name&gt;  <span class="comment">//删除标签</span></span><br></pre></td></tr></table></figure>
 
-<h6 id="4-最后"><a href="#4-最后" class="headerlink" title="4.最后"></a>4.最后</h6><blockquote>
-<p>我想既然是全局使用，直接存到 cookie 中就可以了刷新干什么页面数据都有效的，为什么还要放到 vuex 中呢？试了一番发现其他都没问题却忽略了中英文小图标的存在，需要双向绑定来保证点击时实时更新图标。</p>
-</blockquote>
-<p>所以我们需要全局存储到 vuex 中实现双向绑定，同时使用 cookie 缓存你当前切换的语言，根据使用习惯或需求设定过期时间。</p>
-<p>参考：<br><em><a href="https://kazupon.github.io/vue-i18n" target="_blank" rel="noopener">https://kazupon.github.io/vue-i18n</a><br><a href="https://element.eleme.io" target="_blank" rel="noopener">https://element.eleme.io</a></em></p>
+<h5 id="6-其他指令"><a href="#6-其他指令" class="headerlink" title="6.其他指令"></a>6.其他指令</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git status <span class="comment">// 查看代码状态</span></span><br><span class="line">git diff <span class="comment">// 查看add与commit改动</span></span><br><span class="line"></span><br><span class="line">git log <span class="comment">// 查看提交历史</span></span><br><span class="line">git log -p <span class="comment">// 查看每次提交的内容差异</span></span><br><span class="line">git log <span class="number">-2</span> <span class="comment">// 查看最近两次提交</span></span><br><span class="line">git log --stat <span class="comment">// 查看每次提交的简略的统计信息</span></span><br><span class="line">git log --pretty=oneline <span class="comment">// 日志信息格式化为每次提交信息在一行显示</span></span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
 <blockquote>
 <p>本文有不到之处欢迎交流指正~</p>
 </blockquote>
@@ -267,7 +240,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color5">i18n</a>
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color4">git</a>
         		</li>
       		
 		</ul>
@@ -323,7 +296,7 @@
     <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://yingliyu.github.io/2019/12/26/vue-i18n/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://yingliyu.github.io/2020/06/08/git-command/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -337,18 +310,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/01/10/es6-array-from/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          ES6之你不知道的Array.from()
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/12/09/background-clip/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">background-clip属性详解</div>
+    <a href="/2020/01/10/es6-array-from/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ES6之你不知道的Array.from()</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -375,7 +339,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#1-安装"><span class="toc-number">2.</span> <span class="toc-text">1.安装</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#2-开始"><span class="toc-number">3.</span> <span class="toc-text">2.开始</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#3-使用"><span class="toc-number">4.</span> <span class="toc-text">3.使用</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#4-最后"><span class="toc-number">5.</span> <span class="toc-text">4.最后</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-基础指令"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.基础指令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-配置相关指令"><span class="toc-number">1.0.2.</span> <span class="toc-text">2.配置相关指令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-分支相关指令"><span class="toc-number">1.0.3.</span> <span class="toc-text">3.分支相关指令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-回退相关指令"><span class="toc-number">1.0.4.</span> <span class="toc-text">4.回退相关指令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-标签指令"><span class="toc-number">1.0.5.</span> <span class="toc-text">5.标签指令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-其他指令"><span class="toc-number">1.0.6.</span> <span class="toc-text">6.其他指令</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
