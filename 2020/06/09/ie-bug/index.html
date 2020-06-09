@@ -6,20 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yingliyu.github.io">
-  <title>js处理图片流并显示在页面上 | Lillian的博客</title>
+  <title>ie浏览器踩坑系列 | Lillian的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="js处理图片流并显示在页面上">
-<meta name="keywords" content="前端,js,文件流">
+  <meta name="description" content="ie浏览器踩坑系列">
+<meta name="keywords" content="ie">
 <meta property="og:type" content="article">
-<meta property="og:title" content="js处理图片流并显示在页面上">
-<meta property="og:url" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2019&#x2F;12&#x2F;04&#x2F;image-flow&#x2F;index.html">
+<meta property="og:title" content="ie浏览器踩坑系列">
+<meta property="og:url" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2020&#x2F;06&#x2F;09&#x2F;ie-bug&#x2F;index.html">
 <meta property="og:site_name" content="Lillian的博客">
-<meta property="og:description" content="js处理图片流并显示在页面上">
+<meta property="og:description" content="ie浏览器踩坑系列">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2019&#x2F;12&#x2F;04&#x2F;image-flow&#x2F;num-img.png">
 <meta property="og:updated_time" content="2020-06-09T07:36:26.509Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2019&#x2F;12&#x2F;04&#x2F;image-flow&#x2F;num-img.png">
   
     <link rel="alternative" href="/atom.xml" title="Lillian的博客" type="application/atom+xml">
   
@@ -150,37 +148,31 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-image-flow" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-ie-bug" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      js处理图片流并显示在页面上
+      ie浏览器踩坑系列
     </h1>
   
 
         
-        <a href="/2019/12/04/image-flow/" class="archive-article-date">
-  	<time datetime="2019-12-04T09:29:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-04</time>
+        <a href="/2020/06/09/ie-bug/" class="archive-article-date">
+  	<time datetime="2020-06-09T11:08:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-09</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
-<p>Ajax请求图片资源，服务器以文件流的形式返回，前端js处理图片流并将图片显示到页面上。</p>
-</blockquote>
-<h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><p>首先，使用axios发送Ajax请求时，将responseType（响应数据的类型）设置为“blob”（response 是一个包含二进制数据的 Blob 对象 ）。然后，对服务器返回的结果进行处理：</p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img <span class="keyword">class</span>="<span class="symbol">verifyPic</span>" :<span class="symbol">src</span>="<span class="symbol">verifyImg</span>" /&gt;</span><br></pre></td></tr></table></figure>
+        <h6 id="持续更新…"><a href="#持续更新…" class="headerlink" title="持续更新…"></a>持续更新…</h6><p>1.使用 antv ，当有两种渲染方式：canvas 和 svg，最好选择 canvas 方式，因为 svg 在 IE 浏览器下有很多 bug。</p>
 <a id="more"></a>
-<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// API获取数据</span></span><br><span class="line">getImgVcode() &#123;</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">        axios.post(<span class="string">'/api/getImgVcode'</span>，&#123;</span><br><span class="line">            responseType: 'blob'</span><br><span class="line">        &#125;)</span><br><span class="line">        .then(res)&#123;</span><br><span class="line">            <span class="comment">// 使用fileReader对文件对象进行操作 </span></span><br><span class="line">            <span class="keyword">const</span> reader = <span class="keyword">new</span> FileReader() </span><br><span class="line">            <span class="comment">// 读到的是URL格式的Base64字符串</span></span><br><span class="line">            reader.readAsDataURL(res) </span><br><span class="line">            reader.onload = (result) =&gt; &#123;</span><br><span class="line">              <span class="keyword">this</span>.verifyImg = result.<span class="keyword">target</span>.result <span class="comment">// 更新图片的src</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        .<span class="keyword">catch</span>(<span class="keyword">error</span>)&#123;</span><br><span class="line">            console.log(<span class="keyword">error</span>)</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
-<h3 id="结果示例图"><a href="#结果示例图" class="headerlink" title="结果示例图"></a>结果示例图</h3><p><img src="/2019/12/04/image-flow/num-img.png" alt="num-img"></p>
-<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>参考： <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/API/FileReader</a></p>
+
 <blockquote>
-<p>本文有不到之处欢迎多多交流指正~</p>
+<p>本文有不到之处欢迎交流指正~</p>
 </blockquote>
 
       
@@ -226,15 +218,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">js</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color4">文件流</a>
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">ie</a>
         		</li>
       		
 		</ul>
@@ -290,7 +274,7 @@
     <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://yingliyu.github.io/2019/12/04/image-flow/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://yingliyu.github.io/2020/06/09/ie-bug/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -304,18 +288,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/12/04/hexo-blog-build/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/06/09/text-ellipsis/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Hexo4.0搭建博客及自动部署
+          css文字超出显示省略号
         
       </div>
     </a>
   
   
-    <a href="/2019/11/28/d3-force/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">(译)D3-force</div>
+    <a href="/2020/06/09/vue-class/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">vue动态绑定class与style</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -342,7 +326,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基本思路"><span class="toc-number">2.</span> <span class="toc-text">基本思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结果示例图"><span class="toc-number">3.</span> <span class="toc-text">结果示例图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最后"><span class="toc-number">4.</span> <span class="toc-text">最后</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#持续更新…"><span class="toc-number">1.</span> <span class="toc-text">持续更新…</span></a></li></ol>
                     </div>
                 </span>
             </div>

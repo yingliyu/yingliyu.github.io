@@ -19,6 +19,8 @@
     <link rel="alternative" href="/atom.xml" title="Lillian的博客" type="application/atom+xml">
   
   
+    <link rel="icon" href="/assets/imgs/favicon.png">
+  
   <link rel="stylesheet" type="text/css" href="/./main.0cf68a.css">
   <style type="text/css">
   
@@ -41,7 +43,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/assets/blogImgs/ylyu.jpg" class="js-avatar">
+			<img src="/assets/imgs/dog1.jpeg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">栗栗安</a></h1>
@@ -96,7 +98,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/assets/blogImgs/ylyu.jpg" class="js-avatar">
+				<img src="/assets/imgs/dog1.jpeg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">栗栗安</h1>
@@ -144,6 +146,280 @@
           </div>
           <div id="js-content" class="content-ll">
             
+  
+    <article id="post-text-ellipsis" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/09/text-ellipsis/">css文字超出显示省略号</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/09/text-ellipsis/" class="archive-article-date">
+  	<time datetime="2020-06-09T11:11:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="一-单行文本超出省略"><a href="#一-单行文本超出省略" class="headerlink" title="一.单行文本超出省略"></a>一.单行文本超出省略</h5><blockquote>
+<p>关键属性：<code>text-overflow:ellipsis|clip</code> 。<br><code>clip</code> : 　不显示省略标记（…），而是简单的裁切掉溢出的文本<br><code>ellipsis</code> : 　当对象内文本溢出时显示省略标记（…）<br><code>string</code>: 使用指定字符串来代表被修剪的文本<br>兼容性：所有主流浏览器都兼容, IE6+</p>
+</blockquote>
+<p>1.css 实现：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  <span class="attribute">text-overflow</span>: ellipsis;</span><br><span class="line">  <span class="attribute">white-space</span>: nowrap;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.css+html 实现：</p>
+<blockquote>
+<p>使用<code>&lt;nobr&gt;</code>不换行标签（行内标签）此标签与 css <code>white-space</code> 功能相同。<br>详情参考<a href="http://www.divcss5.com/html/h533.shtml" target="_blank" rel="noopener">http://www.divcss5.com/html/h533.shtml</a> 。<br><code>&lt;nobr&gt;</code>兼容性：IE11+</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">nobr</span> &#123;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  <span class="attribute">text-overflow</span>: ellipsis;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">nobr</span>&gt;</span></span><br><span class="line">    我是禁止换行标签。我是禁止换行标签。 我是禁止换行标签。我是禁止换行标签。</span><br><span class="line">    我是禁止换行标签。我是禁止换行标签。</span><br><span class="line">  <span class="tag">&lt;/<span class="name">nobr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="二-多行文本超出省略"><a href="#二-多行文本超出省略" class="headerlink" title="二.多行文本超出省略"></a>二.多行文本超出省略</h5><blockquote>
+<p><code>-webkit-line-clamp</code>:限制在一个块元素显示的文本的行数。是一个不规范的属性，未出现在 css 规范草案中。<br>为了实现该效果，它必须要结合其他的属性 ：<br><code>display: -webkit-box;</code> 必须结合的属性 ，将对象作为弹性伸缩盒子模型显示 。<br><code>-webkit-box-orient</code> 必须结合的属性 ，设置或检索伸缩盒对象的子元素的排列方式 。<br>兼容性：适用于 webkit 浏览器或移动端，详情：<a href="https://www.caniuse.com/#search=-webkit-line-clamp" target="_blank" rel="noopener">https://www.caniuse.com/#search=-webkit-line-clamp</a></p>
+</blockquote>
+<p>以超出 3 行内容省略为例：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> &#123;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  <span class="attribute">text-overflow</span>: ellipsis;</span><br><span class="line">  <span class="attribute">display</span>: -webkit-box;</span><br><span class="line">  <span class="attribute">-webkit-line-clamp</span>: <span class="number">3</span>;</span><br><span class="line">  <span class="attribute">-webkit-box-orient</span>: vertical;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>跨浏览器兼容方案：(IE9+)<br>注意：<code>hight</code> 是 <code>line-height</code> 的 3 倍</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.p</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">60px</span>;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.p</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">'...'</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(to right, rgba(255, 255, 255, 0), <span class="built_in">rgba</span>(255, 255, 255, 1) <span class="number">50%</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2020/06/09/text-ellipsis/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color4">text-ellipsis</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color4">-webkit-line-clamp</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/09/text-ellipsis/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-ie-bug" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/09/ie-bug/">ie浏览器踩坑系列</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/09/ie-bug/" class="archive-article-date">
+  	<time datetime="2020-06-09T11:08:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h6 id="持续更新…"><a href="#持续更新…" class="headerlink" title="持续更新…"></a>持续更新…</h6><p>1.使用 antv ，当有两种渲染方式：canvas 和 svg，最好选择 canvas 方式，因为 svg 在 IE 浏览器下有很多 bug。</p>
+        
+          <a class="article-more-a" href="/2020/06/09/ie-bug/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">ie</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/09/ie-bug/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-vue-class" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/09/vue-class/">vue动态绑定class与style</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/09/vue-class/" class="archive-article-date">
+  	<time datetime="2020-06-09T10:19:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
+<p>基于 vue 开发的项目中有的交互需要修改元素的样式，就会用到 class 或 style 的动态绑定。当样式的属性值是变量时一般使用 style，其他情况最好使用 class，个人觉得这样模版代码更好维护一点。</p>
+</blockquote>
+<h5 id="1-绑定-class-方式"><a href="#1-绑定-class-方式" class="headerlink" title="1.绑定 class 方式"></a>1.绑定 class 方式</h5><p>js 代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">data()&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    isActive:<span class="literal">true</span>,</span><br><span class="line">    isCenter: <span class="literal">false</span>,</span><br><span class="line">    class2: <span class="string">'align-center'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="（1）对象形式"><a href="#（1）对象形式" class="headerlink" title="（1）对象形式"></a>（1）对象形式</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">:class</span>=<span class="string">"&#123; 'active': isActive, 'align-center': !isCenter &#125;"</span>&gt;</span>全部<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="（2）数组形式"><a href="#（2）数组形式" class="headerlink" title="（2）数组形式"></a>（2）数组形式</h6><p>数组结合三目运算符</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">:class</span>=<span class="string">"[isActive ? 'icon-arrow-up' : 'icon-arrow-down', class2]"</span>&gt;</span>全部 <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="2-绑定-style-方式"><a href="#2-绑定-style-方式" class="headerlink" title="2.绑定 style 方式"></a>2.绑定 style 方式</h5><blockquote>
+<p>注意：短横线连接的属性名转换为驼峰命名格式，例如：font-size =&gt; fontSize</p>
+</blockquote>
+<p>js 代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">data()&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    activeColor:<span class="string">'red'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="（1）对象形式-1"><a href="#（1）对象形式-1" class="headerlink" title="（1）对象形式"></a>（1）对象形式</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">:style</span>=<span class="string">"&#123; color: activeColor, fontSize: '12px' &#125;"</span>&gt;</span>全部<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="（2）数组形式-1"><a href="#（2）数组形式-1" class="headerlink" title="（2）数组形式"></a>（2）数组形式</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">:style</span>=<span class="string">"[&#123;color:activeColor&#125;,&#123;fontSize:'12px'&#125;]"</span>&gt;</span>全部<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="（3）其他形式"><a href="#（3）其他形式" class="headerlink" title="（3）其他形式"></a>（3）其他形式</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">:style</span>=<span class="string">"&#123;display:['-webkit-box', '-o-flexbox','flex']&#125;"</span>&gt;</span>全部<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2020/06/09/vue-class/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color4">vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/09/vue-class/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
   
     <article id="post-git-command" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
@@ -438,9 +714,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>对于每个前端开发者来说，CSS中的 <strong>background</strong> 属性用起来该是游刃有余了。但是CSS3的 <strong>background-clip</strong> 属性可能不太了解，下面就来跟我一起学习这个属性吧。</p>
+<p>对于每个前端开发者来说，CSS 中的 <strong>background</strong> 属性用起来该是游刃有余了。但是 CSS3 的 <strong>background-clip</strong> 属性可能不太了解，下面就来跟我一起学习这个属性吧。</p>
 </blockquote>
-<p>background-clip，顾名思义肯定跟背景裁切有关。没错，它存在以下四个属性值</p>
+<p><code>background-clip</code>，顾名思义肯定跟背景裁切有关。没错，它存在以下四个属性值</p>
 <ul>
 <li>border-box（默认值）</li>
 <li>padding-box</li>
@@ -448,7 +724,7 @@
 <li>text</li>
 </ul>
 <p>我在网上查了很多资源大部分都只写了前三个属性值，这也是这篇博客诞生的缘故之一。作为一个笔记，假如碰巧被你看到，再碰巧对你有所帮助那就再好不过啦~</p>
-<p>下面我们通过具体Demo介绍一下每个属性值。</p>
+<p>下面我们通过具体 Demo 介绍一下每个属性值。</p>
         
           <a class="article-more-a" href="/2019/12/09/background-clip/#more">more >></a>
         
@@ -743,260 +1019,10 @@
 
 
   
-    <article id="post-image-flow" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/04/image-flow/">js处理图片流并显示在页面上</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/04/image-flow/" class="archive-article-date">
-  	<time datetime="2019-12-04T09:29:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
-<p>Ajax请求图片资源，服务器以文件流的形式返回，前端js处理图片流并将图片显示到页面上。</p>
-</blockquote>
-<h3 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h3><p>首先，使用axios发送Ajax请求时，将responseType（响应数据的类型）设置为“blob”（response 是一个包含二进制数据的 Blob 对象 ）。然后，对服务器返回的结果进行处理：</p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;img <span class="keyword">class</span>="<span class="symbol">verifyPic</span>" :<span class="symbol">src</span>="<span class="symbol">verifyImg</span>" /&gt;</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2019/12/04/image-flow/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">js</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color4">文件流</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/04/image-flow/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-d3-force" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/28/d3-force/">(译)D3-force</a>
-    </h1>
-  
-
-        
-        <a href="/2019/11/28/d3-force/" class="archive-article-date">
-  	<time datetime="2019-11-28T15:57:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>原文: <a href="https://github.com/d3/d3/blob/master/API.md#forces-d3-force?_blank" target="_blank" rel="noopener">https://github.com/d3/d3/blob/master/API.md#forces-d3-force</a></p>
-</blockquote>
-<h5 id="d3-forceSimulation-nodes"><a href="#d3-forceSimulation-nodes" class="headerlink" title="d3.forceSimulation( [nodes] )"></a>d3.forceSimulation( [nodes] )</h5><p>使用指定的节点数据和无强度力创建一个新的模拟。若未指定nodes，默认为空数组。该模拟是自启动的；在该模拟运行时使用 <a href="https://github.com/d3/d3-force/blob/v1.2.1/README.md#simulation_on?_blank" target="_blank" rel="noopener">simulation.on</a> 监听每个瞬间（呼吸）事件。如果你想要手动运行模拟，调用 <a href="https://github.com/d3/d3-force/blob/v1.2.1/README.md#simulation_stop?_blank" target="_blank" rel="noopener">simulation.stop</a>, 然后需要调用  <a href="https://github.com/d3/d3-force/blob/v1.2.1/README.md#simulation_tick?_blank" target="_blank" rel="noopener">simulation.tick</a> .</p>
-<h5 id="simulation-nodes（-nodes-）"><a href="#simulation-nodes（-nodes-）" class="headerlink" title="simulation.nodes（[nodes]）"></a>simulation.nodes（[nodes]）</h5><p>每个node必须是一个对象模型，下面几个属性将会被仿真系统添加：<br>index-节点在nodes数组中的索引</p>
-        
-          <a class="article-more-a" href="/2019/11/28/d3-force/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">D3</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color4">可视化</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/28/d3-force/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/28/hello-world/">Hello World</a>
-    </h1>
-  
-
-        
-        <a href="/2019/11/28/hello-world/" class="archive-article-date">
-  	<time datetime="2019-11-28T14:07:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>2019-11-28</p>
-<p>今天我集自动化部署于一身的博客终于问世了。</p>
-<p>同步在 <a href="https://lemon1499.github.io" target="_blank" rel="noopener">github</a> 和 <a href="https://ylyu.coding.me?_blank" target="_blank" rel="noopener">coding</a>。</p>
-<p>感谢老大庄哥——我踩坑路上的贵人，整个过程虽然入坑很多，但是它确实是一件有意思也很有成就感的事情。</p>
-<p>感恩 感谢 希望以后能多思考多记录总结，不忘初心！</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/28/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+    </nav>
   
 
 
@@ -1107,6 +1133,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">ie</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">前端</a>
               </li>
              
@@ -1116,6 +1146,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">文件流</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">text-ellipsis</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">-webkit-line-clamp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
