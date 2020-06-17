@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Lillian的博客">
 <meta property="og:description" content="css文字超出显示...">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-06-15T09:37:27.700Z">
+<meta property="og:updated_time" content="2020-06-17T03:05:02.427Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Lillian的博客" type="application/atom+xml">
@@ -178,6 +178,8 @@
 <blockquote>
 <p>使用<code>&lt;nobr&gt;</code>不换行标签（行内标签）此标签与 css <code>white-space</code> 功能相同。<br>详情参考<a href="http://www.divcss5.com/html/h533.shtml" target="_blank" rel="noopener">http://www.divcss5.com/html/h533.shtml</a> 。<br><code>&lt;nobr&gt;</code>兼容性：IE11+</p>
 </blockquote>
+<a id="more"></a>
+
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">nobr</span> &#123;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  <span class="attribute">text-overflow</span>: ellipsis;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">nobr</span>&gt;</span></span><br><span class="line">    我是禁止换行标签。我是禁止换行标签。 我是禁止换行标签。我是禁止换行标签。</span><br><span class="line">    我是禁止换行标签。我是禁止换行标签。</span><br><span class="line">  <span class="tag">&lt;/<span class="name">nobr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
@@ -190,12 +192,6 @@
 
 <p>跨浏览器兼容方案：(IE9+)<br>注意：<code>hight</code> 是 <code>line-height</code> 的 3 倍</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.p</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">60px</span>;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.p</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">'...'</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(to right, rgba(255, 255, 255, 0), <span class="built_in">rgba</span>(255, 255, 255, 1) <span class="number">50%</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-<blockquote>
-<p>本文有不到之处欢迎交流指正~</p>
-</blockquote>
 
       
 
@@ -313,6 +309,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2020/06/16/vue-if-for/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          vue中v-for和v-if不能同时使用解决方案
+        
+      </div>
+    </a>
   
   
     <a href="/2020/06/09/ie-bug/" id="article-nav-older" class="article-nav-link-wrap">
@@ -527,6 +532,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">i18n</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">v-for与v-if</a>
               </li>
              
               <li class="article-tag-list-item">

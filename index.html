@@ -147,6 +147,87 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-vue-if-for" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/16/vue-if-for/">vue中v-for和v-if不能同时使用解决方案</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/16/vue-if-for/" class="archive-article-date">
+  	<time datetime="2020-06-16T09:44:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
+<p>为什么不可以呢？我们 <code>JS</code> 的使用习惯在遍历时使用条件判断是很常见的， <code>vue</code> 模版中当然也是可以使用的，但是<code>v-for</code>和<code>v-if</code>不可以出现在同一个元素上。<br>因为在 <code>vue</code> 中会优先执行 <code>v-for</code>,如果每一次都遍历整个数组，将会影响速度，尤其是当之需要渲染很小一部分的时候。</p>
+</blockquote>
+<h3 id="使用情景"><a href="#使用情景" class="headerlink" title="使用情景"></a>使用情景</h3><blockquote>
+<p><code>v-for</code> 和 <code>v-if</code> 同时使用有两种情景： 1.筛选遍历：一个 <code>list</code> 中某个属性值符合条件的遍历出来； 2.全部遍历：某外部条件符合条件时遍历全部。<br>第一种情况替换方案使用计算属性，第二种情况把条件放到父级元素上即可。</p>
+</blockquote>
+        
+          <a class="article-more-a" href="/2020/06/16/vue-if-for/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color1">v-for与v-if</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/16/vue-if-for/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-text-ellipsis" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -177,18 +258,6 @@
 <blockquote>
 <p>使用<code>&lt;nobr&gt;</code>不换行标签（行内标签）此标签与 css <code>white-space</code> 功能相同。<br>详情参考<a href="http://www.divcss5.com/html/h533.shtml" target="_blank" rel="noopener">http://www.divcss5.com/html/h533.shtml</a> 。<br><code>&lt;nobr&gt;</code>兼容性：IE11+</p>
 </blockquote>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">nobr</span> &#123;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  <span class="attribute">text-overflow</span>: ellipsis;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">nobr</span>&gt;</span></span><br><span class="line">    我是禁止换行标签。我是禁止换行标签。 我是禁止换行标签。我是禁止换行标签。</span><br><span class="line">    我是禁止换行标签。我是禁止换行标签。</span><br><span class="line">  <span class="tag">&lt;/<span class="name">nobr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="二-多行文本超出省略"><a href="#二-多行文本超出省略" class="headerlink" title="二.多行文本超出省略"></a>二.多行文本超出省略</h5><blockquote>
-<p><code>-webkit-line-clamp</code>:限制在一个块元素显示的文本的行数。是一个不规范的属性，未出现在 css 规范草案中。<br>为了实现该效果，它必须要结合其他的属性 ：<br><code>display: -webkit-box;</code> 必须结合的属性 ，将对象作为弹性伸缩盒子模型显示 。<br><code>-webkit-box-orient</code> 必须结合的属性 ，设置或检索伸缩盒对象的子元素的排列方式 。<br>兼容性：适用于 webkit 浏览器或移动端，详情：<a href="https://www.caniuse.com/#search=-webkit-line-clamp" target="_blank" rel="noopener">https://www.caniuse.com/#search=-webkit-line-clamp</a></p>
-</blockquote>
-<p>以超出 3 行内容省略为例：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> &#123;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  <span class="attribute">text-overflow</span>: ellipsis;</span><br><span class="line">  <span class="attribute">display</span>: -webkit-box;</span><br><span class="line">  <span class="attribute">-webkit-line-clamp</span>: <span class="number">3</span>;</span><br><span class="line">  <span class="attribute">-webkit-box-orient</span>: vertical;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>跨浏览器兼容方案：(IE9+)<br>注意：<code>hight</code> 是 <code>line-height</code> 的 3 倍</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.p</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">60px</span>;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.p</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">'...'</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(to right, rgba(255, 255, 255, 0), <span class="built_in">rgba</span>(255, 255, 255, 1) <span class="number">50%</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
         
           <a class="article-more-a" href="/2020/06/09/text-ellipsis/#more">more >></a>
         
@@ -349,23 +418,6 @@
 </blockquote>
 <h5 id="1-绑定-class-方式"><a href="#1-绑定-class-方式" class="headerlink" title="1.绑定 class 方式"></a>1.绑定 class 方式</h5><p>js 代码：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">data()&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    isActive:<span class="literal">true</span>,</span><br><span class="line">    isCenter: <span class="literal">false</span>,</span><br><span class="line">    class2: <span class="string">'align-center'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<h6 id="（1）对象形式"><a href="#（1）对象形式" class="headerlink" title="（1）对象形式"></a>（1）对象形式</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">:class</span>=<span class="string">"&#123; 'active': isActive, 'align-center': !isCenter &#125;"</span>&gt;</span>全部<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h6 id="（2）数组形式"><a href="#（2）数组形式" class="headerlink" title="（2）数组形式"></a>（2）数组形式</h6><p>数组结合三目运算符</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">:class</span>=<span class="string">"[isActive ? 'icon-arrow-up' : 'icon-arrow-down', class2]"</span>&gt;</span>全部 <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="2-绑定-style-方式"><a href="#2-绑定-style-方式" class="headerlink" title="2.绑定 style 方式"></a>2.绑定 style 方式</h5><blockquote>
-<p>注意：短横线连接的属性名转换为驼峰命名格式，例如：font-size =&gt; fontSize</p>
-</blockquote>
-<p>js 代码：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">data()&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    activeColor:<span class="string">'red'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<h6 id="（1）对象形式-1"><a href="#（1）对象形式-1" class="headerlink" title="（1）对象形式"></a>（1）对象形式</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">:style</span>=<span class="string">"&#123; color: activeColor, fontSize: '12px' &#125;"</span>&gt;</span>全部<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h6 id="（2）数组形式-1"><a href="#（2）数组形式-1" class="headerlink" title="（2）数组形式"></a>（2）数组形式</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">:style</span>=<span class="string">"[&#123;color:activeColor&#125;,&#123;fontSize:'12px'&#125;]"</span>&gt;</span>全部<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h6 id="（3）其他形式"><a href="#（3）其他形式" class="headerlink" title="（3）其他形式"></a>（3）其他形式</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">:style</span>=<span class="string">"&#123;display:['-webkit-box', '-o-flexbox','flex']&#125;"</span>&gt;</span>全部<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
         
           <a class="article-more-a" href="/2020/06/09/vue-class/#more">more >></a>
         
@@ -449,22 +501,6 @@
 
 <p>添加变更到暂存区</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add . <span class="comment">//添加全部变更</span></span><br><span class="line">git add &lt;fileName&gt; <span class="comment">//添加指定文件的变更</span></span><br></pre></td></tr></table></figure>
-
-<p>提交变更</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m <span class="string">"your description"</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git pull <span class="comment">// 拉仓库代码</span></span><br><span class="line">git push <span class="comment">// 提交到仓库</span></span><br><span class="line">git push --<span class="keyword">set</span>-upstream origin &lt;branch name&gt; // 将本地分支推送为远程分支</span><br></pre></td></tr></table></figure>
-
-<h5 id="2-配置相关指令"><a href="#2-配置相关指令" class="headerlink" title="2.配置相关指令"></a>2.配置相关指令</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">"xxx"</span> <span class="comment">//配置用户名</span></span><br><span class="line">git config --global user.email <span class="string">"xxx@xxx.com"</span> <span class="comment">//配置邮箱</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="3-分支相关指令"><a href="#3-分支相关指令" class="headerlink" title="3.分支相关指令"></a>3.分支相关指令</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">git branch <span class="comment">// 查看本地分支</span></span><br><span class="line">git branch -r <span class="comment">// 查看远程分支</span></span><br><span class="line">git branch -a <span class="comment">// 查看本地及远程所有分支</span></span><br><span class="line"><span class="comment">// git branch -m &lt;old name&gt; &lt;new name&gt; // 重命名分支</span></span><br><span class="line"></span><br><span class="line">git branch &lt;branch name&gt; <span class="comment">// 创建分支</span></span><br><span class="line">git merge &lt;branch name&gt; <span class="comment">// 合并某分支到当前分支</span></span><br><span class="line">git checkout -b &lt;branch name&gt; <span class="comment">// 创建并切换到分支名为branch name的分支</span></span><br><span class="line"></span><br><span class="line">git branch -d &lt;branch name&gt; <span class="comment">// 删除本地已合并分支（未合并提示删除失败）</span></span><br><span class="line">git branch -D &lt;branch name&gt; <span class="comment">// 强制删除本地未合并分支</span></span><br><span class="line">git push origin --<span class="keyword">delete</span> &lt;branch name&gt; <span class="comment">// 删除远程分支</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="4-回退相关指令"><a href="#4-回退相关指令" class="headerlink" title="4.回退相关指令"></a>4.回退相关指令</h5><p>git 中，HEAD 表示当前版本</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">git checkout &lt;file&gt; <span class="comment">// 恢复未提交的更改</span></span><br><span class="line">git reset HEAD &lt;file&gt; <span class="comment">// 取消之前git add 添加</span></span><br><span class="line"></span><br><span class="line">git reset --hard HEAD~ <span class="comment">// 回退至上一个版本</span></span><br><span class="line">git reset --hard &lt;commit id&gt; <span class="comment">// 回退至指定版本</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="5-标签指令"><a href="#5-标签指令" class="headerlink" title="5.标签指令"></a>5.标签指令</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git tag <span class="comment">//查看标签</span></span><br><span class="line">git tag &lt;name&gt; <span class="comment">//创建标签</span></span><br><span class="line">git tag -a &lt;name&gt; <span class="comment">//创建一个带注解的标签</span></span><br><span class="line">git tag -d &lt;name&gt;  <span class="comment">//删除标签</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="6-其他指令"><a href="#6-其他指令" class="headerlink" title="6.其他指令"></a>6.其他指令</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git status <span class="comment">// 查看代码状态</span></span><br><span class="line">git diff <span class="comment">// 查看add与commit改动</span></span><br><span class="line"></span><br><span class="line">git log <span class="comment">// 查看提交历史</span></span><br><span class="line">git log -p <span class="comment">// 查看每次提交的内容差异</span></span><br><span class="line">git log <span class="number">-2</span> <span class="comment">// 查看最近两次提交</span></span><br><span class="line">git log --stat <span class="comment">// 查看每次提交的简略的统计信息</span></span><br><span class="line">git log --pretty=oneline <span class="comment">// 日志信息格式化为每次提交信息在一行显示</span></span><br></pre></td></tr></table></figure>
         
           <a class="article-more-a" href="/2020/06/08/git-command/#more">more >></a>
         
@@ -939,86 +975,6 @@
 
 
   
-    <article id="post-hexo-blog-build" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/04/hexo-blog-build/">Hexo4.0搭建博客及自动部署</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/04/hexo-blog-build/" class="archive-article-date">
-  	<time datetime="2019-12-04T09:35:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
-<p>环境：GIT、 NODE<br>应用：Hexo4.0 + Github Pages + Github Actions 搭建博客并自动部署至Github和Coding</p>
-</blockquote>
-<h5 id="搭建项目"><a href="#搭建项目" class="headerlink" title="搭建项目"></a>搭建项目</h5><p>一、 安装hexo</p>
-<p>1.创建一个文件夹blog，cd blog目录下。<br>2.执行hexo命令全局安装：<strong><em>npm i -g hexo</em></strong><br>3.安装成功，查看版本 <strong><em>hexo -v</em></strong>  如下：</p>
-        
-          <a class="article-more-a" href="/2019/12/04/hexo-blog-build/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/04/hexo-blog-build/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1162,6 +1118,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">i18n</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">v-for与v-if</a>
               </li>
              
               <li class="article-tag-list-item">

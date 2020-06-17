@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Lillian的博客">
 <meta property="og:description" content="vue动态绑定class与style">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-06-15T09:37:27.700Z">
+<meta property="og:updated_time" content="2020-06-17T03:05:02.427Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Lillian的博客" type="application/atom+xml">
@@ -174,6 +174,8 @@
 <h5 id="1-绑定-class-方式"><a href="#1-绑定-class-方式" class="headerlink" title="1.绑定 class 方式"></a>1.绑定 class 方式</h5><p>js 代码：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">data()&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    isActive:<span class="literal">true</span>,</span><br><span class="line">    isCenter: <span class="literal">false</span>,</span><br><span class="line">    class2: <span class="string">'align-center'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 
+<a id="more"></a>
+
 <h6 id="（1）对象形式"><a href="#（1）对象形式" class="headerlink" title="（1）对象形式"></a>（1）对象形式</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">:class</span>=<span class="string">"&#123; 'active': isActive, 'align-center': !isCenter &#125;"</span>&gt;</span>全部<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h6 id="（2）数组形式"><a href="#（2）数组形式" class="headerlink" title="（2）数组形式"></a>（2）数组形式</h6><p>数组结合三目运算符</p>
@@ -190,12 +192,6 @@
 <h6 id="（2）数组形式-1"><a href="#（2）数组形式-1" class="headerlink" title="（2）数组形式"></a>（2）数组形式</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">:style</span>=<span class="string">"[&#123;color:activeColor&#125;,&#123;fontSize:'12px'&#125;]"</span>&gt;</span>全部<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h6 id="（3）其他形式"><a href="#（3）其他形式" class="headerlink" title="（3）其他形式"></a>（3）其他形式</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">:style</span>=<span class="string">"&#123;display:['-webkit-box', '-o-flexbox','flex']&#125;"</span>&gt;</span>全部<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-<blockquote>
-<p>本文有不到之处欢迎交流指正~</p>
-</blockquote>
 
       
 
@@ -532,6 +528,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">i18n</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">v-for与v-if</a>
               </li>
              
               <li class="article-tag-list-item">
