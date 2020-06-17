@@ -25,6 +25,8 @@ data(){
   }
 ```
 
+<!--more-->
+
 ###### （1）对象形式
 
 ```html
@@ -70,7 +72,3 @@ data(){
 ```html
 <span :style="{display:['-webkit-box', '-o-flexbox','flex']}">全部</span>
 ```
-
-<!--more-->
-
-> 本文有不到之处欢迎交流指正~

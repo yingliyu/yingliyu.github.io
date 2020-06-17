@@ -32,6 +32,8 @@ div {
 > 详情参考http://www.divcss5.com/html/h533.shtml 。
 > `<nobr>`兼容性：IE11+
 
+<!--more-->
+
 ```css
 nobr {
   overflow: hidden;
@@ -86,7 +88,3 @@ nobr {
   background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 50%);
 }
 ```
-
-<!--more-->
-
-> 本文有不到之处欢迎交流指正~

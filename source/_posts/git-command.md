@@ -26,6 +26,8 @@ git add . //添加全部变更
 git add <fileName> //添加指定文件的变更
 ```
 
+<!--more-->
+
 提交变更
 
 ```js
@@ -96,7 +98,5 @@ git log -2 // 查看最近两次提交
 git log --stat // 查看每次提交的简略的统计信息
 git log --pretty=oneline // 日志信息格式化为每次提交信息在一行显示
 ```
-
-<!--more-->
 
 > 本文有不到之处欢迎交流指正~
