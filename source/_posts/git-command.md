@@ -91,7 +91,7 @@ git tag -d <name>  //删除标签
 ```js
 git status // 查看代码状态
 git diff // 查看add与commit改动
-
+git remote -v // 查看远程仓库地址
 git log // 查看提交历史
 git log -p // 查看每次提交的内容差异
 git log -2 // 查看最近两次提交
