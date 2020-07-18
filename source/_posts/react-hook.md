@@ -57,7 +57,7 @@ useEffect 可以在组件渲染后实现各种不同的副作用。有些副作�
 
 通过使用这个`hook`，可以告诉`React`组件需要在渲染后执行某些操作。`React`会保存你传递的函数（我们将它称之为`“effect”`），并且在执行 DOM 更新后调用它。在这个`effect`中，我们设置了`document`的`title`属性，不过我们也可以执行数据获取或调用其他命令式的 API。
 
-> 为什么在租价内部调用`useEffect`?
+> 为什么在组件内部调用`useEffect`?
 
 将`useEffect`放在组件内部让我们可以在`effect`中直接访问`count state`变量或其他`props`。我们不需要特殊的 api 来读取他，他已经保存在函数作用域中。`Hook`是使用了`Javascript`的闭包机制，而不是在 js 已经提供了解决方案的情况下，还引入特定的 React API。
 
