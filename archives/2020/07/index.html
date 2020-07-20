@@ -6,17 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yingliyu.github.io">
-  <title>git常用命令 | Lillian的博客</title>
+  <title>Archives: 2020/7 | Lillian的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="git常用命令">
-<meta name="keywords" content="git">
-<meta property="og:type" content="article">
-<meta property="og:title" content="git常用命令">
-<meta property="og:url" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2020&#x2F;06&#x2F;08&#x2F;git-command&#x2F;index.html">
+  <meta name="keywords" content="hi~">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lillian的博客">
+<meta property="og:url" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;archives&#x2F;2020&#x2F;07&#x2F;index.html">
 <meta property="og:site_name" content="Lillian的博客">
-<meta property="og:description" content="git常用命令">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-07-20T01:54:16.035Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Lillian的博客" type="application/atom+xml">
@@ -148,254 +145,60 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-git-command" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      git常用命令
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2020" class="archive-year">2020</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2020/07/18/react-share-bike/" class="archive-article-date">
+  	<time datetime="2020-07-18T15:46:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-18</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2020/07/18/react-share-bike/">React+AntD+Redux 的项目实战总结</a>
     </h1>
   
 
-        
-        <a href="/2020/06/08/git-command/" class="archive-article-date">
-  	<time datetime="2020-06-08T10:11:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
-<p>git 相关知识可以说是开发者的必备常识，虽然目前市面有很多方便的可视化操作工具，但是 git 的指令用起来不仅方便快捷而且显得更加有逼格，况且面试的时候有可能被问到，所以还是有必要学习并掌握的。</p>
-</blockquote>
-<h5 id="1-基础指令"><a href="#1-基础指令" class="headerlink" title="1.基础指令"></a>1.基础指令</h5><p>克隆远程仓库代码到本地</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone 远程仓库地址</span><br></pre></td></tr></table></figure>
-
-<p>添加变更到暂存区</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add . <span class="comment">//添加全部变更</span></span><br><span class="line">git add &lt;fileName&gt; <span class="comment">//添加指定文件的变更</span></span><br></pre></td></tr></table></figure>
-
-<a id="more"></a>
-
-<p>提交变更</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m <span class="string">"your description"</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git pull <span class="comment">// 拉仓库代码</span></span><br><span class="line">git push <span class="comment">// 提交到仓库</span></span><br><span class="line">git push --<span class="keyword">set</span>-upstream origin &lt;branch name&gt; // 将本地分支推送为远程分支</span><br></pre></td></tr></table></figure>
-
-<h5 id="2-配置相关指令"><a href="#2-配置相关指令" class="headerlink" title="2.配置相关指令"></a>2.配置相关指令</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">"xxx"</span> <span class="comment">//配置用户名</span></span><br><span class="line">git config --global user.email <span class="string">"xxx@xxx.com"</span> <span class="comment">//配置邮箱</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="3-分支相关指令"><a href="#3-分支相关指令" class="headerlink" title="3.分支相关指令"></a>3.分支相关指令</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">git branch <span class="comment">// 查看本地分支</span></span><br><span class="line">git branch -r <span class="comment">// 查看远程分支</span></span><br><span class="line">git branch -a <span class="comment">// 查看本地及远程所有分支</span></span><br><span class="line"><span class="comment">// git branch -m &lt;old name&gt; &lt;new name&gt; // 重命名分支</span></span><br><span class="line"></span><br><span class="line">git branch &lt;branch name&gt; <span class="comment">// 创建分支</span></span><br><span class="line">git merge &lt;branch name&gt; <span class="comment">// 合并某分支到当前分支</span></span><br><span class="line">git checkout -b &lt;branch name&gt; <span class="comment">// 创建并切换到分支名为branch name的分支</span></span><br><span class="line"></span><br><span class="line">git branch -d &lt;branch name&gt; <span class="comment">// 删除本地已合并分支（未合并提示删除失败）</span></span><br><span class="line">git branch -D &lt;branch name&gt; <span class="comment">// 强制删除本地未合并分支</span></span><br><span class="line">git push origin --<span class="keyword">delete</span> &lt;branch name&gt; <span class="comment">// 删除远程分支</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="4-回退相关指令"><a href="#4-回退相关指令" class="headerlink" title="4.回退相关指令"></a>4.回退相关指令</h5><p>git 中，HEAD 表示当前版本</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">git checkout &lt;file&gt; <span class="comment">// 恢复未提交的更改</span></span><br><span class="line">git reset HEAD &lt;file&gt; <span class="comment">// 取消之前git add 添加</span></span><br><span class="line"></span><br><span class="line">git reset --hard HEAD~ <span class="comment">// 回退至上一个版本</span></span><br><span class="line">git reset --hard &lt;commit id&gt; <span class="comment">// 回退至指定版本</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="5-标签指令"><a href="#5-标签指令" class="headerlink" title="5.标签指令"></a>5.标签指令</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git tag <span class="comment">//查看标签</span></span><br><span class="line">git tag &lt;name&gt; <span class="comment">//创建标签</span></span><br><span class="line">git tag -a &lt;name&gt; <span class="comment">//创建一个带注解的标签</span></span><br><span class="line">git tag -d &lt;name&gt;  <span class="comment">//删除标签</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="6-其他指令"><a href="#6-其他指令" class="headerlink" title="6.其他指令"></a>6.其他指令</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git status <span class="comment">// 查看代码状态</span></span><br><span class="line">git diff <span class="comment">// 查看add与commit改动</span></span><br><span class="line">git remote -v <span class="comment">// 查看远程仓库地址</span></span><br><span class="line">git log <span class="comment">// 查看提交历史</span></span><br><span class="line">git log -p <span class="comment">// 查看每次提交的内容差异</span></span><br><span class="line">git log <span class="number">-2</span> <span class="comment">// 查看最近两次提交</span></span><br><span class="line">git log --stat <span class="comment">// 查看每次提交的简略的统计信息</span></span><br><span class="line">git log --pretty=oneline <span class="comment">// 日志信息格式化为每次提交信息在一行显示</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>本文有不到之处欢迎交流指正~</p>
-</blockquote>
-
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top" target="_parent">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/imgs/alipay.jpg">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/imgs/weixin.jpg">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color4">git</a>
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color1">React</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" target="_blank" rel="noopener" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://yingliyu.github.io/2020/06/08/git-command/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2020/06/09/vue-class/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          vue动态绑定class与style
-        
-      </div>
-    </a>
   
   
-    <a href="/2020/01/10/es6-array-from/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">ES6之你不知道的Array.from()</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-基础指令"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.基础指令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-配置相关指令"><span class="toc-number">1.0.2.</span> <span class="toc-text">2.配置相关指令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-分支相关指令"><span class="toc-number">1.0.3.</span> <span class="toc-text">3.分支相关指令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-回退相关指令"><span class="toc-number">1.0.4.</span> <span class="toc-text">4.回退相关指令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-标签指令"><span class="toc-number">1.0.5.</span> <span class="toc-text">5.标签指令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-其他指令"><span class="toc-number">1.0.6.</span> <span class="toc-text">6.其他指令</span></a></li></ol></li></ol></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-    <section id="comments" style="margin:30px;padding:30px;background:#fff;">
-    <div id="vcomment" class="comment"></div> 
-<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-<script>
-   var notify = 'false' == true ? true : false;
-   var verify = 'false' == true ? true : false;
-    window.onload = function() {
-        new Valine({
-            el: '#vcomment',
-            notify: notify,
-            verify: verify,
-            app_id: "IMk6UEsIdoJmshBUrTrk068d-gzGzoHsz",
-            app_key: "frYofqWd1Lx2uJ2WwELXRhw8",
-            placeholder: "写下你的评论...",
-            avatar:"monsterid",
-            // meta: guest,
-            pageSize:'{{ theme.valine.pageSize }}' || 10,
-            visitor: true // 阅读量统计
-        });
-    }
-</script>
-  </section>
-  
-  
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
+    
 
 
           </div>
@@ -419,8 +222,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,

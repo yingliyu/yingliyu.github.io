@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Lillian的博客">
 <meta property="og:description" content="react-hook">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-06-28T08:14:16.251Z">
+<meta property="og:updated_time" content="2020-07-20T01:54:16.039Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Lillian的博客" type="application/atom+xml">
@@ -194,7 +194,7 @@
 </blockquote>
 <p>通过使用这个<code>hook</code>，可以告诉<code>React</code>组件需要在渲染后执行某些操作。<code>React</code>会保存你传递的函数（我们将它称之为<code>“effect”</code>），并且在执行 DOM 更新后调用它。在这个<code>effect</code>中，我们设置了<code>document</code>的<code>title</code>属性，不过我们也可以执行数据获取或调用其他命令式的 API。</p>
 <blockquote>
-<p>为什么在租价内部调用<code>useEffect</code>?</p>
+<p>为什么在组件内部调用<code>useEffect</code>?</p>
 </blockquote>
 <p>将<code>useEffect</code>放在组件内部让我们可以在<code>effect</code>中直接访问<code>count state</code>变量或其他<code>props</code>。我们不需要特殊的 api 来读取他，他已经保存在函数作用域中。<code>Hook</code>是使用了<code>Javascript</code>的闭包机制，而不是在 js 已经提供了解决方案的情况下，还引入特定的 React API。</p>
 <blockquote>
@@ -348,6 +348,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2020/07/18/react-share-bike/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          React+AntD+Redux 的项目实战总结
+        
+      </div>
+    </a>
   
   
     <a href="/2020/06/16/vue-if-for/" id="article-nav-older" class="article-nav-link-wrap">
@@ -550,6 +559,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">react-hook</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">React</a>
               </li>
              
               <li class="article-tag-list-item">
