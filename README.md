@@ -1,6 +1,6 @@
 # lemon1499.github.io
 
-:tada: This is a hexo blog for sharing！
+:tada: This is a private tech blog for sharing！
 
 # 新建一篇文章
 
