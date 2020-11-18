@@ -6,15 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yingliyu.github.io">
-  <title>Lillian的博客</title>
+  <title>React-ts-d3 项目实践 | Lillian的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="hi~">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lillian的博客">
-<meta property="og:url" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;index.html">
+  <meta name="description" content="react-ts-d3">
+<meta name="keywords" content="react,typescript,d3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React-ts-d3 项目实践">
+<meta property="og:url" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2020&#x2F;11&#x2F;18&#x2F;react-ts-d3&#x2F;index.html">
 <meta property="og:site_name" content="Lillian的博客">
+<meta property="og:description" content="react-ts-d3">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2020&#x2F;11&#x2F;18&#x2F;react-ts-d3&#x2F;pic1.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2020&#x2F;11&#x2F;18&#x2F;react-ts-d3&#x2F;pic2.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2020&#x2F;11&#x2F;18&#x2F;react-ts-d3&#x2F;pic3.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2020&#x2F;11&#x2F;18&#x2F;react-ts-d3&#x2F;pic4.png">
+<meta property="og:updated_time" content="2020-11-18T09:08:36.805Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2020&#x2F;11&#x2F;18&#x2F;react-ts-d3&#x2F;pic1.png">
   
     <link rel="alternative" href="/atom.xml" title="Lillian的博客" type="application/atom+xml">
   
@@ -145,16 +153,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-react-ts-d3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-react-ts-d3" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/18/react-ts-d3/">React-ts-d3 项目实践</a>
+    <h1 class="article-title" itemprop="name">
+      React-ts-d3 项目实践
     </h1>
   
 
@@ -171,11 +177,58 @@
 <p>其次在项目评审期间，前端主要问题还有自适应方面的问题，最终敲定使用断点媒体查询的方式实现。</p>
 <p>近期 <code>bug</code> 修复进入尾声，时隔数日还是复盘一下，毕竟我的脑瓜子还是一如既往的健忘，刚刚被问及一个项目是不是我做的，我记得是我做的，但是具体内容什么的我已经无力想起了，不过看到我还是认识的。言归正传，下面就来回顾一下踩坑流水帐。</p>
 <h3 id="1-Echarts-Graph"><a href="#1-Echarts-Graph" class="headerlink" title="1. Echarts Graph"></a>1. Echarts Graph</h3><p>如果使用过 <code>echart</code> 系列图表，那么 <code>graph</code> 关系图还是相对比较容易上手的，毕竟是高度可定制化套路一样同类型属性名也一样。</p>
-        
-          <a class="article-more-a" href="/2020/11/18/react-ts-d3/#more">more >></a>
-        
+<a id="more"></a>
+
+<p>但是使用过程中我还是踩到了坑：由于数据返回节点的 <code>name</code> 字符比较长，为了美观前端显示的时候要做个性化样式设计包括换行超出字符省略等等，我天真又粗暴的直接在 <code>name</code> 上动刀了，虽然我知道 <code>name</code> 不能有重复，但我还是撞了南墙，因为部分 <code>name</code> 做个性化处理之后显示的剩余那部分字符相同，所以触碰了 <code>name</code> 不能重复的红线。<br>解决：<code>name</code> 拿来原封不动，在 <code>label</code> 上做 <code>formatter</code> 处理。</p>
+<blockquote>
+<p>注意：每一个节点的 <code>name</code> 要唯一，如果有重复的 <code>name</code> 就会报如下错，类似于遍历时的 <code>key</code> 值是唯一的。</p>
+</blockquote>
+<p><img src="/2020/11/18/react-ts-d3/pic1.png" alt="image1"></p>
+<h3 id="2-词云-echarts-wordcloud"><a href="#2-词云-echarts-wordcloud" class="headerlink" title="2. 词云 echarts-wordcloud"></a>2. 词云 echarts-wordcloud</h3><p>这是一个基于 <code>echarts</code> 封装的第三方库，使用中没有踩到值得一提的坑。<br>部分代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">interface IWordCloud &#123;</span><br><span class="line">    list: ICommonProps[];</span><br><span class="line">    width: number;</span><br><span class="line">    height: number;</span><br><span class="line">    fontSizeRange: number[];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> WordCloud: React.FC&lt;IWordCloud&gt; = <span class="function">(<span class="params">props: IWordCloud</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; list, width, height, fontSizeRange &#125; = props;</span><br><span class="line"></span><br><span class="line">    useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        drawWordCloud();</span><br><span class="line">    &#125;, [list]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> drawWordCloud = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> wordElement = <span class="built_in">document</span>.getElementById(<span class="string">'wordCloud'</span>);</span><br><span class="line">        <span class="keyword">let</span> chart = echarts.init(wordElement <span class="keyword">as</span> HTMLDivElement);</span><br><span class="line">        <span class="keyword">let</span> data = [];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> index <span class="keyword">in</span> list) &#123;</span><br><span class="line">            data.push(&#123;</span><br><span class="line">                name: list[index].name,</span><br><span class="line">                value: <span class="built_in">Math</span>.sqrt(list[index].value)</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> maskImage = <span class="keyword">new</span> Image();</span><br><span class="line">        maskImage.src = bg;</span><br><span class="line">        <span class="keyword">let</span> option = &#123;</span><br><span class="line">            series: [</span><br><span class="line">                &#123;</span><br><span class="line">                    type: <span class="string">'wordCloud'</span>,</span><br><span class="line">                    left: <span class="string">'center'</span>,</span><br><span class="line">                    top: <span class="string">'center'</span>,</span><br><span class="line">                    width: <span class="string">'100%'</span>,</span><br><span class="line">                    height: <span class="string">'100%'</span>,</span><br><span class="line">                    right: <span class="literal">null</span>,</span><br><span class="line">                    bottom: <span class="literal">null</span>,</span><br><span class="line">                    sizeRange: fontSizeRange, <span class="comment">// 字号</span></span><br><span class="line">                    rotationRange: [<span class="number">-90</span>, <span class="number">90</span>],</span><br><span class="line">                    rotationStep: <span class="number">90</span>,</span><br><span class="line">                    gridSize: fontSizeRange[<span class="number">0</span>] - <span class="number">2</span>,</span><br><span class="line">                    shape: <span class="string">'circle'</span>, <span class="comment">// diamond/triangle/circle/pentagon/star</span></span><br><span class="line">                    <span class="comment">// maskImage: maskImage,</span></span><br><span class="line">                    textStyle: &#123;</span><br><span class="line">                        normal: &#123;</span><br><span class="line">                            <span class="comment">// fontFamily: '微软雅黑',</span></span><br><span class="line">                            <span class="comment">// fontWeight: 'normal',</span></span><br><span class="line">                            <span class="comment">// Color can be a callback function or a color string</span></span><br><span class="line">                            color: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                                <span class="comment">// Random color</span></span><br><span class="line">                                <span class="keyword">return</span> WORD_CLOUD_COLORS[<span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">3</span>)];</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;,</span><br><span class="line">                        emphasis: &#123;</span><br><span class="line">                            shadowBlur: <span class="number">2</span>,</span><br><span class="line">                            shadowColor: <span class="string">'#1890ff'</span></span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;,</span><br><span class="line">                    data: data</span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;;</span><br><span class="line">        chart.setOption(option);</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"wordCloud"</span> <span class="attr">style</span>=<span class="string">&#123;&#123;</span> <span class="attr">height:</span> <span class="attr">height</span>, <span class="attr">width:</span> <span class="attr">width</span> &#125;&#125; /&gt;</span>;</span></span><br><span class="line"><span class="xml">&#125;;</span></span><br></pre></td></tr></table></figure>
+
+<p>效果图如下：<br><img src="/2020/11/18/react-ts-d3/pic2.png" alt="image"></p>
+<h3 id="3-echarts-legend-个性化细节"><a href="#3-echarts-legend-个性化细节" class="headerlink" title="3.echarts legend 个性化细节"></a>3.echarts legend 个性化细节</h3><p>可能对别人来说是小儿科，只是它是我初次发现的比较符合我项目中需求的点。</p>
+<p>1.<code>legend</code> 图例标记的图形除了定制的哪几种形状还可以设置宽高 <code>itemWidth</code>、<code>itemHeight</code>。 2.<code>legend</code> 文字块的宽定制这样可以是 <code>value</code> 左对齐。 3.<code>legend</code> 也有 <code>tooltip</code>。<br>如下图：<br><img src="/2020/11/18/react-ts-d3/pic3.png" alt="image3"></p>
+<h3 id="4-d3-力导向图——-force"><a href="#4-d3-力导向图——-force" class="headerlink" title="4. d3 力导向图—— force"></a>4. d3 力导向图—— force</h3><p>使用 <code>ts</code> 时部分第三方库的定义的各种类型定位起来还是有点烧脑的。<br>我在使用过程中 drag 函数的范型大概折磨了我一周左右最后在庄哥的帮助下终于解决了。<br><img src="/2020/11/18/react-ts-d3/pic4.png" alt="img4"></p>
+<p>部分代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// create a force simulation</span></span><br><span class="line">    <span class="keyword">const</span> initForceSimulation = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">const</span> linkForce = d3</span><br><span class="line">                .forceLink&lt;INode, ILink&gt;(linksData)</span><br><span class="line">                .id(<span class="function">(<span class="params">data: INode</span>) =&gt;</span> data.id)</span><br><span class="line">                .distance(<span class="number">200</span>);</span><br><span class="line">            <span class="keyword">const</span> nodeCollision = d3</span><br><span class="line">                .forceCollide()</span><br><span class="line">                .radius(<span class="number">80</span>)</span><br><span class="line">                .iterations(<span class="number">0.5</span>)</span><br><span class="line">                .strength(<span class="number">0.5</span>);</span><br><span class="line">            <span class="keyword">const</span> nodeCharge = d3.forceManyBody().strength(<span class="number">-300</span>).theta(<span class="number">0.01</span>);</span><br><span class="line">            simulationRef.current = d3</span><br><span class="line">                .forceSimulation&lt;INode, ILink&gt;(nodesData)</span><br><span class="line">                .alpha(<span class="number">0.3</span>) <span class="comment">// 活力，渲染之后再自动动多久到达目标位置</span></span><br><span class="line">                .force(<span class="string">'link'</span>, linkForce) <span class="comment">// 映射id &amp; 线的长度</span></span><br><span class="line">                .force(<span class="string">'x'</span>, d3.forceX())</span><br><span class="line">                .force(<span class="string">'y'</span>, d3.forceY())</span><br><span class="line">                .force(<span class="string">'center'</span>, d3.forceCenter(svgWidth / <span class="number">2</span>, svgHeight / <span class="number">2</span>))</span><br><span class="line">                .force(<span class="string">'collision'</span>, nodeCollision)<span class="comment">// 避免节点相互覆盖</span></span><br><span class="line">                .force(<span class="string">'charge'</span>, nodeCharge);<span class="comment">// 节点间相互排斥的电磁力</span></span><br><span class="line"></span><br><span class="line">            simulationRef.current.nodes(nodesData).on(<span class="string">'tick'</span>, () =&gt; &#123;</span><br><span class="line">                edges</span><br><span class="line">                    .attr(<span class="string">'x1'</span>, (&#123; source &#125;) =&gt; (source <span class="keyword">as</span> INode).x || <span class="number">0</span>)</span><br><span class="line">                    .attr(<span class="string">'y1'</span>, (&#123; source &#125;) =&gt; (source <span class="keyword">as</span> INode).y || <span class="number">0</span>)</span><br><span class="line">                    .attr(<span class="string">'x2'</span>, (&#123; target &#125;) =&gt; (target <span class="keyword">as</span> INode).x || <span class="number">0</span>)</span><br><span class="line">                    .attr(<span class="string">'y2'</span>, (&#123; target &#125;) =&gt; (target <span class="keyword">as</span> INode).y || <span class="number">0</span>);</span><br><span class="line">                nodes.attr(<span class="string">'transform'</span>, (data: any) =&gt; <span class="string">`translate(<span class="subst">$&#123;data.x&#125;</span>, <span class="subst">$&#123;data.y&#125;</span>)`</span>);</span><br><span class="line">                edgepaths.attr(</span><br><span class="line">                    <span class="string">'d'</span>,</span><br><span class="line">                    (&#123; target, source &#125;) =&gt;</span><br><span class="line">                        <span class="string">'M '</span> +</span><br><span class="line">                        (source <span class="keyword">as</span> INode).x +</span><br><span class="line">                        <span class="string">' '</span> +</span><br><span class="line">                        (source <span class="keyword">as</span> INode).y +</span><br><span class="line">                        <span class="string">' L '</span> +</span><br><span class="line">                        (target <span class="keyword">as</span> INode).x +</span><br><span class="line">                        <span class="string">' '</span> +</span><br><span class="line">                        (target <span class="keyword">as</span> INode).y</span><br><span class="line">                );</span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="keyword">const</span> edges = drewLines(); <span class="comment">// draw lines</span></span><br><span class="line">            <span class="keyword">const</span> nodes = drawNodes(); <span class="comment">// draw nodes</span></span><br><span class="line">            <span class="keyword">const</span> edgepaths = drawEdgeLabel(); <span class="comment">// draw relation label</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(error);</span><br><span class="line">            message.error(<span class="string">'内部错误，'</span> + <span class="built_in">JSON</span>.stringify(error));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure>
+
+<p>最后，推荐一个切换全屏库： screenfull。</p>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top" target="_parent">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/imgs/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/imgs/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -203,16 +256,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/18/react-ts-d3/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" target="_blank" rel="noopener" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://yingliyu.github.io/2020/11/18/react-ts-d3/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2020/07/18/react-share-bike/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">React+AntD+Redux 的项目实战总结</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -227,757 +339,58 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-react-share-bike" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/18/react-share-bike/">React+AntD+Redux 的项目实战总结</a>
-    </h1>
-  
-
-        
-        <a href="/2020/07/18/react-share-bike/" class="archive-article-date">
-  	<time datetime="2020-07-18T15:46:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- ![1.jepg](1.jpeg) -->
-
-<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><p>最近利用业余时间学习 React Hook 实战了一个 React 项目。今天来总结一下，因为都是拼凑的时间所以项目历时半个多月之久，通过本次学习进一步的熟悉了 AntD 常用组件的使用，业务功能（增删改查）的开发及百度地图 API、富文本组件的使用、权限设置模块，最重要的是把学习的 React Hook 落实到了项目中。</p>
-        
-          <a class="article-more-a" href="/2020/07/18/react-share-bike/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color1">React</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/18/react-share-bike/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Echarts-Graph"><span class="toc-number">2.</span> <span class="toc-text">1. Echarts Graph</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-词云-echarts-wordcloud"><span class="toc-number">3.</span> <span class="toc-text">2. 词云 echarts-wordcloud</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-echarts-legend-个性化细节"><span class="toc-number">4.</span> <span class="toc-text">3.echarts legend 个性化细节</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-d3-力导向图——-force"><span class="toc-number">5.</span> <span class="toc-text">4. d3 力导向图—— force</span></a></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
   
-    <article id="post-react-hook" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/28/react-hook/">react-hook入门手册</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/28/react-hook/" class="archive-article-date">
-  	<time datetime="2020-06-28T15:49:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>React Hooks 是 React 16.12 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性。</p>
-<h3 id="1-useState"><a href="#1-useState" class="headerlink" title="1.useState"></a>1.useState</h3><blockquote>
-<p>调用<code>useState</code>方法时做了什么？</p>
-</blockquote>
-<p>定义一个 state 变量，这是一种在函数调用时保存变量的方式——<code>useState</code>是一种新方法，它与<code>class</code>里的<code>this.state</code>提供的功能完全相同。一般来说，在函数退出后变量就会“消失”，而<code>state</code>中的变量会被<code>react</code>保留。</p>
-        
-          <a class="article-more-a" href="/2020/06/28/react-hook/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color1">react-hook</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/28/react-hook/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-vue-if-for" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/16/vue-if-for/">vue中v-for和v-if不能同时使用解决方案</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/16/vue-if-for/" class="archive-article-date">
-  	<time datetime="2020-06-16T09:44:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
-<p>为什么不可以呢？我们 <code>JS</code> 的使用习惯在遍历时使用条件判断是很常见的， <code>vue</code> 模版中当然也是可以使用的，但是<code>v-for</code>和<code>v-if</code>不可以出现在同一个元素上。<br>因为在 <code>vue</code> 中会优先执行 <code>v-for</code>,如果每一次都遍历整个数组，将会影响速度，尤其是当之需要渲染很小一部分的时候。</p>
-</blockquote>
-<h3 id="使用情景"><a href="#使用情景" class="headerlink" title="使用情景"></a>使用情景</h3><blockquote>
-<p><code>v-for</code> 和 <code>v-if</code> 同时使用有两种情景： 1.筛选遍历：一个 <code>list</code> 中某个属性值符合条件的遍历出来； 2.全部遍历：某外部条件符合条件时遍历全部。<br>第一种情况替换方案使用计算属性，第二种情况把条件放到父级元素上即可。</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2020/06/16/vue-if-for/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color1">v-for与v-if</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/16/vue-if-for/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-text-ellipsis" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/09/text-ellipsis/">css文字超出显示省略号</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/09/text-ellipsis/" class="archive-article-date">
-  	<time datetime="2020-06-09T11:11:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="一-单行文本超出省略"><a href="#一-单行文本超出省略" class="headerlink" title="一.单行文本超出省略"></a>一.单行文本超出省略</h5><blockquote>
-<p>关键属性：<code>text-overflow:ellipsis|clip</code> 。<br><code>clip</code> : 　不显示省略标记（…），而是简单的裁切掉溢出的文本<br><code>ellipsis</code> : 　当对象内文本溢出时显示省略标记（…）<br><code>string</code>: 使用指定字符串来代表被修剪的文本<br>兼容性：所有主流浏览器都兼容, IE6+</p>
-</blockquote>
-<p>1.css 实现：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  <span class="attribute">text-overflow</span>: ellipsis;</span><br><span class="line">  <span class="attribute">white-space</span>: nowrap;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>2.css+html 实现：</p>
-<blockquote>
-<p>使用<code>&lt;nobr&gt;</code>不换行标签（行内标签）此标签与 css <code>white-space</code> 功能相同。<br>详情参考<a href="http://www.divcss5.com/html/h533.shtml" target="_blank" rel="noopener">http://www.divcss5.com/html/h533.shtml</a> 。<br><code>&lt;nobr&gt;</code>兼容性：IE11+</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2020/06/09/text-ellipsis/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color4">text-ellipsis</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color4">-webkit-line-clamp</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/09/text-ellipsis/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-ie-bug" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/09/ie-bug/">ie浏览器踩坑系列</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/09/ie-bug/" class="archive-article-date">
-  	<time datetime="2020-06-09T11:08:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h6 id="持续更新…"><a href="#持续更新…" class="headerlink" title="持续更新…"></a>持续更新…</h6><p>1.使用 antv ，当有两种渲染方式：canvas 和 svg，最好选择 canvas 方式，因为 svg 在 IE 浏览器下有很多 bug。</p>
-        
-          <a class="article-more-a" href="/2020/06/09/ie-bug/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">ie</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/09/ie-bug/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-vue-class" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/09/vue-class/">vue动态绑定class与style</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/09/vue-class/" class="archive-article-date">
-  	<time datetime="2020-06-09T10:19:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
-<p>基于 vue 开发的项目中有的交互需要修改元素的样式，就会用到 class 或 style 的动态绑定。当样式的属性值是变量时一般使用 style，其他情况最好使用 class，个人觉得这样模版代码更好维护一点。</p>
-</blockquote>
-<h5 id="1-绑定-class-方式"><a href="#1-绑定-class-方式" class="headerlink" title="1.绑定 class 方式"></a>1.绑定 class 方式</h5><p>js 代码：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">data()&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    isActive:<span class="literal">true</span>,</span><br><span class="line">    isCenter: <span class="literal">false</span>,</span><br><span class="line">    class2: <span class="string">'align-center'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2020/06/09/vue-class/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/09/vue-class/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-git-command" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/08/git-command/">git常用命令</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/08/git-command/" class="archive-article-date">
-  	<time datetime="2020-06-08T10:11:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
-<p>git 相关知识可以说是开发者的必备常识，虽然目前市面有很多方便的可视化操作工具，但是 git 的指令用起来不仅方便快捷而且显得更加有逼格，况且面试的时候有可能被问到，所以还是有必要学习并掌握的。</p>
-</blockquote>
-<h5 id="1-基础指令"><a href="#1-基础指令" class="headerlink" title="1.基础指令"></a>1.基础指令</h5><p>克隆远程仓库代码到本地</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone 远程仓库地址</span><br></pre></td></tr></table></figure>
-
-<p>添加变更到暂存区</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add . <span class="comment">//添加全部变更</span></span><br><span class="line">git add &lt;fileName&gt; <span class="comment">//添加指定文件的变更</span></span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2020/06/08/git-command/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color4">git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/08/git-command/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-es6-array-from" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/10/es6-array-from/">ES6之你不知道的Array.from()</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/10/es6-array-from/" class="archive-article-date">
-  	<time datetime="2020-01-10T18:30:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>先来了解几个概念：</p>
-<blockquote>
-<p>数组：是有序的元素序列，其索引是从0开始自然增长的整数，元素值可以是任何JavaScript值，并且包含一个名为length属性，该属性值表示数组元素的长度。</p>
-</blockquote>
-<blockquote>
-<p>对象：JavaScript中对象类型为一组无序的由键/值组成的数据集合，其元素的键名和值都可以自定义。</p>
-</blockquote>
-<blockquote>
-<p>类数组对象：是一种类似数组的对象。最基本的要求就是具有length属性的对象。</p>
-</blockquote>
-<h3 id="三种使用方式"><a href="#三种使用方式" class="headerlink" title="三种使用方式"></a>三种使用方式</h3><p>根据传参的形式不同分为三种使用方式。</p>
-<h5 id="1-Array-from-length-x-Fn"><a href="#1-Array-from-length-x-Fn" class="headerlink" title="1. Array.from({length: x}, Fn)"></a>1. Array.from({length: x}, Fn)</h5><p>第一个参数指定了第二个参数的执行次数，返回一个长度为x的数组。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.from(&#123; <span class="attr">length</span>:<span class="number">3</span> &#125;, () =&gt; <span class="string">'lemon'</span> )  <span class="comment">// ["lemon", "lemon", "lemon"]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Array</span>.from(&#123; <span class="attr">length</span>: <span class="number">3</span> &#125;, (v, i) =&gt; i ) <span class="comment">// 生成一个从0开始的的数组[0, 1, 2] 这里我暂时还有疑问参数v是什么？？？</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Array</span>.from(&#123; <span class="attr">length</span>: <span class="number">3</span> &#125;, (v, i) =&gt; item = &#123; <span class="attr">year</span>: i + <span class="number">2000</span> &#125;) <span class="comment">// 生成一个年份对象数组[&#123;'year': 2000, 'year': 2001, 'year': 2002&#125;]</span></span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2020/01/10/es6-array-from/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color4">es6</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/10/es6-array-from/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-vue-i18n" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/26/vue-i18n/">Vue+vue-i18n+Element UI实现多语言切换</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/26/vue-i18n/" class="archive-article-date">
-  	<time datetime="2019-12-26T18:03:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h6 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h6><blockquote>
-<p>Vue I18n 是 Vue.js 的国际化插件。最近项目需求——给网站加中英文语言切换功能，使用的是 vue-i8n。老大修改了项目架构使项目支持 i8n，铺垫做的好就使用起来很 easy 了，整理数据然后比着葫芦画瓢就实现了想要的功能。一直以来我的短板就是学习东西不够深入，总是浅尝辄止于会用，发现了不足就去努力克服吧。不能止步于会用，现在就开始从头学习整理一下项目架构是如何配合 i18n 来使用的。</p>
-</blockquote>
-<h6 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h6><p>1)npm</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue-i18n</span><br></pre></td></tr></table></figure>
-
-<p>2)yarn</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add vue-i18n</span><br></pre></td></tr></table></figure>
-
-<h6 id="2-开始"><a href="#2-开始" class="headerlink" title="2.开始"></a>2.开始</h6>
-        
-          <a class="article-more-a" href="/2019/12/26/vue-i18n/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color5">i18n</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/26/vue-i18n/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
+    <section id="comments" style="margin:30px;padding:30px;background:#fff;">
+    <div id="vcomment" class="comment"></div> 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'false' == true ? true : false;
+   var verify = 'false' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '#vcomment',
+            notify: notify,
+            verify: verify,
+            app_id: "IMk6UEsIdoJmshBUrTrk068d-gzGzoHsz",
+            app_key: "frYofqWd1Lx2uJ2WwELXRhw8",
+            placeholder: "写下你的评论...",
+            avatar:"monsterid",
+            // meta: guest,
+            pageSize:'{{ theme.valine.pageSize }}' || 10,
+            visitor: true // 阅读量统计
+        });
+    }
+</script>
+  </section>
   
   
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
-    </nav>
+  
+  
+  
+
+  
+
+  
+
   
 
 
@@ -1001,8 +414,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
