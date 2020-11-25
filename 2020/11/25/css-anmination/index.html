@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yingliyu.github.io">
-  <title>css文字超出显示省略号 | Lillian的博客</title>
+  <title>css动画 | Lillian的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="css文字超出显示...">
-<meta name="keywords" content="text-ellipsis,-webkit-line-clamp">
+  <meta name="description" content="css">
+<meta name="keywords" content="css">
 <meta property="og:type" content="article">
-<meta property="og:title" content="css文字超出显示省略号">
-<meta property="og:url" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2020&#x2F;06&#x2F;09&#x2F;text-ellipsis&#x2F;index.html">
+<meta property="og:title" content="css动画">
+<meta property="og:url" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2020&#x2F;11&#x2F;25&#x2F;css-anmination&#x2F;index.html">
 <meta property="og:site_name" content="Lillian的博客">
-<meta property="og:description" content="css文字超出显示...">
+<meta property="og:description" content="css">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-11-25T09:10:41.218Z">
+<meta property="og:updated_time" content="2020-11-25T09:10:41.214Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Lillian的博客" type="application/atom+xml">
@@ -148,50 +148,27 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-text-ellipsis" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-css-anmination" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      css文字超出显示省略号
+      css动画
     </h1>
   
 
         
-        <a href="/2020/06/09/text-ellipsis/" class="archive-article-date">
-  	<time datetime="2020-06-09T11:11:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-09</time>
+        <a href="/2020/11/25/css-anmination/" class="archive-article-date">
+  	<time datetime="2020-11-25T14:08:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-25</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="一-单行文本超出省略"><a href="#一-单行文本超出省略" class="headerlink" title="一.单行文本超出省略"></a>一.单行文本超出省略</h5><blockquote>
-<p>关键属性：<code>text-overflow:ellipsis|clip</code> 。<br><code>clip</code> : 　不显示省略标记（…），而是简单的裁切掉溢出的文本<br><code>ellipsis</code> : 　当对象内文本溢出时显示省略标记（…）<br><code>string</code>: 使用指定字符串来代表被修剪的文本<br>兼容性：所有主流浏览器都兼容, IE6+</p>
-</blockquote>
-<p>1.css 实现：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  <span class="attribute">text-overflow</span>: ellipsis;</span><br><span class="line">  <span class="attribute">white-space</span>: nowrap;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>2.css+html 实现：</p>
-<blockquote>
-<p>使用<code>&lt;nobr&gt;</code>不换行标签（行内标签）此标签与 css <code>white-space</code> 功能相同。<br>详情参考<a href="http://www.divcss5.com/html/h533.shtml" target="_blank" rel="noopener">http://www.divcss5.com/html/h533.shtml</a> 。<br><code>&lt;nobr&gt;</code>兼容性：IE11+</p>
-</blockquote>
-<a id="more"></a>
-
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">nobr</span> &#123;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  <span class="attribute">text-overflow</span>: ellipsis;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">nobr</span>&gt;</span></span><br><span class="line">    我是禁止换行标签。我是禁止换行标签。 我是禁止换行标签。我是禁止换行标签。</span><br><span class="line">    我是禁止换行标签。我是禁止换行标签。</span><br><span class="line">  <span class="tag">&lt;/<span class="name">nobr</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="二-多行文本超出省略"><a href="#二-多行文本超出省略" class="headerlink" title="二.多行文本超出省略"></a>二.多行文本超出省略</h5><blockquote>
-<p><code>-webkit-line-clamp</code>:限制在一个块元素显示的文本的行数。是一个不规范的属性，未出现在 css 规范草案中。<br>为了实现该效果，它必须要结合其他的属性 ：<br><code>display: -webkit-box;</code> 必须结合的属性 ，将对象作为弹性伸缩盒子模型显示 。<br><code>-webkit-box-orient</code> 必须结合的属性 ，设置或检索伸缩盒对象的子元素的排列方式 。<br>兼容性：适用于 webkit 浏览器或移动端，详情：<a href="https://www.caniuse.com/#search=-webkit-line-clamp" target="_blank" rel="noopener">https://www.caniuse.com/#search=-webkit-line-clamp</a></p>
-</blockquote>
-<p>以超出 3 行内容省略为例：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> &#123;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  <span class="attribute">text-overflow</span>: ellipsis;</span><br><span class="line">  <span class="attribute">display</span>: -webkit-box;</span><br><span class="line">  <span class="attribute">-webkit-line-clamp</span>: <span class="number">3</span>;</span><br><span class="line">  <span class="attribute">-webkit-box-orient</span>: vertical;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>跨浏览器兼容方案：(IE9+)<br>注意：<code>hight</code> 是 <code>line-height</code> 的 3 倍</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.p</span> &#123;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">60px</span>;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">20px</span>;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.p</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">  <span class="attribute">content</span>: <span class="string">'...'</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">linear-gradient</span>(to right, rgba(255, 255, 255, 0), <span class="built_in">rgba</span>(255, 255, 255, 1) <span class="number">50%</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><a id="more"></a>
 
       
 
@@ -236,11 +213,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color4">text-ellipsis</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color4">-webkit-line-clamp</a>
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color4">css</a>
         		</li>
       		
 		</ul>
@@ -296,7 +269,7 @@
     <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://yingliyu.github.io/2020/06/09/text-ellipsis/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://yingliyu.github.io/2020/11/25/css-anmination/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -310,18 +283,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/06/16/vue-if-for/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          vue中v-for和v-if不能同时使用解决方案
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/06/09/ie-bug/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">ie浏览器踩坑系列</div>
+    <a href="/2020/11/18/react-ts-d3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">React-ts-d3 项目实践</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -348,7 +312,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#一-单行文本超出省略"><span class="toc-number">1.</span> <span class="toc-text">一.单行文本超出省略</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#二-多行文本超出省略"><span class="toc-number">2.</span> <span class="toc-text">二.多行文本超出省略</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol>
                     </div>
                 </span>
             </div>

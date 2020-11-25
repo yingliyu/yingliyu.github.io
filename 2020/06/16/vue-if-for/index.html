@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Lillian的博客">
 <meta property="og:description" content="vue中v-for和v-if不能同时使用解决方案">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-11-18T09:08:36.809Z">
+<meta property="og:updated_time" content="2020-11-25T09:10:41.218Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Lillian的博客" type="application/atom+xml">
@@ -172,22 +172,36 @@
 <p>为什么不可以呢？我们 <code>JS</code> 的使用习惯在遍历时使用条件判断是很常见的， <code>vue</code> 模版中当然也是可以使用的，但是<code>v-for</code>和<code>v-if</code>不可以出现在同一个元素上。<br>因为在 <code>vue</code> 中会优先执行 <code>v-for</code>,如果每一次都遍历整个数组，将会影响速度，尤其是当之需要渲染很小一部分的时候。</p>
 </blockquote>
 <h3 id="使用情景"><a href="#使用情景" class="headerlink" title="使用情景"></a>使用情景</h3><blockquote>
-<p><code>v-for</code> 和 <code>v-if</code> 同时使用有两种情景： 1.筛选遍历：一个 <code>list</code> 中某个属性值符合条件的遍历出来； 2.全部遍历：某外部条件符合条件时遍历全部。<br>第一种情况替换方案使用计算属性，第二种情况把条件放到父级元素上即可。</p>
+<p><code>v-for</code> 和 <code>v-if</code> 同时使用有 3 种情景：</p>
+<ol>
+<li>部分遍历（内/外部条件）：一个 <code>list</code> 中某个属性值符合条件的遍历出来；</li>
+<li>全部遍历（外部条件）：某外部条件符合条件时遍历全部。</li>
+<li>全部遍历（内部条件）：根据某内部条件渲染出不同的内容。</li>
+</ol>
 </blockquote>
+<p>注：内部条件指被遍历数据内部属性值或条件；外部条件指与独立于被遍历数据以外的数据。</p>
 <a id="more"></a>
 
-<h4 id="1-使用计算属性"><a href="#1-使用计算属性" class="headerlink" title="1.使用计算属性"></a>1.使用计算属性</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 遍历list，条件是值小于100 方案：使用计算属性activeList首先筛选出符合条件的值再直接遍历 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"item in activeList"</span> <span class="attr">:key</span>=<span class="string">"item"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="1-使用计算属性（内-外部条件）"><a href="#1-使用计算属性（内-外部条件）" class="headerlink" title="1.使用计算属性（内/外部条件）"></a>1.使用计算属性（内/外部条件）</h3><blockquote>
+<p>在计算属性中先用内/外部条件处理数据，再遍历处理后的数据</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 遍历list，条件是值小于100 方案：使用计算属性activeList首先筛选出符合条件的值再直接遍历 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"item in activeList"</span> <span class="attr">:key</span>=<span class="string">"item"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      list: [<span class="number">78</span>, <span class="number">90</span>, <span class="number">20</span>, <span class="number">45</span>, <span class="number">66</span>, <span class="number">120</span>, <span class="number">136</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  computed: &#123;</span><br><span class="line">    activeList() &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.list.filter(<span class="function">(<span class="params">item</span>) =&gt;</span> item &lt; <span class="number">100</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="2-条件放于父级元素"><a href="#2-条件放于父级元素" class="headerlink" title="2.条件放于父级元素"></a>2.条件放于父级元素</h4><blockquote>
+<h3 id="2-条件放于父级元素（外部条件）"><a href="#2-条件放于父级元素（外部条件）" class="headerlink" title="2.条件放于父级元素（外部条件）"></a>2.条件放于父级元素（外部条件）</h3><blockquote>
 <p>解决方案：外部条件放到遍历的父级元素上，没有父级可以使用<code>&lt;template&gt;&lt;/template&gt;</code>。</p>
 </blockquote>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">v-if</span>=<span class="string">"isActive"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"item in list"</span> <span class="attr">:key</span>=<span class="string">"item"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- or --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-if</span>=<span class="string">"isActive"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-for</span>=<span class="string">"item in list"</span> <span class="attr">:key</span>=<span class="string">"item"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Hello,My name is Lillian!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      isActive: <span class="literal">true</span>,</span><br><span class="line">      list: [<span class="number">78</span>, <span class="number">90</span>, <span class="number">20</span>, <span class="number">45</span>, <span class="number">66</span>, <span class="number">120</span>, <span class="number">136</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><code>vue</code> 中会优先执行 <code>v-for</code>, 当 <code>v-for</code> 把所有内容全部遍历之后 , <code>v-if</code> 再对已经遍历的元素进行删除 , 造成了加载的浪费 , 所以应该在执行 <code>v-for</code> 之前优先执行 <code>v-if</code> , 可以减少加载的压力。</p>
+<h3 id="3-遍历-template（内部条件）"><a href="#3-遍历-template（内部条件）" class="headerlink" title="3.遍历 template（内部条件）"></a>3.遍历 <code>template</code>（内部条件）</h3><blockquote>
+<p>根据某内部条件，显示不同内容。注意 <code>key</code> 不能放 <code>template</code> 标签上。</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-for</span>=<span class="string">"item in list"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-if</span>=<span class="string">"item.type===0"</span> <span class="attr">:key</span>=<span class="string">"item.id"</span>&gt;</span>文字+图标<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-if</span>=<span class="string">"item.type===1"</span> <span class="attr">:key</span>=<span class="string">"item.id"</span>&gt;</span>文字+文字<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-else</span> <span class="attr">:key</span>=<span class="string">"item.id"</span>&gt;</span>其他<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>vue</code> 中会优先执行 <code>v-for</code>, 当 <code>v-for</code> 把所有内容全部遍历之后 , <code>v-if</code> 再对已经遍历的元素进行删除 , 造成了加载的浪费 , 所以应该尽量在执行 <code>v-for</code> 之前优先执行 <code>v-if</code> , 可以减少加载的压力。</p>
 <p>参考：<a href="https://cn.vuejs.org/v2/style-guide/#%E9%81%BF%E5%85%8D-v-if-%E5%92%8C-v-for-%E7%94%A8%E5%9C%A8%E4%B8%80%E8%B5%B7%E5%BF%85%E8%A6%81" target="_blank" rel="noopener">https://cn.vuejs.org/v2/style-guide</a></p>
 
       
@@ -341,7 +355,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用情景"><span class="toc-number">2.</span> <span class="toc-text">使用情景</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-使用计算属性"><span class="toc-number">2.1.</span> <span class="toc-text">1.使用计算属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-条件放于父级元素"><span class="toc-number">2.2.</span> <span class="toc-text">2.条件放于父级元素</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用情景"><span class="toc-number">2.</span> <span class="toc-text">使用情景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-使用计算属性（内-外部条件）"><span class="toc-number">3.</span> <span class="toc-text">1.使用计算属性（内/外部条件）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-条件放于父级元素（外部条件）"><span class="toc-number">4.</span> <span class="toc-text">2.条件放于父级元素（外部条件）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-遍历-template（内部条件）"><span class="toc-number">5.</span> <span class="toc-text">3.遍历 template（内部条件）</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -477,6 +491,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">CSS3</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">css</a>
               </li>
              
               <li class="article-tag-list-item">
