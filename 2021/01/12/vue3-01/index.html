@@ -6,14 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yingliyu.github.io">
-  <title>Tag: CSS3 | Lillian‘s Blog</title>
+  <title>Vue3 的新特性(一):ref()、reactive()、toRef() 和 toRefs() | Lillian‘s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="hi~">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lillian‘s Blog">
-<meta property="og:url" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;tags&#x2F;CSS3&#x2F;index.html">
+  <meta name="description" content="Vue3">
+<meta name="keywords" content="Vue3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue3 的新特性(一):ref()、reactive()、toRef() 和 toRefs()">
+<meta property="og:url" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2021&#x2F;01&#x2F;12&#x2F;vue3-01&#x2F;index.html">
 <meta property="og:site_name" content="Lillian‘s Blog">
+<meta property="og:description" content="Vue3">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2021-01-12T07:42:22.912Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Lillian‘s Blog" type="application/atom+xml">
@@ -145,60 +148,287 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-vue3-01" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/12/09/background-clip/" class="archive-article-date">
-  	<time datetime="2019-12-09T19:06:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-09</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/12/09/background-clip/">background-clip属性详解</a>
+    <h1 class="article-title" itemprop="name">
+      Vue3 的新特性(一):ref()、reactive()、toRef() 和 toRefs()
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2021/01/12/vue3-01/" class="archive-article-date">
+  	<time datetime="2021-01-12T15:28:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><p>vue3 更好的支持了 Typescript，新增了 CompositionAPI，而且在性能方面有很大提升</p>
+<ol>
+<li>打包大小减少 41%</li>
+<li>初次渲染快 55%，更新快 133%</li>
+<li>内存使用减少 54%</li>
+</ol>
+<p>这篇文章主要来学习以下 vue3 的以下新特性：ref()、reactive()、toRef()、toRefs()</p>
+<h5 id="版本要求"><a href="#版本要求" class="headerlink" title="版本要求"></a>版本要求</h5><p>对于 Vue3，node 版本 10+、Vue Cli v4.5+的版本可用。已经安装过<code>@vue/cli</code>需更新至最新版本</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yarn global add @vue/cli</span><br><span class="line">#or</span><br><span class="line">npm install -g @vue/cli</span><br></pre></td></tr></table></figure>
+
+<h5 id="配置-Vue3-开发环境"><a href="#配置-Vue3-开发环境" class="headerlink" title="配置 Vue3 开发环境"></a>配置 Vue3 开发环境</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue create [project-name]</span><br></pre></td></tr></table></figure>
+
+<a id="more"></a>
+
+<p><code>？Please pick a preset:</code><br>Manually select feature(手动选择一些特性)<br>然后，是一系列可插拔的支持，囊括各种功能，充分体现了渐进式的特点<br><code>？Check the feature needed for your project:</code><br>Choose vue version<br>Babel<br>Typescript<br>Linter/Formatter(代码格式检查工具)<br><code>？Choose a version of vue.js that you want to start the project with:</code><br>3.X(Preview)<br><code>? Use class-style component snytax?</code>（类类型的组件）<br>No<br><code>？Use Babel alongSide Typescript？</code><br>No<br><code>？Pick a linter / formatter config:</code><br>Eslint with error prevention only<br><code>? Pick additional lint features:</code><br>Lint on save<br><code>? Where do you prefer placing config for Babel,Eslint ,etc.?</code><br>In dedicated config files<br><code>? Save this as a preset for future projects?</code><br>No(根据自己的需要选择)</p>
+<p>OR 使用 UI 界面：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue ui</span><br></pre></td></tr></table></figure>
+
+<p>进入图文界面进行选择配置</p>
+<h5 id="vue2-与-vue3-的响应式实现"><a href="#vue2-与-vue3-的响应式实现" class="headerlink" title="vue2 与 vue3 的响应式实现"></a>vue2 与 vue3 的响应式实现</h5><p>我们知道，vue2 中的 data 返回的是一个响应式对象，其原理是通过 Object.defineProperty()实现的，但是会有一些弊端，比如它对于对象上新增的属性无能为力；对于数组则需要拦截它的原型方法来实现响应式。<br>那么，vue3 踏着五彩祥云就来了。vue3 是使用 ES6 中的新特性 Proxy 来实现响应式。先来对 Proxy 进行一下预热，<br>Proxy 对象用于定义基本操作的自定义行为（如：属性查找、赋值、枚举、函数调用等）。<br>Proxy 可以理解成，在目标对象之前架设一层“拦截”，外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写。<br>更多内容可以参考 <a href="https://es6.ruanyifeng.com/#docs/proxy" target="_blank" rel="noopener">ES6 Proxy</a></p>
+<h5 id="ref-和-reactive"><a href="#ref-和-reactive" class="headerlink" title="ref() 和 reactive()"></a>ref() 和 reactive()</h5><blockquote>
+<p>ref() 函数接收一个基本数据类型的参数同时返回一个基于该值的响应性对象，该对象内部有且仅有一个属性 value，该对象中的值一旦被改变和访问就会被跟踪到，通过修改 refData.value 的值，可以触发模版的重新的渲染，显示最新的值。reactive 则是修改 state.reactiveField 的值。</p>
+</blockquote>
+<blockquote>
+<p>reactive() 函数接收一个复杂数据类型的数据（对象或数组）作为参数，并返回一个响应式代理对象。（响应式数据即当数据发生变化时 UI 也会自动更新）</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h3</span>&gt;</span>&#123;&#123; temp &#125;&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; user.name &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; user.age &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"increase"</span>&gt;</span>click me!<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; ref, reactive &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  setup() &#123;</span><br><span class="line">    <span class="keyword">const</span> temp = ref(<span class="number">0</span>)</span><br><span class="line">    temp.value = <span class="string">'hello'</span></span><br><span class="line">    <span class="keyword">const</span> user = reactive(&#123; <span class="attr">name</span>: <span class="string">'lemon'</span>, <span class="attr">age</span>: <span class="number">20</span> &#125;)</span><br><span class="line">    <span class="built_in">console</span>.log(temp)</span><br><span class="line">    <span class="built_in">console</span>.log(temp.value) <span class="comment">// hello</span></span><br><span class="line">    <span class="built_in">console</span>.log(user) <span class="comment">// Proxy &#123;name:'lemon',age:20&#125;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> increase = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      user.age++</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> &#123; temp, user, increase &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>reactive()</code> 函数可以代理一个复杂数据类型比如：对象、数组，但不能代理基本类型值，例如字符串、数字、boolean 等，这是 js 语言的限制，因此我们需要使用 <code>ref()</code> 函数来间接对基本类型值进行处理。<code>ref</code>的本质还是<code>reactive</code>系统会自动根据<code>ref()</code>函数的入参将其转换成<code>ref(x)</code>即<code>reactive({value:x})</code></p>
+<blockquote>
+<p>综上，ref(user.name) 就相当于 ref(‘lemon’) 也相当于 reactive({value:’lemon’})</p>
+</blockquote>
+<p><code>注意：</code></p>
+<ol>
+<li>在 vue 模板中使用 ref 的值不需要通过 value 属性获取（vue 会自动给 ref 的值加上.value）</li>
+<li>在 js 中使用 ref 的值要通过<code>.value</code>获取</li>
+</ol>
+<h5 id="toRef-和-toRefs"><a href="#toRef-和-toRefs" class="headerlink" title="toRef() 和 toRefs()"></a>toRef() 和 toRefs()</h5><blockquote>
+<p><code>toRef</code>是将个对象 A 中的某个属性 x 转换为响应式数据，其接收两个参数，第一个参数为对象 A，第二个参数为对象中的某个属性名 x。</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; toRef &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  setup() &#123;</span><br><span class="line">    <span class="keyword">const</span> user = &#123; <span class="attr">name</span>: <span class="string">'lemon'</span>, <span class="attr">age</span>: <span class="number">3</span> &#125;</span><br><span class="line">    <span class="keyword">const</span> userRef = toRef(user, <span class="string">'age'</span>)</span><br><span class="line">    <span class="keyword">return</span> &#123; userRef &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>到这里你应该会有一个疑问，<code>toRef()</code>和<code>ref()</code> 都是创建响应式数据的函数，它们之间有什么不同呢？我们来测试一下。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    响应式数值ref0：</span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"add0"</span>&gt;</span>add &#123;&#123; state0 &#125;&#125;<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    响应式对象ref1：</span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"add1"</span>&gt;</span>Add &#123;&#123; state1 &#125;&#125;<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    响应式对象toRef2：</span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"add2"</span>&gt;</span>Add &#123;&#123; state2 &#125;&#125;<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;script lang=<span class="string">"ts"</span>&gt;</span><br><span class="line"><span class="keyword">import</span> &#123; ref, toRef &#125; <span class="keyword">from</span> <span class="string">"vue"</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  setup() &#123;</span><br><span class="line">    <span class="keyword">const</span> temp = &#123; <span class="attr">count</span>: <span class="number">1</span> &#125;;</span><br><span class="line">    <span class="keyword">const</span> temp0 = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">const</span> state0 = ref(temp0);</span><br><span class="line">    <span class="keyword">const</span> state1 = ref(temp.count);</span><br><span class="line">    <span class="keyword">const</span> state2 = toRef(temp, <span class="string">"count"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> add0 = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      state0.value++;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"原始值："</span>, temp0); <span class="comment">//原始值：1</span></span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"响应式数据对象ref："</span>, state0.value); <span class="comment">//响应式数值ref：2</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">const</span> add1 = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      state1.value++;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"原始值："</span>, temp); <span class="comment">//原始值：1</span></span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"响应式数据对象ref："</span>, state1.value); <span class="comment">//响应式对象ref：2</span></span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> add2 = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      state2.value++;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"原始值："</span>, temp); <span class="comment">// 原始值：2</span></span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"响应式数据对象toRef："</span>, state2.value); <span class="comment">//响应式对象toRef：2</span></span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> &#123; state0, state1, state2, add0, add1, add2 &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>综上，ref()和 refs()有以下区别：</p>
+</blockquote>
+<ol>
+<li>参数不同：<code>ref()</code>接收一个 js 基本数据类型的参数；<code>toRef()</code>接收两个参数，第一个为对象，第二个为对象中的某个属性；</li>
+<li>原理不同：<code>ref()</code>是对原数据的一个深拷贝，当其值改变时不会影响到原始值；<code>toRef()</code>是对原数据的一个引用，当值改变时会影响到原始值；</li>
+<li>响应性不同：<code>ref()</code>创建的数据会触发 vue 模版更新；<code>toRef()</code>创建的响应式数据并不会触发 vue 模版更新，所以<code>toRef()</code>的本质是引用，与原始数据有关联。</li>
+</ol>
+<blockquote>
+<p><code>toRefs()</code>接收一个对象作为参数，并遍历对象身上的所有属性，然后逐个调用<code>toRef()</code>执行。以此，将响应式对象转化为普通对象，便于在模版中可以直接使用属性。</p>
+</blockquote>
+<p>当我们希望对象的多个属性都变成响应式数据，并且要求响应式数据和原始数据相关联，并且更新响应式数据时不更新界面，这时候<code>toRefs()</code>就派上用场了，它用于批量设置多个响应式数据。</p>
+<p>那么，到这里又有疑问了，通过上面的学习我们知道使用 reactive()创建的数据已经具有响应式了，为什么还要再 toRefs()呢？<br>往下看，</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">setup() &#123;</span><br><span class="line">    <span class="comment">// 创建一个响应式对象state</span></span><br><span class="line">    <span class="keyword">const</span> state = reactive(&#123;</span><br><span class="line">      foo: <span class="number">1</span>,</span><br><span class="line">      bar: <span class="number">2</span></span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">const</span> stateAsRefs = toRefs(state) <span class="comment">// 将响应式的对象变为普通对象结构</span></span><br><span class="line">    <span class="comment">// The ref and the original property is "linked"</span></span><br><span class="line">    state.foo++</span><br><span class="line">    <span class="built_in">console</span>.log(stateAsRefs.foo.value) <span class="comment">// 2</span></span><br><span class="line"></span><br><span class="line">    stateAsRefs.foo.value++</span><br><span class="line">    <span class="built_in">console</span>.log(state.foo) <span class="comment">// 3</span></span><br><span class="line">    <span class="keyword">return</span> &#123; temp, userRefs, ...stateAsRefs, add &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对于以上代码，toRefs()将响应式的对象 state 变为普通对象 stateAsRefs 后，return 时使用 ES6 的扩展运算符，在模版中可以直接使用其内部属性，且仍具有响应性（ 对响应式对象 state 使用扩展运算符后，其内部属性就失去了响应性 ）</p>
+<p>官方案例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">useFeatureX</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> state = reactive(&#123;</span><br><span class="line">    foo: <span class="number">1</span>,</span><br><span class="line">    bar: <span class="number">2</span></span><br><span class="line">  &#125;)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// logic operating on state</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// convert to refs when returning（返回时转为refs）</span></span><br><span class="line">  <span class="keyword">return</span> toRefs(state)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  setup() &#123;</span><br><span class="line">    <span class="comment">// can destructure without losing reactivity（可以解构而不失去其响应性）</span></span><br><span class="line">    <span class="keyword">const</span> &#123; foo, bar &#125; = useFeatureX()</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      foo,</span><br><span class="line">      bar</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>对响应式对象进行 toRefs 后，可以对其进行解构方便 vue 模版使用，但是不会使其失去响应性。</p>
+</blockquote>
+<h4 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h4><p>参考：<a href="https://es6.ruanyifeng.com/#docs/proxy" target="_blank" rel="noopener">ES6</a> 、 <a href="https://v3.vuejs.org/api/refs-api.html#torefs" target="_blank" rel="noopener">Vue3</a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top" target="_parent">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/imgs/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/imgs/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color5">CSS3</a>
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color5">Vue3</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" target="_blank" rel="noopener" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://yingliyu.github.io/2021/01/12/vue3-01/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2020/11/18/react-ts-d3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">React-ts-d3 项目实践</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#版本要求"><span class="toc-number">2.</span> <span class="toc-text">版本要求</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#配置-Vue3-开发环境"><span class="toc-number">3.</span> <span class="toc-text">配置 Vue3 开发环境</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#vue2-与-vue3-的响应式实现"><span class="toc-number">4.</span> <span class="toc-text">vue2 与 vue3 的响应式实现</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ref-和-reactive"><span class="toc-number">5.</span> <span class="toc-text">ref() 和 reactive()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#toRef-和-toRefs"><span class="toc-number">6.</span> <span class="toc-text">toRef() 和 toRefs()</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#最后"><span class="toc-number"></span> <span class="toc-text">最后</span></a>
+                    </div>
+                </span>
+            </div>
+        </div>
+        
+    </div>
+</aside>
+
+
+
+  
+    <section id="comments" style="margin:30px;padding:30px;background:#fff;">
+    <div id="vcomment" class="comment"></div> 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'false' == true ? true : false;
+   var verify = 'false' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '#vcomment',
+            notify: notify,
+            verify: verify,
+            app_id: "IMk6UEsIdoJmshBUrTrk068d-gzGzoHsz",
+            app_key: "frYofqWd1Lx2uJ2WwELXRhw8",
+            placeholder: "写下你的评论...",
+            avatar:"monsterid",
+            // meta: guest,
+            pageSize:'{{ theme.valine.pageSize }}' || 10,
+            visitor: true // 阅读量统计
+        });
+    }
+</script>
+  </section>
+  
+  
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -222,9 +452,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: true,
 		toc_hide_index: true,

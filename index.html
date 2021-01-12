@@ -147,29 +147,39 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-css-anmination" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-vue3-01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/25/css-anmination/">css动画</a>
+      <a class="article-title" href="/2021/01/12/vue3-01/">Vue3 的新特性(一):ref()、reactive()、toRef() 和 toRefs()</a>
     </h1>
   
 
         
-        <a href="/2020/11/25/css-anmination/" class="archive-article-date">
-  	<time datetime="2020-11-25T14:08:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-25</time>
+        <a href="/2021/01/12/vue3-01/" class="archive-article-date">
+  	<time datetime="2021-01-12T15:28:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-12</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3>
+        <h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><p>vue3 更好的支持了 Typescript，新增了 CompositionAPI，而且在性能方面有很大提升</p>
+<ol>
+<li>打包大小减少 41%</li>
+<li>初次渲染快 55%，更新快 133%</li>
+<li>内存使用减少 54%</li>
+</ol>
+<p>这篇文章主要来学习以下 vue3 的以下新特性：ref()、reactive()、toRef()、toRefs()</p>
+<h5 id="版本要求"><a href="#版本要求" class="headerlink" title="版本要求"></a>版本要求</h5><p>对于 Vue3，node 版本 10+、Vue Cli v4.5+的版本可用。已经安装过<code>@vue/cli</code>需更新至最新版本</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yarn global add @vue/cli</span><br><span class="line">#or</span><br><span class="line">npm install -g @vue/cli</span><br></pre></td></tr></table></figure>
+
+<h5 id="配置-Vue3-开发环境"><a href="#配置-Vue3-开发环境" class="headerlink" title="配置 Vue3 开发环境"></a>配置 Vue3 开发环境</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue create [project-name]</span><br></pre></td></tr></table></figure>
         
-          <a class="article-more-a" href="/2020/11/25/css-anmination/#more">more >></a>
+          <a class="article-more-a" href="/2021/01/12/vue3-01/#more">more >></a>
         
       
 
@@ -183,7 +193,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color4">css</a>
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color5">Vue3</a>
         		</li>
       		
 		</ul>
@@ -193,7 +203,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/25/css-anmination/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/01/12/vue3-01/">展开全文 >></a>
         </p>
       
 
@@ -985,7 +995,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 栗栗安
+    		&copy; 2021 栗栗安
 			</div>
 			<p>hello </p>
 			<div class="footer-right">
@@ -1069,10 +1079,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">css</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">es6</a>
               </li>
              
@@ -1142,6 +1148,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">v-for与v-if</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">Vue3</a>
               </li>
              
               <li class="article-tag-list-item">
