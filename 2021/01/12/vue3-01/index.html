@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Lillian‘s Blog">
 <meta property="og:description" content="Vue3">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2021-01-12T07:42:22.912Z">
+<meta property="og:updated_time" content="2021-01-12T07:47:09.697Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Lillian‘s Blog" type="application/atom+xml">
@@ -168,13 +168,13 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><p>vue3 更好的支持了 Typescript，新增了 CompositionAPI，而且在性能方面有很大提升</p>
+        <h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><p>vue3 更好的支持了 <code>Typescript</code>，新增了 <code>CompositionAPI</code>，而且在性能方面有很大提升</p>
 <ol>
 <li>打包大小减少 41%</li>
 <li>初次渲染快 55%，更新快 133%</li>
 <li>内存使用减少 54%</li>
 </ol>
-<p>这篇文章主要来学习以下 vue3 的以下新特性：ref()、reactive()、toRef()、toRefs()</p>
+<p>这篇文章主要来学习以下 vue3 的以下新特性：<code>ref()</code>、<code>reactive()</code>、<code>toRef()</code>、<code>toRefs()</code></p>
 <h5 id="版本要求"><a href="#版本要求" class="headerlink" title="版本要求"></a>版本要求</h5><p>对于 Vue3，node 版本 10+、Vue Cli v4.5+的版本可用。已经安装过<code>@vue/cli</code>需更新至最新版本</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yarn global add @vue/cli</span><br><span class="line">#or</span><br><span class="line">npm install -g @vue/cli</span><br></pre></td></tr></table></figure>
 
@@ -187,12 +187,12 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue ui</span><br></pre></td></tr></table></figure>
 
 <p>进入图文界面进行选择配置</p>
-<h5 id="vue2-与-vue3-的响应式实现"><a href="#vue2-与-vue3-的响应式实现" class="headerlink" title="vue2 与 vue3 的响应式实现"></a>vue2 与 vue3 的响应式实现</h5><p>我们知道，vue2 中的 data 返回的是一个响应式对象，其原理是通过 Object.defineProperty()实现的，但是会有一些弊端，比如它对于对象上新增的属性无能为力；对于数组则需要拦截它的原型方法来实现响应式。<br>那么，vue3 踏着五彩祥云就来了。vue3 是使用 ES6 中的新特性 Proxy 来实现响应式。先来对 Proxy 进行一下预热，<br>Proxy 对象用于定义基本操作的自定义行为（如：属性查找、赋值、枚举、函数调用等）。<br>Proxy 可以理解成，在目标对象之前架设一层“拦截”，外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写。<br>更多内容可以参考 <a href="https://es6.ruanyifeng.com/#docs/proxy" target="_blank" rel="noopener">ES6 Proxy</a></p>
+<h5 id="vue2-与-vue3-的响应式实现"><a href="#vue2-与-vue3-的响应式实现" class="headerlink" title="vue2 与 vue3 的响应式实现"></a>vue2 与 vue3 的响应式实现</h5><p>我们知道，vue2 中的 data 返回的是一个响应式对象，其原理是通过 <code>Object.defineProperty()</code>实现的，但是会有一些弊端，比如它对于对象上新增的属性无能为力；对于数组则需要拦截它的原型方法来实现响应式。<br>那么，vue3 踏着五彩祥云就来了。vue3 是使用 ES6 中的新特性 Proxy 来实现响应式。先来对 <code>Proxy</code> 进行一下预热，<br><code>Proxy</code> 对象用于定义基本操作的自定义行为（如：属性查找、赋值、枚举、函数调用等）。<br><code>Proxy</code> 可以理解成，在目标对象之前架设一层“拦截”，外界对该对象的访问，都必须先通过这层拦截，因此提供了一种机制，可以对外界的访问进行过滤和改写。<br>更多内容可以参考 <a href="https://es6.ruanyifeng.com/#docs/proxy" target="_blank" rel="noopener">ES6 Proxy</a></p>
 <h5 id="ref-和-reactive"><a href="#ref-和-reactive" class="headerlink" title="ref() 和 reactive()"></a>ref() 和 reactive()</h5><blockquote>
-<p>ref() 函数接收一个基本数据类型的参数同时返回一个基于该值的响应性对象，该对象内部有且仅有一个属性 value，该对象中的值一旦被改变和访问就会被跟踪到，通过修改 refData.value 的值，可以触发模版的重新的渲染，显示最新的值。reactive 则是修改 state.reactiveField 的值。</p>
+<p><code>ref()</code> 函数接收一个基本数据类型的参数同时返回一个基于该值的响应性对象，该对象内部有且仅有一个属性 value，该对象中的值一旦被改变和访问就会被跟踪到，通过修改 <code>refData.value</code> 的值，可以触发模版的重新的渲染，显示最新的值。<code>reactive</code> 则是修改 <code>state.reactiveField</code> 的值。</p>
 </blockquote>
 <blockquote>
-<p>reactive() 函数接收一个复杂数据类型的数据（对象或数组）作为参数，并返回一个响应式代理对象。（响应式数据即当数据发生变化时 UI 也会自动更新）</p>
+<p><code>reactive()</code> 函数接收一个复杂数据类型的数据（对象或数组）作为参数，并返回一个响应式代理对象。（响应式数据即当数据发生变化时 UI 也会自动更新）</p>
 </blockquote>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h3</span>&gt;</span>&#123;&#123; temp &#125;&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; user.name &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; user.age &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">"increase"</span>&gt;</span>click me!<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -200,12 +200,12 @@
 
 <p><code>reactive()</code> 函数可以代理一个复杂数据类型比如：对象、数组，但不能代理基本类型值，例如字符串、数字、boolean 等，这是 js 语言的限制，因此我们需要使用 <code>ref()</code> 函数来间接对基本类型值进行处理。<code>ref</code>的本质还是<code>reactive</code>系统会自动根据<code>ref()</code>函数的入参将其转换成<code>ref(x)</code>即<code>reactive({value:x})</code></p>
 <blockquote>
-<p>综上，ref(user.name) 就相当于 ref(‘lemon’) 也相当于 reactive({value:’lemon’})</p>
+<p>综上，<code>ref(user.name)</code> 就相当于 <code>ref(&#39;lemon&#39;)</code> 也相当于 <code>reactive({value:&#39;lemon&#39;})</code></p>
 </blockquote>
 <p><code>注意：</code></p>
 <ol>
-<li>在 vue 模板中使用 ref 的值不需要通过 value 属性获取（vue 会自动给 ref 的值加上.value）</li>
-<li>在 js 中使用 ref 的值要通过<code>.value</code>获取</li>
+<li>在 vue 模板中使用 <code>ref</code> 的值不需要通过 <code>value</code> 属性获取（vue 会自动给 ref 的值加上.value）</li>
+<li>在 js 中使用 <code>ref</code> 的值要通过<code>.value</code>获取</li>
 </ol>
 <h5 id="toRef-和-toRefs"><a href="#toRef-和-toRefs" class="headerlink" title="toRef() 和 toRefs()"></a>toRef() 和 toRefs()</h5><blockquote>
 <p><code>toRef</code>是将个对象 A 中的某个属性 x 转换为响应式数据，其接收两个参数，第一个参数为对象 A，第二个参数为对象中的某个属性名 x。</p>
