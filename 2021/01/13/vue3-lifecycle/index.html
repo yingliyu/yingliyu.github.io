@@ -6,14 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yingliyu.github.io">
-  <title>Lillian‘s Blog</title>
+  <title>Vue3的新特性(二)：生命周期 | Lillian‘s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="hi~">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lillian‘s Blog">
-<meta property="og:url" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;index.html">
+  <meta name="description" content="vue3">
+<meta name="keywords" content="vue3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue3的新特性(二)：生命周期">
+<meta property="og:url" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2021&#x2F;01&#x2F;13&#x2F;vue3-lifecycle&#x2F;index.html">
 <meta property="og:site_name" content="Lillian‘s Blog">
+<meta property="og:description" content="vue3">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2021-01-13T06:41:07.463Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Lillian‘s Blog" type="application/atom+xml">
@@ -145,16 +148,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-vue3-lifecycle" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-vue3-lifecycle" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/01/13/vue3-lifecycle/">Vue3的新特性(二)：生命周期</a>
+    <h1 class="article-title" itemprop="name">
+      Vue3的新特性(二)：生命周期
     </h1>
   
 
@@ -169,11 +170,58 @@
       
         <h5 id="生命周期钩子函数"><a href="#生命周期钩子函数" class="headerlink" title="生命周期钩子函数"></a>生命周期钩子函数</h5><p>vue3 更新了生命周期钩子函数。<br>可以直接通过 import 对应的函数（例如：onMounted）来注册生命周期钩子函数。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; onMounted, onUpdated, onUnmounted &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">const</span> MyComponent = &#123;</span><br><span class="line">  setup() &#123;</span><br><span class="line">    onMounted(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'mounted!'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    onUpdated(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'updated!'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    onUnmounted(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'unmounted!'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2021/01/13/vue3-lifecycle/#more">more >></a>
-        
+
+<a id="more"></a>
+
+<p>mapping Options API of vue2 to Hook inside setup of vue3</p>
+<ol>
+<li><del>beforeCreate</del> -&gt; use setup()</li>
+<li><del>created</del> -&gt; use setup()</li>
+<li>beforeMount -&gt; onBeforeMount</li>
+<li>mounted -&gt; onMounted</li>
+<li>beforeUpdate -&gt; onBeforeUpdate</li>
+<li>updated -&gt; onUpdated</li>
+<li>beforeUnmount -&gt; onBeforeUnmount</li>
+<li>unmounted -&gt; onUnmounted</li>
+<li>errorCaptured -&gt; onErrorCaptured</li>
+<li>renderTracked -&gt; onRenderTracked（调试用）</li>
+<li>renderTriggered -&gt; onRenderTriggered（调试用）</li>
+</ol>
+<p>因为 setup 是在 beforeCreated 和 created 几乎是同时进行的，所以可以将在这两个生命周期里的代码写在 setup 里面。</p>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top" target="_parent">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/imgs/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/imgs/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -193,16 +241,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/01/13/vue3-lifecycle/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" target="_blank" rel="noopener" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" target="_blank" rel="noopener" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" target="_blank" rel="noopener" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://yingliyu.github.io/2021/01/13/vue3-lifecycle/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2021/01/13/vue3-02/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Vue3的新特性(三)：setup()、computed()和watch()</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -217,766 +324,58 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-vue3-02" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/01/13/vue3-02/">Vue3的新特性(三)：setup()、computed()和watch()</a>
-    </h1>
-  
-
-        
-        <a href="/2021/01/13/vue3-02/" class="archive-article-date">
-  	<time datetime="2021-01-13T14:16:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本文主要介绍 vue3 新增 Composition API 的一些特性 setup()、computed()和 watch()，Composition API 可以把复杂组件的逻辑变得更为紧凑，使代码有更高复用性和灵活性。</p>
-<h3 id="1-setup"><a href="#1-setup" class="headerlink" title="1. setup()"></a>1. setup()</h3><p><code>setup()</code>是 <code>vue3</code> 中新增特性，在组件 <code>created()</code>生命周期之前执行。<br>因为 <code>setup()</code> 是在组件 <code>created()</code>之前执行的，所以在 <code>setup()</code>内部无法获取 <code>this</code>。</p>
-<p><code>setup(props,context)</code>接收两个参数：<code>props</code>,<code>context</code></p>
-<h5 id="参数一：props"><a href="#参数一：props" class="headerlink" title="参数一：props"></a>参数一：props</h5><p>组件接收的 <code>props</code> 数据可以在 <code>setup()</code>函数内访问到。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    title: <span class="built_in">String</span></span><br><span class="line">  &#125;,</span><br><span class="line">  setup(props) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(props.title)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><code>props</code> 具有响应性，不能使用 ES6 解构它，这会使其失去响应性。如果需要解构，可以使用 <code>toRefs()</code></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; title &#125; = toRefs(props)</span><br><span class="line"><span class="built_in">console</span>.log(title.value)</span><br></pre></td></tr></table></figure>
-
-<p>如果 <code>title</code> 是一个可选的属性，需使用 <code>toRef()</code>,如下：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; toRef &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line">setup(props) &#123;</span><br><span class="line">	<span class="keyword">const</span> title = toRef(props, <span class="string">'title'</span>)</span><br><span class="line">	<span class="built_in">console</span>.log(title.value)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2021/01/13/vue3-02/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color4">vu3</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/01/13/vue3-02/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#生命周期钩子函数"><span class="toc-number">1.</span> <span class="toc-text">生命周期钩子函数</span></a></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
   
-    <article id="post-vue3-01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/01/12/vue3-01/">Vue3 的新特性(一):ref()、reactive()、toRef() 和 toRefs()</a>
-    </h1>
-  
-
-        
-        <a href="/2021/01/12/vue3-01/" class="archive-article-date">
-  	<time datetime="2021-01-12T15:28:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><p>vue3 更好的支持了 <code>Typescript</code>，新增了 <code>CompositionAPI</code>，而且在性能方面有很大提升</p>
-<ol>
-<li>打包大小减少 41%</li>
-<li>初次渲染快 55%，更新快 133%</li>
-<li>内存使用减少 54%</li>
-</ol>
-<p>这篇文章主要来学习以下 vue3 的以下新特性：<code>ref()</code>、<code>reactive()</code>、<code>toRef()</code>、<code>toRefs()</code></p>
-<h5 id="版本要求"><a href="#版本要求" class="headerlink" title="版本要求"></a>版本要求</h5><p>对于 Vue3，node 版本 10+、Vue Cli v4.5+的版本可用。已经安装过<code>@vue/cli</code>需更新至最新版本</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yarn global add @vue/cli</span><br><span class="line">#or</span><br><span class="line">npm install -g @vue/cli</span><br></pre></td></tr></table></figure>
-
-<h5 id="配置-Vue3-开发环境"><a href="#配置-Vue3-开发环境" class="headerlink" title="配置 Vue3 开发环境"></a>配置 Vue3 开发环境</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue create [project-name]</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2021/01/12/vue3-01/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color5">Vue3</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/01/12/vue3-01/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-react-ts-d3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/18/react-ts-d3/">React-ts-d3 项目实践</a>
-    </h1>
-  
-
-        
-        <a href="/2020/11/18/react-ts-d3/" class="archive-article-date">
-  	<time datetime="2020-11-18T14:33:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>自从涉足了知识图谱项目便一发不可收拾，本次项目中也是涉及到一些可视化和知识图谱的元素，对我来说虽不是新的技术领域但是这次改用了 <code>ts</code>，所以还是踩了不少的坑呢，主要集中在 <code>d3</code> 和 <code>ts</code> 结合部分。</p>
-<p>其次在项目评审期间，前端主要问题还有自适应方面的问题，最终敲定使用断点媒体查询的方式实现。</p>
-<p>近期 <code>bug</code> 修复进入尾声，时隔数日还是复盘一下，毕竟我的脑瓜子还是一如既往的健忘，刚刚被问及一个项目是不是我做的，我记得是我做的，但是具体内容什么的我已经无力想起了，不过看到我还是认识的。言归正传，下面就来回顾一下踩坑流水帐。</p>
-<h3 id="1-Echarts-Graph"><a href="#1-Echarts-Graph" class="headerlink" title="1. Echarts Graph"></a>1. Echarts Graph</h3><p>如果使用过 <code>echart</code> 系列图表，那么 <code>graph</code> 关系图还是相对比较容易上手的，毕竟是高度可定制化套路一样同类型属性名也一样。</p>
-        
-          <a class="article-more-a" href="/2020/11/18/react-ts-d3/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color1">react</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color1">typescript</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">d3</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/18/react-ts-d3/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-react-share-bike" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/18/react-share-bike/">React+AntD+Redux 的项目实战总结</a>
-    </h1>
-  
-
-        
-        <a href="/2020/07/18/react-share-bike/" class="archive-article-date">
-  	<time datetime="2020-07-18T15:46:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!-- ![1.jepg](1.jpeg) -->
-
-<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><p>最近用 <code>React Hook</code> 实战了一个 React 项目。今天来总结一下，因为都是拼凑的时间所以项目历时半个多月之久，通过本次学习进一步的熟悉了 <code>AntD</code> 常用组件的使用，业务功能（增删改查）的开发及百度地图 API、富文本组件的使用、权限设置模块，最重要的是把学习的 <code>React Hook</code> 落实到了项目中。</p>
-        
-          <a class="article-more-a" href="/2020/07/18/react-share-bike/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color1">React</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/18/react-share-bike/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-react-hook" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/28/react-hook/">react-hook入门手册</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/28/react-hook/" class="archive-article-date">
-  	<time datetime="2020-06-28T15:49:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>React Hooks 是 React 16.12 的新增特性。它可以让你在不编写 class 的情况下使用 state 以及其他的 React 特性。</p>
-<h3 id="1-useState"><a href="#1-useState" class="headerlink" title="1.useState"></a>1.useState</h3><blockquote>
-<p>调用<code>useState</code>方法时做了什么？</p>
-</blockquote>
-<p>定义一个 state 变量，这是一种在函数调用时保存变量的方式——<code>useState</code>是一种新方法，它与<code>class</code>里的<code>this.state</code>提供的功能完全相同。一般来说，在函数退出后变量就会“消失”，而<code>state</code>中的变量会被<code>react</code>保留。</p>
-        
-          <a class="article-more-a" href="/2020/06/28/react-hook/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color1">react-hook</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/28/react-hook/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-vue-if-for" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/16/vue-if-for/">vue中v-for和v-if不能同时使用解决方案</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/16/vue-if-for/" class="archive-article-date">
-  	<time datetime="2020-06-16T09:44:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
-<p>为什么不可以呢？我们 <code>JS</code> 的使用习惯在遍历时使用条件判断是很常见的， <code>vue</code> 模版中当然也是可以使用的，但是<code>v-for</code>和<code>v-if</code>不可以出现在同一个元素上。<br>因为在 <code>vue</code> 中会优先执行 <code>v-for</code>,如果每一次都遍历整个数组，将会影响速度，尤其是当之需要渲染很小一部分的时候。</p>
-</blockquote>
-<h3 id="使用情景"><a href="#使用情景" class="headerlink" title="使用情景"></a>使用情景</h3><blockquote>
-<p><code>v-for</code> 和 <code>v-if</code> 同时使用有 3 种情景：</p>
-<ol>
-<li>部分遍历（内/外部条件）：一个 <code>list</code> 中某个属性值符合条件的遍历出来；</li>
-<li>全部遍历（外部条件）：某外部条件符合条件时遍历全部。</li>
-<li>全部遍历（内部条件）：根据某内部条件渲染出不同的内容。</li>
-</ol>
-</blockquote>
-<p>注：内部条件指被遍历数据内部属性值或条件；外部条件指与独立于被遍历数据以外的数据。</p>
-        
-          <a class="article-more-a" href="/2020/06/16/vue-if-for/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color1">v-for与v-if</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/16/vue-if-for/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-text-ellipsis" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/09/text-ellipsis/">css文字超出显示省略号</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/09/text-ellipsis/" class="archive-article-date">
-  	<time datetime="2020-06-09T11:11:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h5 id="一-单行文本超出省略"><a href="#一-单行文本超出省略" class="headerlink" title="一.单行文本超出省略"></a>一.单行文本超出省略</h5><blockquote>
-<p>关键属性：<code>text-overflow:ellipsis|clip</code> 。<br><code>clip</code> : 　不显示省略标记（…），而是简单的裁切掉溢出的文本<br><code>ellipsis</code> : 　当对象内文本溢出时显示省略标记（…）<br><code>string</code>: 使用指定字符串来代表被修剪的文本<br>兼容性：所有主流浏览器都兼容, IE6+</p>
-</blockquote>
-<p>1.css 实现：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">overflow</span>: hidden;</span><br><span class="line">  <span class="attribute">text-overflow</span>: ellipsis;</span><br><span class="line">  <span class="attribute">white-space</span>: nowrap;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>2.css+html 实现：</p>
-<blockquote>
-<p>使用<code>&lt;nobr&gt;</code>不换行标签（行内标签）此标签与 css <code>white-space</code> 功能相同。<br>详情参考<a href="http://www.divcss5.com/html/h533.shtml" target="_blank" rel="noopener">http://www.divcss5.com/html/h533.shtml</a> 。<br><code>&lt;nobr&gt;</code>兼容性：IE11+</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2020/06/09/text-ellipsis/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color4">text-ellipsis</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color4">-webkit-line-clamp</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/09/text-ellipsis/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-ie-bug" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/09/ie-bug/">ie浏览器踩坑系列</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/09/ie-bug/" class="archive-article-date">
-  	<time datetime="2020-06-09T11:08:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h6 id="持续更新…"><a href="#持续更新…" class="headerlink" title="持续更新…"></a>持续更新…</h6><p>1.使用 antv ，当有两种渲染方式：canvas 和 svg，最好选择 canvas 方式，因为 svg 在 IE 浏览器下有很多 bug。</p>
-        
-          <a class="article-more-a" href="/2020/06/09/ie-bug/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">ie</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/09/ie-bug/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-vue-class" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/09/vue-class/">vue动态绑定class与style</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/09/vue-class/" class="archive-article-date">
-  	<time datetime="2020-06-09T10:19:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
-<p>基于 vue 开发的项目中有的交互需要修改元素的样式，就会用到 class 或 style 的动态绑定。当样式的属性值是变量时一般使用 style，其他情况最好使用 class，个人觉得这样模版代码更好维护一点。</p>
-</blockquote>
-<h5 id="1-绑定-class-方式"><a href="#1-绑定-class-方式" class="headerlink" title="1.绑定 class 方式"></a>1.绑定 class 方式</h5><p>js 代码：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">data()&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    isActive:<span class="literal">true</span>,</span><br><span class="line">    isCenter: <span class="literal">false</span>,</span><br><span class="line">    class2: <span class="string">'align-center'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2020/06/09/vue-class/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/09/vue-class/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
+    <section id="comments" style="margin:30px;padding:30px;background:#fff;">
+    <div id="vcomment" class="comment"></div> 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'false' == true ? true : false;
+   var verify = 'false' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '#vcomment',
+            notify: notify,
+            verify: verify,
+            app_id: "IMk6UEsIdoJmshBUrTrk068d-gzGzoHsz",
+            app_key: "frYofqWd1Lx2uJ2WwELXRhw8",
+            placeholder: "写下你的评论...",
+            avatar:"monsterid",
+            // meta: guest,
+            pageSize:'{{ theme.valine.pageSize }}' || 10,
+            visitor: true // 阅读量统计
+        });
+    }
+</script>
+  </section>
   
   
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
-    </nav>
+  
+  
+  
+
+  
+
+  
+
   
 
 
@@ -1000,8 +399,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
