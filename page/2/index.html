@@ -147,6 +147,94 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-es6-array-from" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/10/es6-array-from/">ES6之你不知道的Array.from()</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/10/es6-array-from/" class="archive-article-date">
+  	<time datetime="2020-01-10T18:30:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>先来了解几个概念：</p>
+<blockquote>
+<p>数组：是有序的元素序列，其索引是从0开始自然增长的整数，元素值可以是任何JavaScript值，并且包含一个名为length属性，该属性值表示数组元素的长度。</p>
+</blockquote>
+<blockquote>
+<p>对象：JavaScript中对象类型为一组无序的由键/值组成的数据集合，其元素的键名和值都可以自定义。</p>
+</blockquote>
+<blockquote>
+<p>类数组对象：是一种类似数组的对象。最基本的要求就是具有length属性的对象。</p>
+</blockquote>
+<h3 id="三种使用方式"><a href="#三种使用方式" class="headerlink" title="三种使用方式"></a>三种使用方式</h3><p>根据传参的形式不同分为三种使用方式。</p>
+<h5 id="1-Array-from-length-x-Fn"><a href="#1-Array-from-length-x-Fn" class="headerlink" title="1. Array.from({length: x}, Fn)"></a>1. Array.from({length: x}, Fn)</h5><p>第一个参数指定了第二个参数的执行次数，返回一个长度为x的数组。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.from(&#123; <span class="attr">length</span>:<span class="number">3</span> &#125;, () =&gt; <span class="string">'lemon'</span> )  <span class="comment">// ["lemon", "lemon", "lemon"]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Array</span>.from(&#123; <span class="attr">length</span>: <span class="number">3</span> &#125;, (v, i) =&gt; i ) <span class="comment">// 生成一个从0开始的的数组[0, 1, 2] 这里我暂时还有疑问参数v是什么？？？</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Array</span>.from(&#123; <span class="attr">length</span>: <span class="number">3</span> &#125;, (v, i) =&gt; item = &#123; <span class="attr">year</span>: i + <span class="number">2000</span> &#125;) <span class="comment">// 生成一个年份对象数组[&#123;'year': 2000, 'year': 2001, 'year': 2002&#125;]</span></span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2020/01/10/es6-array-from/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color4">es6</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/10/es6-array-from/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-vue-i18n" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -979,6 +1067,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">v-for与v-if</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">vu3</a>
               </li>
              
               <li class="article-tag-list-item">
