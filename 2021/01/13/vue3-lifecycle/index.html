@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Lillian‘s Blog">
 <meta property="og:description" content="vue3">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2021-01-13T06:41:07.463Z">
+<meta property="og:updated_time" content="2021-01-13T06:42:50.366Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Lillian‘s Blog" type="application/atom+xml">
@@ -168,7 +168,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h5 id="生命周期钩子函数"><a href="#生命周期钩子函数" class="headerlink" title="生命周期钩子函数"></a>生命周期钩子函数</h5><p>vue3 更新了生命周期钩子函数。<br>可以直接通过 import 对应的函数（例如：onMounted）来注册生命周期钩子函数。</p>
+        <h3 id="生命周期钩子函数"><a href="#生命周期钩子函数" class="headerlink" title="生命周期钩子函数"></a>生命周期钩子函数</h3><p>vue3 更新了生命周期钩子函数。<br>可以直接通过 import 对应的函数（例如：onMounted）来注册生命周期钩子函数。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; onMounted, onUpdated, onUnmounted &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">const</span> MyComponent = &#123;</span><br><span class="line">  setup() &#123;</span><br><span class="line">    onMounted(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'mounted!'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    onUpdated(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'updated!'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    onUnmounted(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'unmounted!'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <a id="more"></a>
@@ -331,7 +331,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#生命周期钩子函数"><span class="toc-number">1.</span> <span class="toc-text">生命周期钩子函数</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#生命周期钩子函数"><span class="toc-number">1.</span> <span class="toc-text">生命周期钩子函数</span></a></li></ol>
                     </div>
                 </span>
             </div>
