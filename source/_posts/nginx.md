@@ -15,6 +15,7 @@ Nginx 特点：
 
 #### 安装
 
+环境：MAC OS 系统
 `brew install nginx`
 
 查看版本号：
