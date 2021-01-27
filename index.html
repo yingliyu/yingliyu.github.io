@@ -147,6 +147,83 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-gwt-token" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/01/27/gwt-token/">WEB应用中的权限认证——GWT</a>
+    </h1>
+  
+
+        
+        <a href="/2021/01/27/gwt-token/" class="archive-article-date">
+  	<time datetime="2021-01-27T17:25:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-传统方案——基于-cookie-session-的解决方案"><a href="#1-传统方案——基于-cookie-session-的解决方案" class="headerlink" title="1.传统方案——基于 cookie/session 的解决方案"></a>1.传统方案——基于 cookie/session 的解决方案</h3><p>首先，浏览器端向服务端发送 login 请求，把用户名和密码都发送过去，服务器验证用户名密码正确，然后就会创建对应的 session 数据并保存在内存或者数据库中。然后，服务器返回一个 HTTP 200 OK 的 response，这个 response 会有个 header 叫 set-Cookie：sessionid=xxx，浏览器拿到这个 response 以后，因为有 set-Cookie 这个 header， 带上唯一的 id sessionid（set-Cookie：sessionid=xxx），它就会把 cookie 保存在浏览器中，下次我们再访问这个需要权限的接口，这时候会自动把 cookie 带上。服务器端就可以使用 cookie 中的信息 sessionid，查看服务器中是否存在这个 session 的数据，如果存在则返回对应的信息，否则返回 401 Not authorized。</p>
+<p>基于 cookie 的身份验证是有状态的，意味着这个验证记录或者会话必须同时保存在服务器端和客户端，服务器要跟踪记录 session 并且存至内存或者数据库，同时前端在 cookie 也要保存这个 sessionid 作为 session 唯一的标识符。这种模式的问题在于扩展性不好。假如只有一台服务器当然没有问题，假如是一个服务器集群，这就要求 session 的数据共享，我们需要每台服务器都读取到这个 session，一种解决方案就是 session 的数据持久化，把数据写到持久层中去，各种服务收到请求以后都向持久层发送数据。这种方案优点是架构清晰，缺点是工程量比较大，另外，持久层如果挂了，那么就单点失败。</p>
+        
+          <a class="article-more-a" href="/2021/01/27/gwt-token/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color4">GWT</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/01/27/gwt-token/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-nginx" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -154,7 +231,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/01/22/nginx/">nginx新手篇</a>
+      <a class="article-title" href="/2021/01/22/nginx/">nginx入门</a>
     </h1>
   
 
@@ -349,7 +426,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color4">vu3</a>
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color5">vue3</a>
         		</li>
       		
 		</ul>
@@ -435,7 +512,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color5">Vue3</a>
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color5">vue3</a>
         		</li>
       		
 		</ul>
@@ -896,82 +973,6 @@
 
 
   
-    <article id="post-ie-bug" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/09/ie-bug/">ie浏览器踩坑系列</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/09/ie-bug/" class="archive-article-date">
-  	<time datetime="2020-06-09T11:08:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h6 id="持续更新…"><a href="#持续更新…" class="headerlink" title="持续更新…"></a>持续更新…</h6><p>1.使用 antv ，当有两种渲染方式：canvas 和 svg，最好选择 canvas 方式，因为 svg 在 IE 浏览器下有很多 bug。</p>
-        
-          <a class="article-more-a" href="/2020/06/09/ie-bug/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">ie</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/09/ie-bug/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" target="_blank" rel="noopener" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1078,6 +1079,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">GWT</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color3">随笔</a>
               </li>
              
@@ -1146,15 +1151,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color4">vu3</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">vue3</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color5">Vue3</a>
               </li>
              
               <li class="article-tag-list-item">
