@@ -1,6 +1,6 @@
 ---
 toc: true
-title: nginx新手篇
+title: nginx入门
 tags:
   - nginx
 description: nginx入门
