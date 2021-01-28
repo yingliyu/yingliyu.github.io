@@ -8,11 +8,13 @@
   <link rel="dns-prefetch" href="https://yingliyu.github.io">
   <title>Lillian‘s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="hi~">
+  <meta name="description" content="梦见新大陆">
+<meta name="keywords" content="hi~">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Lillian‘s Blog">
 <meta property="og:url" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;index.html">
 <meta property="og:site_name" content="Lillian‘s Blog">
+<meta property="og:description" content="梦见新大陆">
 <meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
   
@@ -43,13 +45,13 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/assets/imgs/dog1.jpeg" class="js-avatar">
+			<img src="/assets/imgs/header.jpg" class="js-avatar">
 		</a>
 		<hgroup>
-		  <h1 class="header-author"><a href="/">栗栗安</a></h1>
+		  <h1 class="header-author"><a href="/">Lillian</a></h1>
 		</hgroup>
 		
-		<p class="header-subtitle">Lillian</p>
+		<p class="header-subtitle">梦鹿</p>
 		
 
 		<nav class="header-menu">
@@ -98,13 +100,13 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/assets/imgs/dog1.jpeg" class="js-avatar">
+				<img src="/assets/imgs/header.jpg" class="js-avatar">
 			</div>
 			<hgroup>
-			  <h1 class="header-author js-header-author">栗栗安</h1>
+			  <h1 class="header-author js-header-author">Lillian</h1>
 			</hgroup>
 			
-			<p class="header-subtitle"><i class="icon icon-quo-left"></i>Lillian<i class="icon icon-quo-right"></i></p>
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>梦鹿<i class="icon icon-quo-right"></i></p>
 			
 			
 			
@@ -154,7 +156,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/01/27/gwt-token/">WEB应用中的权限认证——GWT</a>
+      <a class="article-title" href="/2021/01/27/gwt-token/">WEB应用中的权限认证</a>
     </h1>
   
 
@@ -168,7 +170,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="1-传统方案——基于-cookie-session-的解决方案"><a href="#1-传统方案——基于-cookie-session-的解决方案" class="headerlink" title="1.传统方案——基于 cookie/session 的解决方案"></a>1.传统方案——基于 cookie/session 的解决方案</h3><p>首先，浏览器端向服务端发送 login 请求，把用户名和密码都发送过去，服务器验证用户名密码正确，然后就会创建对应的 session 数据并保存在内存或者数据库中。然后，服务器返回一个 HTTP 200 OK 的 response，这个 response 会有个 header 叫 set-Cookie：sessionid=xxx，浏览器拿到这个 response 以后，因为有 set-Cookie 这个 header， 带上唯一的 id sessionid（set-Cookie：sessionid=xxx），它就会把 cookie 保存在浏览器中，下次我们再访问这个需要权限的接口，这时候会自动把 cookie 带上。服务器端就可以使用 cookie 中的信息 sessionid，查看服务器中是否存在这个 session 的数据，如果存在则返回对应的信息，否则返回 401 Not authorized。</p>
-<p>基于 cookie 的身份验证是有状态的，意味着这个验证记录或者会话必须同时保存在服务器端和客户端，服务器要跟踪记录 session 并且存至内存或者数据库，同时前端在 cookie 也要保存这个 sessionid 作为 session 唯一的标识符。这种模式的问题在于扩展性不好。假如只有一台服务器当然没有问题，假如是一个服务器集群，这就要求 session 的数据共享，我们需要每台服务器都读取到这个 session，一种解决方案就是 session 的数据持久化，把数据写到持久层中去，各种服务收到请求以后都向持久层发送数据。这种方案优点是架构清晰，缺点是工程量比较大，另外，持久层如果挂了，那么就单点失败。</p>
+<p>基于 cookie 的身份验证是有状态的，意味着这个验证记录或者会话必须同时保存在服务器端和客户端，服务器要跟踪记录 session 并且存至内存或者数据库，同时前端在 cookie 也要保存这个 sessionid 作为 session 唯一的标识符。这种模式的问题在于扩展性不好。假如只有一台服务器当然没有问题，假如是一个服务器集群，这就要求 session 的数据共享，我们需要每台服务器都读取到这个 session，一种解决方案就是 session 的数据持久化，把数据写到持久层中去，各种服务收到请求以后都向持久层发送数据。这种方案优点是架构清晰，缺点是工程量比较大，另外，持久层如果挂了，那么就单点失败。<br><img width="600px" style="display:block;margin:20px auto;" src="/2021/01/27/gwt-token/1.jpeg"></p>
         
           <a class="article-more-a" href="/2021/01/27/gwt-token/#more">more >></a>
         
@@ -677,7 +679,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color1">React</a>
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color1">react</a>
         		</li>
       		
 		</ul>
@@ -987,7 +989,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2021 栗栗安
+    		&copy; 2021 Lillian
 			</div>
 			<p>hello </p>
 			<div class="footer-right">
@@ -1115,10 +1117,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">React</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag color1">react</a>
               </li>
              
@@ -1210,7 +1208,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
   	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme" style="padding: 20px;">坐标：上海 &lt;br&gt;&lt;br&gt; Coding 使我快乐！&lt;br&gt;&lt;br&gt;清醒时做事，糊涂时读书，大怒时睡觉，独处时思考。</div>
+  	  		<div class="aboutme-wrap" id="js-aboutme" style="padding: 20px;">人生要学会沉淀，&lt;br&gt;沉淀经验、沉淀心情、沉淀自己。&lt;br&gt;&lt;br&gt;最快的脚步不是跨越，而是继续，&lt;br&gt;最慢的步伐不是小步，而是徘徊。&lt;br&gt; &lt;br&gt;慢慢来，不要急，不要停。&lt;br&gt;&lt;br&gt;怕什么真理无穷，进一步有进一步的欢喜。 :)</div>
   	  	
     	</section>
     
