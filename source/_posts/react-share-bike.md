@@ -2,8 +2,8 @@
 toc: true
 title: React+AntD+Redux 的项目实战总结
 tags:
-  - React
-description: React
+  - react
+description: react
 date: 2020-07-18 15:46:43
 ---
 
