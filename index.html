@@ -326,7 +326,21 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="生命周期钩子函数"><a href="#生命周期钩子函数" class="headerlink" title="生命周期钩子函数"></a>生命周期钩子函数</h3><p>vue3 更新了生命周期钩子函数。<br>可以直接通过 import 对应的函数（例如：onMounted）来注册生命周期钩子函数。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; onMounted, onUpdated, onUnmounted &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">const</span> MyComponent = &#123;</span><br><span class="line">  setup() &#123;</span><br><span class="line">    onMounted(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'mounted!'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    onUpdated(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'updated!'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">    onUnmounted(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'unmounted!'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Options API -&gt; Hook inside <code>setup</code></p>
+<ol>
+<li><del>beforeCreate</del> -&gt; use setup()</li>
+<li><del>created</del> -&gt; use setup()</li>
+<li>beforeMount -&gt; onBeforeMount</li>
+<li>mounted -&gt; onMounted</li>
+<li>beforeUpdate -&gt; onBeforeUpdate</li>
+<li>updated -&gt; onUpdated</li>
+<li>beforeUnmount -&gt; onBeforeUnmount</li>
+<li>unmounted -&gt; onUnmounted</li>
+<li>errorCaptured -&gt; onErrorCaptured</li>
+<li>renderTracked -&gt; onRenderTracked（调试用）</li>
+<li>renderTriggered -&gt; onRenderTriggered（调试用）</li>
+</ol>
+<p>因为 setup 是在 beforeCreated 和 created 几乎是同时进行的，所以可以将在这两个生命周期里的代码写在 setup 里面。</p>
         
           <a class="article-more-a" href="/2021/01/13/vue3-lifecycle/#more">more >></a>
         
