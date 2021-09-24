@@ -4,7 +4,7 @@
 
 # 新建一篇文章
 
-hexo new xxx.md
+hexo new [layout] title
 
 # 启动
 
