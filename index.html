@@ -169,7 +169,43 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h5 id="title"><a href="#title" class="headerlink" title="title"></a>title</h5><blockquote class="pullquote mindmap mindmap-md"><ul>
+<li><a href="https://hunterx.xyz/hexo-simple-mindmap-plugin-intro.html" target="_blank" rel="noopener">Hexo 的思维导图插件</a><ul>
+<li>前言</li>
+<li>使用方法<ul>
+<li>一</li>
+<li>二</li>
+<li>三</li>
+</ul>
+</li>
+<li>太长不看</li>
+<li>参考资料</li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<pre><code>{% chart 80% 300 %}
+    {
+    type: 'line',
+    data: {
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    datasets: [{
+    label: 'My First dataset',
+    backgroundColor: 'rgb(255, 99, 132)',
+    borderColor: 'rgb(255, 99, 132)',
+    data: [0, 10, 5, 2, 20, 30, 45]
+    }]
+    },
+    options: {
+    responsive: true,
+    title: {
+    display: true,
+    text: 'Chart.js Line Chart'
+    }
+    }
+    };
+    {% endchart %}
+{% pdf http://7xov2f.com1.z0.glb.clouddn.com/bash_freshman.pdf %}</code></pre><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.css">
       
 
       
@@ -256,7 +292,7 @@
 <p>注意：后端需要将响应头中的 Access-Control-Expose-Headers，设置 Content-Disposition，否则前端取不到 Content-Disposition 的值。</p>
 </blockquote>
 <p>本文不到之处欢迎指正，感谢~</p>
-
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.css">
       
 
       
