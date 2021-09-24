@@ -1,5 +1,5 @@
 ---
 title: friends
-type: "friends"
-layout: "friends"
+type: friends
+layout: 'friends'
 ---

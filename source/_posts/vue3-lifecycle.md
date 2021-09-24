@@ -2,9 +2,14 @@
 toc: true
 title: Vue3的新特性(二)：生命周期
 tags:
-  - vue3
+  - VUE
+  - VUE3
 description: vue3
 date: 2021-01-13 14:38:44
+categories:
+  - VUE
+  - VUE3
+  - 新特性
 ---
 
 ### 生命周期钩子函数

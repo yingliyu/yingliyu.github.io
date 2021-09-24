@@ -5,6 +5,7 @@ tags:
   - i18n
 description: Vue+vue-i18n+Element UI实现多语言切换
 date: 2019-12-26 18:03:51
+categories: ['VUE']
 ---
 
 ###### 前言

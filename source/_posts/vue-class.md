@@ -5,6 +5,7 @@ tags:
   - vue
 description: vue动态绑定class与style
 date: 2020-06-09 10:19:29
+categories: ['VUE']
 ---
 
 ### 前言

@@ -6,6 +6,7 @@ tags:
   - -webkit-line-clamp
 description: css文字超出显示...
 date: 2020-06-09 11:11:17
+categories: ['CSS']
 ---
 
 ##### 一.单行文本超出省略

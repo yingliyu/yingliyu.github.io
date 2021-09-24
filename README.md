@@ -2,6 +2,18 @@
 
 :tada: This is a private tech blog for sharing！
 
+# 新建 tags
+
+hexo new page tags
+
+# 新建 categories
+
+hexo new page categories
+
+# 新建 photos
+
+hexo new page photos
+
 # 新建一篇文章
 
 hexo new [layout] title

@@ -5,6 +5,9 @@ tags:
   - GWT
 description: token
 date: 2021-01-27 17:25:17
+categories:
+  - 单点登录
+  - GWT
 ---
 
 ### 1.传统方案——基于 cookie/session 的解决方案

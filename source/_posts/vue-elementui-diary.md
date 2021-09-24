@@ -1,8 +1,13 @@
 ---
-layout: vue2
+layout: vue
 title: vue-elementui-diary
 date: 2021-09-24 09:44:30
 tags:
+  - VUE
+  - VUE2
+categories:
+  - VUE
+  - VUE2
 ---
 
 ##### title

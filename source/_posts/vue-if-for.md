@@ -5,6 +5,7 @@ tags:
   - v-for与v-if
 description: vue中v-for和v-if不能同时使用解决方案
 date: 2020-06-16 09:44:21
+categories: ['VUE']
 ---
 
 ### 前言
