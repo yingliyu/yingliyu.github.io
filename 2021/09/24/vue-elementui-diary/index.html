@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="https://yingliyu.github.io">
   <title>vue-elementui-diary | Lillian‘s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="title  {% chart 80% 300 %}         {         type: &amp;apos;line&amp;apos;,         data: {         labels: [&amp;apos;January&amp;apos;, &amp;apos;February&amp;apos;, &amp;apos;March&amp;apos;, &amp;apos;April&amp;apos;, &amp;apos;May&amp;apos;, &amp;apos;June&amp;apos;, &amp;apos;July&amp;apos;],         datasets: [{         label: &amp;apos;My Fir">
+  <meta name="description" content="title               var ctx = document.getElementById(&amp;apos;chart108&amp;apos;).getContext(&amp;apos;2d&amp;apos;);     var options = { type: &amp;apos;line&amp;apos;, data: { labels: [&amp;apos;January&amp;apos;, &amp;apos;February&amp;apos;, &amp;apos;March&amp;apos;, &amp;apos;April&amp;apos;, &amp;apos;May&amp;apos;, &amp;apos;June&amp;apos;, &amp;apos;July&amp;apos;],">
 <meta name="keywords" content="hi~">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vue-elementui-diary">
 <meta property="og:url" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2021&#x2F;09&#x2F;24&#x2F;vue-elementui-diary&#x2F;index.html">
 <meta property="og:site_name" content="Lillian‘s Blog">
-<meta property="og:description" content="title  {% chart 80% 300 %}         {         type: &amp;apos;line&amp;apos;,         data: {         labels: [&amp;apos;January&amp;apos;, &amp;apos;February&amp;apos;, &amp;apos;March&amp;apos;, &amp;apos;April&amp;apos;, &amp;apos;May&amp;apos;, &amp;apos;June&amp;apos;, &amp;apos;July&amp;apos;],         datasets: [{         label: &amp;apos;My Fir">
+<meta property="og:description" content="title               var ctx = document.getElementById(&amp;apos;chart108&amp;apos;).getContext(&amp;apos;2d&amp;apos;);     var options = { type: &amp;apos;line&amp;apos;, data: { labels: [&amp;apos;January&amp;apos;, &amp;apos;February&amp;apos;, &amp;apos;March&amp;apos;, &amp;apos;April&amp;apos;, &amp;apos;May&amp;apos;, &amp;apos;June&amp;apos;, &amp;apos;July&amp;apos;],">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2021-09-24T03:11:26.383Z">
+<meta property="og:updated_time" content="2021-09-24T03:15:29.735Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Lillian‘s Blog" type="application/atom+xml">
@@ -185,27 +185,34 @@
 </ul>
 </blockquote> -->
 
-<pre><code>{% chart 80% 300 %}
-        {
-        type: 'line',
-        data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-        datasets: [{
-        label: 'My First dataset',
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgb(255, 99, 132)',
-        data: [0, 10, 5, 2, 20, 30, 45]
-        }]
-        },
-        options: {
-        responsive: true,
-        title: {
-        display: true,
-        text: 'Chart.js Line Chart'
-        }
-        }
-        };
-        {% endchart %}</code></pre><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.css">
+<div style="width: 90%;margin: 0 auto">
+    <canvas id="chart108" style="height: 300px"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script type="text/javascript">
+    var ctx = document.getElementById('chart108').getContext('2d');
+    var options = {
+type: 'line',
+data: {
+labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+datasets: [{
+label: 'My First dataset',
+backgroundColor: 'rgb(255, 99, 132)',
+borderColor: 'rgb(255, 99, 132)',
+data: [0, 10, 5, 2, 20, 30, 45]
+}]
+},
+options: {
+responsive: true,
+title: {
+display: true,
+text: 'Chart.js Line Chart'
+}
+}
+};
+    new Chart(ctx, options);
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.css">
       
 
       

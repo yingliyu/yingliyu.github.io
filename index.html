@@ -186,27 +186,34 @@
 </ul>
 </blockquote> -->
 
-<pre><code>{% chart 80% 300 %}
-        {
-        type: 'line',
-        data: {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-        datasets: [{
-        label: 'My First dataset',
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgb(255, 99, 132)',
-        data: [0, 10, 5, 2, 20, 30, 45]
-        }]
-        },
-        options: {
-        responsive: true,
-        title: {
-        display: true,
-        text: 'Chart.js Line Chart'
-        }
-        }
-        };
-        {% endchart %}</code></pre><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.css">
+<div style="width: 90%;margin: 0 auto">
+    <canvas id="chart108" style="height: 300px"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+<script type="text/javascript">
+    var ctx = document.getElementById('chart108').getContext('2d');
+    var options = {
+type: 'line',
+data: {
+labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+datasets: [{
+label: 'My First dataset',
+backgroundColor: 'rgb(255, 99, 132)',
+borderColor: 'rgb(255, 99, 132)',
+data: [0, 10, 5, 2, 20, 30, 45]
+}]
+},
+options: {
+responsive: true,
+title: {
+display: true,
+text: 'Chart.js Line Chart'
+}
+}
+};
+    new Chart(ctx, options);
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.css">
       
 
       
