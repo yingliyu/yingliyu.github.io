@@ -21,8 +21,10 @@
     "hexo-deployer-git": "^2.1.0",
     "hexo-generator-archive": "^1.0.0",
     "hexo-generator-category": "^1.0.0",
+    "hexo-generator-feed": "^3.0.0",
     "hexo-generator-index": "^1.0.0",
     "hexo-generator-json-content": "^4.1.6",
+    "hexo-generator-searchdb": "^1.4.0",
     "hexo-generator-tag": "^1.0.0",
     "hexo-helper-live2d": "^3.1.1",
     "hexo-pdf": "^1.1.1",
@@ -32,6 +34,7 @@
     "hexo-server": "^1.0.0",
     "hexo-simple-mindmap": "^0.6.0",
     "hexo-tag-chart": "^1.0.8",
+    "hexo-theme-ayer": "^1.9.5",
     "live2d-widget-model-wanko": "^1.0.5"
   },
   "devDependencies": {
