@@ -6,20 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yingliyu.github.io">
-  <title>Lillian‘s Blog</title>
+  <title>WEB应用中的权限认证 | Lillian‘s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="lemon1499 GitHub个人主页 | 404 Not Found页        html,     body {       background: #f0f2f5;     }  body, p, h5, #countdown {   text-align: center; }  a {   color: #999;">
-<meta name="keywords" content="hi~">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lillian‘s Blog">
-<meta property="og:url" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;404&#x2F;index.html">
+  <meta name="description" content="token">
+<meta name="keywords" content="GWT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WEB应用中的权限认证">
+<meta property="og:url" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2021&#x2F;01&#x2F;27&#x2F;gwt-token&#x2F;index.html">
 <meta property="og:site_name" content="Lillian‘s Blog">
-<meta property="og:description" content="lemon1499 GitHub个人主页 | 404 Not Found页        html,     body {       background: #f0f2f5;     }  body, p, h5, #countdown {   text-align: center; }  a {   color: #999;">
+<meta property="og:description" content="token">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;404&#x2F;index&#x2F;imgs&#x2F;404.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2021&#x2F;01&#x2F;27&#x2F;gwt-token&#x2F;1.jpeg">
+<meta property="og:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2021&#x2F;01&#x2F;27&#x2F;gwt-token&#x2F;2.jpeg">
+<meta property="og:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2021&#x2F;01&#x2F;27&#x2F;gwt-token&#x2F;3.jpeg">
+<meta property="og:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2021&#x2F;01&#x2F;27&#x2F;gwt-token&#x2F;4.png">
 <meta property="og:updated_time" content="2021-09-24T02:07:44.786Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;404&#x2F;index&#x2F;imgs&#x2F;404.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2021&#x2F;01&#x2F;27&#x2F;gwt-token&#x2F;1.jpeg">
   
     <link rel="alternative" href="/atom.xml" title="Lillian‘s Blog" type="application/atom+xml">
   
@@ -150,82 +153,48 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-gwt-token" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      WEB应用中的权限认证
+    </h1>
+  
+
+        
+        <a href="/2021/01/27/gwt-token/" class="archive-article-date">
+  	<time datetime="2021-01-27T17:25:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-27</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!DOCTYPE html>
-<html>
+        <h3 id="1-传统方案——基于-cookie-session-的解决方案"><a href="#1-传统方案——基于-cookie-session-的解决方案" class="headerlink" title="1.传统方案——基于 cookie/session 的解决方案"></a>1.传统方案——基于 cookie/session 的解决方案</h3><p>首先，浏览器端向服务端发送 login 请求，把用户名和密码都发送过去，服务器验证用户名密码正确，然后就会创建对应的 session 数据并保存在内存或者数据库中。然后，服务器返回一个 HTTP 200 OK 的 response，这个 response 会有个 header 叫 set-Cookie：sessionid=xxx，浏览器拿到这个 response 以后，因为有 set-Cookie 这个 header， 带上唯一的 id sessionid（set-Cookie：sessionid=xxx），它就会把 cookie 保存在浏览器中，下次我们再访问这个需要权限的接口，这时候会自动把 cookie 带上。服务器端就可以使用 cookie 中的信息 sessionid，查看服务器中是否存在这个 session 的数据，如果存在则返回对应的信息，否则返回 401 Not authorized。</p>
+<p>基于 cookie 的身份验证是有状态的，意味着这个验证记录或者会话必须同时保存在服务器端和客户端，服务器要跟踪记录 session 并且存至内存或者数据库，同时前端在 cookie 也要保存这个 sessionid 作为 session 唯一的标识符。这种模式的问题在于扩展性不好。假如只有一台服务器当然没有问题，假如是一个服务器集群，这就要求 session 的数据共享，我们需要每台服务器都读取到这个 session，一种解决方案就是 session 的数据持久化，把数据写到持久层中去，各种服务收到请求以后都向持久层发送数据。这种方案优点是架构清晰，缺点是工程量比较大，另外，持久层如果挂了，那么就单点失败。<br><img width="600px" style="display:block;margin:20px auto;" src="/2021/01/27/gwt-token/1.jpeg"></p>
+<a id="more"></a>
 
-<head>
-  <!-- 设置内容的编码格式 -->
-  <meta charset="utf-8">
-  <!-- 设置查询关键字 -->
-  <meta name="keywords" content="404页">
-  <!-- 设置网页的描述信息 -->
-  <meta name="distribution" content="Coco5666.github.io/about">
-  <!-- 设置作者 -->
-  <meta name="author" content="Coco56">
-  <link rel="icon" href="../title.ico" type="image/icon">
-  <title>lemon1499 GitHub个人主页 | 404 Not Found页</title>
-  <style>
-    html,
-    body {
-      background: #f0f2f5;
-    }
+<!-- ![1](1.jpeg) -->
 
-<pre><code>body,
-p,
-h5,
-#countdown {
-  text-align: center;
-}
+<h3 id="2-基于-Token-的解决方案：GWT"><a href="#2-基于-Token-的解决方案：GWT" class="headerlink" title="2.基于 Token 的解决方案：GWT"></a>2.基于 Token 的解决方案：GWT</h3><p>它不同于在服务器保存信息的特点，而是把所有的信息都保存在客户端，之后每次请求都将生成的信息发回到服务器，JWT（JSON WEB TOKEN）就是这种方案的一个代表。</p>
+<p>流程：<br>浏览器向服务器发送登陆请求，把用户名和密码发送过去，服务器验证用户名和密码正确，服务端会使用 JWT 算法生成 token 签名，然后 response 返回 token 到客户端，然后浏览器会将 token 储存到客户端，常见方式 local Storage 或者 session Storage 中，之后每次请求将 token 在 HTTP 请求头中发送给服务器（也可以通过放在 cookie 中自动发送的方式，但是这样不能跨域），服务器拿到信息之后 JWT 反向验证对应的 token 是否正确，如果验证通过就返回 200 OK 并带上相应的信息，如果错误则返回 401 Not authorized。<br>如果用户退出登陆，token 在客户端销毁，和服务器无关。基于 token 的身份验证是没有状态的，服务器不需要记录哪些用户已经登陆或者哪些 JWT 已经处理，每个发送到服务器的请求都会带一个 token，服务器通过 token 检查确认请求的有效性。</p>
+<p>token 是通过特定的加密算法将用户登陆后的一些信息储存在一个加密后的字符串中，服务器凭 token 认定用户的身份，即服务器是无状态的因此非常容易实现拓展。<br><img width="600px" style="display:block;margin:20px auto;" src="/2021/01/27/gwt-token/2.jpeg"></p>
+<!-- ![1](2.jpeg) -->
 
-a {
-  color: #999;
-  text-decoration: none;
-}
+<p>登陆之后，刷新浏览器登录状态丢失，持久化方案：</p>
+<!-- ![3](3.jpeg) -->
+<img width="600px" style="display:block;margin:20px auto;" src="/2021/01/27/gwt-token/3.jpeg">
 
-.title404 {
-  font-size: 40px;
-  font-weight: 700;
-}
+<blockquote>
+<p>权限逻辑流程：</p>
+</blockquote>
+ <img width="600px" style="display:block;margin:20px auto;" src="/2021/01/27/gwt-token/4.png">
 
-.blue-text {
-  color: #3296fa;
-}</code></pre><p>  </style><p></p>
-</head>
+<!-- ![4](4.jpeg) -->
 
-<body>
-  <br>
-  <img src="/404/index/imgs/404.png">
-  <p class="title404 blue-text">404</p>
-  <p>抱歉，您访问的页面不存在~</p>
-  <h4>
-    <div id="countdown">
-      <span class="blue-text">5s</span>
-      后将帮您自动跳转到<a class="blue-text" href="https://lemon1499.github.io/blog" target="_blank">博客首页</a></div>
-  </h4>
-  <script language="javascript" type="text/javascript">
-    var time = 5
-    var divLabel = document.getElementById("countdown")
-    var label = "后将帮您自动跳转到<a class='blue-text' href='https://lemon1499.github.io/blog' target='_blank'>博客首页</a>"
-    divLabel.innerHTML = time.toString() + label
-
-<pre><code>function updateTime() {
-  time = time - 1
-  if (time &gt;= 0) {
-    divLabel.innerHTML = &quot;&lt;span class=&apos;blue-text&apos;&gt;&quot; + time.toString() + &quot;s&lt;/span&gt;&quot; + label
-  } else {
-    divLabel.innerHTML = &quot;正在跳转到关于&amp;amp;联系我，请稍后。。。&quot;
-  }
-}
-setInterval(&quot;updateTime()&quot;, 1000);
-setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos;&quot;, time * 1000);</code></pre><p>  </script><p></p>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":160,"height":300},"mobile":{"show":false,"scale":0.5}});</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":160,"height":300},"mobile":{"show":false,"scale":0.5}});</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":160,"height":300},"mobile":{"show":false,"scale":0.5}});</script></body>
-
-</html>
       
 
       
@@ -264,6 +233,17 @@ setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color4">GWT</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -314,7 +294,7 @@ setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos
     <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://yingliyu.github.io/404/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://yingliyu.github.io/2021/01/27/gwt-token/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -326,6 +306,25 @@ setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos
 </article>
 
   
+<nav id="article-nav">
+  
+    <a href="/2021/09/23/file-down/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          文件下载的三种方式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/01/22/nginx/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">nginx入门</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -339,6 +338,19 @@ setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-传统方案——基于-cookie-session-的解决方案"><span class="toc-number">1.</span> <span class="toc-text">1.传统方案——基于 cookie/session 的解决方案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-基于-Token-的解决方案：GWT"><span class="toc-number">2.</span> <span class="toc-text">2.基于 Token 的解决方案：GWT</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>
@@ -403,7 +415,7 @@ setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

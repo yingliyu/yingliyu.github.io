@@ -6,20 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yingliyu.github.io">
-  <title>Lillian‘s Blog</title>
+  <title>React-ts-d3 项目实践 | Lillian‘s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="lemon1499 GitHub个人主页 | 404 Not Found页        html,     body {       background: #f0f2f5;     }  body, p, h5, #countdown {   text-align: center; }  a {   color: #999;">
-<meta name="keywords" content="hi~">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lillian‘s Blog">
-<meta property="og:url" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;404&#x2F;index.html">
+  <meta name="description" content="react-ts-d3">
+<meta name="keywords" content="react,typescript,d3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React-ts-d3 项目实践">
+<meta property="og:url" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2020&#x2F;11&#x2F;18&#x2F;react-ts-d3&#x2F;index.html">
 <meta property="og:site_name" content="Lillian‘s Blog">
-<meta property="og:description" content="lemon1499 GitHub个人主页 | 404 Not Found页        html,     body {       background: #f0f2f5;     }  body, p, h5, #countdown {   text-align: center; }  a {   color: #999;">
+<meta property="og:description" content="react-ts-d3">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;404&#x2F;index&#x2F;imgs&#x2F;404.png">
-<meta property="og:updated_time" content="2021-09-24T02:07:44.786Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2020&#x2F;11&#x2F;18&#x2F;react-ts-d3&#x2F;pic1.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2020&#x2F;11&#x2F;18&#x2F;react-ts-d3&#x2F;pic2.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2020&#x2F;11&#x2F;18&#x2F;react-ts-d3&#x2F;pic3.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2020&#x2F;11&#x2F;18&#x2F;react-ts-d3&#x2F;pic4.png">
+<meta property="og:updated_time" content="2021-09-24T02:07:44.794Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;404&#x2F;index&#x2F;imgs&#x2F;404.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2020&#x2F;11&#x2F;18&#x2F;react-ts-d3&#x2F;pic1.png">
   
     <link rel="alternative" href="/atom.xml" title="Lillian‘s Blog" type="application/atom+xml">
   
@@ -150,82 +153,49 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-react-ts-d3" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      React-ts-d3 项目实践
+    </h1>
+  
+
+        
+        <a href="/2020/11/18/react-ts-d3/" class="archive-article-date">
+  	<time datetime="2020-11-18T14:33:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-18</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!DOCTYPE html>
-<html>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>自从涉足了知识图谱项目便一发不可收拾，本次项目中也是涉及到一些可视化和知识图谱的元素，对我来说虽不是新的技术领域但是这次改用了 <code>ts</code>，所以还是踩了不少的坑呢，主要集中在 <code>d3</code> 和 <code>ts</code> 结合部分。</p>
+<p>其次在项目评审期间，前端主要问题还有自适应方面的问题，最终敲定使用断点媒体查询的方式实现。</p>
+<p>近期 <code>bug</code> 修复进入尾声，时隔数日还是复盘一下，毕竟我的脑瓜子还是一如既往的健忘，刚刚被问及一个项目是不是我做的，我记得是我做的，但是具体内容什么的我已经无力想起了，不过看到我还是认识的。言归正传，下面就来回顾一下踩坑流水帐。</p>
+<h3 id="1-Echarts-Graph"><a href="#1-Echarts-Graph" class="headerlink" title="1. Echarts Graph"></a>1. Echarts Graph</h3><p>如果使用过 <code>echart</code> 系列图表，那么 <code>graph</code> 关系图还是相对比较容易上手的，毕竟是高度可定制化套路一样同类型属性名也一样。</p>
+<a id="more"></a>
 
-<head>
-  <!-- 设置内容的编码格式 -->
-  <meta charset="utf-8">
-  <!-- 设置查询关键字 -->
-  <meta name="keywords" content="404页">
-  <!-- 设置网页的描述信息 -->
-  <meta name="distribution" content="Coco5666.github.io/about">
-  <!-- 设置作者 -->
-  <meta name="author" content="Coco56">
-  <link rel="icon" href="../title.ico" type="image/icon">
-  <title>lemon1499 GitHub个人主页 | 404 Not Found页</title>
-  <style>
-    html,
-    body {
-      background: #f0f2f5;
-    }
+<p>但是使用过程中我还是踩到了坑：由于数据返回节点的 <code>name</code> 字符比较长，为了美观前端显示的时候要做个性化样式设计包括换行超出字符省略等等，我天真又粗暴的直接在 <code>name</code> 上动刀了，虽然我知道 <code>name</code> 不能有重复，但我还是撞了南墙，因为部分 <code>name</code> 做个性化处理之后显示的剩余那部分字符相同，所以触碰了 <code>name</code> 不能重复的红线。<br>解决：<code>name</code> 拿来原封不动，在 <code>label</code> 上做 <code>formatter</code> 处理。</p>
+<blockquote>
+<p>注意：每一个节点的 <code>name</code> 要唯一，如果有重复的 <code>name</code> 就会报如下错，类似于遍历时的 <code>key</code> 值是唯一的。</p>
+</blockquote>
+<p><img src="/2020/11/18/react-ts-d3/pic1.png" alt="image1"></p>
+<h3 id="2-词云-echarts-wordcloud"><a href="#2-词云-echarts-wordcloud" class="headerlink" title="2. 词云 echarts-wordcloud"></a>2. 词云 echarts-wordcloud</h3><p>这是一个基于 <code>echarts</code> 封装的第三方库，使用中没有踩到值得一提的坑。<br>部分代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">interface IWordCloud &#123;</span><br><span class="line">    list: ICommonProps[];</span><br><span class="line">    width: number;</span><br><span class="line">    height: number;</span><br><span class="line">    fontSizeRange: number[];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> WordCloud: React.FC&lt;IWordCloud&gt; = <span class="function">(<span class="params">props: IWordCloud</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; list, width, height, fontSizeRange &#125; = props;</span><br><span class="line"></span><br><span class="line">    useEffect(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        drawWordCloud();</span><br><span class="line">    &#125;, [list]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> drawWordCloud = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> wordElement = <span class="built_in">document</span>.getElementById(<span class="string">'wordCloud'</span>);</span><br><span class="line">        <span class="keyword">let</span> chart = echarts.init(wordElement <span class="keyword">as</span> HTMLDivElement);</span><br><span class="line">        <span class="keyword">let</span> data = [];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> index <span class="keyword">in</span> list) &#123;</span><br><span class="line">            data.push(&#123;</span><br><span class="line">                name: list[index].name,</span><br><span class="line">                value: <span class="built_in">Math</span>.sqrt(list[index].value)</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> maskImage = <span class="keyword">new</span> Image();</span><br><span class="line">        maskImage.src = bg;</span><br><span class="line">        <span class="keyword">let</span> option = &#123;</span><br><span class="line">            series: [</span><br><span class="line">                &#123;</span><br><span class="line">                    type: <span class="string">'wordCloud'</span>,</span><br><span class="line">                    left: <span class="string">'center'</span>,</span><br><span class="line">                    top: <span class="string">'center'</span>,</span><br><span class="line">                    width: <span class="string">'100%'</span>,</span><br><span class="line">                    height: <span class="string">'100%'</span>,</span><br><span class="line">                    right: <span class="literal">null</span>,</span><br><span class="line">                    bottom: <span class="literal">null</span>,</span><br><span class="line">                    sizeRange: fontSizeRange, <span class="comment">// 字号</span></span><br><span class="line">                    rotationRange: [<span class="number">-90</span>, <span class="number">90</span>],</span><br><span class="line">                    rotationStep: <span class="number">90</span>,</span><br><span class="line">                    gridSize: fontSizeRange[<span class="number">0</span>] - <span class="number">2</span>,</span><br><span class="line">                    shape: <span class="string">'circle'</span>, <span class="comment">// diamond/triangle/circle/pentagon/star</span></span><br><span class="line">                    <span class="comment">// maskImage: maskImage,</span></span><br><span class="line">                    textStyle: &#123;</span><br><span class="line">                        normal: &#123;</span><br><span class="line">                            <span class="comment">// fontFamily: '微软雅黑',</span></span><br><span class="line">                            <span class="comment">// fontWeight: 'normal',</span></span><br><span class="line">                            <span class="comment">// Color can be a callback function or a color string</span></span><br><span class="line">                            color: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                                <span class="comment">// Random color</span></span><br><span class="line">                                <span class="keyword">return</span> WORD_CLOUD_COLORS[<span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">3</span>)];</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;,</span><br><span class="line">                        emphasis: &#123;</span><br><span class="line">                            shadowBlur: <span class="number">2</span>,</span><br><span class="line">                            shadowColor: <span class="string">'#1890ff'</span></span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;,</span><br><span class="line">                    data: data</span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;;</span><br><span class="line">        chart.setOption(option);</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"wordCloud"</span> <span class="attr">style</span>=<span class="string">&#123;&#123;</span> <span class="attr">height:</span> <span class="attr">height</span>, <span class="attr">width:</span> <span class="attr">width</span> &#125;&#125; /&gt;</span>;</span></span><br><span class="line"><span class="xml">&#125;;</span></span><br></pre></td></tr></table></figure>
 
-<pre><code>body,
-p,
-h5,
-#countdown {
-  text-align: center;
-}
+<p>效果图如下：<br><img src="/2020/11/18/react-ts-d3/pic2.png" alt="image"></p>
+<h3 id="3-echarts-legend-个性化细节"><a href="#3-echarts-legend-个性化细节" class="headerlink" title="3.echarts legend 个性化细节"></a>3.echarts legend 个性化细节</h3><p>可能对别人来说是小儿科，只是它是我初次发现的比较符合我项目中需求的点。</p>
+<p>1.<code>legend</code> 图例标记的图形除了定制的哪几种形状还可以设置宽高 <code>itemWidth</code>、<code>itemHeight</code>。 2.<code>legend</code> 文字块的宽定制这样可以是 <code>value</code> 左对齐。 3.<code>legend</code> 也有 <code>tooltip</code>。<br>如下图：<br><img src="/2020/11/18/react-ts-d3/pic3.png" alt="image3"></p>
+<h3 id="4-d3-力导向图——-force"><a href="#4-d3-力导向图——-force" class="headerlink" title="4. d3 力导向图—— force"></a>4. d3 力导向图—— force</h3><p>使用 <code>ts</code> 时部分第三方库的定义的各种类型定位起来还是有点烧脑的。<br>我在使用过程中 drag 函数的范型大概折磨了我一周左右最后在庄哥的帮助下终于解决了。<br><img src="/2020/11/18/react-ts-d3/pic4.png" alt="img4"></p>
+<p>部分代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// create a force simulation</span></span><br><span class="line">    <span class="keyword">const</span> initForceSimulation = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">const</span> linkForce = d3</span><br><span class="line">                .forceLink&lt;INode, ILink&gt;(linksData)</span><br><span class="line">                .id(<span class="function">(<span class="params">data: INode</span>) =&gt;</span> data.id)</span><br><span class="line">                .distance(<span class="number">200</span>);</span><br><span class="line">            <span class="keyword">const</span> nodeCollision = d3</span><br><span class="line">                .forceCollide()</span><br><span class="line">                .radius(<span class="number">80</span>)</span><br><span class="line">                .iterations(<span class="number">0.5</span>)</span><br><span class="line">                .strength(<span class="number">0.5</span>);</span><br><span class="line">            <span class="keyword">const</span> nodeCharge = d3.forceManyBody().strength(<span class="number">-300</span>).theta(<span class="number">0.01</span>);</span><br><span class="line">            simulationRef.current = d3</span><br><span class="line">                .forceSimulation&lt;INode, ILink&gt;(nodesData)</span><br><span class="line">                .alpha(<span class="number">0.3</span>) <span class="comment">// 活力，渲染之后再自动动多久到达目标位置</span></span><br><span class="line">                .force(<span class="string">'link'</span>, linkForce) <span class="comment">// 映射id &amp; 线的长度</span></span><br><span class="line">                .force(<span class="string">'x'</span>, d3.forceX())</span><br><span class="line">                .force(<span class="string">'y'</span>, d3.forceY())</span><br><span class="line">                .force(<span class="string">'center'</span>, d3.forceCenter(svgWidth / <span class="number">2</span>, svgHeight / <span class="number">2</span>))</span><br><span class="line">                .force(<span class="string">'collision'</span>, nodeCollision)<span class="comment">// 避免节点相互覆盖</span></span><br><span class="line">                .force(<span class="string">'charge'</span>, nodeCharge);<span class="comment">// 节点间相互排斥的电磁力</span></span><br><span class="line"></span><br><span class="line">            simulationRef.current.nodes(nodesData).on(<span class="string">'tick'</span>, () =&gt; &#123;</span><br><span class="line">                edges</span><br><span class="line">                    .attr(<span class="string">'x1'</span>, (&#123; source &#125;) =&gt; (source <span class="keyword">as</span> INode).x || <span class="number">0</span>)</span><br><span class="line">                    .attr(<span class="string">'y1'</span>, (&#123; source &#125;) =&gt; (source <span class="keyword">as</span> INode).y || <span class="number">0</span>)</span><br><span class="line">                    .attr(<span class="string">'x2'</span>, (&#123; target &#125;) =&gt; (target <span class="keyword">as</span> INode).x || <span class="number">0</span>)</span><br><span class="line">                    .attr(<span class="string">'y2'</span>, (&#123; target &#125;) =&gt; (target <span class="keyword">as</span> INode).y || <span class="number">0</span>);</span><br><span class="line">                nodes.attr(<span class="string">'transform'</span>, (data: any) =&gt; <span class="string">`translate(<span class="subst">$&#123;data.x&#125;</span>, <span class="subst">$&#123;data.y&#125;</span>)`</span>);</span><br><span class="line">                edgepaths.attr(</span><br><span class="line">                    <span class="string">'d'</span>,</span><br><span class="line">                    (&#123; target, source &#125;) =&gt;</span><br><span class="line">                        <span class="string">'M '</span> +</span><br><span class="line">                        (source <span class="keyword">as</span> INode).x +</span><br><span class="line">                        <span class="string">' '</span> +</span><br><span class="line">                        (source <span class="keyword">as</span> INode).y +</span><br><span class="line">                        <span class="string">' L '</span> +</span><br><span class="line">                        (target <span class="keyword">as</span> INode).x +</span><br><span class="line">                        <span class="string">' '</span> +</span><br><span class="line">                        (target <span class="keyword">as</span> INode).y</span><br><span class="line">                );</span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="keyword">const</span> edges = drewLines(); <span class="comment">// draw lines</span></span><br><span class="line">            <span class="keyword">const</span> nodes = drawNodes(); <span class="comment">// draw nodes</span></span><br><span class="line">            <span class="keyword">const</span> edgepaths = drawEdgeLabel(); <span class="comment">// draw relation label</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(error);</span><br><span class="line">            message.error(<span class="string">'内部错误，'</span> + <span class="built_in">JSON</span>.stringify(error));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure>
 
-a {
-  color: #999;
-  text-decoration: none;
-}
+<p>最后，推荐一个切换全屏库： screenfull。</p>
 
-.title404 {
-  font-size: 40px;
-  font-weight: 700;
-}
-
-.blue-text {
-  color: #3296fa;
-}</code></pre><p>  </style><p></p>
-</head>
-
-<body>
-  <br>
-  <img src="/404/index/imgs/404.png">
-  <p class="title404 blue-text">404</p>
-  <p>抱歉，您访问的页面不存在~</p>
-  <h4>
-    <div id="countdown">
-      <span class="blue-text">5s</span>
-      后将帮您自动跳转到<a class="blue-text" href="https://lemon1499.github.io/blog" target="_blank">博客首页</a></div>
-  </h4>
-  <script language="javascript" type="text/javascript">
-    var time = 5
-    var divLabel = document.getElementById("countdown")
-    var label = "后将帮您自动跳转到<a class='blue-text' href='https://lemon1499.github.io/blog' target='_blank'>博客首页</a>"
-    divLabel.innerHTML = time.toString() + label
-
-<pre><code>function updateTime() {
-  time = time - 1
-  if (time &gt;= 0) {
-    divLabel.innerHTML = &quot;&lt;span class=&apos;blue-text&apos;&gt;&quot; + time.toString() + &quot;s&lt;/span&gt;&quot; + label
-  } else {
-    divLabel.innerHTML = &quot;正在跳转到关于&amp;amp;联系我，请稍后。。。&quot;
-  }
-}
-setInterval(&quot;updateTime()&quot;, 1000);
-setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos;&quot;, time * 1000);</code></pre><p>  </script><p></p>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":160,"height":300},"mobile":{"show":false,"scale":0.5}});</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":160,"height":300},"mobile":{"show":false,"scale":0.5}});</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":160,"height":300},"mobile":{"show":false,"scale":0.5}});</script></body>
-
-</html>
       
 
       
@@ -264,6 +234,25 @@ setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color1">react</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color1">typescript</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">d3</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -314,7 +303,7 @@ setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos
     <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://yingliyu.github.io/404/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://yingliyu.github.io/2020/11/18/react-ts-d3/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -326,6 +315,25 @@ setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos
 </article>
 
   
+<nav id="article-nav">
+  
+    <a href="/2021/01/12/vue3-01/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Vue3 的新特性(一):ref()、reactive()、toRef() 和 toRefs()
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/18/react-share-bike/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">React+AntD+Redux 的项目实战总结</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -339,6 +347,19 @@ setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Echarts-Graph"><span class="toc-number">2.</span> <span class="toc-text">1. Echarts Graph</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-词云-echarts-wordcloud"><span class="toc-number">3.</span> <span class="toc-text">2. 词云 echarts-wordcloud</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-echarts-legend-个性化细节"><span class="toc-number">4.</span> <span class="toc-text">3.echarts legend 个性化细节</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-d3-力导向图——-force"><span class="toc-number">5.</span> <span class="toc-text">4. d3 力导向图—— force</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>
@@ -403,7 +424,7 @@ setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

@@ -6,20 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yingliyu.github.io">
-  <title>Lillian‘s Blog</title>
+  <title>Vue3的新特性(三)：setup()、computed()和watch() | Lillian‘s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="lemon1499 GitHub个人主页 | 404 Not Found页        html,     body {       background: #f0f2f5;     }  body, p, h5, #countdown {   text-align: center; }  a {   color: #999;">
-<meta name="keywords" content="hi~">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lillian‘s Blog">
-<meta property="og:url" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;404&#x2F;index.html">
+  <meta name="description" content="vue3">
+<meta name="keywords" content="vue3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue3的新特性(三)：setup()、computed()和watch()">
+<meta property="og:url" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2021&#x2F;01&#x2F;13&#x2F;vue3-02&#x2F;index.html">
 <meta property="og:site_name" content="Lillian‘s Blog">
-<meta property="og:description" content="lemon1499 GitHub个人主页 | 404 Not Found页        html,     body {       background: #f0f2f5;     }  body, p, h5, #countdown {   text-align: center; }  a {   color: #999;">
+<meta property="og:description" content="vue3">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;404&#x2F;index&#x2F;imgs&#x2F;404.png">
-<meta property="og:updated_time" content="2021-09-24T02:07:44.786Z">
+<meta property="og:updated_time" content="2021-09-24T02:07:44.798Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;404&#x2F;index&#x2F;imgs&#x2F;404.png">
   
     <link rel="alternative" href="/atom.xml" title="Lillian‘s Blog" type="application/atom+xml">
   
@@ -150,82 +148,66 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-vue3-02" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Vue3的新特性(三)：setup()、computed()和watch()
+    </h1>
+  
+
+        
+        <a href="/2021/01/13/vue3-02/" class="archive-article-date">
+  	<time datetime="2021-01-13T14:16:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-01-13</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!DOCTYPE html>
-<html>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>本文主要介绍 vue3 新增 Composition API 的一些特性 setup()、computed()和 watch()，Composition API 可以把复杂组件的逻辑变得更为紧凑，使代码有更高复用性和灵活性。</p>
+<h3 id="1-setup"><a href="#1-setup" class="headerlink" title="1. setup()"></a>1. setup()</h3><p><code>setup()</code>是 <code>vue3</code> 中新增特性，在组件 <code>created()</code>生命周期之前执行。<br>因为 <code>setup()</code> 是在组件 <code>created()</code>之前执行的，所以在 <code>setup()</code>内部无法获取 <code>this</code>。</p>
+<p><code>setup(props,context)</code>接收两个参数：<code>props</code>,<code>context</code></p>
+<h5 id="参数一：props"><a href="#参数一：props" class="headerlink" title="参数一：props"></a>参数一：props</h5><p>组件接收的 <code>props</code> 数据可以在 <code>setup()</code>函数内访问到。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  props: &#123;</span><br><span class="line">    title: <span class="built_in">String</span></span><br><span class="line">  &#125;,</span><br><span class="line">  setup(props) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(props.title)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<head>
-  <!-- 设置内容的编码格式 -->
-  <meta charset="utf-8">
-  <!-- 设置查询关键字 -->
-  <meta name="keywords" content="404页">
-  <!-- 设置网页的描述信息 -->
-  <meta name="distribution" content="Coco5666.github.io/about">
-  <!-- 设置作者 -->
-  <meta name="author" content="Coco56">
-  <link rel="icon" href="../title.ico" type="image/icon">
-  <title>lemon1499 GitHub个人主页 | 404 Not Found页</title>
-  <style>
-    html,
-    body {
-      background: #f0f2f5;
-    }
+<p><code>props</code> 具有响应性，不能使用 ES6 解构它，这会使其失去响应性。如果需要解构，可以使用 <code>toRefs()</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; title &#125; = toRefs(props)</span><br><span class="line"><span class="built_in">console</span>.log(title.value)</span><br></pre></td></tr></table></figure>
 
-<pre><code>body,
-p,
-h5,
-#countdown {
-  text-align: center;
-}
+<p>如果 <code>title</code> 是一个可选的属性，需使用 <code>toRef()</code>,如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; toRef &#125; <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line">setup(props) &#123;</span><br><span class="line">	<span class="keyword">const</span> title = toRef(props, <span class="string">'title'</span>)</span><br><span class="line">	<span class="built_in">console</span>.log(title.value)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-a {
-  color: #999;
-  text-decoration: none;
-}
+<a id="more"></a>
 
-.title404 {
-  font-size: 40px;
-  font-weight: 700;
-}
+<h5 id="参数二：context："><a href="#参数二：context：" class="headerlink" title="参数二：context："></a>参数二：context：</h5><pre><code>`context` 是一个上下文对象，可以通过 context 来访问 Vue 的实力 this。
+`context` 内部包括三个属性：`attrs`、`slots`、`emit`</code></pre><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  setup(props, &#123; attrs, slots, emit &#125;) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-.blue-text {
-  color: #3296fa;
-}</code></pre><p>  </style><p></p>
-</head>
+<p>context 是一个常规的 js 对象，它不具有响应性可以直接对它解构。但 <code>attrs</code> 和 <code>slots</code> 是有状态的对象，当组件本身更新时它们也会随之更新，这意味着我们应该避免解构它们。</p>
+<h3 id="2-computed"><a href="#2-computed" class="headerlink" title="2. computed()"></a>2. computed()</h3><h5 id="computed-创建只读计算属性"><a href="#computed-创建只读计算属性" class="headerlink" title="computed()创建只读计算属性"></a>computed()创建只读计算属性</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> count = ref(<span class="number">1</span>)</span><br><span class="line"><span class="comment">// 创建一个只读性计算属性，依赖于count值</span></span><br><span class="line"><span class="keyword">const</span> plusOne = computed(<span class="function"><span class="params">()</span> =&gt;</span> count.value + <span class="number">1</span>)</span><br><span class="line"><span class="built_in">console</span>.log(plusOne.value) <span class="comment">// 2</span></span><br><span class="line">plusOne.value++ <span class="comment">// error 该计算属性为只读属性，不可写</span></span><br></pre></td></tr></table></figure>
 
-<body>
-  <br>
-  <img src="/404/index/imgs/404.png">
-  <p class="title404 blue-text">404</p>
-  <p>抱歉，您访问的页面不存在~</p>
-  <h4>
-    <div id="countdown">
-      <span class="blue-text">5s</span>
-      后将帮您自动跳转到<a class="blue-text" href="https://lemon1499.github.io/blog" target="_blank">博客首页</a></div>
-  </h4>
-  <script language="javascript" type="text/javascript">
-    var time = 5
-    var divLabel = document.getElementById("countdown")
-    var label = "后将帮您自动跳转到<a class='blue-text' href='https://lemon1499.github.io/blog' target='_blank'>博客首页</a>"
-    divLabel.innerHTML = time.toString() + label
+<h5 id="computed-创建可读写计算属性"><a href="#computed-创建可读写计算属性" class="headerlink" title="computed()创建可读写计算属性"></a>computed()创建可读写计算属性</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> count = ref(<span class="number">1</span>)</span><br><span class="line"><span class="comment">// 创建一个可读写计算属性</span></span><br><span class="line"><span class="keyword">const</span> plusOne = computed(&#123;</span><br><span class="line">  <span class="keyword">get</span>: () =&gt; count.value + 1,</span><br><span class="line">  <span class="keyword">set</span>: (val) =&gt; &#123;</span><br><span class="line">    count.value = val - <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">plusOne.value = <span class="number">1</span></span><br><span class="line"><span class="built_in">console</span>.log(count.value) <span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
 
-<pre><code>function updateTime() {
-  time = time - 1
-  if (time &gt;= 0) {
-    divLabel.innerHTML = &quot;&lt;span class=&apos;blue-text&apos;&gt;&quot; + time.toString() + &quot;s&lt;/span&gt;&quot; + label
-  } else {
-    divLabel.innerHTML = &quot;正在跳转到关于&amp;amp;联系我，请稍后。。。&quot;
-  }
-}
-setInterval(&quot;updateTime()&quot;, 1000);
-setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos;&quot;, time * 1000);</code></pre><p>  </script><p></p>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":160,"height":300},"mobile":{"show":false,"scale":0.5}});</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":160,"height":300},"mobile":{"show":false,"scale":0.5}});</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":160,"height":300},"mobile":{"show":false,"scale":0.5}});</script></body>
+<h3 id="3-watch"><a href="#3-watch" class="headerlink" title="3. watch()"></a>3. watch()</h3><h5 id="watch-监听单个数据源"><a href="#watch-监听单个数据源" class="headerlink" title="watch()监听单个数据源"></a>watch()监听单个数据源</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 监听 a getter</span></span><br><span class="line"><span class="keyword">const</span> state = reactive(&#123; <span class="attr">count</span>: <span class="number">0</span> &#125;)</span><br><span class="line">watch(</span><br><span class="line">  () =&gt; state.count,</span><br><span class="line">  (count, prevCount) =&gt; &#123;</span><br><span class="line">    <span class="comment">/* ... */</span></span><br><span class="line">  &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 直接监听 a ref</span></span><br><span class="line"><span class="keyword">const</span> count = ref(<span class="number">0</span>)</span><br><span class="line">watch(count, (count, prevCount) =&gt; &#123;</span><br><span class="line">  <span class="comment">/* ... */</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
-</html>
+<h5 id="watch-监听多个数据源"><a href="#watch-监听多个数据源" class="headerlink" title="watch()监听多个数据源"></a>watch()监听多个数据源</h5><p>第一个参数中，要监听的数据源以数组的形式传入。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> firstName = ref(<span class="string">''</span>)</span><br><span class="line"><span class="keyword">const</span> lastName = ref(<span class="string">''</span>)</span><br><span class="line"></span><br><span class="line">watch([firstName, lastName], (newValues, prevValues) =&gt; &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(newValues, prevValues)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">firstName.value = <span class="string">'John'</span> <span class="comment">// logs: ["John",""] ["", ""]</span></span><br><span class="line">lastName.value = <span class="string">'Smith'</span> <span class="comment">// logs: ["John", "Smith"] ["John", ""]</span></span><br></pre></td></tr></table></figure>
+
+<p>另，当监听一个响应性对象时，</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> numbers = reactive([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>])</span><br><span class="line">watch(</span><br><span class="line">  () =&gt; [...numbers],</span><br><span class="line">  (numbers, prevNumbers) =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(numbers, prevNumbers)</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br><span class="line">numbers.push(<span class="number">5</span>) <span class="comment">// logs: [1,2,3,4,5] [1,2,3,4]</span></span><br></pre></td></tr></table></figure>
+
+<p>当监听一个复杂对象的属性或者数组时需要传入第三个参数<code>{deep:true}</code>，如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> state = reactive(&#123;</span><br><span class="line">  id: <span class="number">1</span>,</span><br><span class="line">  attributes: &#123;</span><br><span class="line">    name: <span class="string">''</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">watch(</span><br><span class="line">  () =&gt; state,</span><br><span class="line">  (state, prevState) =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'not deep '</span>, state.attributes.name, prevState.attributes.name)</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br><span class="line">watch(</span><br><span class="line">  () =&gt; state,</span><br><span class="line">  (state, prevState) =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'deep '</span>, state.attributes.name, prevState.attributes.name)</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123; <span class="attr">deep</span>: <span class="literal">true</span> &#125;</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">state.attributes.name = <span class="string">'Alex'</span> <span class="comment">// Logs: "deep " "Alex" "Alex"</span></span><br></pre></td></tr></table></figure>
+
+<p>监听一个响应式对象或者数组时总是返回当前数据变化前后的引用，为了真正的监听复杂对象或数组，需要进行一次深拷贝。<br>官方推荐方案：<a href="!https://lodash.com/docs/4.17.15#cloneDeep">lodash.cloneDeep</a></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> _ <span class="keyword">from</span> <span class="string">'lodash'</span></span><br><span class="line"><span class="keyword">const</span> state = reactive(&#123;</span><br><span class="line">  id: <span class="number">1</span>,</span><br><span class="line">  attributes: &#123;</span><br><span class="line">    name: <span class="string">'lemon'</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line">watch(</span><br><span class="line">  () =&gt; _.cloneDeep(state),</span><br><span class="line">  (state, prevState) =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(state.attributes.name, prevState.attributes.name)</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br><span class="line">state.attributes.name = <span class="string">'Alex'</span> <span class="comment">// Logs: "Alex" "lemon"</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>更多详细用法请参考<a href="!https://v3.vuejs.org/guide/reactivity-computed-watchers.html#watching-reactive-objects">Composition API——watch</a></p>
+</blockquote>
+
       
 
       
@@ -264,6 +246,17 @@ setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color5">vue3</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -314,7 +307,7 @@ setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos
     <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://yingliyu.github.io/404/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://yingliyu.github.io/2021/01/13/vue3-02/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -326,6 +319,25 @@ setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos
 </article>
 
   
+<nav id="article-nav">
+  
+    <a href="/2021/01/13/vue3-lifecycle/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Vue3的新特性(二)：生命周期
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/01/12/vue3-01/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Vue3 的新特性(一):ref()、reactive()、toRef() 和 toRefs()</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -339,6 +351,19 @@ setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-setup"><span class="toc-number">2.</span> <span class="toc-text">1. setup()</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#参数一：props"><span class="toc-number">2.0.1.</span> <span class="toc-text">参数一：props</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#参数二：context："><span class="toc-number">2.0.2.</span> <span class="toc-text">参数二：context：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-computed"><span class="toc-number">3.</span> <span class="toc-text">2. computed()</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#computed-创建只读计算属性"><span class="toc-number">3.0.1.</span> <span class="toc-text">computed()创建只读计算属性</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#computed-创建可读写计算属性"><span class="toc-number">3.0.2.</span> <span class="toc-text">computed()创建可读写计算属性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-watch"><span class="toc-number">4.</span> <span class="toc-text">3. watch()</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#watch-监听单个数据源"><span class="toc-number">4.0.1.</span> <span class="toc-text">watch()监听单个数据源</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#watch-监听多个数据源"><span class="toc-number">4.0.2.</span> <span class="toc-text">watch()监听多个数据源</span></a></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>
@@ -403,7 +428,7 @@ setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

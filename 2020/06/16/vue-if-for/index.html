@@ -6,20 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yingliyu.github.io">
-  <title>Lillian‘s Blog</title>
+  <title>vue中v-for和v-if不能同时使用解决方案 | Lillian‘s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="lemon1499 GitHub个人主页 | 404 Not Found页        html,     body {       background: #f0f2f5;     }  body, p, h5, #countdown {   text-align: center; }  a {   color: #999;">
-<meta name="keywords" content="hi~">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lillian‘s Blog">
-<meta property="og:url" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;404&#x2F;index.html">
+  <meta name="description" content="vue中v-for和v-if不能同时使用解决方案">
+<meta name="keywords" content="v-for与v-if">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue中v-for和v-if不能同时使用解决方案">
+<meta property="og:url" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2020&#x2F;06&#x2F;16&#x2F;vue-if-for&#x2F;index.html">
 <meta property="og:site_name" content="Lillian‘s Blog">
-<meta property="og:description" content="lemon1499 GitHub个人主页 | 404 Not Found页        html,     body {       background: #f0f2f5;     }  body, p, h5, #countdown {   text-align: center; }  a {   color: #999;">
+<meta property="og:description" content="vue中v-for和v-if不能同时使用解决方案">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;404&#x2F;index&#x2F;imgs&#x2F;404.png">
-<meta property="og:updated_time" content="2021-09-24T02:07:44.786Z">
+<meta property="og:updated_time" content="2021-09-24T02:07:44.798Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;404&#x2F;index&#x2F;imgs&#x2F;404.png">
   
     <link rel="alternative" href="/atom.xml" title="Lillian‘s Blog" type="application/atom+xml">
   
@@ -150,82 +148,62 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-vue-if-for" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      vue中v-for和v-if不能同时使用解决方案
+    </h1>
+  
+
+        
+        <a href="/2020/06/16/vue-if-for/" class="archive-article-date">
+  	<time datetime="2020-06-16T09:44:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-16</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!DOCTYPE html>
-<html>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
+<p>为什么不可以呢？我们 <code>JS</code> 的使用习惯在遍历时使用条件判断是很常见的， <code>vue</code> 模版中当然也是可以使用的，但是<code>v-for</code>和<code>v-if</code>不可以出现在同一个元素上。<br>因为在 <code>vue</code> 中会优先执行 <code>v-for</code>,如果每一次都遍历整个数组，将会影响速度，尤其是当之需要渲染很小一部分的时候。</p>
+</blockquote>
+<h3 id="使用情景"><a href="#使用情景" class="headerlink" title="使用情景"></a>使用情景</h3><blockquote>
+<p><code>v-for</code> 和 <code>v-if</code> 同时使用有 3 种情景：</p>
+<ol>
+<li>部分遍历（内/外部条件）：一个 <code>list</code> 中某个属性值符合条件的遍历出来；</li>
+<li>全部遍历（外部条件）：某外部条件符合条件时遍历全部。</li>
+<li>全部遍历（内部条件）：根据某内部条件渲染出不同的内容。</li>
+</ol>
+</blockquote>
+<p>注：内部条件指被遍历数据内部属性值或条件；外部条件指与独立于被遍历数据以外的数据。</p>
+<a id="more"></a>
 
-<head>
-  <!-- 设置内容的编码格式 -->
-  <meta charset="utf-8">
-  <!-- 设置查询关键字 -->
-  <meta name="keywords" content="404页">
-  <!-- 设置网页的描述信息 -->
-  <meta name="distribution" content="Coco5666.github.io/about">
-  <!-- 设置作者 -->
-  <meta name="author" content="Coco56">
-  <link rel="icon" href="../title.ico" type="image/icon">
-  <title>lemon1499 GitHub个人主页 | 404 Not Found页</title>
-  <style>
-    html,
-    body {
-      background: #f0f2f5;
-    }
+<h3 id="1-使用计算属性（内-外部条件）"><a href="#1-使用计算属性（内-外部条件）" class="headerlink" title="1.使用计算属性（内/外部条件）"></a>1.使用计算属性（内/外部条件）</h3><blockquote>
+<p>在计算属性中先用内/外部条件处理数据，再遍历处理后的数据</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 遍历list，条件是值小于100 方案：使用计算属性activeList首先筛选出符合条件的值再直接遍历 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"item in activeList"</span> <span class="attr">:key</span>=<span class="string">"item"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<pre><code>body,
-p,
-h5,
-#countdown {
-  text-align: center;
-}
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      list: [<span class="number">78</span>, <span class="number">90</span>, <span class="number">20</span>, <span class="number">45</span>, <span class="number">66</span>, <span class="number">120</span>, <span class="number">136</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  computed: &#123;</span><br><span class="line">    activeList() &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.list.filter(<span class="function">(<span class="params">item</span>) =&gt;</span> item &lt; <span class="number">100</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-a {
-  color: #999;
-  text-decoration: none;
-}
+<h3 id="2-条件放于父级元素（外部条件）"><a href="#2-条件放于父级元素（外部条件）" class="headerlink" title="2.条件放于父级元素（外部条件）"></a>2.条件放于父级元素（外部条件）</h3><blockquote>
+<p>解决方案：外部条件放到遍历的父级元素上，没有父级可以使用<code>&lt;template&gt;&lt;/template&gt;</code>。</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">v-if</span>=<span class="string">"isActive"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"item in list"</span> <span class="attr">:key</span>=<span class="string">"item"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- or --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-if</span>=<span class="string">"isActive"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-for</span>=<span class="string">"item in list"</span> <span class="attr">:key</span>=<span class="string">"item"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Hello,My name is Lillian!<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-.title404 {
-  font-size: 40px;
-  font-weight: 700;
-}
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      isActive: <span class="literal">true</span>,</span><br><span class="line">      list: [<span class="number">78</span>, <span class="number">90</span>, <span class="number">20</span>, <span class="number">45</span>, <span class="number">66</span>, <span class="number">120</span>, <span class="number">136</span>]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-.blue-text {
-  color: #3296fa;
-}</code></pre><p>  </style><p></p>
-</head>
+<h3 id="3-遍历-template（内部条件）"><a href="#3-遍历-template（内部条件）" class="headerlink" title="3.遍历 template（内部条件）"></a>3.遍历 <code>template</code>（内部条件）</h3><blockquote>
+<p>根据某内部条件，显示不同内容。注意 <code>key</code> 不能放 <code>template</code> 标签上。</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">template</span> <span class="attr">v-for</span>=<span class="string">"item in list"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-if</span>=<span class="string">"item.type===0"</span> <span class="attr">:key</span>=<span class="string">"item.id"</span>&gt;</span>文字+图标<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-if</span>=<span class="string">"item.type===1"</span> <span class="attr">:key</span>=<span class="string">"item.id"</span>&gt;</span>文字+文字<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-else</span> <span class="attr">:key</span>=<span class="string">"item.id"</span>&gt;</span>其他<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<body>
-  <br>
-  <img src="/404/index/imgs/404.png">
-  <p class="title404 blue-text">404</p>
-  <p>抱歉，您访问的页面不存在~</p>
-  <h4>
-    <div id="countdown">
-      <span class="blue-text">5s</span>
-      后将帮您自动跳转到<a class="blue-text" href="https://lemon1499.github.io/blog" target="_blank">博客首页</a></div>
-  </h4>
-  <script language="javascript" type="text/javascript">
-    var time = 5
-    var divLabel = document.getElementById("countdown")
-    var label = "后将帮您自动跳转到<a class='blue-text' href='https://lemon1499.github.io/blog' target='_blank'>博客首页</a>"
-    divLabel.innerHTML = time.toString() + label
+<p><code>vue</code> 中会优先执行 <code>v-for</code>, 当 <code>v-for</code> 把所有内容全部遍历之后 , <code>v-if</code> 再对已经遍历的元素进行删除 , 造成了加载的浪费 , 所以应该尽量在执行 <code>v-for</code> 之前优先执行 <code>v-if</code> , 可以减少加载的压力。</p>
+<p>参考：<a href="https://cn.vuejs.org/v2/style-guide/#%E9%81%BF%E5%85%8D-v-if-%E5%92%8C-v-for-%E7%94%A8%E5%9C%A8%E4%B8%80%E8%B5%B7%E5%BF%85%E8%A6%81" target="_blank" rel="noopener">https://cn.vuejs.org/v2/style-guide</a></p>
 
-<pre><code>function updateTime() {
-  time = time - 1
-  if (time &gt;= 0) {
-    divLabel.innerHTML = &quot;&lt;span class=&apos;blue-text&apos;&gt;&quot; + time.toString() + &quot;s&lt;/span&gt;&quot; + label
-  } else {
-    divLabel.innerHTML = &quot;正在跳转到关于&amp;amp;联系我，请稍后。。。&quot;
-  }
-}
-setInterval(&quot;updateTime()&quot;, 1000);
-setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos;&quot;, time * 1000);</code></pre><p>  </script><p></p>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":160,"height":300},"mobile":{"show":false,"scale":0.5}});</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":160,"height":300},"mobile":{"show":false,"scale":0.5}});</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":160,"height":300},"mobile":{"show":false,"scale":0.5}});</script></body>
-
-</html>
       
 
       
@@ -264,6 +242,17 @@ setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color1">v-for与v-if</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -314,7 +303,7 @@ setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos
     <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://yingliyu.github.io/404/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://yingliyu.github.io/2020/06/16/vue-if-for/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -326,6 +315,25 @@ setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos
 </article>
 
   
+<nav id="article-nav">
+  
+    <a href="/2020/06/28/react-hook/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          react-hook入门手册
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/06/09/text-ellipsis/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">css文字超出显示省略号</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -339,6 +347,19 @@ setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用情景"><span class="toc-number">2.</span> <span class="toc-text">使用情景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-使用计算属性（内-外部条件）"><span class="toc-number">3.</span> <span class="toc-text">1.使用计算属性（内/外部条件）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-条件放于父级元素（外部条件）"><span class="toc-number">4.</span> <span class="toc-text">2.条件放于父级元素（外部条件）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-遍历-template（内部条件）"><span class="toc-number">5.</span> <span class="toc-text">3.遍历 template（内部条件）</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>
@@ -403,7 +424,7 @@ setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

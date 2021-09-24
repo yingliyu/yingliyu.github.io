@@ -6,20 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yingliyu.github.io">
-  <title>Lillian‘s Blog</title>
+  <title>(译)D3-force | Lillian‘s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="lemon1499 GitHub个人主页 | 404 Not Found页        html,     body {       background: #f0f2f5;     }  body, p, h5, #countdown {   text-align: center; }  a {   color: #999;">
-<meta name="keywords" content="hi~">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lillian‘s Blog">
-<meta property="og:url" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;404&#x2F;index.html">
+  <meta name="description" content="原文: https:&#x2F;&#x2F;github.com&#x2F;d3&#x2F;d3&#x2F;blob&#x2F;master&#x2F;API.md#forces-d3-force  d3.forceSimulation( [nodes] )使用指定的节点数据和无强度力创建一个新的模拟。若未指定nodes，默认为空数组。该模拟是自启动的；在该模拟运行时使用 simulation.on 监听每个瞬间（呼吸）事件。如果你想要手动运行模拟，调用 simu">
+<meta name="keywords" content="前端,D3,可视化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="(译)D3-force">
+<meta property="og:url" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2019&#x2F;11&#x2F;28&#x2F;d3-force&#x2F;index.html">
 <meta property="og:site_name" content="Lillian‘s Blog">
-<meta property="og:description" content="lemon1499 GitHub个人主页 | 404 Not Found页        html,     body {       background: #f0f2f5;     }  body, p, h5, #countdown {   text-align: center; }  a {   color: #999;">
+<meta property="og:description" content="原文: https:&#x2F;&#x2F;github.com&#x2F;d3&#x2F;d3&#x2F;blob&#x2F;master&#x2F;API.md#forces-d3-force  d3.forceSimulation( [nodes] )使用指定的节点数据和无强度力创建一个新的模拟。若未指定nodes，默认为空数组。该模拟是自启动的；在该模拟运行时使用 simulation.on 监听每个瞬间（呼吸）事件。如果你想要手动运行模拟，调用 simu">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;404&#x2F;index&#x2F;imgs&#x2F;404.png">
 <meta property="og:updated_time" content="2021-09-24T02:07:44.786Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;404&#x2F;index&#x2F;imgs&#x2F;404.png">
   
     <link rel="alternative" href="/atom.xml" title="Lillian‘s Blog" type="application/atom+xml">
   
@@ -150,82 +148,166 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-d3-force" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      (译)D3-force
+    </h1>
+  
+
+        
+        <a href="/2019/11/28/d3-force/" class="archive-article-date">
+  	<time datetime="2019-11-28T15:57:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-28</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!DOCTYPE html>
-<html>
+        <blockquote>
+<p>原文: <a href="https://github.com/d3/d3/blob/master/API.md#forces-d3-force?_blank" target="_blank" rel="noopener">https://github.com/d3/d3/blob/master/API.md#forces-d3-force</a></p>
+</blockquote>
+<h5 id="d3-forceSimulation-nodes"><a href="#d3-forceSimulation-nodes" class="headerlink" title="d3.forceSimulation( [nodes] )"></a>d3.forceSimulation( [nodes] )</h5><p>使用指定的节点数据和无强度力创建一个新的模拟。若未指定nodes，默认为空数组。该模拟是自启动的；在该模拟运行时使用 <a href="https://github.com/d3/d3-force/blob/v1.2.1/README.md#simulation_on?_blank" target="_blank" rel="noopener">simulation.on</a> 监听每个瞬间（呼吸）事件。如果你想要手动运行模拟，调用 <a href="https://github.com/d3/d3-force/blob/v1.2.1/README.md#simulation_stop?_blank" target="_blank" rel="noopener">simulation.stop</a>, 然后需要调用  <a href="https://github.com/d3/d3-force/blob/v1.2.1/README.md#simulation_tick?_blank" target="_blank" rel="noopener">simulation.tick</a> .</p>
+<h5 id="simulation-nodes（-nodes-）"><a href="#simulation-nodes（-nodes-）" class="headerlink" title="simulation.nodes（[nodes]）"></a>simulation.nodes（[nodes]）</h5><p>每个node必须是一个对象模型，下面几个属性将会被仿真系统添加：<br>index-节点在nodes数组中的索引</p>
+<a id="more"></a>
 
-<head>
-  <!-- 设置内容的编码格式 -->
-  <meta charset="utf-8">
-  <!-- 设置查询关键字 -->
-  <meta name="keywords" content="404页">
-  <!-- 设置网页的描述信息 -->
-  <meta name="distribution" content="Coco5666.github.io/about">
-  <!-- 设置作者 -->
-  <meta name="author" content="Coco56">
-  <link rel="icon" href="../title.ico" type="image/icon">
-  <title>lemon1499 GitHub个人主页 | 404 Not Found页</title>
-  <style>
-    html,
-    body {
-      background: #f0f2f5;
-    }
+<ul>
+<li>x-节点当前的x坐标</li>
+<li>y-节点当前的y-坐标</li>
+<li>vx-节点当前的x方向速度</li>
+<li>vy-节点当前的y方向速度</li>
+</ul>
+<p>固定给定节点的位置，你需要两个特定的额外的属性：</p>
+<ul>
+<li>fx - 节点的固定 x-位置</li>
+<li>fy - 节点的固定 y-位置</li>
+</ul>
+<h5 id="force-）"><a href="#force-）" class="headerlink" title="force(）"></a>force(）</h5><p>force()是一个用以修改节点位置和速度的函数；在这种情况下，force 可以用来模拟电荷或重力之类的经典物理力学，也可以用来解决几何约束，例如将节点保持在边界框内或者保持节点之间的相对距离。</p>
+<h5 id="link-froce-弹簧模型"><a href="#link-froce-弹簧模型" class="headerlink" title="link froce(弹簧模型)"></a>link froce(弹簧模型)</h5><p>可以根据 link distance 将有关联的两个节点拉近或者推远。力的强度与被链接两个节点的距离成比例，类似弹簧力。</p>
+<h5 id="d3-forceManyBody"><a href="#d3-forceManyBody" class="headerlink" title="d3.forceManyBody()"></a>d3.forceManyBody()</h5><p>创建一个使用默认参数的电荷力模型。<br>manyBody.strength([strength]) 如果指定了 strength 则将强度访问器设置为指定的数值或者方法，重新评估每个节点的强度访问器并返回此电荷力。若强度为正值则表示节点之间相互吸引，负值表示节点之间相互排斥。</p>
+<h5 id="simulation-alphaTarget-target"><a href="#simulation-alphaTarget-target" class="headerlink" title="simulation.alphaTarget([target])"></a>simulation.alphaTarget([target])</h5><p>如果指定了 target 则将当前的目标 alpha 设置为指定的值，需要在 [0, 1] 之间。如果没有指定 target 则返回当前默认的目标 alpha 值, 默认为 0.</p>
+<h5 id="simulation-force-name-force"><a href="#simulation-force-name-force" class="headerlink" title="simulation.force(name[, force])"></a>simulation.force(name[, force])</h5><p>如果指定了 force 则表示为仿真添加指定 name 的 force(力学模型) 并返回仿真。如果没有指定 force 则返回当前仿真的对应 name 的力模型，如果没有对应的 name 则返回 undefined. (默认情况下仿真没有任何力学模型，需要手动添加). </p>
+<h5 id="enter"><a href="#enter" class="headerlink" title="enter( )"></a>enter( )</h5><p>操作的意义在于通过此函数返回一个集合，这个集合里面包含的就是没有被可视化的数据；</p>
+<h5 id="simulation-on-typenames-listener"><a href="#simulation-on-typenames-listener" class="headerlink" title="simulation.on(typenames, [listener])"></a>simulation.on(typenames, [listener])</h5><hr>
+<h3 id="Forces"><a href="#Forces" class="headerlink" title="Forces"></a>Forces</h3><p>forces是一个简单的改变节点位置和速度的函数；在这个模拟环境中，一个forces能施加一个典型的物理力，比如电荷力或重力，或者它可以解决一个几何约束， 例如将节点保持在边界框内或将链接节点保持在固定距离之外。<br>举个例子，一个简单的朝着原点（0，0）移动节点的定位力可能实现为：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">force</span>(<span class="params">alpha</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, n = nodes.length, node, k = alpha * <span class="number">0.1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">    node = nodes[i];</span><br><span class="line">    node.vx -= node.x * k;</span><br><span class="line">    node.vy -= node.y * k;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>力模拟通常读取节点当前的位置坐标，然后增加/减去这个节点的速度&lt;vx, vy&gt;,<br>然而，力模拟也可以’偷看‘预期的节点下一个位置&lt;x+vx, y+vy&gt;;这对于通过 通过迭代松弛解决几何约束力是很有必要的。力模拟也可以改变位置方向，这有时可以避免增加模拟的能量，比如在视口模拟重入的时候。</p>
+<p>模拟通常要组合多个力，这个模块提供几个供您享用：</p>
+<ol>
+<li>Centering 定心力</li>
+<li>Collision 碰撞力</li>
+<li>Links 链接力</li>
+<li>Many-body 多体力（电荷）</li>
+<li>Positioning 定位力</li>
+</ol>
+<h5 id="Centering定心力"><a href="#Centering定心力" class="headerlink" title="Centering定心力"></a>Centering定心力</h5><p>定心力一致的调动节点以至于所有节点(如果多有节点的质量相等则为质心)都是在给定的位置&lt;x,y&gt;。<br>每一个施加了这个力的节点的位置会被改变；但是它的速度不变，这样做通常会导致节点超出目标中心并且围着这个中心震荡。这个力帮助节点保持在视口的中心，不像定位力，会扭曲它们的相对位置。</p>
+<p><strong>1.  d3.forceCenter([x, y])</strong></p>
+<p>使用指定的x和y坐标创建新的定心力。如果x和y是未指定,默认&lt;0, 0&gt;</p>
+<p><strong>2.  center.x([x])</strong></p>
+<p>如果指定了x，则将定心位置的x坐标设置为指定的数值并返回此力。如果没有指定x，则返回当前x坐标，该坐标默认为0。</p>
+<p><strong>3.  center.y([y])</strong></p>
+<p>如果指定了y，则将定心位置的y坐标设置为指定的数值并返回此力。如果没有指定y，则返回当前y坐标，默认为0。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> simulation = d3.forceSimulation(nodes)</span><br><span class="line">    .force(<span class="string">"charge"</span>, d3.forceManyBody())</span><br><span class="line">    .force(<span class="string">"link"</span>, d3.forceLink(links))</span><br><span class="line">    .force(<span class="string">"center"</span>, d3.forceCenter().x().y())</span><br></pre></td></tr></table></figure>
+<h5 id="Collision碰撞力"><a href="#Collision碰撞力" class="headerlink" title="Collision碰撞力"></a>Collision碰撞力</h5><p>碰撞力将节点视为具有给定半径的圆，而不是点，并且阻止节点重叠。通常情况下，两个节点a和b是分开的所以a和b之间的距离至少是两个节点的半径之和。为了减少抖动，这是一个默认的软约束，具有可配置的强度和迭代次数。</p>
+<p><strong>1. d3.forceCollide([radius])</strong></p>
+<p>以一个特定的半径创建一个新的圆形碰撞力。如果这个半径没有设置，所有的节点都默认为常数1。</p>
+<p><strong>2. collide.radius([radius])</strong></p>
+<p>如果给定了半径，将半径访问器设为一个特定的数字或者函数，重新评估每一个节点的半径访问器，并且返回这个模拟。如果没有给定半径，返回当前的半径访问器，默认如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">radius</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<pre><code>body,
-p,
-h5,
-#countdown {
-  text-align: center;
-}
 
-a {
-  color: #999;
-  text-decoration: none;
-}
+<p>这个半径访问器会被这个模拟中的每一个节点调用，传递节点及其从零开始的索引。然后，结果数被存储在内部，这样每个节点的半径只在初始化力或使用新的半径调用此方法时重新计算，而不是在力的每个应用程序上。</p>
+<p><strong>3. collide.strength([strength])</strong></p>
+<p>如果指定了强度，设置这个力强度为[0, 1]之间的数字，并返回这个模拟。如果未指定强度，返回当前的强度，默认是0.7。</p>
+<p>通过迭代松弛来解决重叠节点。对于每个节点来说，在下个确定的呼吸事件决定的预计（使用预期的位置&lt;x+vx, y+vy&gt;）将会重叠它的其他节点，z这个节点的速度会改变，推着这个节点超出另一个将会重叠的节点。 速度的变化被力的强度减弱，这样同时重叠的分辨率可以混合在一起来找到一个稳定的解决方案。</p>
+<p><strong>4. collide.iterations([iterations])</strong></p>
+<p>如果指定了迭代次数，给每一个应用设置迭代次数的值为一个特定的数字并且返回这个模拟。如果未指定迭代次数，返回当前的迭代次数，默认值为1。增加迭代次数大大增加了约束的钢度并且避免节点的部分重合，但是也增加了计算力的运行时成本。</p>
+<h5 id="Links链接力"><a href="#Links链接力" class="headerlink" title="Links链接力"></a>Links链接力</h5><p>根据想要的链接距离，链接力将链接在一起的节点推到一起或分开。这个力的强度与链接节点和目标节点的距离差成比例，类似于弹簧力。</p>
+<p><strong>1. d3.forceLink([links])</strong></p>
+<p>创建一个新的链接力，传一个特定的links和默认参数。如果links未指定，它将默认是一个空数组。</p>
+<p><strong>2. link.links([links])</strong></p>
+<p>如果links未指定，设置与此力关联的链接数组，重新计算每一个链接参数的距离和强度，并返回这个模拟。如果links未指定，返回默认值是空数组的当前的链接数组。</p>
+<p>每个链接是一个拥有如下属性的对象：</p>
+<ul>
+<li>source - 这个链接的源头节点</li>
+<li>target - 这个链接的目标节点</li>
+<li>index -  将从零开始的索引转换成链接，通过这种方法分配</li>
+</ul>
+<p>为了方便，一个链接的源头和目标接节点的属性可以用除对象引用外的数值或字符串字符初始化；看link.id。当这个链接力被初始化（或当节点或链接改变的时候重新初始化），任意link.source或link.target的那个非对象属性将会被对应给定目标标识符的对象引用替换。</p>
+<p>如果指定的链接数组被改变，例如当链接增加或从模拟中删除的时候，必须用新的数组重新调用这个方法，以通知更改的力度。这个力不会去创建特定数组的防御副本。</p>
+<p><strong>3.  link.id([id])</strong></p>
+<p>如果指定了id，以特定的函数设置这个节点的id访问器并返回这个模拟。如果未指定，然会当前的节点id访问器，默认数值类型的节点索引：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">id</span>(<span class="params">d</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> d.index;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>默认id访问器允许每一个链接的源或者目标的值指定为节点数组从零开始的索引。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> nodes = [</span><br><span class="line">  &#123;<span class="string">"id"</span>: <span class="string">"Alice"</span>&#125;,</span><br><span class="line">  &#123;<span class="string">"id"</span>: <span class="string">"Bob"</span>&#125;,</span><br><span class="line">  &#123;<span class="string">"id"</span>: <span class="string">"Carol"</span>&#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> links = [</span><br><span class="line">  &#123;<span class="string">"source"</span>: <span class="number">0</span>, <span class="string">"target"</span>: <span class="number">1</span>&#125;, <span class="comment">// Alice → Bob</span></span><br><span class="line">  &#123;<span class="string">"source"</span>: <span class="number">1</span>, <span class="string">"target"</span>: <span class="number">2</span>&#125; <span class="comment">// Bob → Carol</span></span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<p>现在考虑一个不同的id访问器，它返回一个字符串：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">id</span>(<span class="params">d</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> d.id;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>有了这个访问器，你可以使用命名的源和目标：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> nodes = [</span><br><span class="line">  &#123;<span class="string">"id"</span>: <span class="string">"Alice"</span>&#125;,</span><br><span class="line">  &#123;<span class="string">"id"</span>: <span class="string">"Bob"</span>&#125;,</span><br><span class="line">  &#123;<span class="string">"id"</span>: <span class="string">"Carol"</span>&#125;</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> links = [</span><br><span class="line">  &#123;<span class="string">"source"</span>: <span class="string">"Alice"</span>, <span class="string">"target"</span>: <span class="string">"Bob"</span>&#125;,</span><br><span class="line">  &#123;<span class="string">"source"</span>: <span class="string">"Bob"</span>, <span class="string">"target"</span>: <span class="string">"Carol"</span>&#125;</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+<p>当用一个JSON数据展现图谱/图形时，这是一个极其有用的例子。参考<a href="https://bl.ocks.org/mbostock/f584aa36df54c451c94a9d0798caed35" target="_blank" rel="noopener">这个例子</a>。<br>当这个模拟初始化的时候，id访问器被每一个节点调用，同时当节点或者链接改变的时候，传递节点及其从零开始的索引。</p>
+<p><strong>4.  link.distance([distance])</strong></p>
+<p>如果指定了距离，将距离访问器设置未特定的数字或函数，重新计算每个链接的距离访问器，并且返回这个模拟。如果未指定距离，返回当前的距离访问器，默认如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">distance</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">30</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-.title404 {
-  font-size: 40px;
-  font-weight: 700;
-}
+<p>这个距离访问器被每个链接调用，传递链接及其从零开始的索引。这个数值的结果将会被存储在内部，当这个模拟初始化或者用一个新的距离调用这个方法的时候会重新计算每一个链接之间的距离，而不是这个模拟的每个应用程序上。</p>
+<p><strong>5. link.strength([strength])</strong></p>
+<p>如果指定了强度，将强度访问器者设置为特定的数字或这个函数，重新计算每个链接的强度访问器，并返回这个强度。如果未指定，返回当前的强度访问器，默认如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">strength</span>(<span class="params">link</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span> / <span class="built_in">Math</span>.min(count(link.source), count(link.target));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中count(node)是一个函数，它返回给定节点作为源或目标的链接数。之所以选择此默认值，是因为它会自动降低连接到紧密连接节点的链接的强度，从而提高稳定性。</p>
+<p>为每个链接调用强度访问器，传递链接及其从零开始的索引。然后，结果数被存储在内部，这样，只有在初始化force或使用新强度调用此方法时，才会重新计算每个链接的强度，而不是在force的每个应用程序上。</p>
+<p><strong>6. link.iterations([iterations])</strong></p>
+<p>如果指定了迭代，则将每个应用程序的迭代次数设置为指定的次数并返回该强制。如果没有指定迭代，则返回默认为1的当前迭代计数。迭代次数的增加极大地增加了约束的刚度，对于复杂的结构如网格是有用的，但也增加了评估力的运行时成本。</p>
+<h5 id="Many-Body多体力"><a href="#Many-Body多体力" class="headerlink" title="Many-Body多体力"></a>Many-Body多体力</h5><p>多体力在多有节点之间相互作用。如果强度时正数，它相当于引力（吸引），如果强度是负数，它相当于静电电荷斥力。该实现使用四叉树和Barnes-Hut近似来极大地提高性能;  他的精确性可以用theta参数定制。</p>
+<p>不像链接力，它仅仅受两个链接的节点影响，这个电荷斥力是全局的；每个节点会影响每个其他的节点，即使他们不是相互连接的子图。</p>
+<p><strong>1. d3.forceManyBody()</strong></p>
+<p>用默认的参数创建一个新的多体力。</p>
+<p><strong>2. manyBody.strength([strength])</strong></p>
+<p>如果指定强度，将强度访问器设为一个特定的数字或函数，重新计算每个节点的强度访问器，并返回这个强度。正数使节点相互吸引，负数使节点相互排斥。如果未指定，返回当前的强度访问器，默认为：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">strength</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-30</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在模拟中，每个节点都会调用强度访问器传递节点及从零开始的索引。这个返回的结果会保存在本地，所以当这个模拟初始化或用一个新的强度调用这个方法的时候，每一个节点的强度重新计算，而不是在模拟的每个应用程序上。</p>
+<p><strong>3. manyBody.theta([theta])</strong></p>
+<p>如果指定theta，将 Barnes–Hut近似准则设置为特定的数值，并发返回这个模拟。如果未指定，返回默认值：0.9。</p>
+<p>为了加速计算，模拟执行 在每个应用程序中使用O(n log n)得出的Barnes-Hut近似值，n是节点数量。对于每个应用程序，使用四叉树存储当前节点的位置。对于每个节点。结合所有给定计算出的所有其他节点的力。对于一个很远的节点集群，电荷力可以近似于用一个独立的、大的节点。这个theta的参数值决定了这个近似值的精确度： 如果四叉树单元的宽度w / l与从节点到单元质心的距离l之比小于theta，则给定单元中的所有节点都视为单个节点，而不是单独处理。</p>
+<p><strong>4. manyBody.distanceMin([distance])</strong></p>
+<p>如果指定距离，将它设置为节点之间的最小距离。如果未指定，返回默认值1. 最小的距离建立了相邻节点的力强度的上线，从而避免不稳定。特别是避免了两个节点完全重合时无限强的力。在这种情况下，力的方向时随机的。</p>
+<p><strong>5. manyBody.distanceMax([distance])</strong></p>
+<p>如果指定距离，将它设置为两个节点间的最大距离。如果未指定，返回默认值无穷大。指定一个有限大的最大距离提高了性能并且生成更加本地化的布局。</p>
+<h5 id="Positioning定位力"><a href="#Positioning定位力" class="headerlink" title="Positioning定位力"></a>Positioning定位力</h5><p>x和y的定位力以可配置的强度将节点推向给定的尺寸预期的位置。径向力是相似的，除了它时将节点推向给定圆的最近点。这个力的强度是跟节点的位置和目标位置的一维距离成正例。虽然这些力可以作用于单个节点，但是它主要作用于所有节点的全局力。</p>
+<p><strong>1. d3.forceX([x])</strong></p>
+<p>沿着x轴给定位置x创建一个新的定位力。如果x未指定，默认未0.</p>
+<p><strong>2. x.strength([strength])</strong></p>
+<p>如果指定了strength，将它设置为特定的数值或者函数，重新计算每个节点的强度访问器。并且返回这个强度。强度决定了节点的x方向速度增加多少。例如，强度的值是0.1就表示节点应该从当前的x位置到目标位置要移动1/10的距离。较高的值可以更快的将节点移动到目标位置，这通常是以其他力或约束为代价的。超出0~1的值是不推荐的。<br>如果强度未指定，返回默认值：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">strength</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0.1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-.blue-text {
-  color: #3296fa;
-}</code></pre><p>  </style><p></p>
-</head>
+<p>模拟中的每个节点都会调用这个强度访问器，传递节点和从零开始的索引。返回的结果会存储在本地，这样，只有在初始化force或使用新x调用此方法时，才会重新计算每个节点的目标x坐标，而不是在force的每个应用程序上。</p>
+<p><strong>3. x.x([x])</strong></p>
+<p>如果指定了x，将其设置为特定数值址或函数，重新计算每个节点的x访问器，并返回这个模拟。如果未指定，返回默认值：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">x</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个模拟中的每个节点都会调用这个x访问器，传递节点和从零开始的索引。结果会存储在本地，这样只有模拟初始化或者用新的x调用这个方法的时候会重新计算每个节点的目标x坐标。</p>
+<p><strong>4. d3.forceY([y])</strong></p>
+<p><strong>5. y.strength([strength])</strong></p>
+<p><strong>6. y.y([y])</strong></p>
+<p><strong>7. d3.forceRadial(radius[, x][, y])</strong></p>
+<p>创建一个新的定位力沿着特定圆心和半径的圆。如果x和y未指定，默认值&lt;0,0&gt;。</p>
+<p><strong>8. radial.strength([strength])</strong></p>
+<p>如果指定强度，将其设置未特定的数值或函数，重新计算每个节点的强度计算器，并返回这个模拟。强度决定了节点的x和y轴方向的速度增加多少。例如：对于每个应用来说，值为0.1表示节点从当前位置到这个圆的最近的点要移动1/10的距离。比较高的值表示节点到目标位置的速度更快，通常是以其他力或约束为代价的。超出0~1的值是不推荐的。<br>如果未指定，返回默认值：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">strength</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0.1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>为模拟中的每个节点调用强度访问器，传递节点及其从零开始的索引。然后，结果数被存储在内部，这样，只有在初始化force或使用新强度调用此方法时，才会重新计算每个节点的强度，而不是在force的每个应用程序上。</p>
+<p><strong>9. radial.radius([radius])</strong></p>
+<p>如果指定了半径，将其设置为特定的值或函数，重新计算每个节点的半径访问器，并返回这个模拟。如果未指定返回当前的半径访问器。<br>为模拟中的每个节点调用radius访问器，传递节点及其从零开始的索引。然后，结果数被存储在内部，以便仅在初始化force或使用新半径调用此方法时重新计算每个节点的目标半径，而不是在force的每个应用程序上。</p>
+<p><strong>10. radial.x([x])</strong></p>
+<p>如果指定了x，则将圆心的x坐标设置为指定的数值并返回此力。如果没有指定x，则返回中心的当前x坐标，默认为0。</p>
+<p><strong>11. radial.y([y])</strong></p>
+<p>如果指定了y，则将圆心的y坐标设置为指定的数值并返回此力。如果没有指定y，则返回中心的当前y坐标，默认为0。</p>
+<p>注：本文是笔者阅读文档自译版，如跟官方文档有出入谨以官方为准。</p>
+<blockquote>
+<p>本文有不到之处欢迎多多交流指正~</p>
+</blockquote>
 
-<body>
-  <br>
-  <img src="/404/index/imgs/404.png">
-  <p class="title404 blue-text">404</p>
-  <p>抱歉，您访问的页面不存在~</p>
-  <h4>
-    <div id="countdown">
-      <span class="blue-text">5s</span>
-      后将帮您自动跳转到<a class="blue-text" href="https://lemon1499.github.io/blog" target="_blank">博客首页</a></div>
-  </h4>
-  <script language="javascript" type="text/javascript">
-    var time = 5
-    var divLabel = document.getElementById("countdown")
-    var label = "后将帮您自动跳转到<a class='blue-text' href='https://lemon1499.github.io/blog' target='_blank'>博客首页</a>"
-    divLabel.innerHTML = time.toString() + label
-
-<pre><code>function updateTime() {
-  time = time - 1
-  if (time &gt;= 0) {
-    divLabel.innerHTML = &quot;&lt;span class=&apos;blue-text&apos;&gt;&quot; + time.toString() + &quot;s&lt;/span&gt;&quot; + label
-  } else {
-    divLabel.innerHTML = &quot;正在跳转到关于&amp;amp;联系我，请稍后。。。&quot;
-  }
-}
-setInterval(&quot;updateTime()&quot;, 1000);
-setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos;&quot;, time * 1000);</code></pre><p>  </script><p></p>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":160,"height":300},"mobile":{"show":false,"scale":0.5}});</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":160,"height":300},"mobile":{"show":false,"scale":0.5}});</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":160,"height":300},"mobile":{"show":false,"scale":0.5}});</script></body>
-
-</html>
       
 
       
@@ -264,6 +346,25 @@ setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">前端</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color3">D3</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color4">可视化</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -314,7 +415,7 @@ setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos
     <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://yingliyu.github.io/404/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://yingliyu.github.io/2019/11/28/d3-force/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -326,6 +427,25 @@ setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos
 </article>
 
   
+<nav id="article-nav">
+  
+    <a href="/2019/12/04/image-flow/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          js处理图片流并显示在页面上
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/11/28/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hello World</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -339,6 +459,19 @@ setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#d3-forceSimulation-nodes"><span class="toc-number">1.</span> <span class="toc-text">d3.forceSimulation( [nodes] )</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#simulation-nodes（-nodes-）"><span class="toc-number">2.</span> <span class="toc-text">simulation.nodes（[nodes]）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#force-）"><span class="toc-number">3.</span> <span class="toc-text">force(）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#link-froce-弹簧模型"><span class="toc-number">4.</span> <span class="toc-text">link froce(弹簧模型)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#d3-forceManyBody"><span class="toc-number">5.</span> <span class="toc-text">d3.forceManyBody()</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#simulation-alphaTarget-target"><span class="toc-number">6.</span> <span class="toc-text">simulation.alphaTarget([target])</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#simulation-force-name-force"><span class="toc-number">7.</span> <span class="toc-text">simulation.force(name[, force])</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#enter"><span class="toc-number">8.</span> <span class="toc-text">enter( )</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#simulation-on-typenames-listener"><span class="toc-number">9.</span> <span class="toc-text">simulation.on(typenames, [listener])</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Forces"><span class="toc-number"></span> <span class="toc-text">Forces</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Centering定心力"><span class="toc-number">1.</span> <span class="toc-text">Centering定心力</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Collision碰撞力"><span class="toc-number">2.</span> <span class="toc-text">Collision碰撞力</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Links链接力"><span class="toc-number">3.</span> <span class="toc-text">Links链接力</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Many-Body多体力"><span class="toc-number">4.</span> <span class="toc-text">Many-Body多体力</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Positioning定位力"><span class="toc-number">5.</span> <span class="toc-text">Positioning定位力</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>
@@ -403,7 +536,7 @@ setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

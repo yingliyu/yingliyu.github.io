@@ -6,20 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://yingliyu.github.io">
-  <title>Lillian‘s Blog</title>
+  <title>文件下载的三种方式 | Lillian‘s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="lemon1499 GitHub个人主页 | 404 Not Found页        html,     body {       background: #f0f2f5;     }  body, p, h5, #countdown {   text-align: center; }  a {   color: #999;">
-<meta name="keywords" content="hi~">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Lillian‘s Blog">
-<meta property="og:url" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;404&#x2F;index.html">
+  <meta name="description" content="文件上传&#x2F;下载">
+<meta name="keywords" content="上传&#x2F;下载">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文件下载的三种方式">
+<meta property="og:url" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;2021&#x2F;09&#x2F;23&#x2F;file-down&#x2F;index.html">
 <meta property="og:site_name" content="Lillian‘s Blog">
-<meta property="og:description" content="lemon1499 GitHub个人主页 | 404 Not Found页        html,     body {       background: #f0f2f5;     }  body, p, h5, #countdown {   text-align: center; }  a {   color: #999;">
+<meta property="og:description" content="文件上传&#x2F;下载">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;404&#x2F;index&#x2F;imgs&#x2F;404.png">
 <meta property="og:updated_time" content="2021-09-24T02:07:44.786Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;yingliyu.github.io&#x2F;404&#x2F;index&#x2F;imgs&#x2F;404.png">
   
     <link rel="alternative" href="/atom.xml" title="Lillian‘s Blog" type="application/atom+xml">
   
@@ -150,82 +148,52 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-file-down" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      文件下载的三种方式
+    </h1>
+  
+
+        
+        <a href="/2021/09/23/file-down/" class="archive-article-date">
+  	<time datetime="2021-09-23T14:29:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-23</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <!DOCTYPE html>
-<html>
+        <p>文件上传下载是项目中经常遇到的常规功能，本文针对下载功能总结了一共三种使用方式。</p>
+<h5 id="一-无-API-浏览器直接下载（静态资源在前端）"><a href="#一-无-API-浏览器直接下载（静态资源在前端）" class="headerlink" title="一.无 API 浏览器直接下载（静态资源在前端）"></a>一.无 API 浏览器直接下载（静态资源在前端）</h5><p>将静态资源文件直接放于<code>public</code> 目录下，打包时 <code>public</code> 文件不会被编译。</p>
+<blockquote>
+<p>注意：静态资源的路径，在 public 文件夹下路径是<code>/文件名</code></p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"download-file"</span> <span class="attr">href</span>=<span class="string">"/file.xlsx"</span> <span class="attr">download</span>=<span class="string">"模板.xlsx"</span>&gt;</span>下载模板文件<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<head>
-  <!-- 设置内容的编码格式 -->
-  <meta charset="utf-8">
-  <!-- 设置查询关键字 -->
-  <meta name="keywords" content="404页">
-  <!-- 设置网页的描述信息 -->
-  <meta name="distribution" content="Coco5666.github.io/about">
-  <!-- 设置作者 -->
-  <meta name="author" content="Coco56">
-  <link rel="icon" href="../title.ico" type="image/icon">
-  <title>lemon1499 GitHub个人主页 | 404 Not Found页</title>
-  <style>
-    html,
-    body {
-      background: #f0f2f5;
-    }
+<p>或者使用非 a 标签的按钮下载：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">@param &#123;string&#125; url  静态资源url</span></span><br><span class="line"><span class="comment">@param &#123;string&#125; filename  静态资源文件名(可选)</span></span><br><span class="line"><span class="comment">@param &#123;string&#125; target  </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> fileUrlHandled = <span class="function">(<span class="params">&#123; url, filename, target &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> downloadElement = <span class="built_in">document</span>.createElement(<span class="string">'a'</span>)</span><br><span class="line">  downloadElement.style.display = <span class="string">'none'</span></span><br><span class="line">  downloadElement.href = url</span><br><span class="line">  <span class="keyword">if</span> (target) &#123;</span><br><span class="line">    downloadElement.target = <span class="string">'_blank'</span></span><br><span class="line">  &#125;</span><br><span class="line">  downloadElement.rel = <span class="string">'noopener noreferrer'</span></span><br><span class="line">  <span class="keyword">if</span> (filename) &#123;</span><br><span class="line">    downloadElement.download = filename</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(downloadElement)</span><br><span class="line">  downloadElement.click()</span><br><span class="line">  <span class="built_in">document</span>.body.removeChild(downloadElement)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<pre><code>body,
-p,
-h5,
-#countdown {
-  text-align: center;
-}
+<p>缺点：文件名不可控。</p>
+<h5 id="二-后端-API-返回静态资源下载-url"><a href="#二-后端-API-返回静态资源下载-url" class="headerlink" title="二.后端 API 返回静态资源下载 url"></a>二.后端 API 返回静态资源下载 url</h5><p>原理：使用 ajax 下载</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 获取 blob</span></span><br><span class="line"><span class="comment"> * @param  &#123;String&#125; url 目标文件地址</span></span><br><span class="line"><span class="comment"> * @return &#123;Promise&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getBlob</span>(<span class="params">url</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> xhr = <span class="keyword">new</span> XMLHttpRequest()</span><br><span class="line"></span><br><span class="line">    xhr.open(<span class="string">'GET'</span>, url, <span class="literal">true</span>)</span><br><span class="line">    xhr.responseType = <span class="string">'blob'</span></span><br><span class="line">    xhr.onload = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (xhr.status === <span class="number">200</span>) &#123;</span><br><span class="line">        resolve(xhr.response)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        Message.error(xhr.statusText || <span class="string">'文件获取失败'</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    xhr.send()</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 保存</span></span><br><span class="line"><span class="comment"> * @param  &#123;Blob&#125; blob</span></span><br><span class="line"><span class="comment"> * @param  &#123;String&#125; filename 想要保存的文件名称</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">saveAs</span>(<span class="params">blob, filename</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="built_in">window</span>.navigator.msSaveOrOpenBlob) &#123;</span><br><span class="line">    navigator.msSaveBlob(blob, filename)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> link = <span class="built_in">document</span>.createElement(<span class="string">'a'</span>)</span><br><span class="line">    <span class="keyword">const</span> body = <span class="built_in">document</span>.querySelector(<span class="string">'body'</span>)</span><br><span class="line"></span><br><span class="line">    link.href = <span class="built_in">window</span>.URL.createObjectURL(blob)</span><br><span class="line">    link.download = filename</span><br><span class="line"></span><br><span class="line">    <span class="comment">// fix Firefox</span></span><br><span class="line">    link.style.display = <span class="string">'none'</span></span><br><span class="line">    body.appendChild(link)</span><br><span class="line"></span><br><span class="line">    link.click()</span><br><span class="line">    body.removeChild(link)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">window</span>.URL.revokeObjectURL(link.href)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 下载</span></span><br><span class="line"><span class="comment"> * @param  &#123;String&#125; url 目标文件地址</span></span><br><span class="line"><span class="comment"> * @param  &#123;String&#125; filename 想要保存的文件名称</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">download</span>(<span class="params">url, filename</span>) </span>&#123;</span><br><span class="line">  getBlob(url).then(<span class="function">(<span class="params">blob</span>) =&gt;</span> &#123;</span><br><span class="line">    saveAs(blob, filename)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-a {
-  color: #999;
-  text-decoration: none;
-}
+<blockquote>
+<p>缺点：存在跨域问题。<br>优点：文件名可控。</p>
+</blockquote>
+<!--更多-->
 
-.title404 {
-  font-size: 40px;
-  font-weight: 700;
-}
+<h5 id="三-后端-API-返回文件流"><a href="#三-后端-API-返回文件流" class="headerlink" title="三.后端 API 返回文件流"></a>三.后端 API 返回文件流</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 二次封装axios POST请求方法下载</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">AppDownload</span>(<span class="params">url, data, baseURL</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    instance</span><br><span class="line">      .post(url, data, &#123;</span><br><span class="line">        baseURL,</span><br><span class="line">        responseType: <span class="string">'blob'</span></span><br><span class="line">      &#125;)</span><br><span class="line">      .then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (res &amp;&amp; res.status !== <span class="number">200</span>) &#123;</span><br><span class="line">          <span class="comment">// reject(new Error(`下载失败`))</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          <span class="keyword">let</span> reader = <span class="keyword">new</span> FileReader()</span><br><span class="line">          reader.onload = <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">let</span> content = reader.result <span class="comment">// 内容就在这里</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="regexp">/"ok":false/</span>.test(content)) &#123;</span><br><span class="line">              <span class="keyword">let</span> response = &#123;</span><br><span class="line">                data: <span class="built_in">JSON</span>.parse(content)</span><br><span class="line">              &#125;</span><br><span class="line">              responseFn(&#123; ...&#123; <span class="attr">res</span>: response &#125;, resolve, reject &#125;)</span><br><span class="line">              <span class="keyword">return</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">let</span> url = <span class="built_in">window</span>.URL.createObjectURL(<span class="keyword">new</span> Blob([res.data]), &#123;</span><br><span class="line">              type: <span class="string">'multipary/form-data'</span></span><br><span class="line">            &#125;)</span><br><span class="line">            <span class="keyword">let</span> link = <span class="built_in">document</span>.createElement(<span class="string">'a'</span>)</span><br><span class="line">            link.style.display = <span class="string">'none'</span></span><br><span class="line">            link.href = url</span><br><span class="line">            <span class="keyword">let</span> filename = data.filename || <span class="string">`<span class="subst">$&#123;<span class="keyword">new</span> <span class="built_in">Date</span>() - <span class="number">0</span>&#125;</span>.xlsx`</span></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">              <span class="keyword">if</span> (res.headers[<span class="string">'filename'</span>]) &#123;</span><br><span class="line">                filename = <span class="built_in">decodeURI</span>(res.headers[<span class="string">'filename'</span>]) || <span class="string">`<span class="subst">$&#123;<span class="keyword">new</span> <span class="built_in">Date</span>() - <span class="number">0</span>&#125;</span>.xlsx`</span></span><br><span class="line">              &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">              <span class="built_in">console</span>.log(e)</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            link.setAttribute(<span class="string">'download'</span>, filename)</span><br><span class="line">            <span class="built_in">document</span>.body.appendChild(link)</span><br><span class="line">            link.click()</span><br><span class="line">            URL.revokeObjectURL(url.href)</span><br><span class="line">            <span class="built_in">document</span>.body.removeChild(link)</span><br><span class="line">            resolve()</span><br><span class="line">          &#125;</span><br><span class="line">          reader.readAsText(res.data)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">      .catch(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(error)</span><br><span class="line">        Message.error(&#123;</span><br><span class="line">          message: <span class="string">'download failed'</span>,</span><br><span class="line">          duration: <span class="number">2000</span></span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-.blue-text {
-  color: #3296fa;
-}</code></pre><p>  </style><p></p>
-</head>
+<blockquote>
+<p>注意：后端需要将响应头中的 Access-Control-Expose-Headers，设置 Content-Disposition，否则前端取不到 Content-Disposition 的值。</p>
+</blockquote>
+<p>本文不到之处欢迎指正，感谢~</p>
 
-<body>
-  <br>
-  <img src="/404/index/imgs/404.png">
-  <p class="title404 blue-text">404</p>
-  <p>抱歉，您访问的页面不存在~</p>
-  <h4>
-    <div id="countdown">
-      <span class="blue-text">5s</span>
-      后将帮您自动跳转到<a class="blue-text" href="https://lemon1499.github.io/blog" target="_blank">博客首页</a></div>
-  </h4>
-  <script language="javascript" type="text/javascript">
-    var time = 5
-    var divLabel = document.getElementById("countdown")
-    var label = "后将帮您自动跳转到<a class='blue-text' href='https://lemon1499.github.io/blog' target='_blank'>博客首页</a>"
-    divLabel.innerHTML = time.toString() + label
-
-<pre><code>function updateTime() {
-  time = time - 1
-  if (time &gt;= 0) {
-    divLabel.innerHTML = &quot;&lt;span class=&apos;blue-text&apos;&gt;&quot; + time.toString() + &quot;s&lt;/span&gt;&quot; + label
-  } else {
-    divLabel.innerHTML = &quot;正在跳转到关于&amp;amp;联系我，请稍后。。。&quot;
-  }
-}
-setInterval(&quot;updateTime()&quot;, 1000);
-setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos;&quot;, time * 1000);</code></pre><p>  </script><p></p>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":160,"height":300},"mobile":{"show":false,"scale":0.5}});</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":160,"height":300},"mobile":{"show":false,"scale":0.5}});</script><script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":160,"height":300},"mobile":{"show":false,"scale":0.5}});</script></body>
-
-</html>
       
 
       
@@ -264,6 +232,17 @@ setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" target="_blank" rel="noopener" class="js-tag article-tag-list-link color1">上传/下载</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -314,7 +293,7 @@ setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos
     <a class="close js-modal-close" href="javascript:;" target="_blank" rel="noopener"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://yingliyu.github.io/404/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://yingliyu.github.io/2021/09/23/file-down/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -326,6 +305,25 @@ setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos
 </article>
 
   
+<nav id="article-nav">
+  
+    <a href="/2021/09/24/vue-elementui-diary/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          vue-elementui-diary
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/01/27/gwt-token/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">WEB应用中的权限认证</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -339,6 +337,19 @@ setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-5"><a class="toc-link" href="#一-无-API-浏览器直接下载（静态资源在前端）"><span class="toc-number">1.</span> <span class="toc-text">一.无 API 浏览器直接下载（静态资源在前端）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#二-后端-API-返回静态资源下载-url"><span class="toc-number">2.</span> <span class="toc-text">二.后端 API 返回静态资源下载 url</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#三-后端-API-返回文件流"><span class="toc-number">3.</span> <span class="toc-text">三.后端 API 返回文件流</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>
@@ -403,7 +414,7 @@ setTimeout(&quot;javascript:location.href=&apos;https://lemon1499.github.io&apos
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
