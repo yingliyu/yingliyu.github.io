@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>About Me</title>
+    <url>/2019/10/01/about/</url>
+    <content><![CDATA[<p>一介码农…</p>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.css">]]></content>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>background-clip属性详解</title>
     <url>/2019/12/09/background-clip/</url>
     <content><![CDATA[<blockquote>
@@ -592,6 +601,17 @@
       </tags>
   </entry>
   <entry>
+    <title>[object Object]</title>
+    <url>/2021/09/26/upgrade-hexo/</url>
+    <content><![CDATA[<a id="more"></a>
+
+<p>错误之处欢迎交流指正，感谢~</p>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.css">]]></content>
+      <tags>
+        <tag>xxx</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>vue动态绑定class与style</title>
     <url>/2020/06/09/vue-class/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
@@ -647,11 +667,11 @@
 </blockquote> -->
 
 <div style="width: 90%;margin: 0 auto">
-    <canvas id="chart3695" style="height: 300px"></canvas>
+    <canvas id="chart6053" style="height: 300px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart3695').getContext('2d');
+    var ctx = document.getElementById('chart6053').getContext('2d');
     var options = {
 type: 'line',
 data: {
