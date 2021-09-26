@@ -34,11 +34,14 @@
     "hexo-server": "^1.0.0",
     "hexo-simple-mindmap": "^0.6.0",
     "hexo-tag-chart": "^1.0.8",
-    "live2d-widget-model-wanko": "^1.0.5"
+    "hexo-util": "^2.5.0",
+    "keyword-extractor": "^0.0.20",
+    "live2d-widget-model-wanko": "^1.0.5",
+    "moment": "^2.29.1"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
-    "eslint": "^6.7.2",
+    "eslint": "^5.0.0",
     "eslint-config-alloy": "^3.4.0",
     "eslint-plugin-vue": "^6.0.1",
     "vue-eslint-parser": "^5.0.0"
