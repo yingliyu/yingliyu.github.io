@@ -34,7 +34,6 @@
     "hexo-server": "^1.0.0",
     "hexo-simple-mindmap": "^0.6.0",
     "hexo-tag-chart": "^1.0.8",
-    "hexo-theme-ayer": "^1.9.5",
     "live2d-widget-model-wanko": "^1.0.5"
   },
   "devDependencies": {
