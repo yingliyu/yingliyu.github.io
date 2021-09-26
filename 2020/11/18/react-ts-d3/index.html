@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="hi~" />
+       
+      <meta name="description" content="react-ts-d3" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>React-ts-d3 项目实践 |  默</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    <link rel="alternate" href="/atom.xml" title="默" type="application/atom+xml">
+</head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-react-ts-d3"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  React-ts-d3 项目实践
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/11/18/react-ts-d3/" class="article-date">
+  <time datetime="2020-11-18T14:33:38.000Z" itemprop="datePublished">2020-11-18</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/React/">React</a> / <a class="article-category-link" href="/categories/React/Typescript/">Typescript</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">1.2k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">5 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>自从涉足了知识图谱项目便一发不可收拾，本次项目中也是涉及到一些可视化和知识图谱的元素，对我来说虽不是新的技术领域但是这次改用了 <code>ts</code>，所以还是踩了不少的坑呢，主要集中在 <code>d3</code> 和 <code>ts</code> 结合部分。</p>
+<p>其次在项目评审期间，前端主要问题还有自适应方面的问题，最终敲定使用断点媒体查询的方式实现。</p>
+<p>近期 <code>bug</code> 修复进入尾声，时隔数日还是复盘一下，毕竟我的脑瓜子还是一如既往的健忘，刚刚被问及一个项目是不是我做的，我记得是我做的，但是具体内容什么的我已经无力想起了，不过看到我还是认识的。言归正传，下面就来回顾一下踩坑流水帐。</p>
+<h3 id="1-Echarts-Graph"><a href="#1-Echarts-Graph" class="headerlink" title="1. Echarts Graph"></a>1. Echarts Graph</h3><p>如果使用过 <code>echart</code> 系列图表，那么 <code>graph</code> 关系图还是相对比较容易上手的，毕竟是高度可定制化套路一样同类型属性名也一样。</p>
+<span id="more"></span>
+
+<p>但是使用过程中我还是踩到了坑：由于数据返回节点的 <code>name</code> 字符比较长，为了美观前端显示的时候要做个性化样式设计包括换行超出字符省略等等，我天真又粗暴的直接在 <code>name</code> 上动刀了，虽然我知道 <code>name</code> 不能有重复，但我还是撞了南墙，因为部分 <code>name</code> 做个性化处理之后显示的剩余那部分字符相同，所以触碰了 <code>name</code> 不能重复的红线。<br>解决：<code>name</code> 拿来原封不动，在 <code>label</code> 上做 <code>formatter</code> 处理。</p>
+<blockquote>
+<p>注意：每一个节点的 <code>name</code> 要唯一，如果有重复的 <code>name</code> 就会报如下错，类似于遍历时的 <code>key</code> 值是唯一的。</p>
+</blockquote>
+<p><img src="/2020/11/18/react-ts-d3/pic1.png" alt="image1"></p>
+<h3 id="2-词云-echarts-wordcloud"><a href="#2-词云-echarts-wordcloud" class="headerlink" title="2. 词云 echarts-wordcloud"></a>2. 词云 echarts-wordcloud</h3><p>这是一个基于 <code>echarts</code> 封装的第三方库，使用中没有踩到值得一提的坑。<br>部分代码如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">interface IWordCloud &#123;</span><br><span class="line">    <span class="attr">list</span>: ICommonProps[];</span><br><span class="line">    width: number;</span><br><span class="line">    height: number;</span><br><span class="line">    fontSizeRange: number[];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> WordCloud: React.FC&lt;IWordCloud&gt; = <span class="function">(<span class="params">props: IWordCloud</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; list, width, height, fontSizeRange &#125; = props;</span><br><span class="line"></span><br><span class="line">    useEffect(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        drawWordCloud();</span><br><span class="line">    &#125;, [list]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> drawWordCloud = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> wordElement = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;wordCloud&#x27;</span>);</span><br><span class="line">        <span class="keyword">let</span> chart = echarts.init(wordElement <span class="keyword">as</span> HTMLDivElement);</span><br><span class="line">        <span class="keyword">let</span> data = [];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> index <span class="keyword">in</span> list) &#123;</span><br><span class="line">            data.push(&#123;</span><br><span class="line">                <span class="attr">name</span>: list[index].name,</span><br><span class="line">                <span class="attr">value</span>: <span class="built_in">Math</span>.sqrt(list[index].value)</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">let</span> maskImage = <span class="keyword">new</span> Image();</span><br><span class="line">        maskImage.src = bg;</span><br><span class="line">        <span class="keyword">let</span> option = &#123;</span><br><span class="line">            <span class="attr">series</span>: [</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="attr">type</span>: <span class="string">&#x27;wordCloud&#x27;</span>,</span><br><span class="line">                    <span class="attr">left</span>: <span class="string">&#x27;center&#x27;</span>,</span><br><span class="line">                    <span class="attr">top</span>: <span class="string">&#x27;center&#x27;</span>,</span><br><span class="line">                    <span class="attr">width</span>: <span class="string">&#x27;100%&#x27;</span>,</span><br><span class="line">                    <span class="attr">height</span>: <span class="string">&#x27;100%&#x27;</span>,</span><br><span class="line">                    <span class="attr">right</span>: <span class="literal">null</span>,</span><br><span class="line">                    <span class="attr">bottom</span>: <span class="literal">null</span>,</span><br><span class="line">                    <span class="attr">sizeRange</span>: fontSizeRange, <span class="comment">// 字号</span></span><br><span class="line">                    <span class="attr">rotationRange</span>: [-<span class="number">90</span>, <span class="number">90</span>],</span><br><span class="line">                    <span class="attr">rotationStep</span>: <span class="number">90</span>,</span><br><span class="line">                    <span class="attr">gridSize</span>: fontSizeRange[<span class="number">0</span>] - <span class="number">2</span>,</span><br><span class="line">                    <span class="attr">shape</span>: <span class="string">&#x27;circle&#x27;</span>, <span class="comment">// diamond/triangle/circle/pentagon/star</span></span><br><span class="line">                    <span class="comment">// maskImage: maskImage,</span></span><br><span class="line">                    <span class="attr">textStyle</span>: &#123;</span><br><span class="line">                        <span class="attr">normal</span>: &#123;</span><br><span class="line">                            <span class="comment">// fontFamily: &#x27;微软雅黑&#x27;,</span></span><br><span class="line">                            <span class="comment">// fontWeight: &#x27;normal&#x27;,</span></span><br><span class="line">                            <span class="comment">// Color can be a callback function or a color string</span></span><br><span class="line">                            <span class="attr">color</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                                <span class="comment">// Random color</span></span><br><span class="line">                                <span class="keyword">return</span> WORD_CLOUD_COLORS[<span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">3</span>)];</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;,</span><br><span class="line">                        <span class="attr">emphasis</span>: &#123;</span><br><span class="line">                            <span class="attr">shadowBlur</span>: <span class="number">2</span>,</span><br><span class="line">                            <span class="attr">shadowColor</span>: <span class="string">&#x27;#1890ff&#x27;</span></span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;,</span><br><span class="line">                    <span class="attr">data</span>: data</span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;;</span><br><span class="line">        chart.setOption(option);</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;wordCloud&quot;</span> <span class="attr">style</span>=<span class="string">&#123;&#123;</span> <span class="attr">height:</span> <span class="attr">height</span>, <span class="attr">width:</span> <span class="attr">width</span> &#125;&#125; /&gt;</span></span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>效果图如下：<br><img src="/2020/11/18/react-ts-d3/pic2.png" alt="image"></p>
+<h3 id="3-echarts-legend-个性化细节"><a href="#3-echarts-legend-个性化细节" class="headerlink" title="3.echarts legend 个性化细节"></a>3.echarts legend 个性化细节</h3><p>可能对别人来说是小儿科，只是它是我初次发现的比较符合我项目中需求的点。</p>
+<p>1.<code>legend</code> 图例标记的图形除了定制的哪几种形状还可以设置宽高 <code>itemWidth</code>、<code>itemHeight</code>。 2.<code>legend</code> 文字块的宽定制这样可以是 <code>value</code> 左对齐。 3.<code>legend</code> 也有 <code>tooltip</code>。<br>如下图：<br><img src="/2020/11/18/react-ts-d3/pic3.png" alt="image3"></p>
+<h3 id="4-d3-力导向图——-force"><a href="#4-d3-力导向图——-force" class="headerlink" title="4. d3 力导向图—— force"></a>4. d3 力导向图—— force</h3><p>使用 <code>ts</code> 时部分第三方库的定义的各种类型定位起来还是有点烧脑的。<br>我在使用过程中 drag 函数的范型大概折磨了我一周左右最后在庄哥的帮助下终于解决了。<br><img src="/2020/11/18/react-ts-d3/pic4.png" alt="img4"></p>
+<p>部分代码：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// create a force simulation</span></span><br><span class="line">    <span class="keyword">const</span> initForceSimulation = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">const</span> linkForce = d3</span><br><span class="line">                .forceLink&lt;INode, ILink&gt;(linksData)</span><br><span class="line">                .id(<span class="function">(<span class="params">data: INode</span>) =&gt;</span> data.id)</span><br><span class="line">                .distance(<span class="number">200</span>);</span><br><span class="line">            <span class="keyword">const</span> nodeCollision = d3</span><br><span class="line">                .forceCollide()</span><br><span class="line">                .radius(<span class="number">80</span>)</span><br><span class="line">                .iterations(<span class="number">0.5</span>)</span><br><span class="line">                .strength(<span class="number">0.5</span>);</span><br><span class="line">            <span class="keyword">const</span> nodeCharge = d3.forceManyBody().strength(-<span class="number">300</span>).theta(<span class="number">0.01</span>);</span><br><span class="line">            simulationRef.current = d3</span><br><span class="line">                .forceSimulation&lt;INode, ILink&gt;(nodesData)</span><br><span class="line">                .alpha(<span class="number">0.3</span>) <span class="comment">// 活力，渲染之后再自动动多久到达目标位置</span></span><br><span class="line">                .force(<span class="string">&#x27;link&#x27;</span>, linkForce) <span class="comment">// 映射id &amp; 线的长度</span></span><br><span class="line">                .force(<span class="string">&#x27;x&#x27;</span>, d3.forceX())</span><br><span class="line">                .force(<span class="string">&#x27;y&#x27;</span>, d3.forceY())</span><br><span class="line">                .force(<span class="string">&#x27;center&#x27;</span>, d3.forceCenter(svgWidth / <span class="number">2</span>, svgHeight / <span class="number">2</span>))</span><br><span class="line">                .force(<span class="string">&#x27;collision&#x27;</span>, nodeCollision)<span class="comment">// 避免节点相互覆盖</span></span><br><span class="line">                .force(<span class="string">&#x27;charge&#x27;</span>, nodeCharge);<span class="comment">// 节点间相互排斥的电磁力</span></span><br><span class="line"></span><br><span class="line">            simulationRef.current.nodes(nodesData).on(<span class="string">&#x27;tick&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">                edges</span><br><span class="line">                    .attr(<span class="string">&#x27;x1&#x27;</span>, <span class="function">(<span class="params">&#123; source &#125;</span>) =&gt;</span> (source <span class="keyword">as</span> INode).x || <span class="number">0</span>)</span><br><span class="line">                    .attr(<span class="string">&#x27;y1&#x27;</span>, <span class="function">(<span class="params">&#123; source &#125;</span>) =&gt;</span> (source <span class="keyword">as</span> INode).y || <span class="number">0</span>)</span><br><span class="line">                    .attr(<span class="string">&#x27;x2&#x27;</span>, <span class="function">(<span class="params">&#123; target &#125;</span>) =&gt;</span> (target <span class="keyword">as</span> INode).x || <span class="number">0</span>)</span><br><span class="line">                    .attr(<span class="string">&#x27;y2&#x27;</span>, <span class="function">(<span class="params">&#123; target &#125;</span>) =&gt;</span> (target <span class="keyword">as</span> INode).y || <span class="number">0</span>);</span><br><span class="line">                nodes.attr(<span class="string">&#x27;transform&#x27;</span>, <span class="function">(<span class="params">data: any</span>) =&gt;</span> <span class="string">`translate(<span class="subst">$&#123;data.x&#125;</span>, <span class="subst">$&#123;data.y&#125;</span>)`</span>);</span><br><span class="line">                edgepaths.attr(</span><br><span class="line">                    <span class="string">&#x27;d&#x27;</span>,</span><br><span class="line">                    <span class="function">(<span class="params">&#123; target, source &#125;</span>) =&gt;</span></span><br><span class="line">                        <span class="string">&#x27;M &#x27;</span> +</span><br><span class="line">                        (source <span class="keyword">as</span> INode).x +</span><br><span class="line">                        <span class="string">&#x27; &#x27;</span> +</span><br><span class="line">                        (source <span class="keyword">as</span> INode).y +</span><br><span class="line">                        <span class="string">&#x27; L &#x27;</span> +</span><br><span class="line">                        (target <span class="keyword">as</span> INode).x +</span><br><span class="line">                        <span class="string">&#x27; &#x27;</span> +</span><br><span class="line">                        (target <span class="keyword">as</span> INode).y</span><br><span class="line">                );</span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="keyword">const</span> edges = drewLines(); <span class="comment">// draw lines</span></span><br><span class="line">            <span class="keyword">const</span> nodes = drawNodes(); <span class="comment">// draw nodes</span></span><br><span class="line">            <span class="keyword">const</span> edgepaths = drawEdgeLabel(); <span class="comment">// draw relation label</span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(error);</span><br><span class="line">            message.error(<span class="string">&#x27;内部错误，&#x27;</span> + <span class="built_in">JSON</span>.stringify(error));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure>
+
+<p>最后，推荐一个切换全屏库： screenfull。</p>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.css"> 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://yingliyu.github.io/2020/11/18/react-ts-d3/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/d3/" rel="tag">d3</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/" rel="tag">react</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/typescript/" rel="tag">typescript</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2021/01/12/vue3-01/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            Vue3 的新特性(一):ref()、reactive()、toRef() 和 toRefs()
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/07/18/react-share-bike/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">React+AntD+Redux 的项目实战总结</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "",
+    app_key: "",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2015-2021
+        <i class="ri-heart-fill heart_icon"></i> Lillian
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="默"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" target="_blank" rel="noopener" href="http://shenyu-vip.lofter.com">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":160,"height":300},"mobile":{"show":false,"scale":0.5}});</script></body>
+
+</html>

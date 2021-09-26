@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="hi~" />
+       
+      <meta name="description" content="梦见新大陆" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>(译)D3-force |  默</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    <link rel="alternate" href="/atom.xml" title="默" type="application/atom+xml">
+</head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-d3-force"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  (译)D3-force
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2019/11/28/d3-force/" class="article-date">
+  <time datetime="2019-11-28T15:57:09.000Z" itemprop="datePublished">2019-11-28</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/D3/">D3</a> / <a class="article-category-link" href="/categories/D3/%E5%8F%AF%E8%A7%86%E5%8C%96/">可视化</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">5k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">18 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <blockquote>
+<p>原文: <a target="_blank" rel="noopener" href="https://github.com/d3/d3/blob/master/API.md#forces-d3-force?_blank">https://github.com/d3/d3/blob/master/API.md#forces-d3-force</a></p>
+</blockquote>
+<h5 id="d3-forceSimulation-nodes"><a href="#d3-forceSimulation-nodes" class="headerlink" title="d3.forceSimulation( [nodes] )"></a>d3.forceSimulation( [nodes] )</h5><p>使用指定的节点数据和无强度力创建一个新的模拟。若未指定 nodes，默认为空数组。该模拟是自启动的；在该模拟运行时使用 <a target="_blank" rel="noopener" href="https://github.com/d3/d3-force/blob/v1.2.1/README.md#simulation_on?_blank">simulation.on</a>  监听每个瞬间（呼吸）事件。如果你想要手动运行模拟，调用 <a target="_blank" rel="noopener" href="https://github.com/d3/d3-force/blob/v1.2.1/README.md#simulation_stop?_blank">simulation.stop</a>, 然后需要调用  <a target="_blank" rel="noopener" href="https://github.com/d3/d3-force/blob/v1.2.1/README.md#simulation_tick?_blank">simulation.tick</a> .</p>
+<h5 id="simulation-nodes（-nodes-）"><a href="#simulation-nodes（-nodes-）" class="headerlink" title="simulation.nodes（[nodes]）"></a>simulation.nodes（[nodes]）</h5><p>每个 node 必须是一个对象模型，下面几个属性将会被仿真系统添加：<br>index-节点在 nodes 数组中的索引</p>
+<span id="more"></span>
+
+<ul>
+<li>x-节点当前的 x 坐标</li>
+<li>y-节点当前的 y-坐标</li>
+<li>vx-节点当前的 x 方向速度</li>
+<li>vy-节点当前的 y 方向速度</li>
+</ul>
+<p>固定给定节点的位置，你需要两个特定的额外的属性：</p>
+<ul>
+<li>fx - 节点的固定 x-位置</li>
+<li>fy - 节点的固定 y-位置</li>
+</ul>
+<h5 id="force-）"><a href="#force-）" class="headerlink" title="force(）"></a>force(）</h5><p>force()是一个用以修改节点位置和速度的函数；在这种情况下，force  可以用来模拟电荷或重力之类的经典物理力学，也可以用来解决几何约束，例如将节点保持在边界框内或者保持节点之间的相对距离。</p>
+<h5 id="link-froce-弹簧模型"><a href="#link-froce-弹簧模型" class="headerlink" title="link froce(弹簧模型)"></a>link froce(弹簧模型)</h5><p>可以根据 link distance 将有关联的两个节点拉近或者推远。力的强度与被链接两个节点的距离成比例，类似弹簧力。</p>
+<h5 id="d3-forceManyBody"><a href="#d3-forceManyBody" class="headerlink" title="d3.forceManyBody()"></a>d3.forceManyBody()</h5><p>创建一个使用默认参数的电荷力模型。<br>manyBody.strength([strength]) 如果指定了  strength  则将强度访问器设置为指定的数值或者方法，重新评估每个节点的强度访问器并返回此电荷力。若强度为正值则表示节点之间相互吸引，负值表示节点之间相互排斥。</p>
+<h5 id="simulation-alphaTarget-target"><a href="#simulation-alphaTarget-target" class="headerlink" title="simulation.alphaTarget([target])"></a>simulation.alphaTarget([target])</h5><p>如果指定了  target  则将当前的目标  alpha  设置为指定的值，需要在 [0, 1] 之间。如果没有指定  target  则返回当前默认的目标  alpha  值, 默认为 0.</p>
+<h5 id="simulation-force-name-force"><a href="#simulation-force-name-force" class="headerlink" title="simulation.force(name[, force])"></a>simulation.force(name[, force])</h5><p>如果指定了  force  则表示为仿真添加指定  name  的  force(力学模型)  并返回仿真。如果没有指定  force  则返回当前仿真的对应  name  的力模型，如果没有对应的  name  则返回  undefined. (默认情况下仿真没有任何力学模型，需要手动添加).</p>
+<h5 id="enter"><a href="#enter" class="headerlink" title="enter( )"></a>enter( )</h5><p>操作的意义在于通过此函数返回一个集合，这个集合里面包含的就是没有被可视化的数据；</p>
+<h5 id="simulation-on-typenames-listener"><a href="#simulation-on-typenames-listener" class="headerlink" title="simulation.on(typenames, [listener])"></a>simulation.on(typenames, [listener])</h5><hr>
+<h3 id="Forces"><a href="#Forces" class="headerlink" title="Forces"></a>Forces</h3><p>forces 是一个简单的改变节点位置和速度的函数；在这个模拟环境中，一个 forces 能施加一个典型的物理力，比如电荷力或重力，或者它可以解决一个几何约束， 例如将节点保持在边界框内或将链接节点保持在固定距离之外。<br>举个例子，一个简单的朝着原点（0，0）移动节点的定位力可能实现为：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">force</span>(<span class="params">alpha</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>, n = nodes.length, node, k = alpha * <span class="number">0.1</span>; i &lt; n; ++i) &#123;</span><br><span class="line">    node = nodes[i]</span><br><span class="line">    node.vx -= node.x * k</span><br><span class="line">    node.vy -= node.y * k</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>力模拟通常读取节点当前的位置坐标，然后增加/减去这个节点的速度&lt;vx, vy&gt;,<br>然而，力模拟也可以’偷看‘预期的节点下一个位置&lt;x+vx, y+vy&gt;;这对于通过 通过迭代松弛解决几何约束力是很有必要的。力模拟也可以改变位置方向，这有时可以避免增加模拟的能量，比如在视口模拟重入的时候。</p>
+<p>模拟通常要组合多个力，这个模块提供几个供您享用：</p>
+<ol>
+<li>Centering 定心力</li>
+<li>Collision 碰撞力</li>
+<li>Links 链接力</li>
+<li>Many-body 多体力（电荷）</li>
+<li>Positioning 定位力</li>
+</ol>
+<h5 id="Centering-定心力"><a href="#Centering-定心力" class="headerlink" title="Centering 定心力"></a>Centering 定心力</h5><p>定心力一致的调动节点以至于所有节点(如果多有节点的质量相等则为质心)都是在给定的位置&lt;x,y&gt;。<br>每一个施加了这个力的节点的位置会被改变；但是它的速度不变，这样做通常会导致节点超出目标中心并且围着这个中心震荡。这个力帮助节点保持在视口的中心，不像定位力，会扭曲它们的相对位置。</p>
+<p><strong>1. d3.forceCenter([x, y])</strong></p>
+<p>使用指定的 x 和 y 坐标创建新的定心力。如果 x 和 y 是未指定,默认&lt;0, 0&gt;</p>
+<p><strong>2. center.x([x])</strong></p>
+<p>如果指定了 x，则将定心位置的 x 坐标设置为指定的数值并返回此力。如果没有指定 x，则返回当前 x 坐标，该坐标默认为 0。</p>
+<p><strong>3. center.y([y])</strong></p>
+<p>如果指定了 y，则将定心位置的 y 坐标设置为指定的数值并返回此力。如果没有指定 y，则返回当前 y 坐标，默认为 0。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> simulation = d3</span><br><span class="line">  .forceSimulation(nodes)</span><br><span class="line">  .force(<span class="string">&#x27;charge&#x27;</span>, d3.forceManyBody())</span><br><span class="line">  .force(<span class="string">&#x27;link&#x27;</span>, d3.forceLink(links))</span><br><span class="line">  .force(<span class="string">&#x27;center&#x27;</span>, d3.forceCenter().x().y())</span><br></pre></td></tr></table></figure>
+
+<h5 id="Collision-碰撞力"><a href="#Collision-碰撞力" class="headerlink" title="Collision 碰撞力"></a>Collision 碰撞力</h5><p>碰撞力将节点视为具有给定半径的圆，而不是点，并且阻止节点重叠。通常情况下，两个节点 a 和 b 是分开的所以 a 和 b 之间的距离至少是两个节点的半径之和。为了减少抖动，这是一个默认的软约束，具有可配置的强度和迭代次数。</p>
+<p><strong>1. d3.forceCollide([radius])</strong></p>
+<p>以一个特定的半径创建一个新的圆形碰撞力。如果这个半径没有设置，所有的节点都默认为常数 1。</p>
+<p><strong>2. collide.radius([radius])</strong></p>
+<p>如果给定了半径，将半径访问器设为一个特定的数字或者函数，重新评估每一个节点的半径访问器，并且返回这个模拟。如果没有给定半径，返回当前的半径访问器，默认如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">radius</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个半径访问器会被这个模拟中的每一个节点调用，传递节点及其从零开始的索引。然后，结果数被存储在内部，这样每个节点的半径只在初始化力或使用新的半径调用此方法时重新计算，而不是在力的每个应用程序上。</p>
+<p><strong>3. collide.strength([strength])</strong></p>
+<p>如果指定了强度，设置这个力强度为[0, 1]之间的数字，并返回这个模拟。如果未指定强度，返回当前的强度，默认是 0.7。</p>
+<p>通过迭代松弛来解决重叠节点。对于每个节点来说，在下个确定的呼吸事件决定的预计（使用预期的位置&lt;x+vx, y+vy&gt;）将会重叠它的其他节点，z 这个节点的速度会改变，推着这个节点超出另一个将会重叠的节点。 速度的变化被力的强度减弱，这样同时重叠的分辨率可以混合在一起来找到一个稳定的解决方案。</p>
+<p><strong>4. collide.iterations([iterations])</strong></p>
+<p>如果指定了迭代次数，给每一个应用设置迭代次数的值为一个特定的数字并且返回这个模拟。如果未指定迭代次数，返回当前的迭代次数，默认值为 1。增加迭代次数大大增加了约束的钢度并且避免节点的部分重合，但是也增加了计算力的运行时成本。</p>
+<h5 id="Links-链接力"><a href="#Links-链接力" class="headerlink" title="Links 链接力"></a>Links 链接力</h5><p>根据想要的链接距离，链接力将链接在一起的节点推到一起或分开。这个力的强度与链接节点和目标节点的距离差成比例，类似于弹簧力。</p>
+<p><strong>1. d3.forceLink([links])</strong></p>
+<p>创建一个新的链接力，传一个特定的 links 和默认参数。如果 links 未指定，它将默认是一个空数组。</p>
+<p><strong>2. link.links([links])</strong></p>
+<p>如果 links 未指定，设置与此力关联的链接数组，重新计算每一个链接参数的距离和强度，并返回这个模拟。如果 links 未指定，返回默认值是空数组的当前的链接数组。</p>
+<p>每个链接是一个拥有如下属性的对象：</p>
+<ul>
+<li>source - 这个链接的源头节点</li>
+<li>target - 这个链接的目标节点</li>
+<li>index -  将从零开始的索引转换成链接，通过这种方法分配</li>
+</ul>
+<p>为了方便，一个链接的源头和目标接节点的属性可以用除对象引用外的数值或字符串字符初始化；看 link.id。当这个链接力被初始化（或当节点或链接改变的时候重新初始化），任意 link.source 或 link.target 的那个非对象属性将会被对应给定目标标识符的对象引用替换。</p>
+<p>如果指定的链接数组被改变，例如当链接增加或从模拟中删除的时候，必须用新的数组重新调用这个方法，以通知更改的力度。这个力不会去创建特定数组的防御副本。</p>
+<p><strong>3. link.id([id])</strong></p>
+<p>如果指定了 id，以特定的函数设置这个节点的 id 访问器并返回这个模拟。如果未指定，然会当前的节点 id 访问器，默认数值类型的节点索引：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">id</span>(<span class="params">d</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> d.index</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>默认 id 访问器允许每一个链接的源或者目标的值指定为节点数组从零开始的索引。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> nodes = [&#123; <span class="attr">id</span>: <span class="string">&#x27;Alice&#x27;</span> &#125;, &#123; <span class="attr">id</span>: <span class="string">&#x27;Bob&#x27;</span> &#125;, &#123; <span class="attr">id</span>: <span class="string">&#x27;Carol&#x27;</span> &#125;]</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> links = [</span><br><span class="line">  &#123; <span class="attr">source</span>: <span class="number">0</span>, <span class="attr">target</span>: <span class="number">1</span> &#125;, <span class="comment">// Alice → Bob</span></span><br><span class="line">  &#123; <span class="attr">source</span>: <span class="number">1</span>, <span class="attr">target</span>: <span class="number">2</span> &#125; <span class="comment">// Bob → Carol</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>现在考虑一个不同的 id 访问器，它返回一个字符串：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">id</span>(<span class="params">d</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> d.id</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>有了这个访问器，你可以使用命名的源和目标：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> nodes = [&#123; <span class="attr">id</span>: <span class="string">&#x27;Alice&#x27;</span> &#125;, &#123; <span class="attr">id</span>: <span class="string">&#x27;Bob&#x27;</span> &#125;, &#123; <span class="attr">id</span>: <span class="string">&#x27;Carol&#x27;</span> &#125;]</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> links = [</span><br><span class="line">  &#123; <span class="attr">source</span>: <span class="string">&#x27;Alice&#x27;</span>, <span class="attr">target</span>: <span class="string">&#x27;Bob&#x27;</span> &#125;,</span><br><span class="line">  &#123; <span class="attr">source</span>: <span class="string">&#x27;Bob&#x27;</span>, <span class="attr">target</span>: <span class="string">&#x27;Carol&#x27;</span> &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>当用一个 JSON 数据展现图谱/图形时，这是一个极其有用的例子。参考<a target="_blank" rel="noopener" href="https://bl.ocks.org/mbostock/f584aa36df54c451c94a9d0798caed35">这个例子</a>。<br>当这个模拟初始化的时候，id 访问器被每一个节点调用，同时当节点或者链接改变的时候，传递节点及其从零开始的索引。</p>
+<p><strong>4. link.distance([distance])</strong></p>
+<p>如果指定了距离，将距离访问器设置未特定的数字或函数，重新计算每个链接的距离访问器，并且返回这个模拟。如果未指定距离，返回当前的距离访问器，默认如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">distance</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">30</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个距离访问器被每个链接调用，传递链接及其从零开始的索引。这个数值的结果将会被存储在内部，当这个模拟初始化或者用一个新的距离调用这个方法的时候会重新计算每一个链接之间的距离，而不是这个模拟的每个应用程序上。</p>
+<p><strong>5. link.strength([strength])</strong></p>
+<p>如果指定了强度，将强度访问器者设置为特定的数字或这个函数，重新计算每个链接的强度访问器，并返回这个强度。如果未指定，返回当前的强度访问器，默认如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">strength</span>(<span class="params">link</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">1</span> / <span class="built_in">Math</span>.min(count(link.source), count(link.target))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中 count(node)是一个函数，它返回给定节点作为源或目标的链接数。之所以选择此默认值，是因为它会自动降低连接到紧密连接节点的链接的强度，从而提高稳定性。</p>
+<p>为每个链接调用强度访问器，传递链接及其从零开始的索引。然后，结果数被存储在内部，这样，只有在初始化 force 或使用新强度调用此方法时，才会重新计算每个链接的强度，而不是在 force 的每个应用程序上。</p>
+<p><strong>6. link.iterations([iterations])</strong></p>
+<p>如果指定了迭代，则将每个应用程序的迭代次数设置为指定的次数并返回该强制。如果没有指定迭代，则返回默认为 1 的当前迭代计数。迭代次数的增加极大地增加了约束的刚度，对于复杂的结构如网格是有用的，但也增加了评估力的运行时成本。</p>
+<h5 id="Many-Body-多体力"><a href="#Many-Body-多体力" class="headerlink" title="Many-Body 多体力"></a>Many-Body 多体力</h5><p>多体力在多有节点之间相互作用。如果强度时正数，它相当于引力（吸引），如果强度是负数，它相当于静电电荷斥力。该实现使用四叉树和 Barnes-Hut 近似来极大地提高性能;  他的精确性可以用 theta 参数定制。</p>
+<p>不像链接力，它仅仅受两个链接的节点影响，这个电荷斥力是全局的；每个节点会影响每个其他的节点，即使他们不是相互连接的子图。</p>
+<p><strong>1. d3.forceManyBody()</strong></p>
+<p>用默认的参数创建一个新的多体力。</p>
+<p><strong>2. manyBody.strength([strength])</strong></p>
+<p>如果指定强度，将强度访问器设为一个特定的数字或函数，重新计算每个节点的强度访问器，并返回这个强度。正数使节点相互吸引，负数使节点相互排斥。如果未指定，返回当前的强度访问器，默认为：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">strength</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> -<span class="number">30</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在模拟中，每个节点都会调用强度访问器传递节点及从零开始的索引。这个返回的结果会保存在本地，所以当这个模拟初始化或用一个新的强度调用这个方法的时候，每一个节点的强度重新计算，而不是在模拟的每个应用程序上。</p>
+<p><strong>3. manyBody.theta([theta])</strong></p>
+<p>如果指定 theta，将 Barnes–Hut 近似准则设置为特定的数值，并发返回这个模拟。如果未指定，返回默认值：0.9。</p>
+<p>为了加速计算，模拟执行 在每个应用程序中使用 O(n log n)得出的 Barnes-Hut 近似值，n 是节点数量。对于每个应用程序，使用四叉树存储当前节点的位置。对于每个节点。结合所有给定计算出的所有其他节点的力。对于一个很远的节点集群，电荷力可以近似于用一个独立的、大的节点。这个 theta 的参数值决定了这个近似值的精确度： 如果四叉树单元的宽度 w / l 与从节点到单元质心的距离 l 之比小于 theta，则给定单元中的所有节点都视为单个节点，而不是单独处理。</p>
+<p><strong>4. manyBody.distanceMin([distance])</strong></p>
+<p>如果指定距离，将它设置为节点之间的最小距离。如果未指定，返回默认值 1. 最小的距离建立了相邻节点的力强度的上线，从而避免不稳定。特别是避免了两个节点完全重合时无限强的力。在这种情况下，力的方向时随机的。</p>
+<p><strong>5. manyBody.distanceMax([distance])</strong></p>
+<p>如果指定距离，将它设置为两个节点间的最大距离。如果未指定，返回默认值无穷大。指定一个有限大的最大距离提高了性能并且生成更加本地化的布局。</p>
+<h5 id="Positioning-定位力"><a href="#Positioning-定位力" class="headerlink" title="Positioning 定位力"></a>Positioning 定位力</h5><p>x 和 y 的定位力以可配置的强度将节点推向给定的尺寸预期的位置。径向力是相似的，除了它时将节点推向给定圆的最近点。这个力的强度是跟节点的位置和目标位置的一维距离成正例。虽然这些力可以作用于单个节点，但是它主要作用于所有节点的全局力。</p>
+<p><strong>1. d3.forceX([x])</strong></p>
+<p>沿着 x 轴给定位置 x 创建一个新的定位力。如果 x 未指定，默认未 0.</p>
+<p><strong>2. x.strength([strength])</strong></p>
+<p>如果指定了 strength，将它设置为特定的数值或者函数，重新计算每个节点的强度访问器。并且返回这个强度。强度决定了节点的 x 方向速度增加多少。例如，强度的值是 0.1 就表示节点应该从当前的 x 位置到目标位置要移动 1/10 的距离。较高的值可以更快的将节点移动到目标位置，这通常是以其他力或约束为代价的。超出 0~1 的值是不推荐的。<br>如果强度未指定，返回默认值：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">strength</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0.1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>模拟中的每个节点都会调用这个强度访问器，传递节点和从零开始的索引。返回的结果会存储在本地，这样，只有在初始化 force 或使用新 x 调用此方法时，才会重新计算每个节点的目标 x 坐标，而不是在 force 的每个应用程序上。</p>
+<p><strong>3. x.x([x])</strong></p>
+<p>如果指定了 x，将其设置为特定数值址或函数，重新计算每个节点的 x 访问器，并返回这个模拟。如果未指定，返回默认值：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">x</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个模拟中的每个节点都会调用这个 x 访问器，传递节点和从零开始的索引。结果会存储在本地，这样只有模拟初始化或者用新的 x 调用这个方法的时候会重新计算每个节点的目标 x 坐标。</p>
+<p><strong>4. d3.forceY([y])</strong></p>
+<p><strong>5. y.strength([strength])</strong></p>
+<p><strong>6. y.y([y])</strong></p>
+<p><strong>7. d3.forceRadial(radius[, x][, y])</strong></p>
+<p>创建一个新的定位力沿着特定圆心和半径的圆。如果 x 和 y 未指定，默认值&lt;0,0&gt;。</p>
+<p><strong>8. radial.strength([strength])</strong></p>
+<p>如果指定强度，将其设置未特定的数值或函数，重新计算每个节点的强度计算器，并返回这个模拟。强度决定了节点的 x 和 y 轴方向的速度增加多少。例如：对于每个应用来说，值为 0.1 表示节点从当前位置到这个圆的最近的点要移动 1/10 的距离。比较高的值表示节点到目标位置的速度更快，通常是以其他力或约束为代价的。超出 0~1 的值是不推荐的。<br>如果未指定，返回默认值：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">strength</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0.1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>为模拟中的每个节点调用强度访问器，传递节点及其从零开始的索引。然后，结果数被存储在内部，这样，只有在初始化 force 或使用新强度调用此方法时，才会重新计算每个节点的强度，而不是在 force 的每个应用程序上。</p>
+<p><strong>9. radial.radius([radius])</strong></p>
+<p>如果指定了半径，将其设置为特定的值或函数，重新计算每个节点的半径访问器，并返回这个模拟。如果未指定返回当前的半径访问器。<br>为模拟中的每个节点调用 radius 访问器，传递节点及其从零开始的索引。然后，结果数被存储在内部，以便仅在初始化 force 或使用新半径调用此方法时重新计算每个节点的目标半径，而不是在 force 的每个应用程序上。</p>
+<p><strong>10. radial.x([x])</strong></p>
+<p>如果指定了 x，则将圆心的 x 坐标设置为指定的数值并返回此力。如果没有指定 x，则返回中心的当前 x 坐标，默认为 0。</p>
+<p><strong>11. radial.y([y])</strong></p>
+<p>如果指定了 y，则将圆心的 y 坐标设置为指定的数值并返回此力。如果没有指定 y，则返回中心的当前 y 坐标，默认为 0。</p>
+<p>注：本文是笔者阅读文档自译版，如跟官方文档有出入谨以官方为准。</p>
+<p>本文有不到之处欢迎交流指正，感谢~</p>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.css"> 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://yingliyu.github.io/2019/11/28/d3-force/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/D3/" rel="tag">D3</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8F%AF%E8%A7%86%E5%8C%96/" rel="tag">可视化</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2019/12/04/image-flow/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            js处理图片流并显示在页面上
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/11/28/hello-world/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Hello World</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "",
+    app_key: "",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2015-2021
+        <i class="ri-heart-fill heart_icon"></i> Lillian
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/ayer-side.svg" alt="默"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" target="_blank" rel="noopener" href="http://shenyu-vip.lofter.com">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":160,"height":300},"mobile":{"show":false,"scale":0.5}});</script></body>
+
+</html>
