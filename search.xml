@@ -128,6 +128,8 @@
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;download-file&quot;</span> <span class="attr">href</span>=<span class="string">&quot;/file.xlsx&quot;</span> <span class="attr">download</span>=<span class="string">&quot;模板.xlsx&quot;</span>&gt;</span>下载模板文件<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <p>或者使用非 a 标签的按钮下载：</p>
+<span id="more"></span>
+
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">@param &#123;string&#125; url  静态资源url</span></span><br><span class="line"><span class="comment">@param &#123;string&#125; filename  静态资源文件名(可选)</span></span><br><span class="line"><span class="comment">@param &#123;string&#125; target  </span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> fileUrlHandled = <span class="function">(<span class="params">&#123; url, filename, target &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> downloadElement = <span class="built_in">document</span>.createElement(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line">  downloadElement.style.display = <span class="string">&#x27;none&#x27;</span></span><br><span class="line">  downloadElement.href = url</span><br><span class="line">  <span class="keyword">if</span> (target) &#123;</span><br><span class="line">    downloadElement.target = <span class="string">&#x27;_blank&#x27;</span></span><br><span class="line">  &#125;</span><br><span class="line">  downloadElement.rel = <span class="string">&#x27;noopener noreferrer&#x27;</span></span><br><span class="line">  <span class="keyword">if</span> (filename) &#123;</span><br><span class="line">    downloadElement.download = filename</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(downloadElement)</span><br><span class="line">  downloadElement.click()</span><br><span class="line">  <span class="built_in">document</span>.body.removeChild(downloadElement)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>缺点：文件名不可控。</p>
@@ -137,8 +139,6 @@
 <blockquote>
 <p>缺点：存在跨域问题。<br>优点：文件名可控。</p>
 </blockquote>
-<!--更多-->
-
 <h5 id="三-后端-API-返回文件流"><a href="#三-后端-API-返回文件流" class="headerlink" title="三.后端 API 返回文件流"></a>三.后端 API 返回文件流</h5><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 二次封装axios POST请求方法下载</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">AppDownload</span>(<span class="params">url, data, baseURL</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    instance</span><br><span class="line">      .post(url, data, &#123;</span><br><span class="line">        baseURL,</span><br><span class="line">        <span class="attr">responseType</span>: <span class="string">&#x27;blob&#x27;</span></span><br><span class="line">      &#125;)</span><br><span class="line">      .then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (res &amp;&amp; res.status !== <span class="number">200</span>) &#123;</span><br><span class="line">          <span class="comment">// reject(new Error(`下载失败`))</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          <span class="keyword">let</span> reader = <span class="keyword">new</span> FileReader()</span><br><span class="line">          reader.onload = <span class="function"><span class="keyword">function</span> (<span class="params">event</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">let</span> content = reader.result <span class="comment">// 内容就在这里</span></span><br><span class="line">            <span class="keyword">if</span> (<span class="regexp">/&quot;ok&quot;:false/</span>.test(content)) &#123;</span><br><span class="line">              <span class="keyword">let</span> response = &#123;</span><br><span class="line">                <span class="attr">data</span>: <span class="built_in">JSON</span>.parse(content)</span><br><span class="line">              &#125;</span><br><span class="line">              responseFn(&#123; ...&#123; <span class="attr">res</span>: response &#125;, resolve, reject &#125;)</span><br><span class="line">              <span class="keyword">return</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">let</span> url = <span class="built_in">window</span>.URL.createObjectURL(<span class="keyword">new</span> Blob([res.data]), &#123;</span><br><span class="line">              <span class="attr">type</span>: <span class="string">&#x27;multipary/form-data&#x27;</span></span><br><span class="line">            &#125;)</span><br><span class="line">            <span class="keyword">let</span> link = <span class="built_in">document</span>.createElement(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line">            link.style.display = <span class="string">&#x27;none&#x27;</span></span><br><span class="line">            link.href = url</span><br><span class="line">            <span class="keyword">let</span> filename = data.filename || <span class="string">`<span class="subst">$&#123;<span class="keyword">new</span> <span class="built_in">Date</span>() - <span class="number">0</span>&#125;</span>.xlsx`</span></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">              <span class="keyword">if</span> (res.headers[<span class="string">&#x27;filename&#x27;</span>]) &#123;</span><br><span class="line">                filename = <span class="built_in">decodeURI</span>(res.headers[<span class="string">&#x27;filename&#x27;</span>]) || <span class="string">`<span class="subst">$&#123;<span class="keyword">new</span> <span class="built_in">Date</span>() - <span class="number">0</span>&#125;</span>.xlsx`</span></span><br><span class="line">              &#125;</span><br><span class="line">            &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">              <span class="built_in">console</span>.log(e)</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            link.setAttribute(<span class="string">&#x27;download&#x27;</span>, filename)</span><br><span class="line">            <span class="built_in">document</span>.body.appendChild(link)</span><br><span class="line">            link.click()</span><br><span class="line">            URL.revokeObjectURL(url.href)</span><br><span class="line">            <span class="built_in">document</span>.body.removeChild(link)</span><br><span class="line">            resolve()</span><br><span class="line">          &#125;</span><br><span class="line">          reader.readAsText(res.data)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;)</span><br><span class="line">      .catch(<span class="function">(<span class="params">error</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(error)</span><br><span class="line">        Message.error(&#123;</span><br><span class="line">          <span class="attr">message</span>: <span class="string">&#x27;download failed&#x27;</span>,</span><br><span class="line">          <span class="attr">duration</span>: <span class="number">2000</span></span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <blockquote>
@@ -263,7 +263,7 @@
 <p>浏览器访问：<a href="http://localhost:4000/">http://localhost:4000</a></p>
 <h5 id="托管代码到-github"><a href="#托管代码到-github" class="headerlink" title="托管代码到 github"></a>托管代码到 github</h5><ol>
 <li>首先创建一个 repository，名称为 yourGithubName.github.io, 其中 yourGithubName 一定要是你的 github 名称。</li>
-<li>生成 SSH 添加到 github。执行命令：<br>$ ssh-keygen -t rsa -b 4096 -C “<a href="mailto:&#121;&#x6f;&#117;&#114;&#x5f;&#x65;&#109;&#97;&#105;&#x6c;&#64;&#101;&#120;&#x61;&#x6d;&#x70;&#x6c;&#101;&#x2e;&#x63;&#x6f;&#x6d;">&#121;&#x6f;&#117;&#114;&#x5f;&#x65;&#109;&#97;&#105;&#x6c;&#64;&#101;&#120;&#x61;&#x6d;&#x70;&#x6c;&#101;&#x2e;&#x63;&#x6f;&#x6d;</a>“ 然后去本地 C/Users/you/.ssh/id_rsa 目录下找到 id_rsa.pub 文件并复制文件内容，去 github 的 settings/SSH and GPG keys 下 New SSH key 粘贴 Add SSH key 即可。</li>
+<li>生成 SSH 添加到 github。执行命令：<br>$ ssh-keygen -t rsa -b 4096 -C “<a href="mailto:&#121;&#111;&#117;&#114;&#x5f;&#x65;&#x6d;&#x61;&#x69;&#108;&#64;&#x65;&#x78;&#97;&#x6d;&#x70;&#x6c;&#x65;&#46;&#99;&#111;&#x6d;">&#121;&#111;&#117;&#114;&#x5f;&#x65;&#x6d;&#x61;&#x69;&#108;&#64;&#x65;&#x78;&#97;&#x6d;&#x70;&#x6c;&#x65;&#46;&#99;&#111;&#x6d;</a>“ 然后去本地 C/Users/you/.ssh/id_rsa 目录下找到 id_rsa.pub 文件并复制文件内容，去 github 的 settings/SSH and GPG keys 下 New SSH key 粘贴 Add SSH key 即可。</li>
 <li>进入 blog 目录 clone 仓库。<br>执行 :</li>
 </ol>
 <figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">git init</span><br><span class="line">git <span class="builtin-name">add</span> .</span><br><span class="line">git commit -m <span class="string">&quot;hexo init&quot;</span></span><br><span class="line">git remote <span class="builtin-name">add</span> origin git@github.com:githubName/githubName.github.io.git</span><br><span class="line">git push -u origin gh-pages</span><br></pre></td></tr></table></figure>
@@ -338,6 +338,41 @@
       </categories>
       <tags>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo更换主题出现空白index.html</title>
+    <url>/2021/09/26/hexo-upgrade/</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>搭建博客很久了，之前用的<code>yilia</code>主题很喜欢，最近又”移情别恋”上了 <code>ayer</code> 这种简单有点技术控的风格主题，又开始折腾一番。下面记录一下我的折腾轨迹…</p>
+<p>版本：<br><code>hexo: 4.2.1</code><br><code>hexo-cli: 3.1.0</code><br><code>node: 12.13.0</code></p>
+<h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>更换主题</p>
+<span id="more"></span>
+
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p>开始安装新主题并使用</p>
+<h6 id="1-安装主题"><a href="#1-安装主题" class="headerlink" title="1.安装主题"></a>1.安装主题</h6><p>hexo-theme-ayer 主题对 hexo 版本&gt;=5.0 和&lt;5.0 有两种不同的安装方法，因为我的 hexo&lt;5.0 采用&lt;5.0 的安装方法：</p>
+<figure class="highlight awk"><table><tr><td class="code"><pre><span class="line"><span class="regexp">//</span> hexo &lt; <span class="number">5.0</span></span><br><span class="line">git clone https:<span class="regexp">//gi</span>thub.com<span class="regexp">/Shen-Yu/</span>hexo-theme-ayer.git themes/ayer</span><br></pre></td></tr></table></figure>
+
+<p>安装成功会在项目的 <code>themes</code> 目录下多一个 <code>ayer</code> 目录，<code>ayer</code> 根目录有一个<code>_config.yml</code> 主题配置文件</p>
+<h6 id="2-修改"><a href="#2-修改" class="headerlink" title="2.修改"></a>2.修改</h6><p>将博客根目录下的 <code>_config.yml</code> 里的<code> theme</code> 值修改成 <code>ayer</code></p>
+<figure class="highlight avrasm"><table><tr><td class="code"><pre><span class="line"><span class="symbol">theme:</span> ayer</span><br></pre></td></tr></table></figure>
+
+<p>然后根据自己的需要修改主题的配置文件 <code>themes/ayer/_config.yml</code><br>最后，重新<code>hexo g</code>构建。</p>
+<h2 id="发现问题"><a href="#发现问题" class="headerlink" title="发现问题"></a>发现问题</h2><p>问题出现了，发现构建的 public 目录下的 index.html 文件都是空的，访问博客显示空白。</p>
+<h2 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h2><p>在网上查了一下，有相似问题的说是缺少依赖，先<code>npm ls --depth 0</code>查看 npm 插件缺失情况，一般情况下出现<code>npm ERROR！missing xxx</code><br>说明 xxx 插件缺失，然后依次将所有缺失的插件安装上。<br>执行了以上操作之后依然不行，解决不了我的问题。</p>
+<p>最后决定一不做二不休，干脆直接升级 <code>hexo</code> 到 5.x.x 版本。<br>执行以下指令进行版本升级：</p>
+<figure class="highlight coffeescript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">npm</span> install -g <span class="built_in">npm</span>-check <span class="comment"># 检查之前安装的插件，都有哪些是可以升级的</span></span><br><span class="line"><span class="built_in">npm</span> install -g <span class="built_in">npm</span>-upgrade <span class="comment"># 升级系统中的插件</span></span><br><span class="line"><span class="built_in">npm</span>-check</span><br><span class="line"><span class="built_in">npm</span>-upgrade  <span class="comment">#更新</span></span><br><span class="line"><span class="comment"># 更新 hexo 及所有插件</span></span><br><span class="line"><span class="built_in">npm</span> update</span><br><span class="line"><span class="comment"># 查看版本 确认 hexo 已经更新</span></span><br><span class="line">hexo -v</span><br></pre></td></tr></table></figure>
+
+<p>升级之后版本：<br><code>hexo: 5.4.1</code><br><code>hexo-cli: 3.1.0</code><br><code>node: 12.13.0</code></p>
+<p>删除之前步骤 1 安装的（ hexo 版本&lt;5.0 ） <code>ayer</code> 主题（/themes/ayer）,然后使用 hexo&gt;5.0 的安装方法重新安装：</p>
+<figure class="highlight coffeescript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">npm</span> i hexo-theme-ayer -S</span><br></pre></td></tr></table></figure>
+
+<p>安装完成后会在根目录生成一个<code>_config.ayer.yml</code> 文件，直接编辑<code>_config.ayer.yml</code> 文件进行配置即可。<br>最后，重新<code>hexo g</code>构建，构建成功，index.html 文件内容正常，发布之后博客正常显示，问题解决。</p>
+<p>参考：<a href="https://shen-yu.gitee.io/2019/ayer/#%E5%AE%89%E8%A3%85">Ayer 中文说明</a></p>
+<p>错误之处欢迎交流指正，感谢~</p>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.css">]]></content>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>Hexo版本升级</tag>
       </tags>
   </entry>
   <entry>
@@ -646,17 +681,6 @@
       </tags>
   </entry>
   <entry>
-    <title>[object Object]</title>
-    <url>/2021/09/26/upgrade-hexo/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<p>错误之处欢迎交流指正，感谢~</p>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.css">]]></content>
-      <tags>
-        <tag>xxx</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>vue动态绑定class与style</title>
     <url>/2020/06/09/vue-class/</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
@@ -712,11 +736,11 @@
 </blockquote> -->
 
 <div style="width: 90%;margin: 0 auto">
-    <canvas id="chart5457" style="height: 300px"></canvas>
+    <canvas id="chart6912" style="height: 300px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart5457').getContext('2d');
+    var ctx = document.getElementById('chart6912').getContext('2d');
     var options = {
 type: 'line',
 data: {
