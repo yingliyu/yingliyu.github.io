@@ -25,6 +25,8 @@ categories:
 
 或者使用非 a 标签的按钮下载：
 
+<!--more-->
+
 ```js
 /* 
 @param {string} url  静态资源url
@@ -118,8 +120,6 @@ export default function download(url, filename) {
 
 > 缺点：存在跨域问题。
 > 优点：文件名可控。
-
-<!--更多-->
 
 ##### 三.后端 API 返回文件流
 
