@@ -11,7 +11,7 @@
     "d": "hexo clean & hexo g && hexo d"
   },
   "hexo": {
-    "version": "4.0.0"
+    "version": "4.2.1"
   },
   "dependencies": {
     "ejs-lint": "^0.3.0",
