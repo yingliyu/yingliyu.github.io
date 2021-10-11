@@ -259,11 +259,11 @@
 </blockquote> -->
 
 <div style="width: 90%;margin: 0 auto">
-    <canvas id="chart965" style="height: 300px"></canvas>
+    <canvas id="chart8772" style="height: 300px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart965').getContext('2d');
+    var ctx = document.getElementById('chart8772').getContext('2d');
     var options = {
 type: 'line',
 data: {
@@ -360,6 +360,63 @@ text: 'Chart.js Line Chart'
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%B8%8A%E4%BC%A0-%E4%B8%8B%E8%BD%BD/" rel="tag">上传/下载</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-rights-mgt"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/03/11/rights-mgt/"
+    >权限管理的原理</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/03/11/rights-mgt/" class="article-date">
+  <time datetime="2021-03-11T09:44:30.000Z" itemprop="datePublished">2021-03-11</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><p>在一些中后台项目的业务中经常会有给不同的用户看到不同的页面甚至不同的操作权限，这时候权限管理功能就闪亮登场了，用它来给用户赋予不同的角色，给不同的角色设置不同的权限，那么前后端在技术方面具体是如何实现的呢？带着这个问题我们来看下权限管理的流程和实现原理。</p>
+<h5 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h5><blockquote>
+<p>权限管理大致方案就是给角色分配权限，给用户分配角色。根据业务不同要求的颗粒度不同，如果颗粒度仅限于路由级别，实现思路大致如下</p>
+</blockquote>
+<p>首先，前端需要分别定义一套（不需权限所有已登陆用户都可访问）静态路由表和动态路由表，路由元信息中包含这个路由对应的（和后端定义好的）权限名。</p> 
+      <a class="article-more-link" href="/2021/03/11/rights-mgt/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue-%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" rel="tag">-vue - 权限管理</a></li></ul>
 
     </footer>
   </div>
@@ -744,65 +801,6 @@ text: 'Chart.js Line Chart'
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/d3/" rel="tag">d3</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/" rel="tag">react</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/typescript/" rel="tag">typescript</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-react-share-bike"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/07/18/react-share-bike/"
-    >React+AntD+Redux 的项目实战总结</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/07/18/react-share-bike/" class="article-date">
-  <time datetime="2020-07-18T15:46:43.000Z" itemprop="datePublished">2020-07-18</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/React/">React</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <!-- ![1.jepg](1.jpeg) -->
-
-<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><p>最近用 <code>React Hook</code> 实战了一个 React 项目。今天来总结一下，因为都是拼凑的时间所以项目历时半个多月之久，通过本次学习进一步的熟悉了 <code>AntD</code> 常用组件的使用，业务功能（增删改查）的开发及百度地图 API、富文本组件的使用、权限设置模块，最重要的是把学习的 <code>React Hook</code> 落实到了项目中。</p> 
-      <a class="article-more-link" href="/2020/07/18/react-share-bike/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/" rel="tag">react</a></li></ul>
 
     </footer>
   </div>
