@@ -2,6 +2,10 @@
 
 :tada: This is a private tech blog for sharing！
 
+# 启动
+
+hexo start
+
 # 新建 tags
 
 hexo new page tags
@@ -17,10 +21,6 @@ hexo new page photos
 # 新建一篇文章
 
 hexo new [layout] title
-
-# 启动
-
-hexo start
 
 # build
 
