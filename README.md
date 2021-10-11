@@ -4,7 +4,7 @@
 
 # 启动
 
-hexo start
+npm run start
 
 # 新建 tags
 
