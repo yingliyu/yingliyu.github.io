@@ -1,11 +1,13 @@
 ---
 toc: true
-title: vue系列面试题
+title: VUE系列面试题
 tags:
   - 面试题
-  - vue
-description: 面试题
+  - VUE
+description: VUE面试题
 date: 2021-10-17 13:51:18
+categories: ['面试题']
+
 ---
 
 ##### 1. vue双向绑定的原理
