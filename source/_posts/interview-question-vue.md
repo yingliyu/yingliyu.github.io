@@ -1,8 +1,9 @@
 ---
 toc: true
-title: interview-question-vue
+title: vue系列面试题
 tags:
   - 面试题
+  - vue
 description: 面试题
 date: 2021-10-17 13:51:18
 ---
@@ -17,6 +18,7 @@ date: 2021-10-17 13:51:18
 ##### 8. vue修饰符.sync
 ##### 9. vue的渲染是异步还是同步，为什么
 ##### 10. vue的nextTick的用法及场景
+<!--more-->
 ##### 11. vue有render吗
 ##### 12. v-model做了什么
 ##### 13. 首页速度加载怎么优化
@@ -32,26 +34,13 @@ date: 2021-10-17 13:51:18
 ##### 23. wacth与computed的区别
 ##### 24. 实现一个v-model
 ##### 25. MVVM的理解
+##### 26. 全局组件如何引入
+##### 27. vuex的使用？引出mutation和action区别？
+##### 28. Vuex整个触发过程（actions，state，view）
+##### 29. vue router中两种模式的区别？解释原理
+##### 30. new Router分别时hush和history时base有什么区别
 
 
 
 
 
-
-
-
-<!--more-->
-
-
-
-
-
-
-
-
-
-
-
-
-
->本文有不到之处欢迎交流指正~
