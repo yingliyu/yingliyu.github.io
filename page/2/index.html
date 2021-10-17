@@ -155,6 +155,66 @@
     
     
     <article
+  id="post-react-ts-d3"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/11/18/react-ts-d3/"
+    >React-ts-d3 项目实践</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/11/18/react-ts-d3/" class="article-date">
+  <time datetime="2020-11-18T14:33:38.000Z" itemprop="datePublished">2020-11-18</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/React/">React</a> / <a class="article-category-link" href="/categories/React/Typescript/">Typescript</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>自从涉足了知识图谱项目便一发不可收拾，本次项目中也是涉及到一些可视化和知识图谱的元素，对我来说虽不是新的技术领域但是这次改用了 <code>ts</code>，所以还是踩了不少的坑呢，主要集中在 <code>d3</code> 和 <code>ts</code> 结合部分。</p>
+<p>其次在项目评审期间，前端主要问题还有自适应方面的问题，最终敲定使用断点媒体查询的方式实现。</p>
+<p>近期 <code>bug</code> 修复进入尾声，时隔数日还是复盘一下，毕竟我的脑瓜子还是一如既往的健忘，刚刚被问及一个项目是不是我做的，我记得是我做的，但是具体内容什么的我已经无力想起了，不过看到我还是认识的。言归正传，下面就来回顾一下踩坑流水帐。</p>
+<h3 id="1-Echarts-Graph"><a href="#1-Echarts-Graph" class="headerlink" title="1. Echarts Graph"></a>1. Echarts Graph</h3><p>如果使用过 <code>echart</code> 系列图表，那么 <code>graph</code> 关系图还是相对比较容易上手的，毕竟是高度可定制化套路一样同类型属性名也一样。</p> 
+      <a class="article-more-link" href="/2020/11/18/react-ts-d3/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/d3/" rel="tag">d3</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/" rel="tag">react</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/typescript/" rel="tag">typescript</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-react-share-bike"
   class="article article-type-post"
   itemscope
@@ -715,74 +775,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/i18n/" rel="tag">i18n</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-background-clip"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2019/12/09/background-clip/"
-    >background-clip属性详解</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2019/12/09/background-clip/" class="article-date">
-  <time datetime="2019-12-09T19:06:20.000Z" itemprop="datePublished">2019-12-09</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/CSS/">CSS</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <blockquote>
-<p>对于每个前端开发者来说，CSS 中的 <strong>background</strong> 属性用起来该是游刃有余了。但是 CSS3 的 <strong>background-clip</strong> 属性可能不太了解，下面就来跟我一起学习这个属性吧。</p>
-</blockquote>
-<p><code>background-clip</code>，顾名思义肯定跟背景裁切有关。没错，它存在以下四个属性值</p>
-<ul>
-<li>border-box（默认值）</li>
-<li>padding-box</li>
-<li>content-box</li>
-<li>text</li>
-</ul>
-<p>我在网上查了很多资源大部分都只写了前三个属性值，这也是这篇博客诞生的缘故之一。作为一个笔记，假如碰巧被你看到，再碰巧对你有所帮助那就再好不过啦~</p>
-<p>下面我们通过具体 Demo 介绍一下每个属性值。</p> 
-      <a class="article-more-link" href="/2019/12/09/background-clip/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li></ul>
 
     </footer>
   </div>
