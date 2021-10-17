@@ -155,6 +155,205 @@
     
     
     <article
+  id="post-git-command"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/06/08/git-command/"
+    >git常用命令</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/06/08/git-command/" class="article-date">
+  <time datetime="2020-06-08T10:11:38.000Z" itemprop="datePublished">2020-06-08</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Git/">Git</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
+<p>git 相关知识可以说是开发者的必备常识，虽然目前市面有很多方便的可视化操作工具，但是 git 的指令用起来不仅方便快捷而且显得更加有逼格，况且面试的时候有可能被问到，所以还是有必要学习并掌握的。</p>
+</blockquote>
+<h5 id="1-基础指令"><a href="#1-基础指令" class="headerlink" title="1.基础指令"></a>1.基础指令</h5><p>克隆远程仓库代码到本地</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone 远程仓库地址</span><br></pre></td></tr></table></figure>
+
+<p>添加变更到暂存区</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add . <span class="comment">//添加全部变更</span></span><br><span class="line">git add &lt;fileName&gt; <span class="comment">//添加指定文件的变更</span></span><br></pre></td></tr></table></figure> 
+      <a class="article-more-link" href="/2020/06/08/git-command/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-es6-array-from"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/01/10/es6-array-from/"
+    >ES6之你不知道的Array.from()</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/01/10/es6-array-from/" class="article-date">
+  <time datetime="2020-01-10T18:30:57.000Z" itemprop="datePublished">2020-01-10</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ES6/">ES6</a> / <a class="article-category-link" href="/categories/ES6/Array/">Array</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>先来了解几个概念：</p>
+<blockquote>
+<p>数组：是有序的元素序列，其索引是从 0 开始自然增长的整数，元素值可以是任何 JavaScript 值，并且包含一个名为 length 属性，该属性值表示数组元素的长度。</p>
+</blockquote>
+<blockquote>
+<p>对象：JavaScript 中对象类型为一组无序的由键/值组成的数据集合，其元素的键名和值都可以自定义。</p>
+</blockquote>
+<blockquote>
+<p>类数组对象：是一种类似数组的对象。最基本的要求就是具有 length 属性的对象。</p>
+</blockquote>
+<h3 id="三种使用方式"><a href="#三种使用方式" class="headerlink" title="三种使用方式"></a>三种使用方式</h3><p>根据传参的形式不同分为三种使用方式。</p>
+<h5 id="1-Array-from-length-x-Fn"><a href="#1-Array-from-length-x-Fn" class="headerlink" title="1. Array.from({length: x}, Fn)"></a>1. Array.from({length: x}, Fn)</h5><p>第一个参数指定了第二个参数的执行次数，返回一个长度为 x 的数组。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.from(&#123; <span class="attr">length</span>: <span class="number">3</span> &#125;, <span class="function">() =&gt;</span> <span class="string">&#x27;lemon&#x27;</span>) <span class="comment">// [&quot;lemon&quot;, &quot;lemon&quot;, &quot;lemon&quot;]</span></span><br><span class="line"><span class="built_in">Array</span>.from(&#123; <span class="attr">length</span>: <span class="number">3</span> &#125;, <span class="function">(<span class="params">v, i</span>) =&gt;</span> i) <span class="comment">// 生成一个从0开始的的数组[0, 1, 2] 这里我暂时还有疑问参数v是什么？？？</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Array</span>.from(&#123; <span class="attr">length</span>: <span class="number">3</span> &#125;, <span class="function">(<span class="params">v, i</span>) =&gt;</span> (item = &#123; <span class="attr">year</span>: i + <span class="number">2000</span> &#125;)) <span class="comment">// 生成一个年份对象数组[&#123;&#x27;year&#x27;: 2000, &#x27;year&#x27;: 2001, &#x27;year&#x27;: 2002&#125;]</span></span><br></pre></td></tr></table></figure> 
+      <a class="article-more-link" href="/2020/01/10/es6-array-from/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ES6/" rel="tag">ES6</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
+  id="post-vue-i18n"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2019/12/26/vue-i18n/"
+    >Vue+vue-i18n+Element UI实现多语言切换</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2019/12/26/vue-i18n/" class="article-date">
+  <time datetime="2019-12-26T18:03:51.000Z" itemprop="datePublished">2019-12-26</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/VUE/">VUE</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h6 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h6><blockquote>
+<p>Vue I18n 是 Vue.js 的国际化插件。最近项目需求——给网站加中英文语言切换功能，使用的是 vue-i8n。老大修改了项目架构使项目支持 i8n，铺垫做的好就使用起来很 easy 了，整理数据然后比着葫芦画瓢就实现了想要的功能。一直以来我的短板就是学习东西不够深入，总是浅尝辄止于会用，发现了不足就去努力克服吧。不能止步于会用，现在就开始从头学习整理一下项目架构是如何配合 i18n 来使用的。</p>
+</blockquote>
+<h6 id="1-安装"><a href="#1-安装" class="headerlink" title="1.安装"></a>1.安装</h6><p>1)npm</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue-i18n</span><br></pre></td></tr></table></figure>
+
+<p>2)yarn</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add vue-i18n</span><br></pre></td></tr></table></figure>
+
+<h6 id="2-开始"><a href="#2-开始" class="headerlink" title="2.开始"></a>2.开始</h6> 
+      <a class="article-more-link" href="/2019/12/26/vue-i18n/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/i18n/" rel="tag">i18n</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-background-clip"
   class="article article-type-post"
   itemscope
@@ -580,63 +779,13 @@
 </article>
 
     
-    <article
-  id="post-about"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2019/10/01/about/"
-    >About Me</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2019/10/01/about/" class="article-date">
-  <time datetime="2019-10-01T14:32:00.000Z" itemprop="datePublished">2019-10-01</time>
-</a>  
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>一介码农…</p>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.css"> 
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag">随笔</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
   </article>
   
 
   
   <nav class="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/2/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/">上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">下一页</a>
   </nav>
   
 </section>

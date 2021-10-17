@@ -9,13 +9,13 @@
        
       <meta name="keywords" content="hi~" />
        
-      <meta name="description" content="Hexo更换主题出现空白index.html解决方案" />
+      <meta name="description" content="计算机网络、webpack系列面试题" />
       
       <meta
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>Hexo更换主题出现空白index.html |  默</title>
+      <title>综合面试题 |  默</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -59,7 +59,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-hexo-upgrade"
+  id="post-interview-question-http"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -70,7 +70,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  Hexo更换主题出现空白index.html
+  综合面试题
 </h1>
  
 
@@ -78,15 +78,15 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2021/09/26/hexo-upgrade/" class="article-date">
-  <time datetime="2021-09-26T15:32:00.000Z" itemprop="datePublished">2021-09-26</time>
+      <a href="/2021/09/11/interview-question-http/" class="article-date">
+  <time datetime="2021-09-11T14:23:00.000Z" itemprop="datePublished">2021-09-11</time>
 </a>   
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">620</span>
+            <span class="post-count">268</span>
         </span>
     </span>
 
@@ -95,7 +95,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">2 分钟</span>
+            <span class="post-count">1 分钟</span>
         </span>
     </span>
 </div>
@@ -110,33 +110,8 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>搭建博客很久了，之前用的<code>yilia</code>主题很喜欢，最近又”移情别恋”上了 <code>ayer</code> 这种简单有点技术控的风格主题，又开始折腾一番。下面记录一下我的折腾轨迹…</p>
-<p>版本：<br><code>hexo: 4.2.1</code><br><code>hexo-cli: 3.1.0</code><br><code>node: 12.13.0</code></p>
-<h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>更换主题</p>
-<span id="more"></span>
-
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p>开始安装新主题并使用</p>
-<h6 id="1-安装主题"><a href="#1-安装主题" class="headerlink" title="1.安装主题"></a>1.安装主题</h6><p>hexo-theme-ayer 主题对 hexo 版本&gt;=5.0 和&lt;5.0 有两种不同的安装方法，因为我的 hexo&lt;5.0 采用&lt;5.0 的安装方法：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span> hexo &lt; <span class="number">5.0</span></span><br><span class="line">git clone https:<span class="regexp">//gi</span>thub.com<span class="regexp">/Shen-Yu/</span>hexo-theme-ayer.git themes/ayer</span><br></pre></td></tr></table></figure>
-
-<p>安装成功会在项目的 <code>themes</code> 目录下多一个 <code>ayer</code> 目录，<code>ayer</code> 根目录有一个<code>_config.yml</code> 主题配置文件</p>
-<h6 id="2-修改"><a href="#2-修改" class="headerlink" title="2.修改"></a>2.修改</h6><p>将博客根目录下的 <code>_config.yml</code> 里的<code> theme</code> 值修改成 <code>ayer</code></p>
-<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">theme:</span> ayer</span><br></pre></td></tr></table></figure>
-
-<p>然后根据自己的需要修改主题的配置文件 <code>themes/ayer/_config.yml</code><br>最后，重新<code>hexo g</code>构建。</p>
-<h2 id="发现问题"><a href="#发现问题" class="headerlink" title="发现问题"></a>发现问题</h2><p>问题出现了，发现构建的 public 目录下的 index.html 文件都是空的，访问博客显示空白。</p>
-<h2 id="解决问题"><a href="#解决问题" class="headerlink" title="解决问题"></a>解决问题</h2><p>在网上查了一下，有相似问题的说是缺少依赖，先<code>npm ls --depth 0</code>查看 npm 插件缺失情况，一般情况下出现<code>npm ERROR！missing xxx</code><br>说明 xxx 插件缺失，然后依次将所有缺失的插件安装上。<br>执行了以上操作之后依然不行，解决不了我的问题。</p>
-<p>最后决定一不做二不休，干脆直接升级 <code>hexo</code> 到 5.x.x 版本。<br>执行以下指令进行版本升级：</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> install -g <span class="built_in">npm</span>-check <span class="comment"># 检查之前安装的插件，都有哪些是可以升级的</span></span><br><span class="line"><span class="built_in">npm</span> install -g <span class="built_in">npm</span>-upgrade <span class="comment"># 升级系统中的插件</span></span><br><span class="line"><span class="built_in">npm</span>-check</span><br><span class="line"><span class="built_in">npm</span>-upgrade  <span class="comment">#更新</span></span><br><span class="line"><span class="comment"># 更新 hexo 及所有插件</span></span><br><span class="line"><span class="built_in">npm</span> update</span><br><span class="line"><span class="comment"># 查看版本 确认 hexo 已经更新</span></span><br><span class="line">hexo -v</span><br></pre></td></tr></table></figure>
-
-<p>升级之后版本：<br><code>hexo: 5.4.1</code><br><code>hexo-cli: 3.1.0</code><br><code>node: 12.13.0</code></p>
-<p>删除之前步骤 1 安装的（ hexo 版本&lt;5.0 ） <code>ayer</code> 主题（/themes/ayer）,然后使用 hexo&gt;5.0 的安装方法重新安装：</p>
-<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> i hexo-theme-ayer -S</span><br></pre></td></tr></table></figure>
-
-<p>安装完成后会在根目录生成一个<code>_config.ayer.yml</code> 文件，直接编辑<code>_config.ayer.yml</code> 文件进行配置即可。<br>最后，重新<code>hexo g</code>构建，构建成功，index.html 文件内容正常，发布之后博客正常显示，问题解决。</p>
-<p>参考：<a target="_blank" rel="noopener" href="https://shen-yu.gitee.io/2019/ayer/#%E5%AE%89%E8%A3%85">Ayer 中文说明</a></p>
-<p>错误之处欢迎交流指正，感谢~</p>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.css"> 
+  <h4 id="一、计算机网络"><a href="#一、计算机网络" class="headerlink" title="一、计算机网络"></a>一、计算机网络</h4><h5 id="1-浏览器的缓存机制"><a href="#1-浏览器的缓存机制" class="headerlink" title="1. 浏览器的缓存机制"></a>1. 浏览器的缓存机制</h5><h5 id="2-babel与ployfill的关系和区别"><a href="#2-babel与ployfill的关系和区别" class="headerlink" title="2. babel与ployfill的关系和区别"></a>2. babel与ployfill的关系和区别</h5><h5 id="3-解决跨域的方法"><a href="#3-解决跨域的方法" class="headerlink" title="3. 解决跨域的方法"></a>3. 解决跨域的方法</h5><h5 id="4-http状态码"><a href="#4-http状态码" class="headerlink" title="4. http状态码"></a>4. http状态码</h5><h5 id="5-git-stash"><a href="#5-git-stash" class="headerlink" title="5. git stash"></a>5. git stash</h5><h5 id="6-localstorage跨域可以共享吗，如何解决"><a href="#6-localstorage跨域可以共享吗，如何解决" class="headerlink" title="6. localstorage跨域可以共享吗，如何解决"></a>6. localstorage跨域可以共享吗，如何解决</h5><h5 id="7-描述url到页面渲染的整个过程"><a href="#7-描述url到页面渲染的整个过程" class="headerlink" title="7. 描述url到页面渲染的整个过程"></a>7. 描述url到页面渲染的整个过程</h5><h5 id="8-https页面引入http资源的解决方式-如何让网站同时兼容http和https"><a href="#8-https页面引入http资源的解决方式-如何让网站同时兼容http和https" class="headerlink" title="8. https页面引入http资源的解决方式/如何让网站同时兼容http和https"></a>8. https页面引入http资源的解决方式/如何让网站同时兼容http和https</h5><h5 id="9-cookie、session、sessionStorage和localStorage的-区别"><a href="#9-cookie、session、sessionStorage和localStorage的-区别" class="headerlink" title="9. cookie、session、sessionStorage和localStorage的 区别"></a>9. cookie、session、sessionStorage和localStorage的 区别</h5><h5 id="10-http-和-https-的区别"><a href="#10-http-和-https-的区别" class="headerlink" title="10. http 和 https 的区别"></a>10. http 和 https 的区别</h5><span id="more"></span>
+<h5 id="11-GET-和-POST-的区别"><a href="#11-GET-和-POST-的区别" class="headerlink" title="11. GET 和 POST 的区别"></a>11. GET 和 POST 的区别</h5><h5 id="12-DNS（Domain-Name-System）域名解析-的原理"><a href="#12-DNS（Domain-Name-System）域名解析-的原理" class="headerlink" title="12. DNS（Domain Name System）域名解析 的原理"></a>12. DNS（Domain Name System）域名解析 的原理</h5><h5 id="13-三次握手和四次挥手"><a href="#13-三次握手和四次挥手" class="headerlink" title="13. 三次握手和四次挥手"></a>13. 三次握手和四次挥手</h5><h5 id="14-http2-0有什么改进"><a href="#14-http2-0有什么改进" class="headerlink" title="14. http2.0有什么改进"></a>14. http2.0有什么改进</h5><h5 id="15-Web-Storage-sessionStorage、localStorage-带来的好处"><a href="#15-Web-Storage-sessionStorage、localStorage-带来的好处" class="headerlink" title="15. Web Storage(sessionStorage、localStorage)带来的好处"></a>15. Web Storage(sessionStorage、localStorage)带来的好处</h5><h5 id="16-如何让前端禁用cookie"><a href="#16-如何让前端禁用cookie" class="headerlink" title="16. 如何让前端禁用cookie"></a>16. 如何让前端禁用cookie</h5><h5 id="17-script标签为什么放后面？引出defer和async区别？"><a href="#17-script标签为什么放后面？引出defer和async区别？" class="headerlink" title="17. script标签为什么放后面？引出defer和async区别？"></a>17. script标签为什么放后面？引出defer和async区别？</h5><h5 id="18-304状态码是怎么样，怎么产生的"><a href="#18-304状态码是怎么样，怎么产生的" class="headerlink" title="18. 304状态码是怎么样，怎么产生的"></a>18. 304状态码是怎么样，怎么产生的</h5><h4 id="二、webpack"><a href="#二、webpack" class="headerlink" title="二、webpack"></a>二、webpack</h4><h5 id="1-publicpath和contentBase的区别"><a href="#1-publicpath和contentBase的区别" class="headerlink" title="1. publicpath和contentBase的区别"></a>1. publicpath和contentBase的区别</h5><h5 id="2-怎么配置css的局部作用域"><a href="#2-怎么配置css的局部作用域" class="headerlink" title="2. 怎么配置css的局部作用域"></a>2. 怎么配置css的局部作用域</h5><h5 id="3-拆包的配置项是什么，chunks分别代表什么"><a href="#3-拆包的配置项是什么，chunks分别代表什么" class="headerlink" title="3. 拆包的配置项是什么，chunks分别代表什么"></a>3. 拆包的配置项是什么，chunks分别代表什么</h5><h5 id="4-webpack的分包机制、代码分割"><a href="#4-webpack的分包机制、代码分割" class="headerlink" title="4. webpack的分包机制、代码分割"></a>4. webpack的分包机制、代码分割</h5><h5 id="5-webpack的loder是怎么解析不同类型的资源的"><a href="#5-webpack的loder是怎么解析不同类型的资源的" class="headerlink" title="5. webpack的loder是怎么解析不同类型的资源的"></a>5. webpack的loder是怎么解析不同类型的资源的</h5><h5 id="6-webpack的devSever"><a href="#6-webpack的devSever" class="headerlink" title="6. webpack的devSever"></a>6. webpack的devSever</h5><h5 id="7-webpack打包速度做过什么优化"><a href="#7-webpack打包速度做过什么优化" class="headerlink" title="7. webpack打包速度做过什么优化"></a>7. webpack打包速度做过什么优化</h5><h5 id="8-如何解决编译慢的问题"><a href="#8-如何解决编译慢的问题" class="headerlink" title="8. 如何解决编译慢的问题"></a>8. 如何解决编译慢的问题</h5><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.css"> 
       <!-- reward -->
       
       <div id="reword-out">
@@ -206,12 +181,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://yingliyu.github.io/2021/09/26/hexo-upgrade/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://yingliyu.github.io/2021/09/11/interview-question-http/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo%E7%89%88%E6%9C%AC%E5%8D%87%E7%BA%A7/" rel="tag">Hexo版本升级</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/" rel="tag">webpack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" rel="tag">面试题</a></li></ul>
 
     </footer>
   </div>
@@ -219,19 +194,19 @@
    
   <nav class="article-nav">
     
-      <a href="/2021/10/17/interview-question-vue/" class="article-nav-link">
+      <a href="/2021/09/23/file-down/" class="article-nav-link">
         <strong class="article-nav-caption">上一篇</strong>
         <div class="article-nav-title">
           
-            vue系列面试题
+            文件下载的三种方式
           
         </div>
       </a>
     
     
-      <a href="/2021/09/24/vue-elementui-diary/" class="article-nav-link">
+      <a href="/2021/03/11/rights-mgt/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">vue-elementui-diary</div>
+        <div class="article-nav-title">权限管理的原理</div>
       </a>
     
   </nav>
