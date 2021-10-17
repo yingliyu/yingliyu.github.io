@@ -5,6 +5,8 @@ tags:
   - ie
 description: ie浏览器踩坑系列
 date: 2020-06-09 11:08:48
+categories:
+  - IE
 ---
 
 ###### 持续更新...

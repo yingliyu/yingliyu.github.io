@@ -5,6 +5,7 @@ tags:
   - react
 description: react
 date: 2020-07-18 15:46:43
+categories: React
 ---
 
 <!-- ![1.jepg](1.jpeg) -->

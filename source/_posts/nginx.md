@@ -5,6 +5,8 @@ tags:
   - nginx
 description: nginx入门
 date: 2021-01-22 17:41:54
+categories:
+  - Nginx
 ---
 
 #### 前言

@@ -5,6 +5,8 @@ tags:
   - git
 description: git常用命令
 date: 2020-06-08 10:11:38
+categories:
+  - Git
 ---
 
 ### 前言

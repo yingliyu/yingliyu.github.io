@@ -7,6 +7,7 @@ tags:
   - d3
 description: react-ts-d3
 date: 2020-11-18 14:33:38
+categories: ['React', 'Typescript']
 ---
 
 ### 前言

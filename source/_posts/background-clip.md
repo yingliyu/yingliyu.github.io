@@ -2,9 +2,11 @@
 toc: true
 title: background-clip属性详解
 tags:
-  - CSS3
+  - CSS
 description: background-clip属性详解
 date: 2019-12-09 19:06:20
+categories:
+  - CSS
 ---
 
 > 对于每个前端开发者来说，CSS 中的 **background** 属性用起来该是游刃有余了。但是 CSS3 的 **background-clip** 属性可能不太了解，下面就来跟我一起学习这个属性吧。
@@ -159,4 +161,4 @@ html 代码：
 
 ![clip-text](clip-text.jpg) ![clip-img](clip-img.jpg)
 
-> 本文有不到之处欢迎多多交流指正~
+本文有不到之处欢迎交流指正，感谢~
