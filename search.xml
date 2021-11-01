@@ -263,7 +263,7 @@
 <p>浏览器访问：<a href="http://localhost:4000/">http://localhost:4000</a></p>
 <h5 id="托管代码到-github"><a href="#托管代码到-github" class="headerlink" title="托管代码到 github"></a>托管代码到 github</h5><ol>
 <li>首先创建一个 repository，名称为 yourGithubName.github.io, 其中 yourGithubName 一定要是你的 github 名称。</li>
-<li>生成 SSH 添加到 github。执行命令：<br>$ ssh-keygen -t rsa -b 4096 -C “<a href="mailto:&#x79;&#x6f;&#117;&#114;&#x5f;&#x65;&#x6d;&#97;&#x69;&#x6c;&#64;&#x65;&#120;&#x61;&#109;&#112;&#108;&#x65;&#x2e;&#x63;&#x6f;&#x6d;">&#x79;&#x6f;&#117;&#114;&#x5f;&#x65;&#x6d;&#97;&#x69;&#x6c;&#64;&#x65;&#120;&#x61;&#109;&#112;&#108;&#x65;&#x2e;&#x63;&#x6f;&#x6d;</a>“ 然后去本地 C/Users/you/.ssh/id_rsa 目录下找到 id_rsa.pub 文件并复制文件内容，去 github 的 settings/SSH and GPG keys 下 New SSH key 粘贴 Add SSH key 即可。</li>
+<li>生成 SSH 添加到 github。执行命令：<br>$ ssh-keygen -t rsa -b 4096 -C “<a href="mailto:&#x79;&#x6f;&#117;&#x72;&#x5f;&#x65;&#109;&#x61;&#105;&#108;&#64;&#101;&#x78;&#97;&#x6d;&#x70;&#108;&#101;&#46;&#99;&#111;&#109;">&#x79;&#x6f;&#117;&#x72;&#x5f;&#x65;&#109;&#x61;&#105;&#108;&#64;&#101;&#x78;&#97;&#x6d;&#x70;&#108;&#101;&#46;&#99;&#111;&#109;</a>“ 然后去本地 C/Users/you/.ssh/id_rsa 目录下找到 id_rsa.pub 文件并复制文件内容，去 github 的 settings/SSH and GPG keys 下 New SSH key 粘贴 Add SSH key 即可。</li>
 <li>进入 blog 目录 clone 仓库。<br>执行 :</li>
 </ol>
 <figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">git init</span><br><span class="line">git <span class="builtin-name">add</span> .</span><br><span class="line">git commit -m <span class="string">&quot;hexo init&quot;</span></span><br><span class="line">git remote <span class="builtin-name">add</span> origin git@github.com:githubName/githubName.github.io.git</span><br><span class="line">git push -u origin gh-pages</span><br></pre></td></tr></table></figure>
@@ -720,6 +720,28 @@
       </tags>
   </entry>
   <entry>
+    <title>单点登录实现</title>
+    <url>/2021/05/06/sso/</url>
+    <content><![CDATA[<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><p>在日常生活中，很多人由于忘记某些网站的登录密码而烦恼，因为大多数用户都要记忆不少于 10 个用户名和相应密码。随着信息化飞速发展，大型企业和政府部门等都开始使用电子系统进行办公，整个办公系统由多个不同的子系统构成，如办公自动化(OA)系统，财务管理系统，档案管理系统，信息查询系统等。如果每个系统都使用独立的登录和验证机制，那么每天工作人员都要登录不同的系统进行办公。用户登录的频繁操作，降低了员工的工作效率，造成工作成本的浪费。而大量的密码和用户名的记忆时间长了也会出现问题，忘记密码或者混淆密码都会造成很大的麻烦。基于以上原因，为用户提供一个畅通的登录通道变得十分重要。</p>
+<p>这时候用户希望我在一个系统登录之后可以默认在它的关联系统（二级域名必须相同）中也是已登录状态，避免繁琐的多次登录。这时候就需要 SSO（Single Sign On）来帮助我们实现。</p>
+<p>单点登录(SingleSign-On，SSO)是一种帮助用户快捷访问网络中多个站点的安全通信技术。单点登录系统基于一种安全的通信协议，该协议通过多个系统之间的用户身份信息的交换来实现单点登录。使用单点登录系统时，用户只需要登录一次，就可以访问多个系统。</p>
+<h5 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h5><blockquote>
+<p>Cookie 作为凭证媒介</p>
+</blockquote>
+<p>众所周知，HTTP 是无状态的协议，这意味着服务器无法确认用户的信息。于是，W3C 就提出了：给每一个用户都发一个通行证，用户访问站点时都要携带通行证，这样服务器就可以从通行证上确认用户的信息，通行证就是 Cookie。</p>
+<p>同样因为 HTTP 协议是无状态的，Session 不能依据 HTTP 连接来判断是否为同一个用户。于是：服务器向客户端发送了一个名为 SESSIONID 的 Cookie，它的值是 Session 的 id 值。其实 Session 是依据 Cookie 来识别是否是同一个用户。</p>
+<blockquote>
+<p>通过页面重定向的方式</p>
+</blockquote>
+<h5 id="逻辑流程图"><a href="#逻辑流程图" class="headerlink" title="逻辑流程图"></a>逻辑流程图</h5><span id="more"></span>
+
+<p>错误之处欢迎交流指正，感谢~</p>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.css">]]></content>
+      <tags>
+        <tag>SSO</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>css文字超出显示省略号</title>
     <url>/2020/06/09/text-ellipsis/</url>
     <content><![CDATA[<h5 id="一-单行文本超出省略"><a href="#一-单行文本超出省略" class="headerlink" title="一.单行文本超出省略"></a>一.单行文本超出省略</h5><blockquote>
@@ -811,11 +833,11 @@
 </blockquote> -->
 
 <div style="width: 90%;margin: 0 auto">
-    <canvas id="chart861" style="height: 300px"></canvas>
+    <canvas id="chart7850" style="height: 300px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart861').getContext('2d');
+    var ctx = document.getElementById('chart7850').getContext('2d');
     var options = {
 type: 'line',
 data: {
