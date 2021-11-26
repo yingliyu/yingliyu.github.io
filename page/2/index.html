@@ -155,6 +155,64 @@
     
     
     <article
+  id="post-gwt-token"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/01/27/gwt-token/"
+    >WEB应用中的权限认证</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/01/27/gwt-token/" class="article-date">
+  <time datetime="2021-01-27T17:25:17.000Z" itemprop="datePublished">2021-01-27</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/">单点登录</a> / <a class="article-category-link" href="/categories/%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95/GWT/">GWT</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="1-传统方案——基于-cookie-session-的解决方案"><a href="#1-传统方案——基于-cookie-session-的解决方案" class="headerlink" title="1.传统方案——基于 cookie/session 的解决方案"></a>1.传统方案——基于 cookie/session 的解决方案</h3><p>首先，浏览器端向服务端发送 login 请求，把用户名和密码都发送过去，服务器验证用户名密码正确，然后就会创建对应的 session 数据并保存在内存或者数据库中。然后，服务器返回一个 HTTP 200 OK 的 response，这个 response 会有个 header 叫 set-Cookie：sessionid=xxx，浏览器拿到这个 response 以后，因为有 set-Cookie 这个 header， 带上唯一的 id sessionid（set-Cookie：sessionid=xxx），它就会把 cookie 保存在浏览器中，下次我们再访问这个需要权限的接口，这时候会自动把 cookie 带上。服务器端就可以使用 cookie 中的信息 sessionid，查看服务器中是否存在这个 session 的数据，如果存在则返回对应的信息，否则返回 401 Not authorized。</p>
+<p>基于 cookie 的身份验证是有状态的，意味着这个验证记录或者会话必须同时保存在服务器端和客户端，服务器要跟踪记录 session 并且存至内存或者数据库，同时前端在 cookie 也要保存这个 sessionid 作为 session 唯一的标识符。这种模式的问题在于扩展性不好。假如只有一台服务器当然没有问题，假如是一个服务器集群，这就要求 session 的数据共享，我们需要每台服务器都读取到这个 session，一种解决方案就是 session 的数据持久化，把数据写到持久层中去，各种服务收到请求以后都向持久层发送数据。这种方案优点是架构清晰，缺点是工程量比较大，另外，持久层如果挂了，那么就单点失败。<br><img width="600px" style="display:block;margin:20px auto;" src="/2021/01/27/gwt-token/1.jpeg"></p> 
+      <a class="article-more-link" href="/2021/01/27/gwt-token/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/GWT/" rel="tag">GWT</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-nginx"
   class="article article-type-post"
   itemscope
@@ -724,63 +782,6 @@
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webkit-line-clamp/" rel="tag">-webkit-line-clamp</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/text-ellipsis/" rel="tag">text-ellipsis</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-ie-bug"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/06/09/ie-bug/"
-    >ie浏览器踩坑系列</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/06/09/ie-bug/" class="article-date">
-  <time datetime="2020-06-09T11:08:48.000Z" itemprop="datePublished">2020-06-09</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/IE/">IE</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h6 id="持续更新…"><a href="#持续更新…" class="headerlink" title="持续更新…"></a>持续更新…</h6><p>1.使用 antv ，当有两种渲染方式：canvas 和 svg，最好选择 canvas 方式，因为 svg 在 IE 浏览器下有很多 bug。</p> 
-      <a class="article-more-link" href="/2020/06/09/ie-bug/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ie/" rel="tag">ie</a></li></ul>
 
     </footer>
   </div>

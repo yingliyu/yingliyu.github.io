@@ -263,7 +263,7 @@
 <p>浏览器访问：<a href="http://localhost:4000/">http://localhost:4000</a></p>
 <h5 id="托管代码到-github"><a href="#托管代码到-github" class="headerlink" title="托管代码到 github"></a>托管代码到 github</h5><ol>
 <li>首先创建一个 repository，名称为 yourGithubName.github.io, 其中 yourGithubName 一定要是你的 github 名称。</li>
-<li>生成 SSH 添加到 github。执行命令：<br>$ ssh-keygen -t rsa -b 4096 -C “<a href="mailto:&#x79;&#x6f;&#117;&#x72;&#x5f;&#x65;&#109;&#x61;&#105;&#108;&#64;&#101;&#x78;&#97;&#x6d;&#x70;&#108;&#101;&#46;&#99;&#111;&#109;">&#x79;&#x6f;&#117;&#x72;&#x5f;&#x65;&#109;&#x61;&#105;&#108;&#64;&#101;&#x78;&#97;&#x6d;&#x70;&#108;&#101;&#46;&#99;&#111;&#109;</a>“ 然后去本地 C/Users/you/.ssh/id_rsa 目录下找到 id_rsa.pub 文件并复制文件内容，去 github 的 settings/SSH and GPG keys 下 New SSH key 粘贴 Add SSH key 即可。</li>
+<li>生成 SSH 添加到 github。执行命令：<br>$ ssh-keygen -t rsa -b 4096 -C “<a href="mailto:&#x79;&#x6f;&#117;&#114;&#95;&#x65;&#109;&#x61;&#x69;&#108;&#x40;&#x65;&#120;&#97;&#109;&#x70;&#108;&#101;&#x2e;&#99;&#x6f;&#x6d;">&#x79;&#x6f;&#117;&#114;&#95;&#x65;&#109;&#x61;&#x69;&#108;&#x40;&#x65;&#120;&#97;&#109;&#x70;&#108;&#101;&#x2e;&#99;&#x6f;&#x6d;</a>“ 然后去本地 C/Users/you/.ssh/id_rsa 目录下找到 id_rsa.pub 文件并复制文件内容，去 github 的 settings/SSH and GPG keys 下 New SSH key 粘贴 Add SSH key 即可。</li>
 <li>进入 blog 目录 clone 仓库。<br>执行 :</li>
 </ol>
 <figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">git init</span><br><span class="line">git <span class="builtin-name">add</span> .</span><br><span class="line">git commit -m <span class="string">&quot;hexo init&quot;</span></span><br><span class="line">git remote <span class="builtin-name">add</span> origin git@github.com:githubName/githubName.github.io.git</span><br><span class="line">git push -u origin gh-pages</span><br></pre></td></tr></table></figure>
@@ -833,11 +833,11 @@
 </blockquote> -->
 
 <div style="width: 90%;margin: 0 auto">
-    <canvas id="chart7850" style="height: 300px"></canvas>
+    <canvas id="chart6010" style="height: 300px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart7850').getContext('2d');
+    var ctx = document.getElementById('chart6010').getContext('2d');
     var options = {
 type: 'line',
 data: {
@@ -1155,6 +1155,58 @@ text: 'Chart.js Line Chart'
       <tags>
         <tag>VUE</tag>
         <tag>VUE3</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>webpack之HappyPack</title>
+    <url>/2021/11/26/webpack-happyPack/</url>
+    <content><![CDATA[<blockquote>
+<p>HappyPack makes initial webpack builds faster by transforming files in parallel.<br>HappyPack 通过并行转换文件，使初始 webpack 构建速度更快。</p>
+</blockquote>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>webpack中万物皆模块，但是webpack默认只能处理js模块，那么js以外的模块怎么处理呢，所以就有了loader机制，比如：vue-loader、css-loader、file-loader等等。loader是一个导出为function的node模块。可以将匹配到的文件进行一次转换，同时loader可以链式传递。如果项目比较复杂，构建时就会有大量文件需要解析和处理，构建是文件读写和计算密集型的操作，大型项目中webpack构建慢的问题尤为显著，然而运行在nodejs环境的webpack是单线程的，如果能让webpack同一时间能做多项任务，发挥多核 CPU 电脑的威力，就能大大的提升构建速度。这时候HappyPack就闪亮登场了，它把任务分解给多个子进程去并发的执行，子进程处理完后再把结果发送给主进程，相比之前可以有效的提升构建速度。<br>更多loaders内容参考<a href="https://webpack.docschina.org/loaders/">https://webpack.docschina.org/loaders/</a><br>​</p>
+<blockquote>
+<p>线程和进程都可用于实现并发，一个进程由一个或多个线程组成，线程是一个进程中代码的不同执行路线。</p>
+</blockquote>
+<h2 id="使用HappyPack"><a href="#使用HappyPack" class="headerlink" title="使用HappyPack"></a>使用HappyPack</h2><p>HappyPack提供了一个plugin和一个load完成它的工作，所以你必须同时使用两者来启用它。<br>使用npm：<br><code>npm install --save-dev happypack</code><br>使用yarn：<br><code>yarn add happypack --dev</code></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// @file: webpack.config.js</span></span><br><span class="line"><span class="keyword">var</span> HappyPack = <span class="built_in">require</span>(<span class="string">&#x27;happypack&#x27;</span>);</span><br><span class="line"><span class="comment">// 构造出共享进程池，进程池中包含5个子进程</span></span><br><span class="line"><span class="keyword">var</span> happyThreadPool = HappyPack.ThreadPool(&#123; <span class="attr">size</span>: <span class="number">5</span> &#125;);</span><br><span class="line"> &lt;!--more--&gt;</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="attr">module</span>: &#123;</span><br><span class="line">    <span class="attr">rules</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">test</span>: <span class="regexp">/\.js$/</span>,</span><br><span class="line">        <span class="comment">// 将.js文件交给id为babel的happypack实例来执行</span></span><br><span class="line">        <span class="comment">// 1) 用happypack/loader代原始的loaders列表</span></span><br><span class="line">        use: <span class="string">&#x27;happypack/loader?id=babel&#x27;</span>,</span><br><span class="line">        <span class="comment">// 排除 node_modules 目录下的文件，node_modules 目录下的文件都是采用的 ES5 语法，没必要再通过 Babel 去转换</span></span><br><span class="line">        <span class="attr">exclude</span>: path.resolve(__dirname, <span class="string">&#x27;node_modules&#x27;</span>),</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="comment">// 2)创建一个plugin</span></span><br><span class="line">    <span class="keyword">new</span> HappyPack(&#123;</span><br><span class="line">      <span class="comment">// id标识happypack处理那一类文件</span></span><br><span class="line">      <span class="attr">id</span>: <span class="string">&#x27;babel&#x27;</span>,</span><br><span class="line">      <span class="comment">// 共享线程池</span></span><br><span class="line">      <span class="attr">threadPool</span>: happyThreadPool,</span><br><span class="line">      <span class="comment">// 3) 配置一个替代步骤1) 中的loader</span></span><br><span class="line">      <span class="attr">loaders</span>: [ <span class="string">&#x27;babel-loader&#x27;</span> ],</span><br><span class="line">      <span class="comment">// 日志输出</span></span><br><span class="line">      <span class="attr">verbose</span>: <span class="literal">true</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>在module中定义loader rules告诉 webpack 如何处理特定格式的文件，调用基础配置里的happy/loader，此loader会通过参数的id遍历真实的插件数组，然后找到对应的happyPlugin，通过happyPlugin的配置获取真实的Loader并通过之前初始化完成的多线程进行编译，将编译结果传递给主线程。编译完成后，插件还会针对编译的结果缓存，以及新编译的文件进行缓存的设置。<br>​</p>
+<p>在实例化 HappyPack 插件的时候，HappyPack 支持如下参数：</p>
+<ol>
+<li><code>loaders:Array</code>：</li>
+</ol>
+<p>由一个转换文件的loader名和一个查询字符串组成。例如：<code>use: &#39;happypack/loader?id=babel&#39;</code>，用happypack/loader代原始的loaders列表，唯一的happyPack plugin标识，用于在modules rules中去识别对应的happyPack实例中的loaders去执行文件的转换操作。<br>​</p>
+<ol start="2">
+<li><code>id: String</code></li>
+</ol>
+<p>happy plugin 的唯一标识。默认值”1”，如果只有一个happy plugin可以不指定，当使用不止一个happy plugin时需要指定它。<br>​</p>
+<ol start="3">
+<li><code>threads: Number</code></li>
+</ol>
+<p>代表开启几个子进程去处理这一类型的文件，默认是3个，类型必须是整数。<br>​</p>
+<ol start="4">
+<li><code>threadPool: HappyThreadPool</code></li>
+</ol>
+<p>代表共享进程池，即多个 HappyPack 实例都使用同一个共享进程池中的子进程去处理任务，以防止资源占用过多。默认值：null。<br>​</p>
+<ol start="5">
+<li><code>verbose: Boolean</code></li>
+</ol>
+<p>是否允许 HappyPack 输出日志，默认是 true。<br>​</p>
+<blockquote>
+<p>HappyPack 并不是完全支持所有的webpack loader API，具体支持情况请查看<a href="https://github.com/amireh/happypack/wiki/Webpack-Loader-API-Support">官方wiki</a> 。</p>
+</blockquote>
+<h2 id="HappyPack原理"><a href="#HappyPack原理" class="headerlink" title="HappyPack原理"></a>HappyPack原理</h2><p><img src="/2021/11/26/webpack-happyPack/1.png" alt="img"></p>
+<p>HappyPack是webpack和主要来源文件（如JS源代码）之间的中间件，其中发生了大量的文件转换处理。每次webpack解析一个模块时，HappyPack都会获取它（模块）及其所有依赖项，并将这些文件分发给多个工作线程”线程”。<br>这些线程实际上是调用转换器的简单node进程。当加载到编译后的版本时，HappyPack会将最终的chunk提供给加载程序。</p>
+<h2 id="不同webpack版本下使用建议"><a href="#不同webpack版本下使用建议" class="headerlink" title="不同webpack版本下使用建议"></a>不同webpack版本下使用建议</h2><blockquote>
+<p><img src="/2021/11/26/webpack-happyPack/2.png" alt="img"></p>
+</blockquote>
+<p>问：对webpack2&amp;3有效吗？<br>答：有，webpack2&amp;3需要搭配使用happyPack@^4.0.1<br>问：对于webpack4有效吗？<br>答：webpack4可能不太需要。<br>大意：webpack4已经融合了多线程机制（HappyPack做的工作），因此happypack的作用不是很明显。如果你使用的版本是&lt;4，那么还是可以继续使用HappyPack。在webpack4中有个<a href="https://github.com/webpack-contrib/thread-loader">thread-loader</a>，配置起来更简单，两种方式都可以试一下看看那种方案对你来说最优。</p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul>
+<li><a href="https://www.npmjs.com/package/happypack">https://www.npmjs.com/package/happypack</a></li>
+<li><a href="http://webpack.wuhaolin.cn/4%E4%BC%98%E5%8C%96/4-3%E4%BD%BF%E7%94%A8HappyPack.html">http://webpack.wuhaolin.cn</a></li>
+</ul>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.css">]]></content>
+      <tags>
+        <tag>webpack</tag>
       </tags>
   </entry>
   <entry>

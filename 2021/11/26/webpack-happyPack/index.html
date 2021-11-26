@@ -9,13 +9,13 @@
        
       <meta name="keywords" content="hi~" />
        
-      <meta name="description" content="HTML、CSS面试题" />
+      <meta name="description" content="webpack之HappyPack" />
       
       <meta
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>HTML、CSS面试题 |  默</title>
+      <title>webpack之HappyPack |  默</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -59,7 +59,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-interview-question-htmlcss"
+  id="post-webpack-happyPack"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -70,7 +70,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  HTML、CSS面试题
+  webpack之HappyPack
 </h1>
  
 
@@ -78,19 +78,15 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2021/10/17/interview-question-htmlcss/" class="article-date">
-  <time datetime="2021-10-17T17:42:45.000Z" itemprop="datePublished">2021-10-17</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/">面试题</a>
-  </div>
-  
+      <a href="/2021/11/26/webpack-happyPack/" class="article-date">
+  <time datetime="2021-11-26T15:14:30.000Z" itemprop="datePublished">2021-11-26</time>
+</a>   
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">229</span>
+            <span class="post-count">1.2k</span>
         </span>
     </span>
 
@@ -99,7 +95,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1 分钟</span>
+            <span class="post-count">4 分钟</span>
         </span>
     </span>
 </div>
@@ -114,8 +110,51 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h5 id="1-盒模型的两种标准？如何相互转化"><a href="#1-盒模型的两种标准？如何相互转化" class="headerlink" title="1. 盒模型的两种标准？如何相互转化"></a>1. 盒模型的两种标准？如何相互转化</h5><h5 id="2-BFC"><a href="#2-BFC" class="headerlink" title="2. BFC"></a>2. BFC</h5><h5 id="3-伪类的伪元素用法与区别"><a href="#3-伪类的伪元素用法与区别" class="headerlink" title="3. 伪类的伪元素用法与区别"></a>3. 伪类的伪元素用法与区别</h5><h5 id="4-div宽度为100vw-设置宽高固定比为10-1-怎么设置"><a href="#4-div宽度为100vw-设置宽高固定比为10-1-怎么设置" class="headerlink" title="4. div宽度为100vw,设置宽高固定比为10:1,怎么设置"></a>4. div宽度为100vw,设置宽高固定比为10:1,怎么设置</h5><h5 id="5-Flex-1完整写法，分别代表什么意思"><a href="#5-Flex-1完整写法，分别代表什么意思" class="headerlink" title="5. Flex:1完整写法，分别代表什么意思"></a>5. Flex:1完整写法，分别代表什么意思</h5><h5 id="6-flex的实现原理"><a href="#6-flex的实现原理" class="headerlink" title="6. flex的实现原理"></a>6. flex的实现原理</h5><h5 id="7-flex垂直居中兼容ie"><a href="#7-flex垂直居中兼容ie" class="headerlink" title="7. flex垂直居中兼容ie"></a>7. flex垂直居中兼容ie</h5><h5 id="8-rem的使用原理"><a href="#8-rem的使用原理" class="headerlink" title="8. rem的使用原理"></a>8. rem的使用原理</h5><h5 id="9-移动端300毫秒延迟，怎么解决的"><a href="#9-移动端300毫秒延迟，怎么解决的" class="headerlink" title="9. 移动端300毫秒延迟，怎么解决的"></a>9. 移动端300毫秒延迟，怎么解决的</h5><h5 id="10-回流和重汇"><a href="#10-回流和重汇" class="headerlink" title="10. 回流和重汇"></a>10. 回流和重汇</h5><span id="more"></span>
-<h5 id="11-浏览器最小字体，如何实现10px字体"><a href="#11-浏览器最小字体，如何实现10px字体" class="headerlink" title="11. 浏览器最小字体，如何实现10px字体"></a>11. 浏览器最小字体，如何实现10px字体</h5><h5 id="12-解决移动端1px边框过粗的问题"><a href="#12-解决移动端1px边框过粗的问题" class="headerlink" title="12. 解决移动端1px边框过粗的问题"></a>12. 解决移动端1px边框过粗的问题</h5><h5 id="13-渐进增强和优雅降级"><a href="#13-渐进增强和优雅降级" class="headerlink" title="13. 渐进增强和优雅降级"></a>13. 渐进增强和优雅降级</h5><h5 id="14-sass和less的用法和区别"><a href="#14-sass和less的用法和区别" class="headerlink" title="14. sass和less的用法和区别"></a>14. sass和less的用法和区别</h5><h5 id="15-类选择器-a-b-a-b-a-gt-b分别是什么意思"><a href="#15-类选择器-a-b-a-b-a-gt-b分别是什么意思" class="headerlink" title="15. 类选择器.a  .b  .a.b   .a&gt;.b分别是什么意思"></a>15. 类选择器.a  .b  .a.b   .a&gt;.b分别是什么意思</h5><h5 id="16-选择器类型和权重"><a href="#16-选择器类型和权重" class="headerlink" title="16. 选择器类型和权重"></a>16. 选择器类型和权重</h5><h5 id="17-p标签里面可以放div吗？为什么？"><a href="#17-p标签里面可以放div吗？为什么？" class="headerlink" title="17. p标签里面可以放div吗？为什么？"></a>17. p标签里面可以放div吗？为什么？</h5><h5 id="18-移动端button不同手机没有垂直居中怎么解决"><a href="#18-移动端button不同手机没有垂直居中怎么解决" class="headerlink" title="18. 移动端button不同手机没有垂直居中怎么解决"></a>18. 移动端button不同手机没有垂直居中怎么解决</h5><h5 id="19-解释png、jpg、gif图片的格式，分别什么时候用？有没有了解过webp"><a href="#19-解释png、jpg、gif图片的格式，分别什么时候用？有没有了解过webp" class="headerlink" title="19. 解释png、jpg、gif图片的格式，分别什么时候用？有没有了解过webp"></a>19. 解释png、jpg、gif图片的格式，分别什么时候用？有没有了解过webp</h5><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.css"> 
+  <blockquote>
+<p>HappyPack makes initial webpack builds faster by transforming files in parallel.<br>HappyPack 通过并行转换文件，使初始 webpack 构建速度更快。</p>
+</blockquote>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>webpack中万物皆模块，但是webpack默认只能处理js模块，那么js以外的模块怎么处理呢，所以就有了loader机制，比如：vue-loader、css-loader、file-loader等等。loader是一个导出为function的node模块。可以将匹配到的文件进行一次转换，同时loader可以链式传递。如果项目比较复杂，构建时就会有大量文件需要解析和处理，构建是文件读写和计算密集型的操作，大型项目中webpack构建慢的问题尤为显著，然而运行在nodejs环境的webpack是单线程的，如果能让webpack同一时间能做多项任务，发挥多核 CPU 电脑的威力，就能大大的提升构建速度。这时候HappyPack就闪亮登场了，它把任务分解给多个子进程去并发的执行，子进程处理完后再把结果发送给主进程，相比之前可以有效的提升构建速度。<br>更多loaders内容参考<a target="_blank" rel="noopener" href="https://webpack.docschina.org/loaders/">https://webpack.docschina.org/loaders/</a><br>​</p>
+<blockquote>
+<p>线程和进程都可用于实现并发，一个进程由一个或多个线程组成，线程是一个进程中代码的不同执行路线。</p>
+</blockquote>
+<h2 id="使用HappyPack"><a href="#使用HappyPack" class="headerlink" title="使用HappyPack"></a>使用HappyPack</h2><p>HappyPack提供了一个plugin和一个load完成它的工作，所以你必须同时使用两者来启用它。<br>使用npm：<br><code>npm install --save-dev happypack</code><br>使用yarn：<br><code>yarn add happypack --dev</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// @file: webpack.config.js</span></span><br><span class="line"><span class="keyword">var</span> HappyPack = <span class="built_in">require</span>(<span class="string">&#x27;happypack&#x27;</span>);</span><br><span class="line"><span class="comment">// 构造出共享进程池，进程池中包含5个子进程</span></span><br><span class="line"><span class="keyword">var</span> happyThreadPool = HappyPack.ThreadPool(&#123; <span class="attr">size</span>: <span class="number">5</span> &#125;);</span><br><span class="line"> &lt;!--more--&gt;</span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="attr">module</span>: &#123;</span><br><span class="line">    <span class="attr">rules</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">test</span>: <span class="regexp">/\.js$/</span>,</span><br><span class="line">        <span class="comment">// 将.js文件交给id为babel的happypack实例来执行</span></span><br><span class="line">        <span class="comment">// 1) 用happypack/loader代原始的loaders列表</span></span><br><span class="line">        use: <span class="string">&#x27;happypack/loader?id=babel&#x27;</span>,</span><br><span class="line">        <span class="comment">// 排除 node_modules 目录下的文件，node_modules 目录下的文件都是采用的 ES5 语法，没必要再通过 Babel 去转换</span></span><br><span class="line">        <span class="attr">exclude</span>: path.resolve(__dirname, <span class="string">&#x27;node_modules&#x27;</span>),</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="comment">// 2)创建一个plugin</span></span><br><span class="line">    <span class="keyword">new</span> HappyPack(&#123;</span><br><span class="line">      <span class="comment">// id标识happypack处理那一类文件</span></span><br><span class="line">      <span class="attr">id</span>: <span class="string">&#x27;babel&#x27;</span>,</span><br><span class="line">      <span class="comment">// 共享线程池</span></span><br><span class="line">      <span class="attr">threadPool</span>: happyThreadPool,</span><br><span class="line">      <span class="comment">// 3) 配置一个替代步骤1) 中的loader</span></span><br><span class="line">      <span class="attr">loaders</span>: [ <span class="string">&#x27;babel-loader&#x27;</span> ],</span><br><span class="line">      <span class="comment">// 日志输出</span></span><br><span class="line">      <span class="attr">verbose</span>: <span class="literal">true</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>在module中定义loader rules告诉 webpack 如何处理特定格式的文件，调用基础配置里的happy/loader，此loader会通过参数的id遍历真实的插件数组，然后找到对应的happyPlugin，通过happyPlugin的配置获取真实的Loader并通过之前初始化完成的多线程进行编译，将编译结果传递给主线程。编译完成后，插件还会针对编译的结果缓存，以及新编译的文件进行缓存的设置。<br>​</p>
+<p>在实例化 HappyPack 插件的时候，HappyPack 支持如下参数：</p>
+<ol>
+<li><code>loaders:Array</code>：</li>
+</ol>
+<p>由一个转换文件的loader名和一个查询字符串组成。例如：<code>use: &#39;happypack/loader?id=babel&#39;</code>，用happypack/loader代原始的loaders列表，唯一的happyPack plugin标识，用于在modules rules中去识别对应的happyPack实例中的loaders去执行文件的转换操作。<br>​</p>
+<ol start="2">
+<li><code>id: String</code></li>
+</ol>
+<p>happy plugin 的唯一标识。默认值”1”，如果只有一个happy plugin可以不指定，当使用不止一个happy plugin时需要指定它。<br>​</p>
+<ol start="3">
+<li><code>threads: Number</code></li>
+</ol>
+<p>代表开启几个子进程去处理这一类型的文件，默认是3个，类型必须是整数。<br>​</p>
+<ol start="4">
+<li><code>threadPool: HappyThreadPool</code></li>
+</ol>
+<p>代表共享进程池，即多个 HappyPack 实例都使用同一个共享进程池中的子进程去处理任务，以防止资源占用过多。默认值：null。<br>​</p>
+<ol start="5">
+<li><code>verbose: Boolean</code></li>
+</ol>
+<p>是否允许 HappyPack 输出日志，默认是 true。<br>​</p>
+<blockquote>
+<p>HappyPack 并不是完全支持所有的webpack loader API，具体支持情况请查看<a target="_blank" rel="noopener" href="https://github.com/amireh/happypack/wiki/Webpack-Loader-API-Support">官方wiki</a> 。</p>
+</blockquote>
+<h2 id="HappyPack原理"><a href="#HappyPack原理" class="headerlink" title="HappyPack原理"></a>HappyPack原理</h2><p><img src="/2021/11/26/webpack-happyPack/1.png" alt="img"></p>
+<p>HappyPack是webpack和主要来源文件（如JS源代码）之间的中间件，其中发生了大量的文件转换处理。每次webpack解析一个模块时，HappyPack都会获取它（模块）及其所有依赖项，并将这些文件分发给多个工作线程”线程”。<br>这些线程实际上是调用转换器的简单node进程。当加载到编译后的版本时，HappyPack会将最终的chunk提供给加载程序。</p>
+<h2 id="不同webpack版本下使用建议"><a href="#不同webpack版本下使用建议" class="headerlink" title="不同webpack版本下使用建议"></a>不同webpack版本下使用建议</h2><blockquote>
+<p><img src="/2021/11/26/webpack-happyPack/2.png" alt="img"></p>
+</blockquote>
+<p>问：对webpack2&amp;3有效吗？<br>答：有，webpack2&amp;3需要搭配使用happyPack@^4.0.1<br>问：对于webpack4有效吗？<br>答：webpack4可能不太需要。<br>大意：webpack4已经融合了多线程机制（HappyPack做的工作），因此happypack的作用不是很明显。如果你使用的版本是&lt;4，那么还是可以继续使用HappyPack。在webpack4中有个<a target="_blank" rel="noopener" href="https://github.com/webpack-contrib/thread-loader">thread-loader</a>，配置起来更简单，两种方式都可以试一下看看那种方案对你来说最优。</p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/happypack">https://www.npmjs.com/package/happypack</a></li>
+<li><a target="_blank" rel="noopener" href="http://webpack.wuhaolin.cn/4%E4%BC%98%E5%8C%96/4-3%E4%BD%BF%E7%94%A8HappyPack.html">http://webpack.wuhaolin.cn</a></li>
+</ul>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.css"> 
       <!-- reward -->
       
       <div id="reword-out">
@@ -185,12 +224,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://yingliyu.github.io/2021/10/17/interview-question-htmlcss/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://yingliyu.github.io/2021/11/26/webpack-happyPack/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML%E3%80%81CSS/" rel="tag">HTML、CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" rel="tag">面试题</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/" rel="tag">webpack</a></li></ul>
 
     </footer>
   </div>
@@ -198,19 +237,10 @@
    
   <nav class="article-nav">
     
-      <a href="/2021/11/26/webpack-happyPack/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            webpack之HappyPack
-          
-        </div>
-      </a>
     
-    
-      <a href="/2021/10/17/interview-question-js/" class="article-nav-link">
+      <a href="/2021/10/17/interview-question-htmlcss/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">JS系列面试题</div>
+        <div class="article-nav-title">HTML、CSS面试题</div>
       </a>
     
   </nav>
