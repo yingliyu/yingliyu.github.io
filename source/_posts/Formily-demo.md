@@ -9,11 +9,11 @@ description: Formily入门实践
 
 ## 前言
 
-Formily 是阿里开源的动态化表单的解决方案，优雅的解决了多种复杂场景的表单的数据、状态管理及夸表单通信问题，同时规避了全量全然的弊端，性能优越。Formily 基于 MVVM 的设计原则，常用的基础核心库有`@formily/core`、`@formily/react`、`@formily/vue`、`@formily/antd`，支持 react 和 vue，同时支持 Markup Schema、 JSX 以及现在业界最流行的 JSON Schema 的写法。
+Formily 是阿里开源的动态化表单的解决方案，优雅的解决了多种复杂场景的表单的数据、状态管理及夸表单通信问题，同时规避了全量全然的弊端，性能优越。刚好满足我近期工作中的业务需求，啃了将近一周的文档，对 Family 有了初步的了解，后续使用起来有时间再出翻坑指南。
 
 ## 初步了解
 
-​
+​Formily 基于 MVVM 的设计原则，常用的基础核心库有`@formily/core`、`@formily/react`、`@formily/vue`、`@formily/antd`，支持 react 和 vue，同时支持 Markup Schema、 JSX 以及现在业界最流行的 JSON Schema 的写法。
 
 Formily 分为了**内核层**，**UI 桥接层**，**扩展组件层**，和**配置应用层**，如下图。
 **内核层**是 UI 无关的，它保证了用户管理的逻辑和状态是不耦合任何一个框架。
