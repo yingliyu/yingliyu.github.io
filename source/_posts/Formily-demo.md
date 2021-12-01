@@ -178,7 +178,7 @@ export default () => {
 }
 ```
 
-![1638349667(1).png](https://cdn.nlark.com/yuque/0/2021/png/638436/1638349673788-35dded52-cee6-4e8f-9db7-f48cb313380f.png#clientId=u6d66e857-6843-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=233&id=ue323df6b&margin=%5Bobject%20Object%5D&name=1638349667%281%29.png&originHeight=233&originWidth=394&originalType=binary&ratio=1&rotation=0&showTitle=false&size=6630&status=done&style=none&taskId=u4682d93d-1d5b-4188-888c-26c83e58c7b&title=&width=394)
+![image](img2.png)
 
 - `FormProvider`组件是作为视图层桥接表单模型的入口，它只有一个参数，就是接收 `createForm`创建出来的 `Form `实例，并将 `Form `实例以上下文形式传递到子组件中。
 - `FormLayout`组件是用来批量控制`FormItem`样式的组件，这里我们指定布局为水平布局，也就是标签在左，组件在右。
@@ -186,7 +186,7 @@ export default () => {
 - `FormButtonGroup`组件作为表单按钮组容器而存在，主要负责按钮的布局。
 - `Submit`组件作为表单提交的动作触发器而存在，其实我们也可以直接使用 `form.submit `方法进行提交，但是使用 `Submit `的好处是不需要每次都在 `Button `组件上写 `onClick `事件处理器，同时它还处理了 `Form `的 `loading `状态，如果 `onSubmit `方法返回一个 `Promise`，且 `Promise `正在 `pending `状态，那么按钮会自动进入 `loading `状态。
 
-\_ \_注意：使用前还需要了解，Formily 已经完全放弃对 IE 的兼容，如需兼容 IE，慎用！！！
+> `注意：使用前还需要了解，Formily 已经完全放弃对 IE 的兼容，如需兼容 IE，慎用！！！`
 
 ## 参考
 
