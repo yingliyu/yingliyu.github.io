@@ -155,6 +155,94 @@
     
     
     <article
+  id="post-Formily-demo"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/12/01/Formily-demo/"
+    >Formily入门实践</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/12/01/Formily-demo/" class="article-date">
+  <time datetime="2021-12-01T15:14:30.000Z" itemprop="datePublished">2021-12-01</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Formily 是阿里开源的动态化表单的解决方案，优雅的解决了多种复杂场景的表单的数据、状态管理及夸表单通信问题，同时规避了全量全然的弊端，性能优越。刚好满足我近期工作中的业务需求，啃了将近一周的文档，对 Family 有了初步的了解，后续使用起来再出翻坑指南。</p>
+<h2 id="初步了解"><a href="#初步了解" class="headerlink" title="初步了解"></a>初步了解</h2><p>​Formily 基于 MVVM 的设计原则，常用的基础核心库有<code>@formily/core</code>、<code>@formily/react</code>、<code>@formily/vue</code>、<code>@formily/antd</code>，支持 react 和 vue，同时支持 Markup Schema、 JSX 以及现在业界最流行的 JSON Schema 的写法。</p>
+<p>Formily 分为了<strong>内核层</strong>，<strong>UI 桥接层</strong>，<strong>扩展组件层</strong>，和<strong>配置应用层</strong>，如下图。<br><strong>内核层</strong>是 UI 无关的，它保证了用户管理的逻辑和状态是不耦合任何一个框架。<br>JSON Schema 独立存在，给 UI 桥接层消费，保证了协议驱动在不同 UI 框架下的绝对一致性，不需要重复实现协议解析逻辑。<br><strong>扩展组件层</strong>，提供一系列表单场景化组件，保证用户开箱即用。无需花大量时间做二次开发。<br><img src="/2021/12/01/Formily-demo/image.png" alt="Formily的分层架构图"></p>
+<blockquote>
+<p>核心优势</p>
+<ul>
+<li>高性能</li>
+<li>开箱即用</li>
+<li>联动逻辑实现高效</li>
+<li>跨端能力，逻辑可跨框架，跨终端复用</li>
+<li>动态渲染能力</li>
+</ul>
+</blockquote>
+<p>核心劣势：学习成本较高，需引多个包，包体积较大。<br>​</p>
+<p>确实 Formily 的学习成本还是相对较高的，几大核心库一堆的文档和 API 会让你眼花缭乱，但是既然要学就要耐下心来，思路理清之后就轻车熟路了。<br>​</p>
+<p>核心库介绍：<br><code>@formily/core</code>：<strong>ViewModel 层</strong>，负责管理表单的状态，表单校验，联动等等。<br><code>@formily/react</code>：** Model 层<strong>，作为 UI 库来接入内核数据，用来实现最终的表单交互效果，对于不同框架的用户，使用有不同的桥接库，这里使用<code>react</code>为例，使用 vue 安装<code>@formily/vue</code>。<br><code>@formily/antd</code>：</strong>View 层**，在<code>Ant Design</code>基础之上封装的开箱即用的组件库。</p>
+<h2 id="使用准备"><a href="#使用准备" class="headerlink" title="使用准备"></a>使用准备</h2><p>安装依赖，这里以<code>React+Antd </code>为例</p>
+<p>使用 yarn<br><code>yarn add @formily/core</code><br><code>yarn add @formily/react</code><br><code>yarn add antd moment @formily/antd</code><br>​</p>
+<p>or 使用 npm<br><code>npm install --save @formily/core</code><br><code>npm install --save @formily/react</code><br><code>npm install --save antd moment @formily/antd</code><br>​</p>
+<p>导入依赖：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; createForm &#125; <span class="keyword">from</span> <span class="string">&#x27;@formily/core&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; FormProvider, Field &#125; <span class="keyword">from</span> <span class="string">&#x27;@formily/react&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; FormItem, Input &#125; <span class="keyword">from</span> <span class="string">&#x27;@formily/antd&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>​</p>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>以<code>JSON Schema</code>写法为例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; createForm &#125; <span class="keyword">from</span> <span class="string">&#x27;@formily/core&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; createSchemaField, FormConsumer, FormProvider &#125; <span class="keyword">from</span> <span class="string">&#x27;@formily/react&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; FormItem, Input, Password, Submit, FormLayout, FormButtonGroup &#125; <span class="keyword">from</span> <span class="string">&#x27;@formily/antd&#x27;</span></span><br><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> ICONS <span class="keyword">from</span> <span class="string">&#x27;@ant-design/icons&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//用来创建表单核心领域模型，它是作为MVVM设计模式的标准 ViewModel</span></span><br><span class="line"><span class="keyword">const</span> form = createForm()</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个 SchemaField 组件用于解析JSON-Schema动态渲染表单的组件</span></span><br><span class="line"><span class="keyword">const</span> SchemaField = createSchemaField(&#123;</span><br><span class="line">  <span class="comment">// 组件列表</span></span><br><span class="line">  <span class="attr">components</span>: &#123;</span><br><span class="line">    FormLayout,</span><br><span class="line">    FormItem,</span><br><span class="line">    Input,</span><br><span class="line">    Password</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 全局作用域，用于实现协议表达式变量注入</span></span><br><span class="line">  <span class="attr">scope</span>: &#123;</span><br><span class="line">    <span class="function"><span class="title">icon</span>(<span class="params">name: string</span>)</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> React.createElement(ICONS[name])</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">/**初始化一份json schema</span></span><br><span class="line"><span class="comment"> * 解析 json-schema 的能力；将 json-schema 转换成 Field Model 的能力；编译 json-schema 表达式的能力</span></span><br><span class="line"><span class="comment"> **/</span></span><br><span class="line"><span class="keyword">const</span> schema = &#123;</span><br><span class="line">  <span class="comment">// schema type</span></span><br><span class="line">  <span class="attr">type</span>: <span class="string">&#x27;object&#x27;</span>,</span><br><span class="line">  <span class="attr">properties</span>: &#123;</span><br><span class="line">    <span class="attr">layout</span>: &#123;</span><br><span class="line">      <span class="attr">type</span>: <span class="string">&#x27;void&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;x-component&#x27;</span>: <span class="string">&#x27;FormLayout&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;x-component-props&#x27;</span>: &#123;</span><br><span class="line">        <span class="attr">labelCol</span>: <span class="number">2</span>,</span><br><span class="line">        <span class="attr">wrapperCol</span>: <span class="number">6</span>,</span><br><span class="line">        <span class="attr">labelAlign</span>: <span class="string">&#x27;right&#x27;</span></span><br><span class="line">        <span class="comment">// layout: &#x27;vertical&#x27;,</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="comment">// 属性描述</span></span><br><span class="line">      <span class="attr">properties</span>: &#123;</span><br><span class="line">        <span class="attr">username</span>: &#123;</span><br><span class="line">          <span class="comment">// schema type</span></span><br><span class="line">          <span class="attr">type</span>: <span class="string">&#x27;string&#x27;</span>,</span><br><span class="line">          <span class="comment">// 标题</span></span><br><span class="line">          <span class="attr">title</span>: <span class="string">&#x27;用户名&#x27;</span>,</span><br><span class="line">          <span class="comment">// 必填</span></span><br><span class="line">          <span class="attr">required</span>: <span class="literal">true</span>,</span><br><span class="line">          <span class="comment">// 字段 UI 包装器组件</span></span><br><span class="line">          <span class="string">&#x27;x-decorator&#x27;</span>: <span class="string">&#x27;FormItem&#x27;</span>,</span><br><span class="line">          <span class="comment">// 字段 UI 组件</span></span><br><span class="line">          <span class="string">&#x27;x-component&#x27;</span>: <span class="string">&#x27;Input&#x27;</span>,</span><br><span class="line">          <span class="comment">// 字段 UI 组件属性</span></span><br><span class="line">          <span class="string">&#x27;x-component-props&#x27;</span>: &#123;</span><br><span class="line">            <span class="attr">prefix</span>: <span class="string">&quot;&#123;&#123;icon(&#x27;UserOutlined&#x27;)&#125;&#125;&quot;</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">password</span>: &#123;</span><br><span class="line">          <span class="attr">type</span>: <span class="string">&#x27;string&#x27;</span>,</span><br><span class="line">          <span class="attr">title</span>: <span class="string">&#x27;密码&#x27;</span>,</span><br><span class="line">          <span class="attr">required</span>: <span class="literal">true</span>,</span><br><span class="line">          <span class="string">&#x27;x-decorator&#x27;</span>: <span class="string">&#x27;FormItem&#x27;</span>,</span><br><span class="line">          <span class="string">&#x27;x-decorator-props&#x27;</span>: &#123;</span><br><span class="line">            <span class="attr">addonAfter</span>: <span class="string">&#x27;强度高&#x27;</span></span><br><span class="line">          &#125;,</span><br><span class="line">          <span class="string">&#x27;x-component&#x27;</span>: <span class="string">&#x27;Password&#x27;</span>,</span><br><span class="line">          <span class="string">&#x27;x-component-props&#x27;</span>: &#123;</span><br><span class="line">            <span class="attr">prefix</span>: <span class="string">&quot;&#123;&#123;icon(&#x27;LockOutlined&#x27;)&#125;&#125;&quot;</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">FormProvider</span> <span class="attr">form</span>=<span class="string">&#123;form&#125;</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">FormLayout</span> <span class="attr">layout</span>=<span class="string">&quot;vertical&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">SchemaField</span> <span class="attr">schema</span>=<span class="string">&#123;schema&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;/<span class="name">FormLayout</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">FormButtonGroup</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">Submit</span> <span class="attr">onSubmit</span>=<span class="string">&#123;console.log&#125;</span>&gt;</span>提交<span class="tag">&lt;/<span class="name">Submit</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;/<span class="name">FormButtonGroup</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">FormConsumer</span>&gt;</span></span></span><br><span class="line"><span class="xml">        &#123;() =&gt; (</span></span><br><span class="line"><span class="xml">          <span class="tag">&lt;<span class="name">div</span></span></span></span><br><span class="line"><span class="tag"><span class="xml">            <span class="attr">style</span>=<span class="string">&#123;&#123;</span></span></span></span><br><span class="line"><span class="tag"><span class="xml">              <span class="attr">width:</span> <span class="attr">340</span>,</span></span></span><br><span class="line"><span class="tag"><span class="xml">              <span class="attr">marginTop:</span> <span class="attr">20</span>,</span></span></span><br><span class="line"><span class="tag"><span class="xml">              <span class="attr">padding:</span> <span class="attr">5</span>,</span></span></span><br><span class="line"><span class="tag"><span class="xml">              <span class="attr">border:</span> &#x27;<span class="attr">1px</span> <span class="attr">dashed</span> #<span class="attr">666</span>&#x27;</span></span></span><br><span class="line"><span class="tag"><span class="xml">            &#125;&#125;</span></span></span><br><span class="line"><span class="tag"><span class="xml">          &gt;</span></span></span><br><span class="line"><span class="xml">            实时响应-用户名：&#123;form.values.username&#125;</span></span><br><span class="line"><span class="xml">          <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">        )&#125;</span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;/<span class="name">FormConsumer</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">FormProvider</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/12/01/Formily-demo/img2.png" alt="image"></p>
+<ul>
+<li><code>FormProvider</code>组件是作为视图层桥接表单模型的入口，它只有一个参数，就是接收 <code>createForm</code>创建出来的 <code>Form </code>实例，并将 <code>Form </code>实例以上下文形式传递到子组件中。</li>
+<li><code>FormLayout</code>组件是用来批量控制<code>FormItem</code>样式的组件，这里我们指定布局为水平布局，也就是标签在左，组件在右。</li>
+<li><code>FormConsumer</code>组件是作为响应式模型的响应器而存在，它核心是一个<code>render props</code>模式，在作为 <code>children </code>的回调函数中，会自动收集所有依赖，如果依赖发生变化，则会重新渲染，借助 <code>FormConsumer </code>我们可以很方便的实现各种计算汇总的需求。</li>
+<li><code>FormButtonGroup</code>组件作为表单按钮组容器而存在，主要负责按钮的布局。</li>
+<li><code>Submit</code>组件作为表单提交的动作触发器而存在，其实我们也可以直接使用 <code>form.submit </code>方法进行提交，但是使用 <code>Submit </code>的好处是不需要每次都在 <code>Button </code>组件上写 <code>onClick </code>事件处理器，同时它还处理了 <code>Form </code>的 <code>loading </code>状态，如果 <code>onSubmit </code>方法返回一个 <code>Promise</code>，且 <code>Promise </code>正在 <code>pending </code>状态，那么按钮会自动进入 <code>loading </code>状态。</li>
+</ul>
+<blockquote>
+<p><code>注意：使用前还需要了解，Formily 已经完全放弃对 IE 的兼容，如需兼容 IE，慎用！！！</code></p>
+</blockquote>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://formilyjs.org/">Formily 官方文档</a><br>​</p>
+<p>​</p>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.css"> 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Formily/" rel="tag">Formily</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-webpack-happyPack"
   class="article article-type-post"
   itemscope
@@ -523,11 +611,11 @@
 </blockquote> -->
 
 <div style="width: 90%;margin: 0 auto">
-    <canvas id="chart6010" style="height: 300px"></canvas>
+    <canvas id="chart1761" style="height: 300px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart6010').getContext('2d');
+    var ctx = document.getElementById('chart1761').getContext('2d');
     var options = {
 type: 'line',
 data: {
@@ -745,63 +833,6 @@ text: 'Chart.js Line Chart'
     <footer class="article-footer">
        
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SSO/" rel="tag">SSO</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-rights-mgt"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/03/11/rights-mgt/"
-    >权限管理的原理</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/03/11/rights-mgt/" class="article-date">
-  <time datetime="2021-03-11T09:44:30.000Z" itemprop="datePublished">2021-03-11</time>
-</a>    
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><p>在一些中后台项目的业务中经常会有给不同的用户看到不同的页面甚至不同的操作权限，这时候权限管理功能就闪亮登场了，用它来给用户赋予不同的角色，给不同的角色设置不同的权限，那么前后端在技术方面具体是如何实现的呢？带着这个问题我们来看下权限管理的流程和实现原理。</p>
-<h5 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h5><blockquote>
-<p>权限管理大致方案就是给角色分配权限，给用户分配角色。根据业务不同要求的颗粒度不同，如果颗粒度仅限于路由级别，实现思路大致如下</p>
-</blockquote>
-<p>首先，前端需要分别定义一套（不需权限所有已登陆用户都可访问）静态路由表和动态路由表，路由元信息中包含这个路由对应的（和后端定义好的）权限名。</p> 
-      <a class="article-more-link" href="/2021/03/11/rights-mgt/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue-%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" rel="tag">-vue - 权限管理</a></li></ul>
 
     </footer>
   </div>
