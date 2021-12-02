@@ -182,7 +182,7 @@
       
     <div class="article-entry" itemprop="articleBody">
        
-  <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Formily 是阿里开源的动态化表单的解决方案，优雅的解决了多种复杂场景的表单的数据、状态管理及夸表单通信问题，同时规避了全量全然的弊端，性能优越。刚好满足我近期工作中的业务需求，啃了将近一周的文档，对 Family 有了初步的了解，后续使用起来再出翻坑指南。</p>
+  <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Formily 是阿里开源的动态化表单的解决方案，优雅的解决了多种复杂场景的表单的数据、状态管理及夸表单通信问题，同时规避了全量渲染的弊端，性能优越。刚好满足我近期工作中的业务需求，啃了将近一周的文档，对 Family 有了初步的了解，后续使用起来再出翻坑指南。</p>
 <h2 id="初步了解"><a href="#初步了解" class="headerlink" title="初步了解"></a>初步了解</h2><p>​Formily 基于 MVVM 的设计原则，常用的基础核心库有<code>@formily/core</code>、<code>@formily/react</code>、<code>@formily/vue</code>、<code>@formily/antd</code>，支持 react 和 vue，同时支持 Markup Schema、 JSX 以及现在业界最流行的 JSON Schema 的写法。</p>
 <p>Formily 分为了<strong>内核层</strong>，<strong>UI 桥接层</strong>，<strong>扩展组件层</strong>，和<strong>配置应用层</strong>，如下图。<br><strong>内核层</strong>是 UI 无关的，它保证了用户管理的逻辑和状态是不耦合任何一个框架。<br>JSON Schema 独立存在，给 UI 桥接层消费，保证了协议驱动在不同 UI 框架下的绝对一致性，不需要重复实现协议解析逻辑。<br><strong>扩展组件层</strong>，提供一系列表单场景化组件，保证用户开箱即用。无需花大量时间做二次开发。<br><img src="/2021/12/01/Formily-demo/image.png" alt="Formily的分层架构图"></p>
 <blockquote>
@@ -611,11 +611,11 @@
 </blockquote> -->
 
 <div style="width: 90%;margin: 0 auto">
-    <canvas id="chart1761" style="height: 300px"></canvas>
+    <canvas id="chart3908" style="height: 300px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart1761').getContext('2d');
+    var ctx = document.getElementById('chart3908').getContext('2d');
     var options = {
 type: 'line',
 data: {
