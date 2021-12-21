@@ -155,6 +155,74 @@
     
     
     <article
+  id="post-vue-if-for"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2020/06/16/vue-if-for/"
+    >vue中v-for和v-if不能同时使用解决方案</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/06/16/vue-if-for/" class="article-date">
+  <time datetime="2020-06-16T09:44:21.000Z" itemprop="datePublished">2020-06-16</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/VUE/">VUE</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
+<p>为什么不可以呢？我们 <code>JS</code> 的使用习惯在遍历时使用条件判断是很常见的， <code>vue</code> 模版中当然也是可以使用的，但是<code>v-for</code>和<code>v-if</code>不可以出现在同一个元素上。<br>因为在 <code>vue</code> 中会优先执行 <code>v-for</code>,如果每一次都遍历整个数组，将会影响速度，尤其是当之需要渲染很小一部分的时候。</p>
+</blockquote>
+<h3 id="使用情景"><a href="#使用情景" class="headerlink" title="使用情景"></a>使用情景</h3><blockquote>
+<p><code>v-for</code> 和 <code>v-if</code> 同时使用有 3 种情景：</p>
+<ol>
+<li> 部分遍历（内/外部条件）：一个 <code>list</code> 中某个属性值符合条件的遍历出来；</li>
+<li> 全部遍历（外部条件）：某外部条件符合条件时遍历全部。</li>
+<li> 全部遍历（内部条件）：根据某内部条件渲染出不同的内容。</li>
+</ol>
+</blockquote>
+<p>注：内部条件指被遍历数据内部属性值或条件；外部条件指与独立于被遍历数据以外的数据。</p> 
+      <a class="article-more-link" href="/2020/06/16/vue-if-for/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/v-for%E4%B8%8Ev-if/" rel="tag">v-for与v-if</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-text-ellipsis"
   class="article article-type-post"
   itemscope
@@ -703,67 +771,6 @@
 </blockquote>
 <h3 id="获取-APP-ID-和-APP-Key"><a href="#获取-APP-ID-和-APP-Key" class="headerlink" title="获取 APP ID 和 APP Key"></a>获取 APP ID 和 APP Key</h3><p>首先，先登录或注册  LeanCloud, 进入控制台后点击左上角创建应用：<br><img src="/2019/12/05/hexo-comment-func/3.jpg" alt="3"></p> 
       <a class="article-more-link" href="/2019/12/05/hexo-comment-func/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
-    <article
-  id="post-hexo-blog-build"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2019/12/04/hexo-blog-build/"
-    >Hexo4.0搭建博客及自动部署</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2019/12/04/hexo-blog-build/" class="article-date">
-  <time datetime="2019-12-04T09:35:40.000Z" itemprop="datePublished">2019-12-04</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Hexo/">Hexo</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><blockquote>
-<p>环境：GIT、 NODE<br>应用：Hexo4.0 + Github Pages + Github Actions 搭建博客并自动部署至 Github 和 Coding</p>
-</blockquote>
-<h5 id="搭建项目"><a href="#搭建项目" class="headerlink" title="搭建项目"></a>搭建项目</h5><p>一、 安装 hexo</p>
-<p>1.创建一个文件夹 blog，cd blog 目录下。 2.执行 hexo 命令全局安装：**<em>npm i -g hexo</em>** 3.安装成功，查看版本 <strong><em>hexo -v</em></strong> 如下：</p> 
-      <a class="article-more-link" href="/2019/12/04/hexo-blog-build/"
         >阅读更多...</a
       >
        
