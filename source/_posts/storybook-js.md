@@ -413,7 +413,7 @@ jobs:
 
       - name: Deploy
         env:
-          GH_REF: github.com/yingliyu/my-app.git # 仓库地址
+          GH_REF: github.com/xxx/my-app.git # 仓库地址
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }} # github token
         run: |
           git config --global user.name "your name"
