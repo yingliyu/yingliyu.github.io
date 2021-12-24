@@ -33,6 +33,8 @@ Storybook 是一个绝妙的 组件驱动开发环境。它通过隔离组件使
 
 ## 项目准备
 
+<!--more-->
+
 这里使用 React + Antd + TypeScript 为例
 
 ### 构建项目
