@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+  
+
+    <head>
+      <meta charset="utf-8" />
+       
+      <meta name="keywords" content="hi~" />
+       
+      <meta name="description" content="Storybook从零到一搭建组件库(上篇)" />
+      
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1"
+      />
+      <title>Storybook从零到一搭建组件库(上篇) |  默</title>
+  <meta name="generator" content="hexo-theme-ayer">
+      
+      <link rel="shortcut icon" href="/favicon.ico" />
+       
+<link rel="stylesheet" href="/dist/main.css">
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css"
+      />
+      
+<link rel="stylesheet" href="/css/custom.css">
+ 
+      <script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+       
+ 
+
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bulma@5.0.1/bulma.min.css"
+      />
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+
+      <!-- mermaid -->
+      
+      <style>
+        .swal2-styled.swal2-confirm {
+          font-size: 1.6rem;
+        }
+      </style>
+    <link rel="alternate" href="/atom.xml" title="默" type="application/atom+xml">
+</head>
+  </html>
+</html>
+
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-storybook-js"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Storybook从零到一搭建组件库(上篇)
+</h1>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/12/24/storybook-js/" class="article-date">
+  <time datetime="2021-12-24T09:52:09.303Z" itemprop="datePublished">2021-12-24</time>
+</a>   
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.3k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">11 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Storybook 是一个绝妙的 组件驱动开发环境。它通过隔离组件使开发更快更容易，它可以一次只处理一个组件。在 web 应用程序中构建小的原子组件和复杂的页面，使用 Storybook 可以让你专注于组件开发，无需去关注 API 文档的编写。</p>
+<blockquote>
+<p>Storybook 可以做什么？</p>
+</blockquote>
+<p>工作中开发的 UI 组件或页面可以用 Storybook 帮助你记录并生成 API 文档，增强代码重用性，大大的提高工作效率，并自动可视化地测试组件以防止 bug。<br>同时不受限于框架，它同时支持 Vue、React、Angular。所以工作的同时，不妨用它来沉淀一个自己的组件库，面试的时候也是一个谈资。<br><img src="/2021/12/24/storybook-js/image.png" alt="image"></p>
+<h2 id="依赖技术栈"><a href="#依赖技术栈" class="headerlink" title="依赖技术栈"></a>依赖技术栈</h2><p>首先，先来了解一下搭建一个简单的 UI 组件库需要使用哪些技术栈：</p>
+<ol>
+<li>Node 环境：v14.16.1</li>
+<li>React@17：用于构建用户界面的 JavaScript 库</li>
+<li>TypeScript@^4.5.4：Javascript 类型的超集，有强大的编码提示功能</li>
+<li>Ant-design@^4.17.4：最流行的 React 项目 UI 组件库，要搭建的基础组件库是基于 Ant Design 做的二次封装</li>
+<li>Create React App：React 脚手架快捷搭建项目架构</li>
+<li>Storybook（@storybook/react@^6.4.9）：辅助 UI 控件开发的工具，通过 story 创建独立的控件，让每个控件开发都有一个独立的开发调试环境；</li>
+<li>Prettier&amp;Eslint&amp;husky：统一规范代码风格交给 Prettier、Eslint 校验语法错误，husky 预防将带有语法等错误提交到远程仓库造成污染</li>
+<li>Webpack@^5.0.0：静态模块打包工具</li>
+</ol>
+<h2 id="项目准备"><a href="#项目准备" class="headerlink" title="项目准备"></a>项目准备</h2><span id="more"></span>
+
+<p>这里使用 React + Antd + TypeScript 为例</p>
+<h3 id="构建项目"><a href="#构建项目" class="headerlink" title="构建项目"></a>构建项目</h3><p>使用 <a target="_blank" rel="noopener" href="https://create-react-app.dev/docs/adding-typescript/">Creat React App</a> 构建项目，使用官方推荐脚手架搭建~</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用create-react-app初始化一个项目</span></span><br><span class="line">npx create-react-app my-app --typescript</span><br><span class="line"></span><br><span class="line"><span class="comment">// 进入项目根目录</span></span><br><span class="line">cd my-app</span><br><span class="line"></span><br><span class="line"><span class="comment">// 支持ts</span></span><br><span class="line">npm install --save typescript @types/node @types/react @types/react-dom @types/jest</span><br><span class="line">npm start</span><br></pre></td></tr></table></figure>
+
+<p>启动项目可以看到如下 React 初始页面，说明项目构建成功。<br><img src="/2021/12/24/storybook-js/2.png" alt="image"></p>
+<h3 id="安装-storybook"><a href="#安装-storybook" class="headerlink" title="安装 storybook"></a>安装 storybook</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//安装storybook/cli脚手架并安装依赖</span></span><br><span class="line">npx -p @storybook/cli sb init --type react_scripts</span><br><span class="line"></span><br><span class="line"><span class="comment">//启动你的storybook组件库项目</span></span><br><span class="line">npm run storybook</span><br></pre></td></tr></table></figure>
+
+<p>至此，能看到一个简单的组件库雏形，如下。<br><img src="/2021/12/24/storybook-js/3.png" alt="image"><br>至此，基本的组件库搭建完成，下面继续完善一下其前端生态系统，集成一些开发中必不可缺的工具库，有助于提高开发效率，让我们的开发工作事半功倍。</p>
+<h2 id="项目集成"><a href="#项目集成" class="headerlink" title="项目集成"></a>项目集成</h2><h3 id="typescript"><a href="#typescript" class="headerlink" title="typescript"></a>typescript</h3><p>默认的 Webpack 配置可能无法解析 tsconfig 文件中定义的模块别名，需要 tsconfig-paths-webpack-plugin 来帮助。</p>
+<h4 id="install"><a href="#install" class="headerlink" title="install"></a>install</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install tsconfig-paths-webpack-plugin</span><br></pre></td></tr></table></figure>
+
+<h4 id="storybook-main-js"><a href="#storybook-main-js" class="headerlink" title=".storybook/main.js"></a>.storybook/main.js</h4><p>首先我们要知道，Storybook 预设了 babel、webpack 插件，所以我们可以在 main.js 中加扩展 webpack 配置。<br>在 main.js 中 webpackFinal 属性用来自定义 webpack 配置，当然也可以在根目录定义一个 webpack.config.js 文件加配置在 main.js 导入使用，这里先在 main.js 中配置.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// .storybook/main.js</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> TsconfigPathsPlugin = <span class="built_in">require</span>(<span class="string">&#x27;tsconfig-paths-webpack-plugin&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="attr">webpackFinal</span>: <span class="keyword">async</span> (config) =&gt; &#123;</span><br><span class="line">    config.resolve.plugins = [</span><br><span class="line">      ...(config.resolve.plugins || []),</span><br><span class="line">      <span class="keyword">new</span> TsconfigPathsPlugin(&#123;</span><br><span class="line">        <span class="attr">extensions</span>: config.resolve.extensions</span><br><span class="line">      &#125;)</span><br><span class="line">    ]</span><br><span class="line">    <span class="keyword">return</span> config</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="tsconfig-json"><a href="#tsconfig-json" class="headerlink" title="tsconfig.json"></a>tsconfig.json</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// /tsconfig.json</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;compilerOptions&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;target&quot;</span>: <span class="string">&quot;es5&quot;</span>,</span><br><span class="line">    <span class="string">&quot;lib&quot;</span>: [<span class="string">&quot;dom&quot;</span>, <span class="string">&quot;dom.iterable&quot;</span>, <span class="string">&quot;esnext&quot;</span>],</span><br><span class="line">    <span class="string">&quot;allowJs&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">&quot;skipLibCheck&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">&quot;esModuleInterop&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">&quot;allowSyntheticDefaultImports&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">&quot;strict&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">&quot;baseUrl&quot;</span>: <span class="string">&quot;.&quot;</span>,</span><br><span class="line">    <span class="string">&quot;forceConsistentCasingInFileNames&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">&quot;noFallthroughCasesInSwitch&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">&quot;module&quot;</span>: <span class="string">&quot;esnext&quot;</span>,</span><br><span class="line">    <span class="string">&quot;moduleResolution&quot;</span>: <span class="string">&quot;node&quot;</span>,</span><br><span class="line">    <span class="string">&quot;resolveJsonModule&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">&quot;isolatedModules&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">&quot;noEmit&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="string">&quot;jsx&quot;</span>: <span class="string">&quot;react-jsx&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">&quot;include&quot;</span>: [<span class="string">&quot;src&quot;</span>],</span><br><span class="line">  <span class="string">&quot;exclude&quot;</span>: [<span class="string">&quot;node_modules&quot;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id><a href="#" class="headerlink" title></a></h3><h3 id="Less"><a href="#Less" class="headerlink" title="Less"></a>Less</h3><p>​</p>
+<p>因为是基于 Antd 做的二次开发，Antd 是基于 Less 所以需要安装 Less</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install less less-loader --save-dev</span><br></pre></td></tr></table></figure>
+
+<p>添加配置</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//.storybook/main.js</span></span><br><span class="line"><span class="attr">webpackFinal</span>: <span class="keyword">async</span> (webpackConfig, &#123; configType &#125;) =&gt; &#123;</span><br><span class="line">    webpackConfig.module.rules.push(&#123;</span><br><span class="line">      <span class="attr">test</span>: <span class="regexp">/\.less$/</span>,</span><br><span class="line">      use: [</span><br><span class="line">        <span class="string">&#x27;style-loader&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;css-loader&#x27;</span>,</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="attr">loader</span>: <span class="string">&#x27;less-loader&#x27;</span>,</span><br><span class="line">          <span class="attr">options</span>: &#123;</span><br><span class="line">            <span class="attr">lessOptions</span>: &#123;</span><br><span class="line">              <span class="attr">javascriptEnabled</span>: <span class="literal">true</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">          &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">      ],</span><br><span class="line">      <span class="attr">include</span>: [path.resolve(__dirname, <span class="string">&#x27;../&#x27;</span>), <span class="regexp">/[\\/]node_modules[\\/].*antd/</span>],</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">return</span> webpackConfig;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p><strong>出现问题：storybook 无法解析 less，Antd 样式不生效</strong><br>原因是 file loader 先 resolve 了 less 文件，导致 less-loader 没有解析<br>解决：@storybook/preset-create-react-app 得 file load 排除掉 less 文件，让 less-loader 去解析</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// .storybook/main.js</span></span><br><span class="line"><span class="attr">addons</span>: [</span><br><span class="line">    <span class="string">&#x27;@storybook/addon-links&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;@storybook/addon-essentials&#x27;</span>,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">name</span>: <span class="string">&#x27;@storybook/preset-create-react-app&#x27;</span>,</span><br><span class="line">      <span class="attr">options</span>: &#123;</span><br><span class="line">        <span class="attr">craOverrides</span>: &#123;</span><br><span class="line">          <span class="attr">fileLoaderExcludes</span>: [<span class="string">&#x27;less&#x27;</span>],</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>了解更多：<a target="_blank" rel="noopener" href="https://github.com/storybookjs/storybook/issues/9796">issue#9796</a></p>
+<h3 id="Antd"><a href="#Antd" class="headerlink" title="Antd"></a>Antd</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install antd</span><br></pre></td></tr></table></figure>
+
+<p>在文件中导入 antd 样式文件：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// .storybook/preview.js</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;antd/dist/antd.less&#x27;</span> <span class="comment">// 引入 antd 样式</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Eslint-amp-Prettier-amp-husky"><a href="#Eslint-amp-Prettier-amp-husky" class="headerlink" title="Eslint&amp;Prettier&amp;husky"></a>Eslint&amp;Prettier&amp;husky</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -D eslint eslint-config-prettier eslint-config-react-app eslint-plugin-<span class="keyword">import</span> eslint-plugin-prettier eslint-plugin-react eslint-plugin-react-hooks lint-staged prettier husky</span><br></pre></td></tr></table></figure>
+
+<p><strong>​</strong></p>
+<p><strong>出现报错：添加了 Eslint，格式校验未通过</strong><br><img src="/2021/12/24/storybook-js/4.png" alt="1640246532(1).png"><br>解决：修改 package.json 文件：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span> package.json</span><br><span class="line"><span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">  ...</span><br><span class="line">  <span class="string">&quot;lint&quot;</span>: <span class="string">&quot;eslint --ext .ts --ext .tsx src/  --fix&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后命令行执行修复指令：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run lint</span><br></pre></td></tr></table></figure>
+
+<p><strong>出现报错：Parsing error: The keyword ‘import’ is reserved</strong><br>个别组件第一行 import 出现警告，试了加 babel 无效，最后把 vscode 关闭再打开好了，目前还没有复现。</p>
+<h2 id="编写组件"><a href="#编写组件" class="headerlink" title="编写组件"></a>编写组件</h2><p>Button.tsx</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"><span class="keyword">import</span> PropTypes <span class="keyword">from</span> <span class="string">&#x27;prop-types&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; Button <span class="keyword">as</span> AntButton &#125; <span class="keyword">from</span> <span class="string">&#x27;antd&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> Button: React.FC&lt;any&gt; = <span class="function">(<span class="params">&#123;</span></span></span><br><span class="line"><span class="params"><span class="function">  primary,</span></span></span><br><span class="line"><span class="params"><span class="function">  type,</span></span></span><br><span class="line"><span class="params"><span class="function">  backgroundColor,</span></span></span><br><span class="line"><span class="params"><span class="function">  size,</span></span></span><br><span class="line"><span class="params"><span class="function">  label,</span></span></span><br><span class="line"><span class="params"><span class="function">  danger,</span></span></span><br><span class="line"><span class="params"><span class="function">  ...props</span></span></span><br><span class="line"><span class="params"><span class="function">&#125;</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> mode = primary ? <span class="string">&#x27;storybook-button--primary&#x27;</span> : <span class="string">&#x27;storybook-button--secondary&#x27;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;warpper&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">AntButton</span></span></span></span><br><span class="line"><span class="tag"><span class="xml">        <span class="attr">type</span>=<span class="string">&#123;type&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="xml">        <span class="attr">size</span>=<span class="string">&#123;size&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="xml">        <span class="attr">danger</span>=<span class="string">&#123;danger&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="xml">        <span class="attr">className</span>=<span class="string">&#123;[</span>&#x27;<span class="attr">storybook-button</span>&#x27;, `<span class="attr">storybook-button--</span>$&#123;<span class="attr">size</span>&#125;`, <span class="attr">mode</span>]<span class="attr">.join</span>(&#x27; &#x27;)&#125;</span></span></span><br><span class="line"><span class="tag"><span class="xml">        <span class="attr">style</span>=<span class="string">&#123;backgroundColor</span> &amp;&amp; &#123; <span class="attr">backgroundColor</span> &#125;&#125;</span></span></span><br><span class="line"><span class="tag"><span class="xml">        &#123;<span class="attr">...props</span>&#125;</span></span></span><br><span class="line"><span class="tag"><span class="xml">      &gt;</span></span></span><br><span class="line"><span class="xml">        &#123;label&#125;</span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;/<span class="name">AntButton</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Button.propTypes = &#123;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Is this the principal call to action on the page?</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="attr">primary</span>: PropTypes.bool,</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * What background color to use</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="attr">backgroundColor</span>: PropTypes.string,</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * How large should the button be?</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="attr">size</span>: PropTypes.oneOf([<span class="string">&#x27;small&#x27;</span>, <span class="string">&#x27;medium&#x27;</span>, <span class="string">&#x27;large&#x27;</span>]),</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Button contents</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="attr">label</span>: PropTypes.string.isRequired,</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Optional click handler</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="attr">onClick</span>: PropTypes.func</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Button.defaultProps = &#123;</span><br><span class="line">  <span class="attr">backgroundColor</span>: <span class="literal">null</span>,</span><br><span class="line">  <span class="attr">primary</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="attr">size</span>: <span class="string">&#x27;medium&#x27;</span>,</span><br><span class="line">  <span class="attr">onClick</span>: <span class="literal">undefined</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Button.stories.tsx</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; ComponentStory, ComponentMeta &#125; <span class="keyword">from</span> <span class="string">&#x27;@storybook/react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; Button &#125; <span class="keyword">from</span> <span class="string">&#x27;../components/Button&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">title</span>: <span class="string">&#x27;Design System/General/Button&#x27;</span>,</span><br><span class="line">  <span class="attr">component</span>: Button,</span><br><span class="line">  <span class="attr">argTypes</span>: &#123;</span><br><span class="line">    <span class="attr">backgroundColor</span>: &#123; <span class="attr">control</span>: <span class="string">&#x27;color&#x27;</span> &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125; <span class="keyword">as</span> ComponentMeta&lt;<span class="keyword">typeof</span> Button&gt;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> Template = <span class="function">(<span class="params">args: any</span>) =&gt;</span> <span class="xml"><span class="tag">&lt;<span class="name">Button</span> &#123;<span class="attr">...args</span>&#125; /&gt;</span></span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> Primary: ComponentStory&lt;<span class="keyword">typeof</span> Button&gt; = Template.bind(&#123;&#125;);</span><br><span class="line">Primary.args = &#123;</span><br><span class="line">  <span class="attr">type</span>: <span class="string">&#x27;primary&#x27;</span>,</span><br><span class="line">  <span class="comment">// primary: true,</span></span><br><span class="line">  <span class="attr">label</span>: <span class="string">&#x27;Button&#x27;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> Danger: ComponentStory&lt;<span class="keyword">typeof</span> Button&gt; = Template.bind(&#123;&#125;);</span><br><span class="line">Danger.args = &#123;</span><br><span class="line">  <span class="attr">label</span>: <span class="string">&#x27;Button&#x27;</span>,</span><br><span class="line">  <span class="attr">danger</span>: <span class="literal">true</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> Large: ComponentStory&lt;<span class="keyword">typeof</span> Button&gt; = Template.bind(&#123;&#125;);</span><br><span class="line">Large.args = &#123;</span><br><span class="line">  <span class="attr">size</span>: <span class="string">&#x27;large&#x27;</span>,</span><br><span class="line">  <span class="attr">label</span>: <span class="string">&#x27;Button&#x27;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> Small: ComponentStory&lt;<span class="keyword">typeof</span> Button&gt; = Template.bind(&#123;&#125;);</span><br><span class="line">Small.args = &#123;</span><br><span class="line">  <span class="attr">size</span>: <span class="string">&#x27;small&#x27;</span>,</span><br><span class="line">  <span class="attr">label</span>: <span class="string">&#x27;Button&#x27;</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>页面效果：<br><img src="/2021/12/24/storybook-js/5.png" alt="image.png"></p>
+<h2 id="项目部署"><a href="#项目部署" class="headerlink" title="项目部署"></a>项目部署</h2><blockquote>
+<p>使用 ​<a target="_blank" rel="noopener" href="https://github.com/features/actions">Github Actions</a>托管组件库，并实现持续集成 CI 服务</p>
+</blockquote>
+<h5 id="步骤如下"><a href="#步骤如下" class="headerlink" title="步骤如下"></a>步骤如下</h5><h6 id="1-首先明确项目至少有两个分支，以master和gh-pages为例。"><a href="#1-首先明确项目至少有两个分支，以master和gh-pages为例。" class="headerlink" title="1.首先明确项目至少有两个分支，以master和gh-pages为例。"></a>1.首先明确项目至少有两个分支，以<code>master</code>和<code>gh-pages</code>为例。</h6><p><code>master</code>分支是源码，开发在此分支，<code>gh-pages</code>是项目打包后生成的静态资源文件。<br>然后，在此项目仓库<code>Settings-&gt;Pages</code>页面选择 gh-pages 作为静态资源分支，直接在<code>root</code>，即根目录下。<br>如果有自己的域名的话也可以设置 Custom domain。<br>​</p>
+<h6 id="2-然后生成一个github-secrets密钥，然后将密钥至仓库。"><a href="#2-然后生成一个github-secrets密钥，然后将密钥至仓库。" class="headerlink" title="2.然后生成一个github secrets密钥，然后将密钥至仓库。"></a>2.然后生成一个<a target="_blank" rel="noopener" href="https://docs.github.com/en/actions/security-guides/encrypted-secrets">github secrets</a>密钥，然后将密钥至仓库。</h6><blockquote>
+<p>step1. 生成一个 github 密钥。</p>
+</blockquote>
+<p>点击 github 的 <code>Github Settings</code>-&gt;<code>Developer settings</code>-&gt;<code>Personal access tokens</code>-&gt;<code>Generate new token</code>-&gt;<code>Generate token</code>-&gt;<code>Copy token</code></p>
+<blockquote>
+<p>step2. 将密钥添加到当前仓库中。</p>
+</blockquote>
+<p>打开当前 github 仓库点击进入<code>Settings-&gt;Secrets</code>-&gt;<code>New repository secret</code>-&gt;<code>Paste token from step1</code></p>
+<h6 id="3-修改-package-json-文件-scripts"><a href="#3-修改-package-json-文件-scripts" class="headerlink" title="3.修改 package.json 文件 scripts"></a>3.修改 package.json 文件 scripts</h6><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">		<span class="string">&quot;storybook&quot;</span>: <span class="string">&quot;start-storybook -p 6006 -s public&quot;</span>,</span><br><span class="line">    <span class="string">&quot;build-storybook&quot;</span>: <span class="string">&quot;rm -rf ./dist/docs &amp;&amp; build-storybook -o ./dist/docs&quot;</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="4-添加-action，编写脚本"><a href="#4-添加-action，编写脚本" class="headerlink" title="4. 添加 action，编写脚本"></a>4. 添加 action，编写脚本</h6><p>在此项目仓库点击 Action-&gt; New workflow-&gt;Node.js<br>deploy.yml</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">name: Deployer # Actions 名字</span><br><span class="line"></span><br><span class="line"><span class="attr">on</span>: # 触发条件</span><br><span class="line">  <span class="attr">push</span>:</span><br><span class="line">    branches:</span><br><span class="line">      - master # 仅向 master 分支 push 时触发</span><br><span class="line"></span><br><span class="line"><span class="attr">jobs</span>:</span><br><span class="line">  build: # job id</span><br><span class="line">    <span class="attr">name</span>: Build and publish # job 名，不写默认使用 job id</span><br><span class="line">    runs-on: ubuntu-latest # 运行环境，可选 ubuntu-latest, ubuntu-<span class="number">18.04</span>, ubuntu-<span class="number">16.04</span>, windows-latest, windows-<span class="number">2019</span>, windows-<span class="number">2016</span>, macOS-latest, macOS-<span class="number">10.14</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">steps</span>:</span><br><span class="line">      - uses: actions/checkout@v2</span><br><span class="line"></span><br><span class="line">      - name: Use Node.js <span class="number">14.</span>x</span><br><span class="line">        <span class="attr">uses</span>: actions/setup-node@v2</span><br><span class="line">        <span class="attr">with</span>:</span><br><span class="line">          node-version: <span class="number">14.</span>x</span><br><span class="line"></span><br><span class="line">      - name: Setup  env</span><br><span class="line">        <span class="attr">run</span>: |</span><br><span class="line">          npm install</span><br><span class="line">      - name: Generate public files</span><br><span class="line">        <span class="attr">run</span>: |</span><br><span class="line">          npm run build-storybook</span><br><span class="line"></span><br><span class="line">      - name: Deploy</span><br><span class="line">        <span class="attr">env</span>:</span><br><span class="line">          GH_REF: github.com/yingliyu/my-app.git # 仓库地址</span><br><span class="line">          <span class="attr">ACCESS_TOKEN</span>: $&#123;&#123; secrets.ACCESS_TOKEN &#125;&#125; # github token</span><br><span class="line">        <span class="attr">run</span>: |</span><br><span class="line">          git config --<span class="built_in">global</span> user.name <span class="string">&quot;your name&quot;</span></span><br><span class="line">          git config --<span class="built_in">global</span> user.email <span class="string">&quot;your email&quot;</span></span><br><span class="line">          git clone https:<span class="comment">//$&#123;GH_REF&#125; .deploy_git</span></span><br><span class="line">          cd .deploy_git</span><br><span class="line">          git checkout gh-pages</span><br><span class="line">          cd ../</span><br><span class="line">          mv .deploy_git/.git/ ./dist/docs</span><br><span class="line">          cd ./dist/docs</span><br><span class="line">          git add .</span><br><span class="line">          git commit -m <span class="string">&quot;:construction_worker:CI built at `date +&quot;</span>%Y-%m-%d %H:%M:%S<span class="string">&quot;`&quot;</span></span><br><span class="line">          # GitHub Pages</span><br><span class="line">          git push --force --quiet <span class="string">&quot;https://$&#123;ACCESS_TOKEN&#125;@$&#123;GH_REF&#125;&quot;</span> gh-pages:gh-pages</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>创建成功会在项目中生成<code> .github/workflows/deploy.yml</code> 。<br>设置了 GitHub action 后，当推送代码时，你的组件库将自动部署到 Github 静态站点托管。至此就实现了，每当我们更新推送代码时可以自动发布组件的最新版本，我们需要手动再部署，GitHub action 会帮我们完成。</p>
+<h3 id="Github-Pages-访问组件库"><a href="#Github-Pages-访问组件库" class="headerlink" title="Github Pages 访问组件库"></a>Github Pages 访问组件库</h3><p>在 master 分支修改源代码，然后 push 到远程仓库时，此时 action 会自动执行并打包部署，通过仓库 Settings-&gt;Pages 里显示的 Your site 访问即可。</p>
+<h2 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h2><blockquote>
+<p>下一篇记录将组件库发布 npm 包的实践过程</p>
+</blockquote>
+<blockquote>
+<p>预览我的组件库：<a href="https://yingliyu.github.io/fish-design">Fish-Design</a></p>
+</blockquote>
+<blockquote>
+<p>关于我的博客：<a href="https://yingliyu.github.io/">我的博客</a></p>
+</blockquote>
+<h2 id="尾巴"><a href="#尾巴" class="headerlink" title="尾巴"></a>尾巴</h2><p>本文内容参考: <a target="_blank" rel="noopener" href="https://reactjs.org/docs/create-a-new-react-app.html#create-react-app">React</a> 、<a target="_blank" rel="noopener" href="https://storybook.js.org/">storybook</a></p>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.css"> 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://yingliyu.github.io/2021/12/24/storybook-js/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Storybook/" rel="tag">Storybook</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/" rel="tag">框架学习</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+    
+      <a href="/2021/12/24/2021-summary/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">2021，沪漂五年重返校园的一年</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "IMk6UEsIdoJmshBUrTrk068d-gzGzoHsz",
+    app_key: "frYofqWd1Lx2uJ2WwELXRhw8",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+   
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2015-2021
+        <i class="ri-heart-fill heart_icon"></i> Lillian
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></span>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+        <script type="text/javascript" src='https://s9.cnzz.com/z_stat.php?id=1278069914&amp;web_id=1278069914'></script>
+        
+      </li>
+    </ul>
+  </div>
+</footer>    
+    </main>
+    <div class="float_btns">
+      <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+    </div>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/assets/imgs/header.png" alt="默"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/travel">旅行</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/photos">摄影</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/friends">友链</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/2019/10/01/about/">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/assets/imgs/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/assets/imgs/weixin.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-3.6.0.min.js"></script>
+ 
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+ 
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: ".tocbot",
+    contentSelector: ".article-entry",
+    headingSelector: "h1, h2, h3, h4, h5, h6",
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: "main",
+    positionFixedSelector: ".tocbot",
+    positionFixedClass: "is-position-fixed",
+    fixedSidebarOffset: "auto",
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+ <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script> 
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+ 
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+ 
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+ 
+<link rel="stylesheet" href="/css/clipboard.css">
+ <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+ 
+<!-- CanvasBackground -->
+
+<script>
+  if (window.mermaid) {
+    mermaid.initialize({ theme: "forest" });
+  }
+</script>
+
+
+    
+    
+
+  </div>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"log":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":160,"height":300},"mobile":{"show":false,"scale":0.5}});</script></body>
+
+</html>

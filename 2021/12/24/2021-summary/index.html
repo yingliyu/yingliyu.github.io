@@ -9,13 +9,13 @@
        
       <meta name="keywords" content="hi~" />
        
-      <meta name="description" content="使用Storybook从零搭建组件库" />
+      <meta name="description" content="2021年终总结" />
       
       <meta
         name="viewport"
         content="width=device-width, initial-scale=1, maximum-scale=1"
       />
-      <title>使用Storybook从零搭建组件库 |  默</title>
+      <title>2021，沪漂五年重返校园的一年 |  默</title>
   <meta name="generator" content="hexo-theme-ayer">
       
       <link rel="shortcut icon" href="/favicon.ico" />
@@ -59,7 +59,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-storybook-js"
+  id="post-2021-summary"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -70,7 +70,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  使用Storybook从零搭建组件库
+  2021，沪漂五年重返校园的一年
 </h1>
  
 
@@ -78,15 +78,15 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2021/12/22/storybook-js/" class="article-date">
-  <time datetime="2021-12-22T07:52:15.069Z" itemprop="datePublished">2021-12-22</time>
+      <a href="/2021/12/24/2021-summary/" class="article-date">
+  <time datetime="2021-12-24T09:52:09.279Z" itemprop="datePublished">2021-12-24</time>
 </a>   
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">832</span>
+            <span class="post-count">1.6k</span>
         </span>
     </span>
 
@@ -95,7 +95,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">3 分钟</span>
+            <span class="post-count">5 分钟</span>
         </span>
     </span>
 </div>
@@ -110,54 +110,37 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Storybook 是一种 UI 开发工具。它通过隔离组件使开发更快更容易，它可以一次只处理一个组件，使用 storybook 可以开发整个 ui，同时不需要启动一个复杂的开发项目，强制将某些数据放入数据库，或者浏览应用程序。使用 Storybook 可以在 web 应用程序中构建小的原子组件和复杂的页面。<br>​</p>
-<blockquote>
-<p>Storybook 可以做什么？</p>
-</blockquote>
-<p>工作中开发的 UI 组件或页面可以用 Storybook 帮助你记录并生成 API 文档，增强代码重用性，大大的提高工作效率，并自动可视化地测试组件以防止 bug。<br>同时它支持 Vue 和 React，工作的同时，可以用它来沉淀一个自己的组件库，面试的时候这也是一个谈资。<br><img src="/2021/12/22/storybook-js/image.png" alt="image"></p>
-<h2 id="安装-amp-创建一个组件库"><a href="#安装-amp-创建一个组件库" class="headerlink" title="安装&amp;创建一个组件库"></a>安装&amp;创建一个组件库</h2><span id="more"></span>
+  <p><img src="/2021/12/24/2021-summary/banner.jpg" alt="img"><br>2021 年，依然是为生活忙碌的一年，考研、考证、换工作……</p>
+<p>回想起去年此时正在紧张的备战考研，或许是年龄大了心态不如从前了，考试前夕特别焦虑一度失眠。不过过程都不重要了，因为结果还不错，现在已经入学半学期啦～</p>
+<h2 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h2><h3 id="我换工作了-💻"><a href="#我换工作了-💻" class="headerlink" title="我换工作了 💻"></a>我换工作了 💻</h3><p>就在今年 10 月底我离开了工作两年多的公司，不是裸辞，这个年纪已经没有了裸辞的勇气，原因一言难尽，其实年中就打算走的，但面试了一周左右没有理想的 offer 加之领导的挽留，我放弃了面试，不过 10 月底做完项目后拿到了满意的 offer 还是走了。</p>
+<p>回想在那里的两年，平台虽然不大，但是很开心认识了一群可爱的小伙伴和我的的老大(庄哥)，他的技术很牛，跟他学到了很多东西，他的技术和为人处事都值得我学习，他是 Coach 型的老大，是我的理想 leader。不过他在我之前离职了，说实话知道他要走的时候我很难过，不知道你们有没有那种很慌又孤军奋战的感觉，感觉工作都提不起兴趣，不过慢慢还是要习惯要自己强大起来。</p>
+<span id="more"></span>
 
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用create-react-app初始化一个项目</span></span><br><span class="line">npx create-react-app my-app</span><br><span class="line"></span><br><span class="line"><span class="comment">// 进入项目根目录</span></span><br><span class="line">cd my-app</span><br><span class="line"></span><br><span class="line"><span class="comment">//安装storybook/cli脚手架并安装依赖</span></span><br><span class="line">npx -p @storybook/cli sb init</span><br><span class="line"></span><br><span class="line"><span class="comment">//启动你的storybook组件库项目</span></span><br><span class="line">npm run storybook</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="使用-Github-Actions-托管组件库"><a href="#使用-Github-Actions-托管组件库" class="headerlink" title="使用 Github Actions 托管组件库"></a>使用 Github Actions 托管组件库</h2><ol>
-<li>首先明确项目至少有两个分支，以<code>master</code>和<code>gh-pages</code>为例。</li>
+<p>国企是有国企的好，稳定工作强度一般，所以我才有时间准备考研和考证，总之，感恩感谢，江湖再见。<br><img src="/2021/12/24/2021-summary/2.png" alt="img"></p>
+<p>不过说到找工作，年中面试我还挺受打击 👊 的，面试 B 站的时候，面试官面带微笑的告诉我说“既然想找工作建议你还是好好准备一下”，虽然他很大牛也很友好，但我还是很受伤 😭。加之我已婚未育的状态，懂得都懂，年中的面试也不疾而终~</p>
+<p>不过，今年 10 月份找工作的时候还蛮顺利的，所以说找工作技术是一方面，缘分也是一方面吧，我可能比较佛系，现在的公司小而美，都挺好~</p>
+<h2 id="生活"><a href="#生活" class="headerlink" title="生活"></a>生活</h2><h3 id="搬家"><a href="#搬家" class="headerlink" title="搬家"></a>搬家</h3><p>今年 5 月份的时候住了一年多的房子 🏠，房东突然告诉我们不租了，我们要被搬家啦～窗台养的小可爱跟我走吧 🧑‍🤝‍🧑<br><img src="/2021/12/24/2021-summary/3.jpg" alt="img"></p>
+<h3 id="又搬家"><a href="#又搬家" class="headerlink" title="又搬家"></a>又搬家</h3><p>然后换了一个两居室和二房东一起住，但是有一种束手束脚的感觉，被房东管的太紧了居住体验不太好，我们果断换（人生建议: 和二房东一起合住一定要擦亮眼睛），所以又又搬家了～</p>
+<h3 id="再搬家"><a href="#再搬家" class="headerlink" title="再搬家"></a>再搬家</h3><p>然后又搬到了宝山，这个房东大哥人很好，居住体验还不错，搬家真的好（lei）开（si）心（人）🤣</p>
+<p>换到新公司之后开始每天带饭 👩‍⚕️</p>
+<h3 id="小日子"><a href="#小日子" class="headerlink" title="小日子"></a>小日子</h3><p>以前的周末都是计划找地方去玩，逛逛周边的公园和朋友一起爬爬山，或者追剧画画。<br><img src="/2021/12/24/2021-summary/4.png" alt="img"><br>有一段时间突然迷上了在瓶子上画画，用来做花瓶，这是画的最喜欢的一次，但是因为是水彩所以它经不起风吹日晒，尤其怕水，现在已经物尽其用了 😂。<br><img src="/2021/12/24/2021-summary/5.png" alt="img"></p>
+<p>有时候会练练毛笔字，喜欢临摹颜真卿的碑帖，感觉聚焦在自己感兴趣的地方能全身贯注，能让我心静。<br>空闲的周末过的也算是不亦乐乎。<br><img src="/2021/12/24/2021-summary/6.png" alt="img"><br>今年九月份入学之后，对我来说工作日就是周末，上课还挺累的，与之相比工作日反而轻松多了，以前有周末的时候是多么多么幸福啊，人总是这样失去的时候才想起来去珍惜，好在我的周末还会回来的哈哈哈 😊</p>
+<p>另外，历经快一年的时间，终于打完了 HPV 疫苗，愿望达成~</p>
+<h2 id="个人提升"><a href="#个人提升" class="headerlink" title="个人提升"></a>个人提升</h2><h3 id="考研-🎓"><a href="#考研-🎓" class="headerlink" title="考研 🎓"></a>考研 🎓</h3><p>年初查考研成绩，过了笔试，开始准备面试，然后 7 月份拿到了录取通知书 🎉<br><img src="/2021/12/24/2021-summary/7.png" alt="img"><br>其实我被问的最多的问题就是，为什么选择考研呢？</p>
+<p>我细想一下，主要有三个方面的原因：</p>
+<ol>
+<li>首先是环境影响，我身边的人都太优秀了，古话说，近朱者赤近墨者黑，就是这样了。</li>
+<li>其次是身边朋友和亲人的鼓励，就是前面说的庄哥，那时候公司也不忙，然后他一直鼓励我考研，虽然我当时有拒绝，但是那粒种子已经深深埋在我心里，后来它就萌芽了。</li>
+<li>然后是自己也想提升自己的学历（或者说为以后怎么转行做准备，毕竟不能写一辈子代码吧，所以在这方面努力一下），希望以后能获得更多的求职机会。</li>
 </ol>
-<p><code>master</code>分支是源码，开发在此分支，<code>gh-pages</code>是项目打包后生成的静态资源文件。<br>然后，在此项目仓库<code>Settings-&gt;Pages</code>页面选择 gh-pages 作为静态资源分支，直接在<code>root</code>，即根目录下。<br>如果有自己的域名的话也可以设置 Custom domain。</p>
-<ol start="2">
-<li>首先生成一个密钥，然后将密钥至仓库。</li>
-</ol>
-<p>​</p>
+<p>然后在去年 8 月份开始，自学备考，周末增哥陪我一起泡图书馆，甚至我们的婚假我俩都是在图书馆里过的，还被庄哥调侃为最励志的婚假，现在我回想起来感觉当时有一股神奇的力量在推着我，我之前从来没有这方面的计划，甚至感觉这个人有点不像我 😂，我本不是什么争强好胜之人，反而有点随遇而安，可能我对自己还不够了解吧。</p>
+<p>九月份我入学啦，认识了一群可爱的同学，不得不过感叹一下我的同学们都好（you）卷（xiu）啊 🐶，学业还挺有压力的，这不元旦假期还没到我已经在期待寒假啦 🎉</p>
+<p>加油吧～争取顺利毕业 🎓</p>
+<h3 id="考证-📒"><a href="#考证-📒" class="headerlink" title="考证 📒"></a>考证 📒</h3><p>3 月底考研面试结束之后，4 月份开始准备软考，可以说也是在同事的怂恿下临近报名结束的最后几天我报名了，然后开始备考，5 月份收到了小绿本本，感谢我同事的帮助 🙏<br><img src="/2021/12/24/2021-summary/8.png" alt="img"></p>
+<h2 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h2><p>2021 年是感恩的一年，需要感谢的人太多，感谢辅导员杨老师，感谢庄哥的帮助和鼓励，感谢学长凯哥的解疑答惑，感谢增哥总是支持我的决定，在我备考时陪我一起泡图书馆、考试、入学的一路始终陪在我左右……感谢在我需要帮助的时候有你们在！！！</p>
+<p>2021 已余额不足，抓住 2021 的尾巴，加油~<br>愿 2022 尽如所期~</p>
 <blockquote>
-<p>step1. 生成一个 github 密钥。</p>
-</blockquote>
-<p><code>Github Settings</code>-&gt;<code>Developer settings</code>-&gt;<code>Personal access tokens</code>-&gt;<code>Generate new token</code>-&gt;<code>Generate token</code>-&gt;<code>Copy token</code></p>
-<blockquote>
-<p>step2. 将密钥添加到当前仓库中。</p>
-</blockquote>
-<p>进入当前<code>respository</code>-&gt;<code>Settings-&gt;Secrets</code>-&gt;<code>New repository secret</code>-&gt;<code>Paste token from step1</code><br>​</p>
-<p>eg. Name: ACCESS_TOKEN</p>
-<ol start="3">
-<li>修改 package.json 文件 scripts</li>
-</ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">	<span class="string">&quot;storybook&quot;</span>: <span class="string">&quot;start-storybook -p 6006 -s public&quot;</span>,</span><br><span class="line">    <span class="string">&quot;build-storybook&quot;</span>: <span class="string">&quot;rm -rf ./dist/docs &amp;&amp; build-storybook -o ./dist/docs&quot;</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol start="4">
-<li>添加 action</li>
-</ol>
-<p>在此项目仓库点击 Action-&gt; New workflow-&gt;Node.js<br>deploy.yml</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">name: Deployer # Actions 名字</span><br><span class="line"></span><br><span class="line"><span class="attr">on</span>: # 触发条件</span><br><span class="line">  <span class="attr">push</span>:</span><br><span class="line">    branches:</span><br><span class="line">      - master # 仅向 master 分支 push 时触发</span><br><span class="line"></span><br><span class="line"><span class="attr">jobs</span>:</span><br><span class="line">  build: # job id</span><br><span class="line">    <span class="attr">name</span>: Build and publish # job 名，不写默认使用 job id</span><br><span class="line">    runs-on: ubuntu-latest # 运行环境，可选 ubuntu-latest, ubuntu-<span class="number">18.04</span>, ubuntu-<span class="number">16.04</span>, windows-latest, windows-<span class="number">2019</span>, windows-<span class="number">2016</span>, macOS-latest, macOS-<span class="number">10.14</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">steps</span>:</span><br><span class="line">      - uses: actions/checkout@v2</span><br><span class="line"></span><br><span class="line">      - name: Use Node.js <span class="number">14.</span>x</span><br><span class="line">        <span class="attr">uses</span>: actions/setup-node@v2</span><br><span class="line">        <span class="attr">with</span>:</span><br><span class="line">          node-version: <span class="number">14.</span>x</span><br><span class="line"></span><br><span class="line">      - name: Setup  env</span><br><span class="line">        <span class="attr">run</span>: |</span><br><span class="line">          npm install</span><br><span class="line">      - name: Generate public files</span><br><span class="line">        <span class="attr">run</span>: |</span><br><span class="line">          npm run build-storybook</span><br><span class="line"></span><br><span class="line">      - name: Deploy</span><br><span class="line">        <span class="attr">env</span>:</span><br><span class="line">          GH_REF: github.com/yingliyu/my-app.git # 仓库地址</span><br><span class="line">          <span class="attr">ACCESS_TOKEN</span>: $&#123;&#123; secrets.ACCESS_TOKEN &#125;&#125; # github token</span><br><span class="line">        <span class="attr">run</span>: |</span><br><span class="line">          git config --<span class="built_in">global</span> user.name <span class="string">&quot;your name&quot;</span></span><br><span class="line">          git config --<span class="built_in">global</span> user.email <span class="string">&quot;your email&quot;</span></span><br><span class="line">          git clone https:<span class="comment">//$&#123;GH_REF&#125; .deploy_git</span></span><br><span class="line">          cd .deploy_git</span><br><span class="line">          git checkout gh-pages</span><br><span class="line">          cd ../</span><br><span class="line">          mv .deploy_git/.git/ ./dist/docs</span><br><span class="line">          cd ./dist/docs</span><br><span class="line">          git add .</span><br><span class="line">          git commit -m <span class="string">&quot;:construction_worker:CI built at `date +&quot;</span>%Y-%m-%d %H:%M:%S<span class="string">&quot;`&quot;</span></span><br><span class="line">          # GitHub Pages</span><br><span class="line">          git push --force --quiet <span class="string">&quot;https://$&#123;ACCESS_TOKEN&#125;@$&#123;GH_REF&#125;&quot;</span> gh-pages:gh-pages</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>创建成功会在项目中生成.github/workflows/deploy.yml 。</p>
-<h2 id="使用-Github-Pages-访问组件库"><a href="#使用-Github-Pages-访问组件库" class="headerlink" title="使用 Github Pages 访问组件库"></a>使用 Github Pages 访问组件库</h2><p>在 master 分支修改源代码，然后 push，此时 action 会自动执行并打包部署，通过仓库 Settings-&gt;Pages 里显示的 Your site 访问即可。</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p>本文内容参考: <a target="_blank" rel="noopener" href="https://reactjs.org/docs/create-a-new-react-app.html#create-react-app">React</a> 、<a target="_blank" rel="noopener" href="https://storybook.js.org/">storybook</a></p>
-<h2 id="尾巴"><a href="#尾巴" class="headerlink" title="尾巴"></a>尾巴</h2><blockquote>
-<p>我的组件库：<a href="https://yingliyu.github.io/fish-design">Fish-Design</a></p>
-</blockquote>
-<blockquote>
-<p>关于我的博客：<a href="https://yingliyu.github.io/">我的博客</a></p>
-</blockquote>
-<blockquote>
-<p>掘金：<a target="_blank" rel="noopener" href="https://juejin.cn/post/7044428114264326175/">掘金</a></p>
+<p>这一年，遇见，获得，失去，成长，释怀，完结。愿与旧事归于尽，来年依旧迎花开。</p>
 </blockquote>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kity@2.0.4/dist/kity.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/kityminder-core@1.4.50/dist/kityminder.core.min.js"></script><script defer="true" type="text/javascript" src="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/hexo-simple-mindmap@0.6.0/dist/mindmap.min.css"> 
       <!-- reward -->
@@ -229,12 +212,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://yingliyu.github.io/2021/12/22/storybook-js/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://yingliyu.github.io/2021/12/24/2021-summary/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Storybook/" rel="tag">Storybook</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A1%86%E6%9E%B6%E5%AD%A6%E4%B9%A0/" rel="tag">框架学习</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93/" rel="tag">年终总结</a></li></ul>
 
     </footer>
   </div>
@@ -242,10 +225,19 @@
    
   <nav class="article-nav">
     
+      <a href="/2021/12/24/storybook-js/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            Storybook从零到一搭建组件库(上篇)
+          
+        </div>
+      </a>
     
-      <a href="/2021/12/22/2021-summary/" class="article-nav-link">
+    
+      <a href="/2021/12/01/Formily-demo/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">2021，沪漂五年重返校园的一年</div>
+        <div class="article-nav-title">Formily入门实践</div>
       </a>
     
   </nav>

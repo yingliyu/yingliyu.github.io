@@ -166,8 +166,8 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2021/12/22/storybook-js/"
-    >使用Storybook从零搭建组件库</a> 
+  <a class="article-title" href="/2021/12/24/storybook-js/"
+    >Storybook从零到一搭建组件库(上篇)</a> 
 </h2>
  
 
@@ -175,20 +175,31 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2021/12/22/storybook-js/" class="article-date">
-  <time datetime="2021-12-22T07:52:15.069Z" itemprop="datePublished">2021-12-22</time>
+      <a href="/2021/12/24/storybook-js/" class="article-date">
+  <time datetime="2021-12-24T09:52:09.303Z" itemprop="datePublished">2021-12-24</time>
 </a>    
     </div>
       
     <div class="article-entry" itemprop="articleBody">
        
-  <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Storybook 是一种 UI 开发工具。它通过隔离组件使开发更快更容易，它可以一次只处理一个组件，使用 storybook 可以开发整个 ui，同时不需要启动一个复杂的开发项目，强制将某些数据放入数据库，或者浏览应用程序。使用 Storybook 可以在 web 应用程序中构建小的原子组件和复杂的页面。<br>​</p>
+  <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Storybook 是一个绝妙的 组件驱动开发环境。它通过隔离组件使开发更快更容易，它可以一次只处理一个组件。在 web 应用程序中构建小的原子组件和复杂的页面，使用 Storybook 可以让你专注于组件开发，无需去关注 API 文档的编写。</p>
 <blockquote>
 <p>Storybook 可以做什么？</p>
 </blockquote>
-<p>工作中开发的 UI 组件或页面可以用 Storybook 帮助你记录并生成 API 文档，增强代码重用性，大大的提高工作效率，并自动可视化地测试组件以防止 bug。<br>同时它支持 Vue 和 React，工作的同时，可以用它来沉淀一个自己的组件库，面试的时候这也是一个谈资。<br><img src="/2021/12/22/storybook-js/image.png" alt="image"></p>
-<h2 id="安装-amp-创建一个组件库"><a href="#安装-amp-创建一个组件库" class="headerlink" title="安装&amp;创建一个组件库"></a>安装&amp;创建一个组件库</h2> 
-      <a class="article-more-link" href="/2021/12/22/storybook-js/"
+<p>工作中开发的 UI 组件或页面可以用 Storybook 帮助你记录并生成 API 文档，增强代码重用性，大大的提高工作效率，并自动可视化地测试组件以防止 bug。<br>同时不受限于框架，它同时支持 Vue、React、Angular。所以工作的同时，不妨用它来沉淀一个自己的组件库，面试的时候也是一个谈资。<br><img src="/2021/12/24/storybook-js/image.png" alt="image"></p>
+<h2 id="依赖技术栈"><a href="#依赖技术栈" class="headerlink" title="依赖技术栈"></a>依赖技术栈</h2><p>首先，先来了解一下搭建一个简单的 UI 组件库需要使用哪些技术栈：</p>
+<ol>
+<li>Node 环境：v14.16.1</li>
+<li>React@17：用于构建用户界面的 JavaScript 库</li>
+<li>TypeScript@^4.5.4：Javascript 类型的超集，有强大的编码提示功能</li>
+<li>Ant-design@^4.17.4：最流行的 React 项目 UI 组件库，要搭建的基础组件库是基于 Ant Design 做的二次封装</li>
+<li>Create React App：React 脚手架快捷搭建项目架构</li>
+<li>Storybook（@storybook/react@^6.4.9）：辅助 UI 控件开发的工具，通过 story 创建独立的控件，让每个控件开发都有一个独立的开发调试环境；</li>
+<li>Prettier&amp;Eslint&amp;husky：统一规范代码风格交给 Prettier、Eslint 校验语法错误，husky 预防将带有语法等错误提交到远程仓库造成污染</li>
+<li>Webpack@^5.0.0：静态模块打包工具</li>
+</ol>
+<h2 id="项目准备"><a href="#项目准备" class="headerlink" title="项目准备"></a>项目准备</h2> 
+      <a class="article-more-link" href="/2021/12/24/storybook-js/"
         >阅读更多...</a
       >
        
@@ -224,7 +235,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2021/12/22/2021-summary/"
+  <a class="article-title" href="/2021/12/24/2021-summary/"
     >2021，沪漂五年重返校园的一年</a> 
 </h2>
  
@@ -233,18 +244,18 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2021/12/22/2021-summary/" class="article-date">
-  <time datetime="2021-12-22T07:52:15.045Z" itemprop="datePublished">2021-12-22</time>
+      <a href="/2021/12/24/2021-summary/" class="article-date">
+  <time datetime="2021-12-24T09:52:09.279Z" itemprop="datePublished">2021-12-24</time>
 </a>    
     </div>
       
     <div class="article-entry" itemprop="articleBody">
        
-  <p><img src="/2021/12/22/2021-summary/banner.jpg" alt="img"><br>2021 年，依然是为生活忙碌的一年，考研、考证、换工作……</p>
+  <p><img src="/2021/12/24/2021-summary/banner.jpg" alt="img"><br>2021 年，依然是为生活忙碌的一年，考研、考证、换工作……</p>
 <p>回想起去年此时正在紧张的备战考研，或许是年龄大了心态不如从前了，考试前夕特别焦虑一度失眠。不过过程都不重要了，因为结果还不错，现在已经入学半学期啦～</p>
 <h2 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h2><h3 id="我换工作了-💻"><a href="#我换工作了-💻" class="headerlink" title="我换工作了 💻"></a>我换工作了 💻</h3><p>就在今年 10 月底我离开了工作两年多的公司，不是裸辞，这个年纪已经没有了裸辞的勇气，原因一言难尽，其实年中就打算走的，但面试了一周左右没有理想的 offer 加之领导的挽留，我放弃了面试，不过 10 月底做完项目后拿到了满意的 offer 还是走了。</p>
 <p>回想在那里的两年，平台虽然不大，但是很开心认识了一群可爱的小伙伴和我的的老大(庄哥)，他的技术很牛，跟他学到了很多东西，他的技术和为人处事都值得我学习，他是 Coach 型的老大，是我的理想 leader。不过他在我之前离职了，说实话知道他要走的时候我很难过，不知道你们有没有那种很慌又孤军奋战的感觉，感觉工作都提不起兴趣，不过慢慢还是要习惯要自己强大起来。</p> 
-      <a class="article-more-link" href="/2021/12/22/2021-summary/"
+      <a class="article-more-link" href="/2021/12/24/2021-summary/"
         >阅读更多...</a
       >
        
@@ -725,11 +736,11 @@
 </blockquote> -->
 
 <div style="width: 90%;margin: 0 auto">
-    <canvas id="chart9902" style="height: 300px"></canvas>
+    <canvas id="chart2088" style="height: 300px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart9902').getContext('2d');
+    var ctx = document.getElementById('chart2088').getContext('2d');
     var options = {
 type: 'line',
 data: {
