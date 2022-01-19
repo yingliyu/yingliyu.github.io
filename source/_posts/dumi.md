@@ -4,7 +4,7 @@ title: dumi搭建组件库
 tags:
   - umi
   - dumi
-date: 2022-01-19 10：49：30
+date: 2022-01-19 14：49：30
 description: dumi搭建组件库
 ---
 
