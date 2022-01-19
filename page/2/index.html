@@ -155,6 +155,70 @@
     
     
     <article
+  id="post-file-down"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2021/09/23/file-down/"
+    >文件下载的三种方式</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/09/23/file-down/" class="article-date">
+  <time datetime="2021-09-23T14:29:09.000Z" itemprop="datePublished">2021-09-23</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%96%87%E4%BB%B6/">文件</a> / <a class="article-category-link" href="/categories/%E6%96%87%E4%BB%B6/%E4%B8%8B%E8%BD%BD/">下载</a>
+  </div>
+   
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p>文件上传下载是项目中经常遇到的常规功能，本文针对下载功能总结了一共三种使用方式。</p>
+<h5 id="一-无-API-浏览器直接下载（静态资源在前端）"><a href="#一-无-API-浏览器直接下载（静态资源在前端）" class="headerlink" title="一.无 API 浏览器直接下载（静态资源在前端）"></a>一.无 API 浏览器直接下载（静态资源在前端）</h5><p>将静态资源文件直接放于<code> public</code> 目录下，打包时 <code>public</code> 文件不会被编译。</p>
+<blockquote>
+<p>注意：静态资源的路径，在 public 文件夹下路径是<code>/文件名</code></p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;download-file&quot;</span> <span class="attr">href</span>=<span class="string">&quot;/file.xlsx&quot;</span> <span class="attr">download</span>=<span class="string">&quot;模板.xlsx&quot;</span>&gt;</span>下载模板文件<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>或者使用非 a 标签的按钮下载：</p> 
+      <a class="article-more-link" href="/2021/09/23/file-down/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%B8%8A%E4%BC%A0-%E4%B8%8B%E8%BD%BD/" rel="tag">上传/下载</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-interview-question-http"
   class="article article-type-post"
   itemscope
@@ -716,65 +780,6 @@
 </article>
 
     
-    <article
-  id="post-react-share-bike"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2020/07/18/react-share-bike/"
-    >React+AntD+Redux 的项目实战总结</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2020/07/18/react-share-bike/" class="article-date">
-  <time datetime="2020-07-18T15:46:43.000Z" itemprop="datePublished">2020-07-18</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/React/">React</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <!-- ![1.jepg](1.jpeg) -->
-
-<h5 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h5><p>最近用 <code>React Hook</code> 实战了一个 React 项目。今天来总结一下，因为都是拼凑的时间所以项目历时半个多月之久，通过本次学习进一步的熟悉了 <code>AntD</code> 常用组件的使用，业务功能（增删改查）的开发及百度地图 API、富文本组件的使用、权限设置模块，最重要的是把学习的 <code>React Hook</code> 落实到了项目中。</p> 
-      <a class="article-more-link" href="/2020/07/18/react-share-bike/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/" rel="tag">react</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
   </article>
   
 
@@ -792,7 +797,7 @@
     <ul>
       <li>
         Copyrights &copy;
-        2015-2021
+        2015-2022
         <i class="ri-heart-fill heart_icon"></i> Lillian
       </li>
     </ul>

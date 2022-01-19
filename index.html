@@ -166,7 +166,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2021/12/24/storybook-js/"
+  <a class="article-title" href="/2022/01/19/storybook-js/"
     >Storybook从零到一搭建组件库(上篇)</a> 
 </h2>
  
@@ -175,8 +175,8 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2021/12/24/storybook-js/" class="article-date">
-  <time datetime="2021-12-24T09:52:09.303Z" itemprop="datePublished">2021-12-24</time>
+      <a href="/2022/01/19/storybook-js/" class="article-date">
+  <time datetime="2022-01-19T03:08:56.659Z" itemprop="datePublished">2022-01-19</time>
 </a>    
     </div>
       
@@ -186,7 +186,7 @@
 <blockquote>
 <p>Storybook 可以做什么？</p>
 </blockquote>
-<p>工作中开发的 UI 组件或页面可以用 Storybook 帮助你记录并生成 API 文档，增强代码重用性，大大的提高工作效率，并自动可视化地测试组件以防止 bug。<br>同时不受限于框架，它同时支持 Vue、React、Angular。所以工作的同时，不妨用它来沉淀一个自己的组件库，面试的时候也是一个谈资。<br><img src="/2021/12/24/storybook-js/image.png" alt="image"></p>
+<p>工作中开发的 UI 组件或页面可以用 Storybook 帮助你记录并生成 API 文档，增强代码重用性，大大的提高工作效率，并自动可视化地测试组件以防止 bug。<br>同时不受限于框架，它同时支持 Vue、React、Angular。所以工作的同时，不妨用它来沉淀一个自己的组件库，面试的时候也是一个谈资。<br><img src="/2022/01/19/storybook-js/image.png" alt="image"></p>
 <h2 id="依赖技术栈"><a href="#依赖技术栈" class="headerlink" title="依赖技术栈"></a>依赖技术栈</h2><p>首先，先来了解一下搭建一个简单的 UI 组件库需要使用哪些技术栈：</p>
 <ol>
 <li>Node 环境：v14.16.1</li>
@@ -199,7 +199,7 @@
 <li>Webpack@^5.0.0：静态模块打包工具</li>
 </ol>
 <h2 id="项目准备"><a href="#项目准备" class="headerlink" title="项目准备"></a>项目准备</h2> 
-      <a class="article-more-link" href="/2021/12/24/storybook-js/"
+      <a class="article-more-link" href="/2022/01/19/storybook-js/"
         >阅读更多...</a
       >
        
@@ -224,6 +224,74 @@
 
     
     <article
+  id="post-dumi"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h2 itemprop="name">
+  <a class="article-title" href="/2022/01/19/dumi/"
+    >dumi搭建组件库</a> 
+</h2>
+ 
+
+      
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2022/01/19/dumi/" class="article-date">
+  <time datetime="2022-01-19T03:08:56.647Z" itemprop="datePublished">2022-01-19</time>
+</a>    
+    </div>
+      
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>之前有用 storybook 尝试搭建一套组件库<a href="https://yingliyu.github.io/2021/12/24/storybook-js/">《Storybook 从零到一搭建组件库(上篇)》</a>，但是一顿操作下来之后，发现 storybook 学习成本相对较高且配置复杂，最重要的是页面有被丑到。然后开始使用 dumi，发现真香，不仅上手简单就像正常开发一个普通的项目一样，而且没有繁杂的配置，最重要的是页面美观简洁大方。一个像 antd 一样的组件库，你值得拥有。</p>
+<blockquote>
+<p>本文将带你学习搭建一个 React+TS 组件库，编写一个完整组件、部署至 github 静态 web 站点及发布 npm 。</p>
+</blockquote>
+<p>使用技术：<br><code>dumi</code>：负责组件开发及组件文档生成（基于 umi，使用过<code>umi</code>的同学比较友好易上手）<br><code>github</code>：配置自动化部署静态 web<br><code>gitee</code>：同步 github gh pages</p>
+<blockquote>
+<p>特性：</p>
+<ul>
+<li>📦 开箱即用，将注意力集中在组件开发和文档编写上</li>
+<li>📋 丰富的 Markdown 扩展，不止于渲染组件 demo</li>
+<li>🏷 基于 TypeScript 类型定义，自动生成组件 API</li>
+<li>🎨 主题轻松自定义，还可创建自己的 Markdown 组件</li>
+<li>📱 支持移动端组件库研发，内置移动端高清渲染方案</li>
+<li>📡 一行命令将组件资产数据化，与下游生产力工具串联</li>
+</ul>
+</blockquote> 
+      <a class="article-more-link" href="/2022/01/19/dumi/"
+        >阅读更多...</a
+      >
+       
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dumi/" rel="tag">dumi</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/umi/" rel="tag">umi</a></li></ul>
+
+    </footer>
+  </div>
+
+    
+ 
+    
+</article>
+
+    
+    <article
   id="post-2021-summary"
   class="article article-type-post"
   itemscope
@@ -235,7 +303,7 @@
     <header class="article-header">
        
 <h2 itemprop="name">
-  <a class="article-title" href="/2021/12/24/2021-summary/"
+  <a class="article-title" href="/2022/01/19/2021-summary/"
     >2021，沪漂五年重返校园的一年</a> 
 </h2>
  
@@ -244,18 +312,18 @@
     </header>
      
     <div class="article-meta">
-      <a href="/2021/12/24/2021-summary/" class="article-date">
-  <time datetime="2021-12-24T09:52:09.279Z" itemprop="datePublished">2021-12-24</time>
+      <a href="/2022/01/19/2021-summary/" class="article-date">
+  <time datetime="2022-01-19T03:08:56.635Z" itemprop="datePublished">2022-01-19</time>
 </a>    
     </div>
       
     <div class="article-entry" itemprop="articleBody">
        
-  <p><img src="/2021/12/24/2021-summary/banner.jpg" alt="img"><br>2021 年，依然是为生活忙碌的一年，考研、考证、换工作……</p>
+  <p><img src="/2022/01/19/2021-summary/banner.jpg" alt="img"><br>2021 年，依然是为生活忙碌的一年，考研、考证、换工作……</p>
 <p>回想起去年此时正在紧张的备战考研，或许是年龄大了心态不如从前了，考试前夕特别焦虑一度失眠。不过过程都不重要了，因为结果还不错，现在已经入学半学期啦～</p>
 <h2 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h2><h3 id="我换工作了-💻"><a href="#我换工作了-💻" class="headerlink" title="我换工作了 💻"></a>我换工作了 💻</h3><p>就在今年 10 月底我离开了工作两年多的公司，不是裸辞，这个年纪已经没有了裸辞的勇气，原因一言难尽，其实年中就打算走的，但面试了一周左右没有理想的 offer 加之领导的挽留，我放弃了面试，不过 10 月底做完项目后拿到了满意的 offer 还是走了。</p>
 <p>回想在那里的两年，平台虽然不大，但是很开心认识了一群可爱的小伙伴和我的的老大(庄哥)，他的技术很牛，跟他学到了很多东西，他的技术和为人处事都值得我学习，他是 Coach 型的老大，是我的理想 leader。不过他在我之前离职了，说实话知道他要走的时候我很难过，不知道你们有没有那种很慌又孤军奋战的感觉，感觉工作都提不起兴趣，不过慢慢还是要习惯要自己强大起来。</p> 
-      <a class="article-more-link" href="/2021/12/24/2021-summary/"
+      <a class="article-more-link" href="/2022/01/19/2021-summary/"
         >阅读更多...</a
       >
        
@@ -736,11 +804,11 @@
 </blockquote> -->
 
 <div style="width: 90%;margin: 0 auto">
-    <canvas id="chart2088" style="height: 300px"></canvas>
+    <canvas id="chart1767" style="height: 300px"></canvas>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 <script type="text/javascript">
-    var ctx = document.getElementById('chart2088').getContext('2d');
+    var ctx = document.getElementById('chart1767').getContext('2d');
     var options = {
 type: 'line',
 data: {
@@ -783,70 +851,6 @@ text: 'Chart.js Line Chart'
 </article>
 
     
-    <article
-  id="post-file-down"
-  class="article article-type-post"
-  itemscope
-  itemprop="blogPost"
-  data-scroll-reveal
->
-  <div class="article-inner">
-    
-    <header class="article-header">
-       
-<h2 itemprop="name">
-  <a class="article-title" href="/2021/09/23/file-down/"
-    >文件下载的三种方式</a> 
-</h2>
- 
-
-      
-    </header>
-     
-    <div class="article-meta">
-      <a href="/2021/09/23/file-down/" class="article-date">
-  <time datetime="2021-09-23T14:29:09.000Z" itemprop="datePublished">2021-09-23</time>
-</a> 
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%96%87%E4%BB%B6/">文件</a> / <a class="article-category-link" href="/categories/%E6%96%87%E4%BB%B6/%E4%B8%8B%E8%BD%BD/">下载</a>
-  </div>
-   
-    </div>
-      
-    <div class="article-entry" itemprop="articleBody">
-       
-  <p>文件上传下载是项目中经常遇到的常规功能，本文针对下载功能总结了一共三种使用方式。</p>
-<h5 id="一-无-API-浏览器直接下载（静态资源在前端）"><a href="#一-无-API-浏览器直接下载（静态资源在前端）" class="headerlink" title="一.无 API 浏览器直接下载（静态资源在前端）"></a>一.无 API 浏览器直接下载（静态资源在前端）</h5><p>将静态资源文件直接放于<code> public</code> 目录下，打包时 <code>public</code> 文件不会被编译。</p>
-<blockquote>
-<p>注意：静态资源的路径，在 public 文件夹下路径是<code>/文件名</code></p>
-</blockquote>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">&quot;download-file&quot;</span> <span class="attr">href</span>=<span class="string">&quot;/file.xlsx&quot;</span> <span class="attr">download</span>=<span class="string">&quot;模板.xlsx&quot;</span>&gt;</span>下载模板文件<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>或者使用非 a 标签的按钮下载：</p> 
-      <a class="article-more-link" href="/2021/09/23/file-down/"
-        >阅读更多...</a
-      >
-       
-      <!-- reward -->
-      
-    </div>
-    
-
-    <!-- copyright -->
-    
-    <footer class="article-footer">
-       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%B8%8A%E4%BC%A0-%E4%B8%8B%E8%BD%BD/" rel="tag">上传/下载</a></li></ul>
-
-    </footer>
-  </div>
-
-    
- 
-    
-</article>
-
-    
   </article>
   
 
@@ -864,7 +868,7 @@ text: 'Chart.js Line Chart'
     <ul>
       <li>
         Copyrights &copy;
-        2015-2021
+        2015-2022
         <i class="ri-heart-fill heart_icon"></i> Lillian
       </li>
     </ul>
